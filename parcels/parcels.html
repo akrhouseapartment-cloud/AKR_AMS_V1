@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>
+
+Parcel Management
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>
+
+📦 Parcel Management
+
+</h2>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<nav>
+
+<a href="#">Dashboard</a>
+
+<a href="#">Parcels</a>
+
+<a href="#">Deliveries</a>
+
+<a href="#">Reports</a>
+
+<a href="#">History</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>
+
+Parcel Management Portal
+
+</h1>
+
+<p>
+
+Manage incoming parcels,
+track deliveries,
+notify residents,
+and monitor parcel collection.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📦
+
+</div>
+
+<h3>
+
+Today's Parcels
+
+</h3>
+
+<h1>
+
+18
+
+</h1>
+
+<p>
+
+Received Today
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📬
+
+</div>
+
+<h3>
+
+Pending Collection
+
+</h3>
+
+<h1>
+
+6
+
+</h1>
+
+<p>
+
+Waiting for Pickup
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+✅
+
+</div>
+
+<h3>
+
+Collected
+
+</h3>
+
+<h1>
+
+12
+
+</h1>
+
+<p>
+
+Delivered Successfully
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔍
+
+</div>
+
+<h3>
+
+Search Parcel
+
+</h3>
+
+<input
+
+type="text"
+
+id="searchParcel"
+
+placeholder="Tracking ID">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Search
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📦 Parcel Registration
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📦
+
+</div>
+
+<h3>
+
+Register Parcel
+
+</h3>
+
+<input
+
+type="text"
+
+id="trackingNumber"
+
+placeholder="Tracking Number">
+
+<input
+
+type="text"
+
+id="parcelDescription"
+
+placeholder="Parcel Description">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Register Parcel
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚚
+
+</div>
+
+<h3>
+
+Courier Partner
+
+</h3>
+
+<select id="courierPartner">
+
+<option>Amazon</option>
+
+<option>Flipkart</option>
+
+<option>Blue Dart</option>
+
+<option>Delhivery</option>
+
+<option>DTDC</option>
+
+<option>India Post</option>
+
+<option>Other</option>
+
+</select>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Save Courier
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👤
+
+</div>
+
+<h3>
+
+Assign Resident
+
+</h3>
+
+<input
+
+type="text"
+
+id="residentFlat"
+
+placeholder="Flat Number">
+
+<input
+
+type="text"
+
+id="residentName"
+
+placeholder="Resident Name">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Assign Parcel
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📷
+
+</div>
+
+<h3>
+
+Parcel Photo
+
+</h3>
+
+<input
+
+type="file"
+
+accept="image/*">
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Upload Photo
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔐
+
+</div>
+
+<h3>
+
+OTP Verification
+
+</h3>
+
+<input
+
+type="text"
+
+maxlength="6"
+
+placeholder="Enter OTP">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Verify Pickup
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📦 Parcel Tracking
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📅
+
+</div>
+
+<h3>
+
+Delivery History
+
+</h3>
+
+<table>
+
+<tr>
+
+<th>Date</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>01-Aug-2026</td>
+
+<td>Delivered</td>
+
+</tr>
+
+<tr>
+
+<td>30-Jul-2026</td>
+
+<td>Collected</td>
+
+</tr>
+
+<tr>
+
+<td>28-Jul-2026</td>
+
+<td>Delivered</td>
+
+</tr>
+
+</table>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View History
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔔
+
+</div>
+
+<h3>
+
+Pickup Reminders
+
+</h3>
+
+<p>
+
+Pending Parcels :
+
+<b>2</b>
+
+</p>
+
+<p>
+
+Reminder will be sent
+
+every 24 hours until
+
+collection.
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Send Reminder
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📍
+
+</div>
+
+<h3>
+
+Live Parcel Status
+
+</h3>
+
+<p>
+
+Tracking ID :
+
+TRK123456789
+
+</p>
+
+<p>
+
+Current Status :
+
+Ready for Pickup
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Refresh Status
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📋
+
+</div>
+
+<h3>
+
+Parcel Timeline
+
+</h3>
+
+<ul>
+
+<li>
+
+📦 Parcel Received
+
+</li>
+
+<li>
+
+👤 Resident Notified
+
+</li>
+
+<li>
+
+🔐 OTP Generated
+
+</li>
+
+<li>
+
+✅ Parcel Collected
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Timeline
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📦
+
+</div>
+
+<h3>
+
+Resident Parcel History
+
+</h3>
+
+<p>
+
+Total Parcels :
+
+<b>24</b>
+
+</p>
+
+<p>
+
+Collected :
+
+<b>23</b>
+
+</p>
+
+<p>
+
+Pending :
+
+<b>1</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Open History
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📊 Parcel Operations
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📊
+
+</div>
+
+<h3>
+
+Parcel Analytics
+
+</h3>
+
+<p>
+
+Today's Parcels :
+
+<b>18</b>
+
+</p>
+
+<p>
+
+Collected :
+
+<b>12</b>
+
+</p>
+
+<p>
+
+Pending :
+
+<b>6</b>
+
+</p>
+
+<p>
+
+Success Rate :
+
+<b>96%</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Analytics
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👮
+
+</div>
+
+<h3>
+
+Security Dashboard
+
+</h3>
+
+<p>
+
+Pending Verification :
+
+<b>3</b>
+
+</p>
+
+<p>
+
+OTP Pending :
+
+<b>2</b>
+
+</p>
+
+<p>
+
+Ready for Pickup :
+
+<b>6</b>
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Open Dashboard
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚚
+
+</div>
+
+<h3>
+
+Courier Performance
+
+</h3>
+
+<table>
+
+<tr>
+
+<th>Courier</th>
+
+<th>Parcels</th>
+
+</tr>
+
+<tr>
+
+<td>Amazon</td>
+
+<td>8</td>
+
+</tr>
+
+<tr>
+
+<td>Flipkart</td>
+
+<td>5</td>
+
+</tr>
+
+<tr>
+
+<td>Blue Dart</td>
+
+<td>3</td>
+
+</tr>
+
+<tr>
+
+<td>DTDC</td>
+
+<td>2</td>
+
+</tr>
+
+</table>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Performance
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📦
+
+</div>
+
+<h3>
+
+Bulk Parcel Management
+
+</h3>
+
+<p>
+
+Upload and manage
+
+multiple parcels
+
+at once.
+
+</p>
+
+<input
+
+type="file"
+
+accept=".csv,.xlsx">
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Import Parcels
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📄
+
+</div>
+
+<h3>
+
+Parcel Reports
+
+</h3>
+
+<p>
+
+Generate parcel
+
+collection and
+
+delivery reports.
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Generate Report
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📈 Parcel Services & Reports
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📦
+
+</div>
+
+<h3>
+
+Lost Parcel Management
+
+</h3>
+
+<p>
+
+Report missing parcels
+
+and track investigation.
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Report Lost Parcel
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+⭐
+
+</div>
+
+<h3>
+
+Resident Feedback
+
+</h3>
+
+<select>
+
+<option>⭐⭐⭐⭐⭐ Excellent</option>
+
+<option>⭐⭐⭐⭐ Good</option>
+
+<option>⭐⭐⭐ Average</option>
+
+<option>⭐⭐ Poor</option>
+
+<option>⭐ Very Poor</option>
+
+</select>
+
+<textarea
+
+rows="4"
+
+placeholder="Share your parcel collection experience...">
+
+</textarea>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Submit Feedback
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📅
+
+</div>
+
+<h3>
+
+Pickup Schedule
+
+</h3>
+
+<p>
+
+Next Pickup Window
+
+</p>
+
+<p>
+
+09:00 AM - 08:00 PM
+
+</p>
+
+<input
+
+type="date"
+
+id="pickupDate">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Schedule Pickup
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔔
+
+</div>
+
+<h3>
+
+Notification History
+
+</h3>
+
+<ul>
+
+<li>
+
+Parcel arrival notification sent
+
+</li>
+
+<li>
+
+Pickup reminder delivered
+
+</li>
+
+<li>
+
+OTP verification completed
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Notifications
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📈
+
+</div>
+
+<h3>
+
+Monthly Statistics
+
+</h3>
+
+<p>
+
+Received : <b>142</b>
+
+</p>
+
+<p>
+
+Collected : <b>138</b>
+
+</p>
+
+<p>
+
+Pending : <b>4</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Monthly Report
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<div class="container footer-content">
+
+<h2>
+
+📦 AKR House Apartments
+
+</h2>
+
+<p>
+
+Parcel Management Portal
+
+</p>
+
+<p>
+
+Version 1.0.0
+
+</p>
+
+<p>
+
+© 2026 AKR House Apartments
+
+All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+const action=this.innerText.trim();
+
+switch(action){
+
+case "Search":
+
+alert("Searching parcel details...");
+
+break;
+
+case "Register Parcel":
+
+alert("Parcel registered successfully.");
+
+break;
+
+case "Save Courier":
+
+alert("Courier details saved.");
+
+break;
+
+case "Assign Parcel":
+
+alert("Parcel assigned to resident.");
+
+break;
+
+case "Upload Photo":
+
+alert("Parcel photo uploaded.");
+
+break;
+
+case "Verify Pickup":
+
+alert("OTP verified. Parcel collection completed.");
+
+break;
+
+case "Refresh Status":
+
+alert("Parcel status refreshed.");
+
+break;
+
+case "Generate Report":
+
+alert("Parcel report generated.");
+
+break;
+
+case "Report Lost Parcel":
+
+alert("Lost parcel report submitted.");
+
+break;
+
+case "Schedule Pickup":
+
+alert("Pickup scheduled successfully.");
+
+break;
+
+default:
+
+console.log(action);
+
+}
+
+});
+
+});
+
+window.addEventListener("load",function(){
+
+console.log("================================");
+
+console.log("AKR AMS Parcel Module");
+
+console.log("Version : 1.0.0");
+
+console.log("Status : Ready");
+
+console.log("================================");
+
+});
+
+</script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+  
+
+  
