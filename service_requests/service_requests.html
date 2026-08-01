@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Service Request Management
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>
+
+🔧 Service Request Management
+
+</h2>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<nav>
+
+<a href="#">Dashboard</a>
+
+<a href="#">Requests</a>
+
+<a href="#">Work Orders</a>
+
+<a href="#">Staff</a>
+
+<a href="#">Reports</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>
+
+Service Request Portal
+
+</h1>
+
+<p>
+
+Create service requests,
+track work orders,
+assign maintenance staff,
+and monitor completion status.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔧
+
+</div>
+
+<h3>
+
+Open Requests
+
+</h3>
+
+<h1>
+
+14
+
+</h1>
+
+<p>
+
+Currently Active
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+✅
+
+</div>
+
+<h3>
+
+Completed Today
+
+</h3>
+
+<h1>
+
+9
+
+</h1>
+
+<p>
+
+Closed Requests
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👨‍🔧
+
+</div>
+
+<h3>
+
+Assigned Staff
+
+</h3>
+
+<h1>
+
+12
+
+</h1>
+
+<p>
+
+Active Staff
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔍
+
+</div>
+
+<h3>
+
+Search Request
+
+</h3>
+
+<input
+
+type="text"
+
+id="searchRequest"
+
+placeholder="Request ID">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Search
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📝 Create Service Request
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📝
+
+</div>
+
+<h3>
+
+New Request
+
+</h3>
+
+<input
+
+type="text"
+
+id="requestTitle"
+
+placeholder="Request Title">
+
+<textarea
+
+id="requestDescription"
+
+rows="4"
+
+placeholder="Describe the issue...">
+
+</textarea>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Create Request
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📋
+
+</div>
+
+<h3>
+
+Work Order
+
+</h3>
+
+<p>
+
+Work Order ID :
+
+WO-0001
+
+</p>
+
+<p>
+
+Category :
+
+Electrical
+
+</p>
+
+<p>
+
+Status :
+
+Open
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Work Order
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👨‍🔧
+
+</div>
+
+<h3>
+
+Assign Staff
+
+</h3>
+
+<select id="staffAssignment">
+
+<option>Ramesh Kumar</option>
+
+<option>Suresh</option>
+
+<option>Manoj</option>
+
+<option>Housekeeping Team</option>
+
+<option>Security Team</option>
+
+</select>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Assign Staff
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+⚠️
+
+</div>
+
+<h3>
+
+Priority
+
+</h3>
+
+<select id="priorityLevel">
+
+<option>Low</option>
+
+<option>Medium</option>
+
+<option>High</option>
+
+<option>Emergency</option>
+
+</select>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Update Priority
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📅
+
+</div>
+
+<h3>
+
+Expected Completion
+
+</h3>
+
+<input
+
+type="date"
+
+id="completionDate">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Save Date
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📷 Work Progress & Tracking
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📷
+
+</div>
+
+<h3>
+
+Before & After Photos
+
+</h3>
+
+<label>
+
+Before Photo
+
+</label>
+
+<input
+
+type="file"
+
+accept="image/*">
+
+<label>
+
+After Photo
+
+</label>
+
+<input
+
+type="file"
+
+accept="image/*">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Upload Photos
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💬
+
+</div>
+
+<h3>
+
+Comments
+
+</h3>
+
+<textarea
+
+rows="4"
+
+placeholder="Resident or staff comments...">
+
+</textarea>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Post Comment
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+⏱
+
+</div>
+
+<h3>
+
+SLA Tracking
+
+</h3>
+
+<p>
+
+Priority :
+
+High
+
+</p>
+
+<p>
+
+Target :
+
+24 Hours
+
+</p>
+
+<p>
+
+Remaining :
+
+08 Hours
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View SLA
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📍
+
+</div>
+
+<h3>
+
+Work Progress
+
+</h3>
+
+<ul>
+
+<li>
+
+✅ Request Created
+
+</li>
+
+<li>
+
+✅ Staff Assigned
+
+</li>
+
+<li>
+
+🔄 Work In Progress
+
+</li>
+
+<li>
+
+⬜ Pending Verification
+
+</li>
+
+<li>
+
+⬜ Closed
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Refresh Progress
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+✅
+
+</div>
+
+<h3>
+
+Completion Verification
+
+</h3>
+
+<p>
+
+Resident confirmation
+
+required before
+
+closing the request.
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Verify Completion
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+  <section>
+
+<div class="container">
+
+<h2>
+
+⭐ Feedback & Service Reports
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+⭐
+
+</div>
+
+<h3>
+
+Resident Feedback
+
+</h3>
+
+<select id="serviceRating">
+
+<option>⭐⭐⭐⭐⭐ Excellent</option>
+
+<option>⭐⭐⭐⭐ Good</option>
+
+<option>⭐⭐⭐ Average</option>
+
+<option>⭐⭐ Poor</option>
+
+<option>⭐ Very Poor</option>
+
+</select>
+
+<textarea
+
+rows="4"
+
+placeholder="Write your feedback...">
+
+</textarea>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Submit Feedback
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📊
+
+</div>
+
+<h3>
+
+Service Analytics
+
+</h3>
+
+<p>
+
+Open Requests :
+
+<b>14</b>
+
+</p>
+
+<p>
+
+Completed :
+
+<b>126</b>
+
+</p>
+
+<p>
+
+Average Resolution :
+
+<b>18 Hours</b>
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Analytics
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👨‍💼
+
+</div>
+
+<h3>
+
+Admin Dashboard
+
+</h3>
+
+<p>
+
+Pending Approval :
+
+<b>3</b>
+
+</p>
+
+<p>
+
+Delayed Requests :
+
+<b>2</b>
+
+</p>
+
+<p>
+
+Completed Today :
+
+<b>9</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Open Dashboard
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📅
+
+</div>
+
+<h3>
+
+Service History
+
+</h3>
+
+<ul>
+
+<li>
+
+Electrical Repair - Completed
+
+</li>
+
+<li>
+
+Plumbing Work - Completed
+
+</li>
+
+<li>
+
+Painting Request - Closed
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View History
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📋
+
+</div>
+
+<h3>
+
+Work Reports
+
+</h3>
+
+<ul>
+
+<li>
+
+Daily Report
+
+</li>
+
+<li>
+
+Weekly Report
+
+</li>
+
+<li>
+
+Monthly Report
+
+</li>
+
+<li>
+
+Staff Productivity
+
+</li>
+
+</ul>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Generate Report
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+  </section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📈 Performance & Administration
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📈
+
+</div>
+
+<h3>
+
+Monthly Statistics
+
+</h3>
+
+<p>
+
+New Requests :
+
+<b>42</b>
+
+</p>
+
+<p>
+
+Completed :
+
+<b>38</b>
+
+</p>
+
+<p>
+
+Pending :
+
+<b>4</b>
+
+</p>
+
+<p>
+
+SLA Compliance :
+
+<b>95%</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Statistics
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚨
+
+</div>
+
+<h3>
+
+Escalation Management
+
+</h3>
+
+<p>
+
+High Priority :
+
+<b>2</b>
+
+</p>
+
+<p>
+
+Overdue Requests :
+
+<b>1</b>
+
+</p>
+
+<p>
+
+Escalated Cases :
+
+<b>1</b>
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Manage Escalations
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📱
+
+</div>
+
+<h3>
+
+Notifications
+
+</h3>
+
+<ul>
+
+<li>
+
+New request assigned
+
+</li>
+
+<li>
+
+Work completed
+
+</li>
+
+<li>
+
+Resident feedback received
+
+</li>
+
+<li>
+
+SLA reminder sent
+
+</li>
+
+</ul>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Notifications
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔒
+
+</div>
+
+<h3>
+
+Audit Log
+
+</h3>
+
+<p>
+
+Track every action
+
+performed on a
+
+service request.
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Audit Log
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🏆
+
+</div>
+
+<h3>
+
+Best Performing Staff
+
+</h3>
+
+<p>
+
+⭐ Ramesh Kumar
+
+</p>
+
+<p>
+
+Completed :
+
+<b>48</b>
+
+Jobs
+
+</p>
+
+<p>
+
+Rating :
+
+<b>4.9/5</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Leaderboard
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<footer>
+
+<div class="container footer-content">
+
+<h2>
+
+🔧 AKR House Apartments
+
+</h2>
+
+<p>
+
+Service Request Management Portal
+
+</p>
+
+<p>
+
+Version 1.0.0
+
+</p>
+
+<p>
+
+© 2026 AKR House Apartments
+
+All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+const action=this.innerText.trim();
+
+switch(action){
+
+case "Search":
+
+alert("Searching service request...");
+
+break;
+
+case "Create Request":
+
+alert("Service request created successfully.");
+
+break;
+
+case "Assign Staff":
+
+alert("Staff assigned successfully.");
+
+break;
+
+case "Update Priority":
+
+alert("Priority updated successfully.");
+
+break;
+
+case "Save Date":
+
+alert("Expected completion date saved.");
+
+break;
+
+case "Upload Photos":
+
+alert("Photos uploaded successfully.");
+
+break;
+
+case "Post Comment":
+
+alert("Comment posted successfully.");
+
+break;
+
+case "Verify Completion":
+
+alert("Work marked for resident verification.");
+
+break;
+
+case "Submit Feedback":
+
+alert("Thank you for your feedback.");
+
+break;
+
+case "Generate Report":
+
+alert("Service report generated.");
+
+break;
+
+default:
+
+console.log(action);
+
+}
+
+});
+
+});
+
+window.addEventListener("load",function(){
+
+console.log("================================");
+
+console.log("AKR AMS Service Request Module");
+
+console.log("Version : 1.0.0");
+
+console.log("Status : Ready");
+
+console.log("================================");
+
+});
+
+</script>
+
+</body>
+
+</html>
+  
+
+  
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
