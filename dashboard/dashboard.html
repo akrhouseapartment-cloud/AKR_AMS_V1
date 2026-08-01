@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>AKR AMS Dashboard</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/dashboard.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<h2>🏢 AKR AMS</h2>
+
+<p>Apartment Management</p>
+
+</div>
+
+<ul class="menu">
+
+<li><a href="../dashboard/dashboard.html">🏠 Dashboard</a></li>
+
+<li><a href="../residents/residents.html">👨‍👩‍👧 Residents</a></li>
+
+<li><a href="../flats/flats.html">🏠 Flats</a></li>
+
+<li><a href="../maintenance/maintenance.html">💰 Maintenance</a></li>
+
+<li><a href="../complaints/complaints.html">📝 Complaints</a></li>
+
+<li><a href="../visitors/visitors.html">🚶 Visitors</a></li>
+
+<li><a href="../vehicles/vehicles.html">🚗 Vehicles</a></li>
+
+<li><a href="../parcels/parcels.html">📦 Parcels</a></li>
+
+<li><a href="../staff/staff.html">👨‍🔧 Staff</a></li>
+
+<li><a href="../service_requests/service_requests.html">🔧 Service Requests</a></li>
+
+<li><a href="../reports/reports.html">📊 Reports</a></li>
+
+<li><a href="../settings/settings.html">⚙️ Settings</a></li>
+
+</ul>
+
+</aside>
+
+<main class="content">
+
+<header class="topbar">
+
+<div>
+
+<h1>
+
+Dashboard
+
+</h1>
+
+<p>
+
+Welcome to AKR House Apartments
+
+</p>
+
+</div>
+
+<div>
+
+<button class="btn primary">
+
+Admin Panel
+
+</button>
+
+</div>
+
+</header>
+
+<section class="cards">
+
+<div class="card">
+
+<h3>
+
+Residents
+
+</h3>
+
+<h2 id="residentCount">
+
+0
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Flats
+
+</h3>
+
+<h2 id="flatCount">
+
+0
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Vehicles
+
+</h3>
+
+<h2 id="vehicleCount">
+
+0
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Parcels
+
+</h3>
+
+<h2 id="parcelCount">
+
+0
+
+</h2>
+
+</div>
+
+</section>
+
+
+<section class="cards">
+
+<div class="card">
+
+<h3>
+
+Maintenance Collection
+
+</h3>
+
+<h2 id="maintenanceCollection">
+
+₹0
+
+</h2>
+
+<p>
+
+This Month
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Open Complaints
+
+</h3>
+
+<h2 id="complaintCount">
+
+0
+
+</h2>
+
+<p>
+
+Pending Resolution
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Service Requests
+
+</h3>
+
+<h2 id="serviceCount">
+
+0
+
+</h2>
+
+<p>
+
+Active Requests
+
+</p>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📊 Apartment Summary
+
+</h2>
+
+<table class="summary-table">
+
+<tr>
+
+<td>Total Flats</td>
+
+<td id="flatCountSummary">30</td>
+
+</tr>
+
+<tr>
+
+<td>Occupied Flats</td>
+
+<td>26</td>
+
+</tr>
+
+<tr>
+
+<td>Vacant Flats</td>
+
+<td>4</td>
+
+</tr>
+
+<tr>
+
+<td>Total Residents</td>
+
+<td id="residentCountSummary">96</td>
+
+</tr>
+
+<tr>
+
+<td>Registered Vehicles</td>
+
+<td id="vehicleCountSummary">49</td>
+
+</tr>
+
+<tr>
+
+<td>Pending Parcels</td>
+
+<td id="parcelCountSummary">6</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📅 Today's Activities
+
+</h2>
+
+<ul class="activity-list">
+
+<li>
+
+📝 2 New Complaints Received
+
+</li>
+
+<li>
+
+📦 5 Parcels Delivered
+
+</li>
+
+<li>
+
+🚗 8 Visitor Vehicles Entered
+
+</li>
+
+<li>
+
+💰 ₹15,000 Maintenance Collected
+
+</li>
+
+<li>
+
+🔧 3 Service Requests Completed
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🚀 Quick Actions
+
+</h2>
+
+<div class="quick-actions">
+
+<button class="btn primary">
+
+➕ Add Resident
+
+</button>
+
+<button class="btn primary">
+
+💰 Add Payment
+
+</button>
+
+<button class="btn primary">
+
+📝 Register Complaint
+
+</button>
+
+<button class="btn primary">
+
+📦 Add Parcel
+
+</button>
+
+<button class="btn primary">
+
+🚗 Add Vehicle
+
+</button>
+
+<button class="btn primary">
+
+📢 Create Notice
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📈 Monthly Statistics
+
+</h2>
+
+<table class="summary-table">
+
+<tr>
+
+<td>Maintenance Collected</td>
+
+<td>₹45,000</td>
+
+</tr>
+
+<tr>
+
+<td>Complaints Closed</td>
+
+<td>28</td>
+
+</tr>
+
+<tr>
+
+<td>Service Requests Completed</td>
+
+<td>126</td>
+
+</tr>
+
+<tr>
+
+<td>New Residents</td>
+
+<td>4</td>
+
+</tr>
+
+<tr>
+
+<td>Parcels Delivered</td>
+
+<td>138</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📊 Collection Progress
+
+</h2>
+
+<p>
+
+Maintenance Collection
+
+</p>
+
+<progress value="93" max="100"></progress>
+
+<p>
+
+93% Collected
+
+</p>
+
+<br>
+
+<p>
+
+Complaint Resolution
+
+</p>
+
+<progress value="88" max="100"></progress>
+
+<p>
+
+88% Completed
+
+</p>
+
+<br>
+
+<p>
+
+Service SLA
+
+</p>
+
+<progress value="95" max="100"></progress>
+
+<p>
+
+95% Achieved
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🏆 Top Performers
+
+</h2>
+
+<ul class="activity-list">
+
+<li>
+
+🥇 Ramesh Kumar - 48 Jobs Completed
+
+</li>
+
+<li>
+
+🥈 Suresh - 44 Jobs Completed
+
+</li>
+
+<li>
+
+🥉 Manoj - 39 Jobs Completed
+
+</li>
+
+<li>
+
+⭐ Housekeeping Team - 4.9 Rating
+
+</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📝 Recent Complaints
+
+</h2>
+
+<table class="summary-table">
+
+<tr>
+
+<th>ID</th>
+
+<th>Issue</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>C001</td>
+
+<td>Water Leakage</td>
+
+<td>Open</td>
+
+</tr>
+
+<tr>
+
+<td>C002</td>
+
+<td>Lift Issue</td>
+
+<td>In Progress</td>
+
+</tr>
+
+<tr>
+
+<td>C003</td>
+
+<td>Parking Issue</td>
+
+<td>Resolved</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🔔 Latest Notifications
+
+</h2>
+
+<ul class="activity-list">
+
+<li>
+
+📦 Parcel arrived for Flat 203
+
+</li>
+
+<li>
+
+💰 Maintenance due reminder sent
+
+</li>
+
+<li>
+
+📝 Complaint C002 updated
+
+</li>
+
+<li>
+
+🚗 Visitor approved for Flat 105
+
+</li>
+
+<li>
+
+📢 New apartment notice published
+
+</li>
+
+</ul>
+
+</div>
+
+</section>
+
+
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📅 Upcoming Events
+
+</h2>
+
+<ul class="activity-list">
+
+<li>
+
+🧹 Water Tank Cleaning - 05 Aug 2026
+
+</li>
+
+<li>
+
+💰 Maintenance Due Date - 10 Aug 2026
+
+</li>
+
+<li>
+
+👥 Residents Meeting - 15 Aug 2026
+
+</li>
+
+<li>
+
+🧯 Fire Safety Inspection - 20 Aug 2026
+
+</li>
+
+<li>
+
+🔧 Lift Maintenance - 25 Aug 2026
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🚨 Emergency Alerts
+
+</h2>
+
+<table class="summary-table">
+
+<tr>
+
+<th>Alert</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>Fire Alarm</td>
+
+<td>Normal ✅</td>
+
+</tr>
+
+<tr>
+
+<td>Power Supply</td>
+
+<td>Available ✅</td>
+
+</tr>
+
+<tr>
+
+<td>Water Supply</td>
+
+<td>Normal ✅</td>
+
+</tr>
+
+<tr>
+
+<td>Security</td>
+
+<td>All Clear ✅</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📦 Recent Parcels
+
+</h2>
+
+<table class="summary-table">
+
+<tr>
+
+<th>Flat</th>
+
+<th>Courier</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>203</td>
+
+<td>Amazon</td>
+
+<td>Pending</td>
+
+</tr>
+
+<tr>
+
+<td>105</td>
+
+<td>Flipkart</td>
+
+<td>Delivered</td>
+
+</tr>
+
+<tr>
+
+<td>302</td>
+
+<td>Blue Dart</td>
+
+<td>Collected</td>
+
+</tr>
+
+<tr>
+
+<td>001</td>
+
+<td>DTDC</td>
+
+<td>Pending</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🚗 Visitor Summary
+
+</h2>
+
+<p>
+
+Today's Visitors :
+
+<b>8</b>
+
+</p>
+
+<p>
+
+Inside Apartment :
+
+<b>3</b>
+
+</p>
+
+<p>
+
+Exited :
+
+<b>5</b>
+
+</p>
+
+<br>
+
+<button class="btn primary">
+
+View Visitor Log
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+💰 Recent Maintenance Payments
+
+</h2>
+
+<table class="summary-table">
+
+<tr>
+
+<th>Flat</th>
+
+<th>Amount</th>
+
+</tr>
+
+<tr>
+
+<td>101</td>
+
+<td>₹1,500</td>
+
+</tr>
+
+<tr>
+
+<td>203</td>
+
+<td>₹1,500</td>
+
+</tr>
+
+<tr>
+
+<td>305</td>
+
+<td>₹1,500</td>
+
+</tr>
+
+<tr>
+
+<td>502</td>
+
+<td>₹1,500</td>
+
+</tr>
+
+</table>
+
+<button class="btn secondary">
+
+View All Payments
+
+</button>
+
+</div>
+
+</section>
+
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+🏠 Occupancy Statistics
+
+</h2>
+
+<table class="summary-table">
+
+<tr>
+
+<th>Category</th>
+
+<th>Count</th>
+
+</tr>
+
+<tr>
+
+<td>Total Flats</td>
+
+<td>30</td>
+
+</tr>
+
+<tr>
+
+<td>Occupied</td>
+
+<td>26</td>
+
+</tr>
+
+<tr>
+
+<td>Vacant</td>
+
+<td>4</td>
+
+</tr>
+
+<tr>
+
+<td>Occupancy Rate</td>
+
+<td>86.7%</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+👨‍🔧 Staff Status
+
+</h2>
+
+<table class="summary-table">
+
+<tr>
+
+<th>Department</th>
+
+<th>Available</th>
+
+</tr>
+
+<tr>
+
+<td>Security</td>
+
+<td>3</td>
+
+</tr>
+
+<tr>
+
+<td>Housekeeping</td>
+
+<td>4</td>
+
+</tr>
+
+<tr>
+
+<td>Electrician</td>
+
+<td>1</td>
+
+</tr>
+
+<tr>
+
+<td>Plumber</td>
+
+<td>1</td>
+
+</tr>
+
+<tr>
+
+<td>Supervisor</td>
+
+<td>1</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📝 Complaint Status
+
+</h2>
+
+<table class="summary-table">
+
+<tr>
+
+<th>Status</th>
+
+<th>Count</th>
+
+</tr>
+
+<tr>
+
+<td>Open</td>
+
+<td>4</td>
+
+</tr>
+
+<tr>
+
+<td>In Progress</td>
+
+<td>3</td>
+
+</tr>
+
+<tr>
+
+<td>Resolved</td>
+
+<td>28</td>
+
+</tr>
+
+<tr>
+
+<td>Closed</td>
+
+<td>25</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🚗 Parking Overview
+
+</h2>
+
+<p>
+
+Total Parking Slots
+
+</p>
+
+<h3>
+
+60
+
+</h3>
+
+<p>
+
+Occupied :
+
+49
+
+</p>
+
+<p>
+
+Available :
+
+11
+
+</p>
+
+<progress value="49" max="60"></progress>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+⚡ System Health
+
+</h2>
+
+<ul class="activity-list">
+
+<li>
+
+🟢 Firebase Connected
+
+</li>
+
+<li>
+
+🟢 Database Online
+
+</li>
+
+<li>
+
+🟢 Authentication Active
+
+</li>
+
+<li>
+
+🟢 Notifications Running
+
+</li>
+
+<li>
+
+🟢 Backup Successful
+
+</li>
+
+</ul>
+
+<button class="btn primary">
+
+View System Status
+
+</button>
+
+</div>
+
+</section>
+
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📈 Revenue Overview
+
+</h2>
+
+<table class="summary-table">
+
+<tr>
+
+<th>Category</th>
+
+<th>Amount</th>
+
+</tr>
+
+<tr>
+
+<td>Maintenance</td>
+
+<td>₹45,000</td>
+
+</tr>
+
+<tr>
+
+<td>Late Fees</td>
+
+<td>₹1,500</td>
+
+</tr>
+
+<tr>
+
+<td>Other Charges</td>
+
+<td>₹2,000</td>
+
+</tr>
+
+<tr>
+
+<td><b>Total Revenue</b></td>
+
+<td><b>₹48,500</b></td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📋 Pending Tasks
+
+</h2>
+
+<ul class="activity-list">
+
+<li>
+
+📝 4 Complaints Pending
+
+</li>
+
+<li>
+
+💰 2 Maintenance Payments Due
+
+</li>
+
+<li>
+
+📦 6 Parcels Awaiting Pickup
+
+</li>
+
+<li>
+
+🔧 3 Service Requests Open
+
+</li>
+
+<li>
+
+🚗 1 Visitor Approval Pending
+
+</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+🎯 Admin Quick Shortcuts
+
+</h2>
+
+<div class="quick-actions">
+
+<button class="btn primary">
+
+👤 Add Resident
+
+</button>
+
+<button class="btn primary">
+
+🏠 Add Flat
+
+</button>
+
+<button class="btn primary">
+
+💰 Record Payment
+
+</button>
+
+<button class="btn primary">
+
+📢 Publish Notice
+
+</button>
+
+<button class="btn primary">
+
+🚗 Register Vehicle
+
+</button>
+
+<button class="btn primary">
+
+📦 Register Parcel
+
+</button>
+
+<button class="btn primary">
+
+📝 New Complaint
+
+</button>
+
+<button class="btn primary">
+
+📊 View Reports
+
+</button>
+
+</div>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📢 Notice Board
+
+</h2>
+
+<ul class="activity-list">
+
+<li>
+
+📅 Maintenance due before 10 Aug
+
+</li>
+
+<li>
+
+💧 Water tank cleaning on 05 Aug
+
+</li>
+
+<li>
+
+🧯 Fire safety inspection on 20 Aug
+
+</li>
+
+<li>
+
+👥 Residents meeting on 15 Aug
+
+</li>
+
+<li>
+
+🚗 Visitor parking rules updated
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🕒 Recent Login Activity
+
+</h2>
+
+<table class="summary-table">
+
+<tr>
+
+<th>User</th>
+
+<th>Time</th>
+
+</tr>
+
+<tr>
+
+<td>Admin</td>
+
+<td>09:05 AM</td>
+
+</tr>
+
+<tr>
+
+<td>Security</td>
+
+<td>08:42 AM</td>
+
+</tr>
+
+<tr>
+
+<td>Resident - Flat 203</td>
+
+<td>08:10 AM</td>
+
+</tr>
+
+<tr>
+
+<td>Maintenance Staff</td>
+
+<td>07:55 AM</td>
+
+</tr>
+
+</table>
+
+<button class="btn secondary">
+
+View All Logins
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📞 Emergency Contacts
+
+</h2>
+
+<table class="summary-table">
+
+<tr>
+
+<th>Service</th>
+
+<th>Number</th>
+
+</tr>
+
+<tr>
+
+<td>Police</td>
+
+<td>112</td>
+
+</tr>
+
+<tr>
+
+<td>Ambulance</td>
+
+<td>108</td>
+
+</tr>
+
+<tr>
+
+<td>Fire</td>
+
+<td>101</td>
+
+</tr>
+
+<tr>
+
+<td>Apartment Security</td>
+
+<td>+91 XXXXXXXXXX</td>
+
+</tr>
+
+<tr>
+
+<td>Apartment Manager</td>
+
+<td>+91 XXXXXXXXXX</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🌤 Weather
+
+</h2>
+
+<p>
+
+Location
+
+</p>
+
+<h3>
+
+Bengaluru
+
+</h3>
+
+<p>
+
+☀️ 28°C
+
+</p>
+
+<p>
+
+Humidity : 72%
+
+</p>
+
+<p>
+
+Rain Chance : 20%
+
+</p>
+
+<button class="btn primary">
+
+Refresh Weather
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📅 Calendar
+
+</h2>
+
+<input type="date">
+
+<br><br>
+
+<ul class="activity-list">
+
+<li>
+
+10 Aug - Maintenance Due
+
+</li>
+
+<li>
+
+15 Aug - Residents Meeting
+
+</li>
+
+<li>
+
+20 Aug - Fire Inspection
+
+</li>
+
+<li>
+
+25 Aug - Lift Maintenance
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📡 Live Activity Feed
+
+</h2>
+
+<ul class="activity-list">
+
+<li>
+
+🟢 Resident Added
+
+</li>
+
+<li>
+
+🟢 Complaint Closed
+
+</li>
+
+<li>
+
+🟢 Vehicle Registered
+
+</li>
+
+<li>
+
+🟢 Parcel Delivered
+
+</li>
+
+<li>
+
+🟢 Maintenance Paid
+
+</li>
+
+<li>
+
+🟢 Visitor Checked In
+
+</li>
+
+</ul>
+
+<button class="btn secondary">
+
+Refresh Feed
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🏆 Dashboard Status
+
+</h2>
+
+<table class="summary-table">
+
+<tr>
+
+<td>Firebase</td>
+
+<td>🟢 Connected</td>
+
+</tr>
+
+<tr>
+
+<td>Database</td>
+
+<td>🟢 Online</td>
+
+</tr>
+
+<tr>
+
+<td>Authentication</td>
+
+<td>🟢 Active</td>
+
+</tr>
+
+<tr>
+
+<td>Storage</td>
+
+<td>🟢 Available</td>
+
+</tr>
+
+<tr>
+
+<td>System Version</td>
+
+<td>v1.0.0</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+<footer class="dashboard-footer">
+
+<div class="container">
+
+<p>
+
+© 2026 AKR House Apartments | AKR AMS Version 1.0.0
+
+</p>
+
+<p>
+
+Developed for Apartment Management
+
+</p>
+
+</div>
+
+</footer>
+
+</main>
+
+</div>
+
+<script type="module" src="../js/dashboard.js"></script>
+
+<script>
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("click",()=>{
+
+const action=button.innerText.trim();
+
+switch(action){
+
+case "👤 Add Resident":
+
+location.href="../residents/residents.html";
+
+break;
+
+case "🏠 Add Flat":
+
+location.href="../flats/flats.html";
+
+break;
+
+case "💰 Record Payment":
+
+location.href="../maintenance/maintenance.html";
+
+break;
+
+case "📢 Publish Notice":
+
+location.href="../notices/notices.html";
+
+break;
+
+case "🚗 Register Vehicle":
+
+location.href="../vehicles/vehicles.html";
+
+break;
+
+case "📦 Register Parcel":
+
+location.href="../parcels/parcels.html";
+
+break;
+
+case "📝 New Complaint":
+
+location.href="../complaints/complaints.html";
+
+break;
+
+case "📊 View Reports":
+
+location.href="../reports/reports.html";
+
+break;
+
+default:
+
+console.log(action);
+
+}
+
+});
+
+});
+
+// Auto Refresh Dashboard
+
+setInterval(()=>{
+
+console.log("Dashboard refreshed...");
+
+},30000);
+
+// Current Date & Time
+
+function updateDateTime(){
+
+const now=new Date();
+
+const el=document.getElementById("currentDateTime");
+
+if(el){
+
+el.innerHTML=now.toLocaleString("en-IN");
+
+}
+
+}
+
+updateDateTime();
+
+setInterval(updateDateTime,1000);
+
+</script>
+
+</body>
+
+</html>
+
+
+  
+
+
+  
+  
+
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
