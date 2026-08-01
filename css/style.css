@@ -385,7 +385,8 @@ font-size:20px;
 
 padding:90px 0;
 
-background:.feature-card{
+.feature-card
+   {
 background:#1565C0;
 }
 
