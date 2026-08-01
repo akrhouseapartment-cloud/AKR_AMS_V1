@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>
+
+Family Dashboard
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>
+
+👨‍👩‍👧 Family Dashboard
+
+</h2>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<nav>
+
+<a href="#">Home</a>
+
+<a href="#">Visitors</a>
+
+<a href="#">Complaints</a>
+
+<a href="#">Services</a>
+
+<a href="#">Profile</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>
+
+Welcome Family Member
+
+</h1>
+
+<p>
+
+Access apartment services with permissions
+provided by the Primary Resident.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚶
+
+</div>
+
+<h3>
+
+Visitor Request
+
+</h3>
+
+<p>
+
+Create visitor requests
+for approval.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📝
+
+</div>
+
+<h3>
+
+Complaints
+
+</h3>
+
+<p>
+
+Raise apartment complaints
+and track their status.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🛠
+
+</div>
+
+<h3>
+
+Service Requests
+
+</h3>
+
+<p>
+
+Book maintenance
+and repair services.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚗
+
+</div>
+
+<h3>
+
+My Vehicles
+
+</h3>
+
+<p>
+
+Add and manage
+your vehicles.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🟢
+
+</div>
+
+<h3>
+
+Presence Status
+
+</h3>
+
+<p>
+
+Update your current status.
+
+</p>
+
+<select id="presenceStatus">
+
+<option value="IN">
+
+🟢 In Home
+
+</option>
+
+<option value="OUT">
+
+🔴 Out
+
+</option>
+
+</select>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Update Status
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💬
+
+</div>
+
+<h3>
+
+Community Chat
+
+</h3>
+
+<textarea
+
+id="familyChat"
+
+rows="5"
+
+placeholder="Type your message...">
+
+</textarea>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Send Message
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📦
+
+</div>
+
+<h3>
+
+Parcel Tracking
+
+</h3>
+
+<ul>
+
+<li>
+
+Amazon - Ready for Collection
+
+</li>
+
+<li>
+
+Flipkart - Delivered
+
+</li>
+
+<li>
+
+BlueDart - In Transit
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Parcels
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📢
+
+</div>
+
+<h3>
+
+Apartment Notices
+
+</h3>
+
+<ul>
+
+<li>
+
+Water Tank Cleaning
+
+</li>
+
+<li>
+
+Lift Maintenance
+
+</li>
+
+<li>
+
+Residents Meeting
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View All Notices
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚨
+
+</div>
+
+<h3>
+
+Emergency Contacts
+
+</h3>
+
+<div class="hero-buttons">
+
+<a href="tel:112" class="btn secondary">
+
+👮 Police
+
+</a>
+
+<a href="tel:108" class="btn secondary">
+
+🚑 Ambulance
+
+</a>
+
+<a href="tel:101" class="btn secondary">
+
+🔥 Fire
+
+</a>
+
+<a href="tel:+918668061458" class="btn secondary">
+
+🛡 Security
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+👨 Primary Resident & Requests
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👨
+
+</div>
+
+<h3>
+
+Primary Resident
+
+</h3>
+
+<p>
+
+Name : Arun Kumar
+
+</p>
+
+<p>
+
+Flat : 203
+
+</p>
+
+<p>
+
+Status : Approved
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Profile
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚶
+
+</div>
+
+<h3>
+
+Visitor Request
+
+</h3>
+
+<div class="input-group">
+
+<label>
+
+Visitor Name
+
+</label>
+
+<input
+
+type="text"
+
+id="visitorName"
+
+placeholder="Enter Visitor Name">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Mobile Number
+
+</label>
+
+<input
+
+type="tel"
+
+id="visitorMobile"
+
+maxlength="10"
+
+placeholder="Enter Mobile Number">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Purpose
+
+</label>
+
+<input
+
+type="text"
+
+id="visitorPurpose"
+
+placeholder="Purpose of Visit">
+
+</div>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Submit Visitor Request
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📝
+
+</div>
+
+<h3>
+
+Raise Complaint
+
+</h3>
+
+<select>
+
+<option>Electrical</option>
+
+<option>Water</option>
+
+<option>Lift</option>
+
+<option>Parking</option>
+
+<option>Noise</option>
+
+<option>Security</option>
+
+<option>Others</option>
+
+</select>
+
+<textarea
+
+rows="4"
+
+placeholder="Describe your complaint">
+
+</textarea>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Submit Complaint
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🛠
+
+</div>
+
+<h3>
+
+Service Request
+
+</h3>
+
+<select>
+
+<option>Electrician</option>
+
+<option>Plumber</option>
+
+<option>Housekeeping</option>
+
+<option>Carpenter</option>
+
+<option>Internet</option>
+
+</select>
+
+<input
+
+type="datetime-local">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Request Service
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚗
+
+</div>
+
+<h3>
+
+Vehicle Registration
+
+</h3>
+
+<input
+
+type="text"
+
+placeholder="Vehicle Number">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Save Vehicle
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📊 My Activity & Profile
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📅
+
+</div>
+
+<h3>
+
+Activity History
+
+</h3>
+
+<ul>
+
+<li>
+
+✅ Visitor Request Submitted
+
+</li>
+
+<li>
+
+📝 Complaint Raised
+
+</li>
+
+<li>
+
+🚗 Vehicle Added
+
+</li>
+
+<li>
+
+🟢 Presence Updated
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Complete History
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📊
+
+</div>
+
+<h3>
+
+My Dashboard
+
+</h3>
+
+<p>
+
+Visitor Requests : <b>6</b>
+
+</p>
+
+<p>
+
+Complaints : <b>2</b>
+
+</p>
+
+<p>
+
+Service Requests : <b>4</b>
+
+</p>
+
+<p>
+
+Vehicles Registered : <b>1</b>
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🤖
+
+</div>
+
+<h3>
+
+AKR AI Assistant
+
+</h3>
+
+<textarea
+
+id="familyAI"
+
+rows="4"
+
+placeholder="Ask anything about apartment services...">
+
+</textarea>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Ask AI
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+⭐
+
+</div>
+
+<h3>
+
+Feedback
+
+</h3>
+
+<select>
+
+<option>⭐⭐⭐⭐⭐ Excellent</option>
+
+<option>⭐⭐⭐⭐ Good</option>
+
+<option>⭐⭐⭐ Average</option>
+
+<option>⭐⭐ Poor</option>
+
+<option>⭐ Very Poor</option>
+
+</select>
+
+<textarea
+
+rows="4"
+
+placeholder="Write your feedback...">
+
+</textarea>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Submit Feedback
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👤
+
+</div>
+
+<h3>
+
+Profile Summary
+
+</h3>
+
+<p>
+
+Role : Family Member
+
+</p>
+
+<p>
+
+Status : Approved
+
+</p>
+
+<p>
+
+Linked Resident : Arun Kumar
+
+</p>
+
+<p>
+
+Flat : 203
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Profile
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+🔔 Notifications & Safety
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔔
+
+</div>
+
+<h3>
+
+Notification Center
+
+</h3>
+
+<ul>
+
+<li>
+
+📢 Water supply interruption tomorrow
+
+</li>
+
+<li>
+
+📦 Parcel arrived at Security
+
+</li>
+
+<li>
+
+🚶 Visitor request approved
+
+</li>
+
+<li>
+
+🛠 Service request assigned
+
+</li>
+
+</ul>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View All Notifications
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🆘
+
+</div>
+
+<h3>
+
+SOS Emergency
+
+</h3>
+
+<p>
+
+Tap below during emergencies.
+
+Security and Admin will be notified immediately.
+
+</p>
+
+<button
+
+class="btn primary"
+
+style="background:#d32f2f;"
+
+type="button">
+
+🆘 SEND SOS
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📞
+
+</div>
+
+<h3>
+
+Emergency Contacts
+
+</h3>
+
+<div class="hero-buttons">
+
+<a href="tel:112" class="btn secondary">
+
+👮 Police
+
+</a>
+
+<a href="tel:108" class="btn secondary">
+
+🚑 Ambulance
+
+</a>
+
+<a href="tel:101" class="btn secondary">
+
+🔥 Fire
+
+</a>
+
+<a href="tel:+918668061458" class="btn secondary">
+
+🛡 Security
+
+</a>
+
+</div>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+⚙️
+
+</div>
+
+<h3>
+
+Settings
+
+</h3>
+
+<label>
+
+<input type="checkbox" checked>
+
+Push Notifications
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox">
+
+Dark Mode
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Location Sharing
+
+</label>
+
+<br><br>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Save Settings
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔒
+
+</div>
+
+<h3>
+
+Privacy & Security
+
+</h3>
+
+<p>
+
+✔ Two-factor authentication
+
+</p>
+
+<p>
+
+✔ Login history
+
+</p>
+
+<p>
+
+✔ Change password
+
+</p>
+
+<p>
+
+✔ Device management
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Security Settings
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<footer>
+
+<div class="container footer-content">
+
+<h2>
+
+👨‍👩‍👧 AKR House Apartments
+
+</h2>
+
+<p>
+
+Family Member Dashboard
+
+</p>
+
+<p>
+
+Version 1.0.0
+
+</p>
+
+<p>
+
+© 2026 AKR House Apartments
+
+All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+const action=this.innerText.trim();
+
+switch(action){
+
+case "Update Status":
+
+alert("Presence status updated successfully.");
+
+break;
+
+case "Submit Visitor Request":
+
+alert("Visitor request submitted successfully.");
+
+break;
+
+case "Submit Complaint":
+
+alert("Complaint submitted successfully.");
+
+break;
+
+case "Request Service":
+
+alert("Service request created successfully.");
+
+break;
+
+case "Save Vehicle":
+
+alert("Vehicle details saved successfully.");
+
+break;
+
+case "Ask AI":
+
+alert("AKR AI Assistant will be available after AI integration.");
+
+break;
+
+case "Submit Feedback":
+
+alert("Thank you for your feedback.");
+
+break;
+
+case "🆘 SEND SOS":
+
+alert("Emergency SOS sent to Security and Admin.");
+
+break;
+
+case "Save Settings":
+
+alert("Settings updated successfully.");
+
+break;
+
+case "Security Settings":
+
+alert("Security settings page coming soon.");
+
+break;
+
+default:
+
+console.log(action);
+
+}
+
+});
+
+});
+
+window.addEventListener("load",function(){
+
+console.log("================================");
+
+console.log("AKR AMS");
+
+console.log("Family Dashboard Loaded");
+
+console.log("Status : Ready");
+
+console.log("Version : 1.0.0");
+
+console.log("================================");
+
+});
+
+</script>
+
+</body>
+
+</html>
+
+  
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
