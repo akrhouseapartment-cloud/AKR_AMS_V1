@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Billing Management - AKR AMS</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/dashboard.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<h2>🏢 AKR AMS</h2>
+
+<p>Apartment Management</p>
+
+</div>
+
+<ul class="menu">
+
+<li><a href="../dashboard/dashboard.html">🏠 Dashboard</a></li>
+
+<li><a href="../maintenance/maintenance.html">💰 Maintenance</a></li>
+
+<li><a href="../reports/reports.html">📊 Reports</a></li>
+
+<li><a href="billing.html" class="active">💳 Billing</a></li>
+
+<li><a href="../settings/settings.html">⚙️ Settings</a></li>
+
+</ul>
+
+</aside>
+
+<main class="content">
+
+<header class="topbar">
+
+<div>
+
+<h1>
+
+💳 Billing Management
+
+</h1>
+
+<p>
+
+Manage apartment billing and invoices
+
+</p>
+
+</div>
+
+</header>
+
+<section class="cards">
+
+<div class="card">
+
+<h3>
+
+Total Invoices
+
+</h3>
+
+<h2>
+
+30
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Paid
+
+</h3>
+
+<h2>
+
+26
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Pending
+
+</h3>
+
+<h2>
+
+4
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Collection
+
+</h3>
+
+<h2>
+
+₹45,000
+
+</h2>
+
+</div>
+
+</section>
+
+<section class="dashboard-card">
+
+<h2>
+
+🧾 Monthly Billing
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Flat</th>
+
+<th>Resident</th>
+
+<th>Amount</th>
+
+<th>Status</th>
+
+<th>Due Date</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>101</td>
+
+<td>Arun Kumar</td>
+
+<td>₹1,500</td>
+
+<td>Paid ✅</td>
+
+<td>10-Aug-2026</td>
+
+</tr>
+
+<tr>
+
+<td>102</td>
+
+<td>Ravi</td>
+
+<td>₹1,500</td>
+
+<td>Pending</td>
+
+<td>10-Aug-2026</td>
+
+</tr>
+
+<tr>
+
+<td>203</td>
+
+<td>Priya</td>
+
+<td>₹1,500</td>
+
+<td>Paid ✅</td>
+
+<td>10-Aug-2026</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+🧾 Generate Invoice
+
+</h2>
+
+<form>
+
+<label>
+
+Flat Number
+
+</label>
+
+<input
+type="text"
+placeholder="Enter Flat Number">
+
+<label>
+
+Resident Name
+
+</label>
+
+<input
+type="text"
+placeholder="Enter Resident Name">
+
+<label>
+
+Billing Month
+
+</label>
+
+<input
+type="month">
+
+<label>
+
+Amount
+
+</label>
+
+<input
+type="number"
+placeholder="1500">
+
+<label>
+
+Due Date
+
+</label>
+
+<input
+type="date">
+
+<br><br>
+
+<button class="btn primary">
+
+Generate Invoice
+
+</button>
+
+</form>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+💰 Payment Tracking
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Invoice</th>
+
+<th>Paid</th>
+
+<th>Balance</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>INV-001</td>
+
+<td>₹1,500</td>
+
+<td>₹0</td>
+
+</tr>
+
+<tr>
+
+<td>INV-002</td>
+
+<td>₹0</td>
+
+<td>₹1,500</td>
+
+</tr>
+
+<tr>
+
+<td>INV-003</td>
+
+<td>₹1,500</td>
+
+<td>₹0</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📅 Due Date Management
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Flat</th>
+
+<th>Due Date</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>101</td>
+
+<td>10-Aug-2026</td>
+
+<td>Paid</td>
+
+</tr>
+
+<tr>
+
+<td>102</td>
+
+<td>10-Aug-2026</td>
+
+<td>Pending</td>
+
+</tr>
+
+<tr>
+
+<td>203</td>
+
+<td>10-Aug-2026</td>
+
+<td>Paid</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+Update Due Dates
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+💸 Late Fee Calculation
+
+</h2>
+
+<label>
+
+Late Fee Per Day (₹)
+
+</label>
+
+<input
+type="number"
+value="50">
+
+<br><br>
+
+<label>
+
+Grace Period (Days)
+
+</label>
+
+<input
+type="number"
+value="5">
+
+<br><br>
+
+<button class="btn primary">
+
+Calculate Late Fee
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🔍 Invoice Search
+
+</h2>
+
+<input
+type="text"
+placeholder="Search Invoice Number">
+
+<br><br>
+
+<button class="btn primary">
+
+Search Invoice
+
+</button>
+
+</div>
+
+</section>
+
+
+  <section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📊 Billing Analytics
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Total Revenue</td>
+
+<td>₹45,000</td>
+
+</tr>
+
+<tr>
+
+<td>Pending Amount</td>
+
+<td>₹6,000</td>
+
+</tr>
+
+<tr>
+
+<td>Late Payments</td>
+
+<td>2</td>
+
+</tr>
+
+<tr>
+
+<td>Invoices Generated</td>
+
+<td>30</td>
+
+</tr>
+
+<tr>
+
+<td>Collection Rate</td>
+
+<td>86.67%</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📜 Invoice History
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Invoice</th>
+
+<th>Month</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>INV-001</td>
+
+<td>August 2026</td>
+
+<td>Paid ✅</td>
+
+</tr>
+
+<tr>
+
+<td>INV-002</td>
+
+<td>July 2026</td>
+
+<td>Paid ✅</td>
+
+</tr>
+
+<tr>
+
+<td>INV-003</td>
+
+<td>June 2026</td>
+
+<td>Paid ✅</td>
+
+</tr>
+
+<tr>
+
+<td>INV-004</td>
+
+<td>May 2026</td>
+
+<td>Paid ✅</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View Complete History
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+💳 Payment Methods
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Method</th>
+
+<th>Transactions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>UPI</td>
+
+<td>15</td>
+
+</tr>
+
+<tr>
+
+<td>Cash</td>
+
+<td>6</td>
+
+</tr>
+
+<tr>
+
+<td>Bank Transfer</td>
+
+<td>5</td>
+
+</tr>
+
+<tr>
+
+<td>Card</td>
+
+<td>4</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+Manage Payment Methods
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📥 Export Invoices
+
+</h2>
+
+<p>
+
+Download billing reports in your preferred format.
+
+</p>
+
+<button class="btn primary">
+
+Export Excel
+
+</button>
+
+<button class="btn secondary">
+
+Export PDF
+
+</button>
+
+<button class="btn secondary">
+
+Export CSV
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📈 Revenue Summary
+
+</h2>
+
+<p>
+
+Current Month Collection
+
+</p>
+
+<h3>
+
+₹45,000
+
+</h3>
+
+<p>
+
+Pending Collection
+
+</p>
+
+<h3>
+
+₹6,000
+
+</h3>
+
+<p>
+
+Net Collection Rate
+
+</p>
+
+<h3>
+
+86.67%
+
+</h3>
+
+</div>
+
+</section>
+
+
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📅 Billing Calendar
+
+</h2>
+
+<label>
+
+Billing Month
+
+</label>
+
+<input type="month">
+
+<br><br>
+
+<label>
+
+Invoice Generation Date
+
+</label>
+
+<input type="date">
+
+<br><br>
+
+<label>
+
+Payment Due Date
+
+</label>
+
+<input type="date">
+
+<br><br>
+
+<button class="btn primary">
+
+Update Billing Calendar
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🔔 Payment Reminders
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Flat</th>
+
+<th>Reminder</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>102</td>
+
+<td>1st Reminder</td>
+
+<td>Sent ✅</td>
+
+</tr>
+
+<tr>
+
+<td>205</td>
+
+<td>2nd Reminder</td>
+
+<td>Pending</td>
+
+</tr>
+
+<tr>
+
+<td>304</td>
+
+<td>Final Reminder</td>
+
+<td>Scheduled</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+Send Reminder
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+💵 Discounts & Waivers
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Flat</th>
+
+<th>Discount</th>
+
+<th>Reason</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>101</td>
+
+<td>₹100</td>
+
+<td>Early Payment</td>
+
+</tr>
+
+<tr>
+
+<td>203</td>
+
+<td>₹0</td>
+
+<td>—</td>
+
+</tr>
+
+<tr>
+
+<td>305</td>
+
+<td>₹200</td>
+
+<td>Committee Approval</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+Add Discount
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📋 Outstanding Dues
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Flat</th>
+
+<th>Outstanding</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>102</td>
+
+<td>₹1,500</td>
+
+</tr>
+
+<tr>
+
+<td>205</td>
+
+<td>₹3,000</td>
+
+</tr>
+
+<tr>
+
+<td>304</td>
+
+<td>₹1,500</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+View Complete Dues
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📊 Collection Progress
+
+</h2>
+
+<p>
+
+Collection Status
+
+</p>
+
+<progress value="45000" max="51000"></progress>
+
+<p>
+
+₹45,000 Collected of ₹51,000 Target
+
+</p>
+
+<p>
+
+Progress
+
+</p>
+
+<h3>
+
+88%
+
+</h3>
+
+</div>
+
+  </section>
+
+
+
+  <section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+🧾 Receipt History
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Receipt No</th>
+
+<th>Flat</th>
+
+<th>Amount</th>
+
+<th>Date</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>RCP-001</td>
+
+<td>101</td>
+
+<td>₹1,500</td>
+
+<td>02-Aug-2026</td>
+
+</tr>
+
+<tr>
+
+<td>RCP-002</td>
+
+<td>203</td>
+
+<td>₹1,500</td>
+
+<td>01-Aug-2026</td>
+
+</tr>
+
+<tr>
+
+<td>RCP-003</td>
+
+<td>305</td>
+
+<td>₹1,500</td>
+
+<td>31-Jul-2026</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View All Receipts
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🏦 Bank Reconciliation
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Bank</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>HDFC Bank</td>
+
+<td>Matched ✅</td>
+
+</tr>
+
+<tr>
+
+<td>ICICI Bank</td>
+
+<td>Matched ✅</td>
+
+</tr>
+
+<tr>
+
+<td>SBI</td>
+
+<td>Pending</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+Run Reconciliation
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📈 Monthly Comparison
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Month</th>
+
+<th>Collection</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>August</td>
+
+<td>₹45,000</td>
+
+</tr>
+
+<tr>
+
+<td>July</td>
+
+<td>₹43,500</td>
+
+</tr>
+
+<tr>
+
+<td>June</td>
+
+<td>₹42,000</td>
+
+</tr>
+
+<tr>
+
+<td>May</td>
+
+<td>₹41,000</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View Trends
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+💹 Income Summary
+
+</h2>
+
+<p>
+
+Maintenance Income
+
+</p>
+
+<h3>
+
+₹45,000
+
+</h3>
+
+<p>
+
+Late Fee Income
+
+</p>
+
+<h3>
+
+₹500
+
+</h3>
+
+<p>
+
+Other Charges
+
+</p>
+
+<h3>
+
+₹1,000
+
+</h3>
+
+<hr>
+
+<h3>
+
+Total Income: ₹46,500
+
+</h3>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+⚙️ Billing Settings
+
+</h2>
+
+<label>
+
+Monthly Maintenance (₹)
+
+</label>
+
+<input type="number" value="1500">
+
+<br><br>
+
+<label>
+
+Late Fee (₹/Day)
+
+</label>
+
+<input type="number" value="50">
+
+<br><br>
+
+<label>
+
+Grace Period (Days)
+
+</label>
+
+<input type="number" value="5">
+
+<br><br>
+
+<button class="btn primary">
+
+Save Billing Settings
+
+</button>
+
+</div>
+
+</section>
+
+
+<footer class="dashboard-footer">
+
+<div class="container">
+
+<p>
+
+© 2026 AKR House Apartments | AKR AMS Version 2.0
+
+</p>
+
+<p>
+
+Billing Management Module
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+const action=this.innerText.trim();
+
+switch(action){
+
+case "Generate Invoice":
+
+alert("Invoice generated successfully.");
+
+break;
+
+case "Update Due Dates":
+
+alert("Due dates updated successfully.");
+
+break;
+
+case "Calculate Late Fee":
+
+alert("Late fee calculated successfully.");
+
+break;
+
+case "Search Invoice":
+
+alert("Searching invoice...");
+
+break;
+
+case "View Complete History":
+
+alert("Opening invoice history.");
+
+break;
+
+case "Manage Payment Methods":
+
+alert("Opening payment methods.");
+
+break;
+
+case "Export Excel":
+
+alert("Exporting invoices to Excel.");
+
+break;
+
+case "Export PDF":
+
+alert("Exporting invoices to PDF.");
+
+break;
+
+case "Export CSV":
+
+alert("Exporting invoices to CSV.");
+
+break;
+
+case "Update Billing Calendar":
+
+alert("Billing calendar updated.");
+
+break;
+
+case "Send Reminder":
+
+alert("Payment reminders sent.");
+
+break;
+
+case "Add Discount":
+
+alert("Discount added successfully.");
+
+break;
+
+case "View Complete Dues":
+
+alert("Opening outstanding dues.");
+
+break;
+
+case "View All Receipts":
+
+alert("Opening receipt history.");
+
+break;
+
+case "Run Reconciliation":
+
+alert("Bank reconciliation completed.");
+
+break;
+
+case "View Trends":
+
+alert("Opening monthly comparison.");
+
+break;
+
+case "Save Billing Settings":
+
+alert("Billing settings saved successfully.");
+
+break;
+
+default:
+
+console.log(action);
+
+}
+
+});
+
+});
+
+window.addEventListener("load",()=>{
+
+console.log("================================");
+
+console.log("AKR AMS Billing Module");
+
+console.log("Version : 2.0");
+
+console.log("Status : Ready");
+
+console.log("================================");
+
+});
+
+</script>
+
+</main>
+
+</div>
+
+</body>
+
+</html>
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
