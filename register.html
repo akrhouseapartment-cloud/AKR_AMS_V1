@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Register | AKR House Apartments</title>
+
+<link rel="stylesheet"
+href="css/style.css">
+
+<link rel="stylesheet"
+href="css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="login-page">
+
+<div class="login-card">
+
+<div class="login-header">
+
+<h1>
+
+🏢 Register
+
+</h1>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<form id="registerForm">
+
+<div class="input-group">
+
+<label>
+
+Full Name
+
+</label>
+
+<input
+type="text"
+id="fullName"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Mobile Number
+
+</label>
+
+<input
+type="tel"
+id="mobile"
+maxlength="10"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Email Address
+
+</label>
+
+<input
+type="email"
+id="email"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Password
+
+</label>
+
+<input
+type="password"
+id="password"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Confirm Password
+
+</label>
+
+<input
+type="password"
+id="confirmPassword"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Role
+
+</label>
+
+<select id="role">
+
+<option value="resident">
+
+Primary Resident
+
+</option>
+
+<option value="family">
+
+Family Member
+
+</option>
+
+</select>
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+
+Floor Number
+
+</label>
+
+<select id="floor" required>
+
+<option value="">Select Floor</option>
+
+<option>Ground Floor</option>
+
+<option>1st Floor</option>
+
+<option>2nd Floor</option>
+
+<option>3rd Floor</option>
+
+<option>4th Floor</option>
+
+<option>5th Floor</option>
+
+</select>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Flat Number
+
+</label>
+
+<input
+type="text"
+id="flatNumber"
+placeholder="Example: 101"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Vehicle Number (Optional)
+
+</label>
+
+<input
+type="text"
+id="vehicleNumber"
+placeholder="KA01AB1234">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Emergency Contact Number
+
+</label>
+
+<input
+type="tel"
+id="emergencyContact"
+maxlength="10"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Profile Photo
+
+</label>
+
+<input
+type="file"
+id="profilePhoto"
+accept="image/*">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Primary Resident Mobile
+(Required only for Family Member)
+
+</label>
+
+<input
+type="tel"
+id="primaryResident"
+maxlength="10"
+placeholder="Enter Primary Resident Mobile">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Relationship
+
+</label>
+
+<select id="relationship">
+
+<option value="">
+
+Select Relationship
+
+</option>
+
+<option>Father</option>
+
+<option>Mother</option>
+
+<option>Husband</option>
+
+<option>Wife</option>
+
+<option>Son</option>
+
+<option>Daughter</option>
+
+<option>Brother</option>
+
+<option>Sister</option>
+
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+
+<div class="input-group">
+
+<label class="remember-me">
+
+<input
+type="checkbox"
+id="agreeTerms"
+required>
+
+<span>
+
+I agree to the Apartment Rules,
+Privacy Policy and Terms & Conditions.
+
+</span>
+
+</label>
+
+</div>
+
+<button
+type="submit"
+class="btn primary">
+
+Register
+
+</button>
+
+<div class="login-links">
+
+<a
+href="login.html">
+
+Already have an account?
+
+Login
+
+</a>
+
+</div>
+
+<div class="login-notice">
+
+<h3>
+
+🔒 Registration Approval Process
+
+</h3>
+
+<p>
+
+Primary Resident registration requires
+Admin approval.
+
+Family Member registration requires
+both Primary Resident approval
+and Admin approval before activation.
+
+</p>
+
+</div>
+
+</form>
+
+</div>
+
+<div class="login-side">
+
+<h2>
+
+Join AKR House Apartments
+
+</h2>
+
+<p>
+
+Create your secure account to access
+visitor approvals, community chat,
+maintenance, rent, complaints,
+vehicles and emergency services.
+
+</p>
+
+<div class="login-features">
+
+<div class="feature-item">
+
+🏠 Smart Apartment
+
+</div>
+
+<div class="feature-item">
+
+🚶 Visitor Approval
+
+</div>
+
+<div class="feature-item">
+
+💬 Community Chat
+
+</div>
+
+<div class="feature-item">
+
+🚗 Vehicle Management
+
+</div>
+
+<div class="feature-item">
+
+📢 Notices & Alerts
+
+</div>
+
+<div class="feature-item">
+
+🤖 AKR AI Assistant
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<footer class="login-footer">
+
+<p>
+
+© 2026 AKR House Apartments
+
+</p>
+
+<p>
+
+Version 1.0.0
+
+</p>
+
+</footer>
+
+<script>
+
+document.getElementById("registerForm")
+
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const password=document
+
+.getElementById("password").value;
+
+const confirmPassword=document
+
+.getElementById("confirmPassword").value;
+
+if(password!==confirmPassword){
+
+alert("Passwords do not match.");
+
+return;
+
+}
+
+const role=document
+
+.getElementById("role").value;
+
+if(role==="family"){
+
+const primary=document
+
+.getElementById("primaryResident").value;
+
+if(primary.trim()===""){
+
+alert(
+
+"Primary Resident mobile number is required for Family Member registration."
+
+);
+
+return;
+
+}
+
+}
+
+alert(
+
+"Registration submitted successfully.\n\nYour account will be activated after the required approval process."
+
+);
+
+});
+
+/* Future Firebase Integration */
+
+/*
+
+import firebase authentication
+
+Upload profile image
+
+Save resident details
+
+Send approval notification
+
+*/
+
+</script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+  
+
+
+  
