@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Backup & Restore - AKR AMS</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet" href="../css/dashboard.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<h2>🏢 AKR AMS</h2>
+
+<p>Apartment Management</p>
+
+</div>
+
+<ul class="menu">
+
+<li><a href="../dashboard/dashboard.html">🏠 Dashboard</a></li>
+
+<li><a href="../reports/reports.html">📊 Reports</a></li>
+
+<li><a href="backup.html" class="active">💾 Backup</a></li>
+
+<li><a href="../settings/settings.html">⚙️ Settings</a></li>
+
+</ul>
+
+</aside>
+
+<main class="content">
+
+<header class="topbar">
+
+<div>
+
+<h1>
+
+💾 Backup & Restore
+
+</h1>
+
+<p>
+
+Manage application backups
+
+</p>
+
+</div>
+
+</header>
+
+<section class="cards">
+
+<div class="card">
+
+<h3>
+
+Last Backup
+
+</h3>
+
+<h2>
+
+01-Aug-2026
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Backup Size
+
+</h3>
+
+<h2>
+
+24 MB
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Status
+
+</h3>
+
+<h2>
+
+Success ✅
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Available Backups
+
+</h3>
+
+<h2>
+
+12
+
+</h2>
+
+</div>
+
+</section>
+
+<section class="dashboard-card">
+
+<h2>
+
+Available Backups
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+
+<th>Size</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>01-Aug-2026</td>
+
+<td>24 MB</td>
+
+<td>Completed</td>
+
+</tr>
+
+<tr>
+
+<td>31-Jul-2026</td>
+
+<td>23 MB</td>
+
+<td>Completed</td>
+
+</tr>
+
+<tr>
+
+<td>30-Jul-2026</td>
+
+<td>23 MB</td>
+
+<td>Completed</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📤 Create Backup
+
+</h2>
+
+<p>
+
+Create a complete backup of all apartment data including residents, maintenance, complaints, visitors, vehicles, parcels and reports.
+
+</p>
+
+<button class="btn primary">
+
+Create Full Backup
+
+</button>
+
+<button class="btn secondary">
+
+Create Database Backup
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📥 Restore Backup
+
+</h2>
+
+<label>
+
+Select Backup
+
+</label>
+
+<select>
+
+<option>01-Aug-2026 - Full Backup</option>
+
+<option>31-Jul-2026 - Full Backup</option>
+
+<option>30-Jul-2026 - Full Backup</option>
+
+</select>
+
+<br><br>
+
+<button class="btn primary">
+
+Restore Selected Backup
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+🗑 Backup Management
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Backup</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>01-Aug-2026</td>
+
+<td>
+
+<button class="btn secondary">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>31-Jul-2026</td>
+
+<td>
+
+<button class="btn secondary">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>30-Jul-2026</td>
+
+<td>
+
+<button class="btn secondary">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📅 Backup Schedule
+
+</h2>
+
+<label>
+
+Automatic Backup
+
+</label>
+
+<select>
+
+<option>Daily</option>
+
+<option>Weekly</option>
+
+<option>Monthly</option>
+
+</select>
+
+<br><br>
+
+<label>
+
+Backup Time
+
+</label>
+
+<input type="time">
+
+<br><br>
+
+<button class="btn primary">
+
+Save Schedule
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+☁️ Cloud Backup
+
+</h2>
+
+<p>
+
+Cloud Backup Status
+
+</p>
+
+<h3>
+
+Enabled ✅
+
+</h3>
+
+<p>
+
+Last Sync
+
+</p>
+
+<p>
+
+01-Aug-2026 11:30 PM
+
+</p>
+
+<button class="btn primary">
+
+Sync Now
+
+</button>
+
+</div>
+
+</section>
+
+
+  <section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📊 Backup Statistics
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Item</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Total Backups</td>
+
+<td>12</td>
+
+</tr>
+
+<tr>
+
+<td>Successful Backups</td>
+
+<td>12</td>
+
+</tr>
+
+<tr>
+
+<td>Failed Backups</td>
+
+<td>0</td>
+
+</tr>
+
+<tr>
+
+<td>Total Storage Used</td>
+
+<td>278 MB</td>
+
+</tr>
+
+<tr>
+
+<td>Average Backup Size</td>
+
+<td>23 MB</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🔒 Backup Security
+
+</h2>
+
+<p>
+
+Encryption
+
+</p>
+
+<h3>
+
+AES-256 Enabled ✅
+
+</h3>
+
+<p>
+
+Password Protection
+
+</p>
+
+<h3>
+
+Enabled ✅
+
+</h3>
+
+<p>
+
+Last Security Check
+
+</p>
+
+<p>
+
+01-Aug-2026
+
+</p>
+
+<button class="btn primary">
+
+Verify Backup
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📜 Backup History
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+
+<th>Type</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>01-Aug-2026</td>
+
+<td>Automatic</td>
+
+<td>Completed</td>
+
+</tr>
+
+<tr>
+
+<td>31-Jul-2026</td>
+
+<td>Manual</td>
+
+<td>Completed</td>
+
+</tr>
+
+<tr>
+
+<td>30-Jul-2026</td>
+
+<td>Automatic</td>
+
+<td>Completed</td>
+
+</tr>
+
+<tr>
+
+<td>29-Jul-2026</td>
+
+<td>Automatic</td>
+
+<td>Completed</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📁 Export Backup
+
+</h2>
+
+<p>
+
+Download backup files for offline storage.
+
+</p>
+
+<button class="btn primary">
+
+Export ZIP
+
+</button>
+
+<button class="btn secondary">
+
+Export JSON
+
+</button>
+
+<button class="btn secondary">
+
+Export CSV
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+⚙️ Backup Settings
+
+</h2>
+
+<label>
+
+<input type="checkbox" checked>
+
+Compress Backup
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Encrypt Backup
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Verify After Backup
+
+</label>
+
+<br><br>
+
+<button class="btn primary">
+
+Save Settings
+
+</button>
+
+</div>
+
+  </section>
+
+
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📂 Restore Log
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+
+<th>Backup</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>01-Aug-2026</td>
+
+<td>Full Backup</td>
+
+<td>Successful ✅</td>
+
+</tr>
+
+<tr>
+
+<td>28-Jul-2026</td>
+
+<td>Database Backup</td>
+
+<td>Successful ✅</td>
+
+</tr>
+
+<tr>
+
+<td>20-Jul-2026</td>
+
+<td>Full Backup</td>
+
+<td>Successful ✅</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🚨 Failed Backup Alerts
+
+</h2>
+
+<p>
+
+No failed backups detected.
+
+</p>
+
+<p>
+
+Last backup completed successfully.
+
+</p>
+
+<button class="btn primary">
+
+View Alert History
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📈 Storage Usage
+
+</h2>
+
+<p>
+
+Used Storage
+
+</p>
+
+<progress value="278" max="500"></progress>
+
+<p>
+
+278 MB of 500 MB Used
+
+</p>
+
+<br>
+
+<p>
+
+Available Storage
+
+</p>
+
+<h3>
+
+222 MB
+
+</h3>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🔄 Backup Queue
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Task</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Night Backup</td>
+
+<td>Scheduled</td>
+
+</tr>
+
+<tr>
+
+<td>Cloud Sync</td>
+
+<td>Waiting</td>
+
+</tr>
+
+<tr>
+
+<td>Verification</td>
+
+<td>Pending</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+Refresh Queue
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🖥 System Health Monitor
+
+</h2>
+
+<ul class="activity-list">
+
+<li>
+
+🟢 Database Healthy
+
+</li>
+
+<li>
+
+🟢 Cloud Backup Online
+
+</li>
+
+<li>
+
+🟢 Storage Connected
+
+</li>
+
+<li>
+
+🟢 Backup Scheduler Running
+
+</li>
+
+<li>
+
+🟢 No Errors Detected
+
+</li>
+
+</ul>
+
+<button class="btn primary">
+
+Run Health Check
+
+</button>
+
+</div>
+
+</section>
+
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📊 Backup Analytics
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Average Backup Time</td>
+
+<td>2 Minutes</td>
+
+</tr>
+
+<tr>
+
+<td>Fastest Backup</td>
+
+<td>1 Minute 45 Seconds</td>
+
+</tr>
+
+<tr>
+
+<td>Largest Backup</td>
+
+<td>28 MB</td>
+
+</tr>
+
+<tr>
+
+<td>Smallest Backup</td>
+
+<td>21 MB</td>
+
+</tr>
+
+<tr>
+
+<td>Success Rate</td>
+
+<td>100%</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🕒 Backup Timeline
+
+</h2>
+
+<ul class="activity-list">
+
+<li>
+
+🟢 01-Aug-2026 11:30 PM - Full Backup Completed
+
+</li>
+
+<li>
+
+🟢 31-Jul-2026 11:30 PM - Full Backup Completed
+
+</li>
+
+<li>
+
+🟢 30-Jul-2026 11:30 PM - Database Backup Completed
+
+</li>
+
+<li>
+
+🟢 29-Jul-2026 11:30 PM - Cloud Sync Completed
+
+</li>
+
+<li>
+
+🟢 28-Jul-2026 11:30 PM - Backup Verification Completed
+
+</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+👤 User Activity Log
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>User</th>
+
+<th>Activity</th>
+
+<th>Date</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Admin</td>
+
+<td>Created Full Backup</td>
+
+<td>01-Aug-2026</td>
+
+</tr>
+
+<tr>
+
+<td>Admin</td>
+
+<td>Downloaded Backup</td>
+
+<td>31-Jul-2026</td>
+
+</tr>
+
+<tr>
+
+<td>System</td>
+
+<td>Automatic Backup</td>
+
+<td>30-Jul-2026</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📋 Backup Checklist
+
+</h2>
+
+<label>
+
+<input type="checkbox" checked>
+
+Residents Data
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Maintenance Records
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Complaints
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Visitors
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Vehicles
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Parcels
+
+</label>
+
+<br><br>
+
+<button class="btn primary">
+
+Update Checklist
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🔐 Recovery Options
+
+</h2>
+
+<button class="btn primary">
+
+Recover Complete System
+
+</button>
+
+<br><br>
+
+<button class="btn secondary">
+
+Recover Database Only
+
+</button>
+
+<br><br>
+
+<button class="btn secondary">
+
+Recover Selected Modules
+
+</button>
+
+<br><br>
+
+<p>
+
+Recovery Point:
+
+<b>01-Aug-2026 11:30 PM</b>
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<footer class="dashboard-footer">
+
+<div class="container">
+
+<p>
+
+© 2026 AKR House Apartments | AKR AMS Version 2.0
+
+</p>
+
+<p>
+
+Backup & Restore Module
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+const action=this.innerText.trim();
+
+switch(action){
+
+case "Create Full Backup":
+
+alert("Full backup started successfully.");
+
+break;
+
+case "Create Database Backup":
+
+alert("Database backup started.");
+
+break;
+
+case "Restore Selected Backup":
+
+if(confirm("Are you sure you want to restore the selected backup?")){
+
+alert("Backup restoration started.");
+
+}
+
+break;
+
+case "Delete":
+
+if(confirm("Delete this backup permanently?")){
+
+alert("Backup deleted.");
+
+}
+
+break;
+
+case "Save Schedule":
+
+alert("Backup schedule saved.");
+
+break;
+
+case "Sync Now":
+
+alert("Cloud backup synchronization started.");
+
+break;
+
+case "Verify Backup":
+
+alert("Backup verification completed successfully.");
+
+break;
+
+case "Export ZIP":
+
+alert("ZIP backup export started.");
+
+break;
+
+case "Export JSON":
+
+alert("JSON backup export started.");
+
+break;
+
+case "Export CSV":
+
+alert("CSV backup export started.");
+
+break;
+
+case "Save Settings":
+
+alert("Backup settings updated.");
+
+break;
+
+case "View Alert History":
+
+alert("Opening backup alert history.");
+
+break;
+
+case "Refresh Queue":
+
+alert("Backup queue refreshed.");
+
+break;
+
+case "Run Health Check":
+
+alert("System health check completed.");
+
+break;
+
+case "Update Checklist":
+
+alert("Backup checklist updated.");
+
+break;
+
+case "Recover Complete System":
+
+if(confirm("Recover the complete system from backup?")){
+
+alert("System recovery initiated.");
+
+}
+
+break;
+
+case "Recover Database Only":
+
+alert("Database recovery initiated.");
+
+break;
+
+case "Recover Selected Modules":
+
+alert("Module recovery initiated.");
+
+break;
+
+default:
+
+console.log(action);
+
+}
+
+});
+
+});
+
+window.addEventListener("load",function(){
+
+console.log("================================");
+
+console.log("AKR AMS Backup Module");
+
+console.log("Version : 2.0");
+
+console.log("Status : Ready");
+
+console.log("================================");
+
+});
+
+</script>
+
+</main>
+
+</div>
+
+</body>
+
+</html>
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
