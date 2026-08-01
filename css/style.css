@@ -385,8 +385,13 @@ font-size:20px;
 
 padding:90px 0;
 
-background:#ffffff;
-
+background:.feature-card{
+background:red !important;
+border:5px solid yellow !important;
+min-height:200px;
+opacity:1 !important;
+display:block !important;
+visibility:visible !important;
 }
 
 #features h2{
