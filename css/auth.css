@@ -1,0 +1,498 @@
+/* ==========================================
+   Login & Register
+========================================== */
+
+.login-page{
+
+min-height:100vh;
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+background:linear-gradient(135deg,#1565C0,#42A5F5);
+
+}
+
+.login-card{
+
+background:#ffffff;
+
+padding:50px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+}
+
+.login-header{
+
+text-align:center;
+
+margin-bottom:40px;
+
+}
+
+.login-header h1{
+
+font-size:38px;
+
+color:#1565C0;
+
+margin-bottom:10px;
+
+}
+
+.login-header p{
+
+color:#666;
+
+}
+
+.input-group{
+
+margin-bottom:22px;
+
+}
+
+.input-group label{
+
+display:block;
+
+margin-bottom:8px;
+
+font-weight:600;
+
+}
+
+.input-group input,
+.input-group select{
+
+width:100%;
+
+padding:14px;
+
+border:1px solid #ddd;
+
+border-radius:10px;
+
+font-size:16px;
+
+outline:none;
+
+transition:.3s;
+
+}
+
+.input-group input:focus,
+.input-group select:focus{
+
+border-color:#1565C0;
+
+box-shadow:0 0 8px rgba(21,101,192,.25);
+
+}
+
+.remember-section{
+
+margin-top:18px;
+
+margin-bottom:18px;
+
+}
+
+.remember-me{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+font-size:15px;
+
+}
+
+.password-tools{
+
+margin-bottom:25px;
+
+}
+
+.text-btn{
+
+background:none;
+
+border:none;
+
+color:#1565C0;
+
+font-weight:600;
+
+cursor:pointer;
+
+}
+
+.login-notice{
+
+background:#E3F2FD;
+
+padding:20px;
+
+border-radius:12px;
+
+margin-top:25px;
+
+}
+
+
+
+/* ==========================================
+   Role Information
+========================================== */
+
+.role-info{
+
+margin-top:25px;
+
+padding:20px;
+
+background:#F5F9FF;
+
+border-radius:12px;
+
+}
+
+.role-info h3{
+
+color:#1565C0;
+
+margin-bottom:12px;
+
+}
+
+.role-info ul{
+
+list-style:none;
+
+padding:0;
+
+margin:0;
+
+}
+
+.role-info li{
+
+padding:8px 0;
+
+border-bottom:1px solid #E5E5E5;
+
+}
+
+.role-info li:last-child{
+
+border-bottom:none;
+
+}
+
+/* ==========================================
+   Right Side Panel
+========================================== */
+
+.login-side{
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+padding:60px;
+
+color:#ffffff;
+
+}
+
+.login-side h2{
+
+font-size:42px;
+
+margin-bottom:20px;
+
+}
+
+.login-side p{
+
+font-size:18px;
+
+line-height:1.8;
+
+margin-bottom:35px;
+
+}
+
+.login-features{
+
+display:grid;
+
+grid-template-columns:1fr;
+
+gap:15px;
+
+}
+
+.feature-item{
+
+background:rgba(255,255,255,.15);
+
+backdrop-filter:blur(10px);
+
+padding:16px;
+
+border-radius:12px;
+
+font-weight:500;
+
+transition:.3s;
+
+}
+
+.feature-item:hover{
+
+background:rgba(255,255,255,.25);
+
+transform:translateX(8px);
+
+}
+
+/* ==========================================
+   Login Links
+========================================== */
+
+.login-links{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:20px;
+
+}
+
+.login-links a{
+
+text-decoration:none;
+
+color:#1565C0;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.login-links a:hover{
+
+text-decoration:underline;
+
+}
+
+
+
+/* ==========================================
+   Login Footer
+========================================== */
+
+.login-footer{
+
+text-align:center;
+
+padding:25px;
+
+background:#0D47A1;
+
+color:#ffffff;
+
+}
+
+.login-footer p{
+
+margin:6px 0;
+
+font-size:14px;
+
+}
+
+/* ==========================================
+   Responsive Design
+========================================== */
+
+@media (max-width:992px){
+
+.login-page{
+
+grid-template-columns:1fr;
+
+}
+
+.login-side{
+
+order:-1;
+
+padding:40px;
+
+text-align:center;
+
+}
+
+.login-side h2{
+
+font-size:34px;
+
+}
+
+.login-card{
+
+padding:40px;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.login-card{
+
+padding:30px 20px;
+
+}
+
+.login-header h1{
+
+font-size:30px;
+
+}
+
+.login-side{
+
+padding:30px 20px;
+
+}
+
+.login-side h2{
+
+font-size:28px;
+
+}
+
+.login-side p{
+
+font-size:16px;
+
+}
+
+.login-links{
+
+flex-direction:column;
+
+gap:12px;
+
+align-items:center;
+
+}
+
+.feature-item{
+
+font-size:15px;
+
+}
+
+}
+
+@media (max-width:480px){
+
+.login-card{
+
+padding:25px 18px;
+
+}
+
+.input-group input,
+
+.input-group select{
+
+padding:12px;
+
+font-size:15px;
+
+}
+
+.btn{
+
+width:100%;
+
+text-align:center;
+
+}
+
+.login-header h1{
+
+font-size:26px;
+
+}
+
+.login-side{
+
+padding:25px 15px;
+
+}
+
+.login-side h2{
+
+font-size:24px;
+
+}
+
+}
+
+/* ==========================================
+   Utility
+========================================== */
+
+.fade-in{
+
+animation:fadeIn .6s ease;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+  }
+
+
+
+
+
+
+
+  
+
