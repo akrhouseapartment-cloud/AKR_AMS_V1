@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>
+
+Complaint Management
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>
+
+📝 Complaint Management
+
+</h2>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<nav>
+
+<a href="#">Dashboard</a>
+
+<a href="#">Raise Complaint</a>
+
+<a href="#">My Complaints</a>
+
+<a href="#">Reports</a>
+
+<a href="#">Support</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>
+
+Complaint Management Portal
+
+</h1>
+
+<p>
+
+Report apartment issues,
+track complaint status,
+upload photos,
+and receive updates.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-card">
+
+<h2>
+
+Raise New Complaint
+
+</h2>
+
+<div class="input-group">
+
+<label>
+
+Complaint Category
+
+</label>
+
+<select id="complaintCategory">
+
+<option>Electrical</option>
+
+<option>Water</option>
+
+<option>Lift</option>
+
+<option>Parking</option>
+
+<option>Security</option>
+
+<option>Housekeeping</option>
+
+<option>Noise</option>
+
+<option>Other</option>
+
+</select>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Complaint Title
+
+</label>
+
+<input
+
+type="text"
+
+id="complaintTitle"
+
+placeholder="Enter complaint title">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Description
+
+</label>
+
+<textarea
+
+id="complaintDescription"
+
+rows="5"
+
+placeholder="Describe the issue...">
+
+</textarea>
+
+</div>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Submit Complaint
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📷 Complaint Details
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📷
+
+</div>
+
+<h3>
+
+Upload Photos
+
+</h3>
+
+<input
+
+type="file"
+
+id="complaintPhoto"
+
+accept="image/*"
+
+multiple>
+
+<p>
+
+Upload images of the issue.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🎥
+
+</div>
+
+<h3>
+
+Upload Video
+
+</h3>
+
+<input
+
+type="file"
+
+id="complaintVideo"
+
+accept="video/*">
+
+<p>
+
+Optional video evidence.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📍
+
+</div>
+
+<h3>
+
+Complaint Location
+
+</h3>
+
+<input
+
+type="text"
+
+id="complaintLocation"
+
+placeholder="Example: Block A - 2nd Floor">
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+⚠️
+
+</div>
+
+<h3>
+
+Priority
+
+</h3>
+
+<select id="priority">
+
+<option>Low</option>
+
+<option>Medium</option>
+
+<option>High</option>
+
+<option>Emergency</option>
+
+</select>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📅
+
+</div>
+
+<h3>
+
+Preferred Inspection Time
+
+</h3>
+
+<input
+
+type="datetime-local"
+
+id="inspectionTime">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📋 Complaint Tracking
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📜
+
+</div>
+
+<h3>
+
+My Complaints
+
+</h3>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Category</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>CMP001</td>
+
+<td>Electrical</td>
+
+<td>In Progress</td>
+
+</tr>
+
+<tr>
+
+<td>CMP002</td>
+
+<td>Water</td>
+
+<td>Resolved</td>
+
+</tr>
+
+<tr>
+
+<td>CMP003</td>
+
+<td>Parking</td>
+
+<td>Pending</td>
+
+</tr>
+
+</table>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View All Complaints
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👷
+
+</div>
+
+<h3>
+
+Assigned Staff
+
+</h3>
+
+<p>
+
+Technician:
+
+Ramesh
+
+</p>
+
+<p>
+
+Department:
+
+Electrical
+
+</p>
+
+<p>
+
+Contact:
+
++91 XXXXX XXXXX
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Contact Staff
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📊
+
+</div>
+
+<h3>
+
+Complaint Status
+
+</h3>
+
+<ul>
+
+<li>
+
+✅ Complaint Submitted
+
+</li>
+
+<li>
+
+✅ Assigned to Staff
+
+</li>
+
+<li>
+
+🔄 Work In Progress
+
+</li>
+
+<li>
+
+⬜ Completed
+
+</li>
+
+</ul>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Refresh Status
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💬
+
+</div>
+
+<h3>
+
+Comments & Updates
+
+</h3>
+
+<textarea
+
+rows="4"
+
+placeholder="Add your comments...">
+
+</textarea>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Post Comment
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔔
+
+</div>
+
+<h3>
+
+Notifications
+
+</h3>
+
+<ul>
+
+<li>
+
+Complaint assigned successfully.
+
+</li>
+
+<li>
+
+Technician will visit today.
+
+</li>
+
+<li>
+
+Resolution update available.
+
+</li>
+
+</ul>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Notifications
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+⭐ Resolution & Analytics
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+⭐
+
+</div>
+
+<h3>
+
+Rate Resolved Complaint
+
+</h3>
+
+<p>
+
+Rate the quality of the completed work.
+
+</p>
+
+<select id="serviceRating">
+
+<option>⭐⭐⭐⭐⭐ Excellent</option>
+
+<option>⭐⭐⭐⭐ Good</option>
+
+<option>⭐⭐⭐ Average</option>
+
+<option>⭐⭐ Poor</option>
+
+<option>⭐ Very Poor</option>
+
+</select>
+
+<textarea
+
+rows="4"
+
+placeholder="Write your feedback...">
+
+</textarea>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Submit Rating
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📈
+
+</div>
+
+<h3>
+
+Complaint Analytics
+
+</h3>
+
+<p>
+
+Total Complaints : <b>12</b>
+
+</p>
+
+<p>
+
+Resolved : <b>9</b>
+
+</p>
+
+<p>
+
+Pending : <b>2</b>
+
+</p>
+
+<p>
+
+In Progress : <b>1</b>
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Analytics
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📅
+
+</div>
+
+<h3>
+
+Maintenance Visit
+
+</h3>
+
+<p>
+
+Next Visit
+
+</p>
+
+<p>
+
+05-Aug-2026
+
+</p>
+
+<p>
+
+10:30 AM
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Reschedule
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📄
+
+</div>
+
+<h3>
+
+Complaint Report
+
+</h3>
+
+<p>
+
+Download complaint history
+and status report.
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Download Report
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🏆
+
+</div>
+
+<h3>
+
+Service Quality
+
+</h3>
+
+<p>
+
+Average Rating
+
+</p>
+
+<h2>
+
+4.8 ⭐
+
+</h2>
+
+<p>
+
+Based on 42 reviews
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Reviews
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+👨‍💼 Administration & Reports
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👨‍💼
+
+</div>
+
+<h3>
+
+Admin Dashboard
+
+</h3>
+
+<p>
+
+Pending Complaints : <b>8</b>
+
+</p>
+
+<p>
+
+Assigned : <b>14</b>
+
+</p>
+
+<p>
+
+Resolved Today : <b>6</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Open Dashboard
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👷
+
+</div>
+
+<h3>
+
+Staff Workload
+
+</h3>
+
+<table>
+
+<tr>
+
+<th>Staff</th>
+
+<th>Tasks</th>
+
+</tr>
+
+<tr>
+
+<td>Ramesh</td>
+
+<td>4</td>
+
+</tr>
+
+<tr>
+
+<td>Suresh</td>
+
+<td>2</td>
+
+</tr>
+
+<tr>
+
+<td>Manoj</td>
+
+<td>5</td>
+
+</tr>
+
+</table>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Manage Staff
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚨
+
+</div>
+
+<h3>
+
+Emergency Complaints
+
+</h3>
+
+<ul>
+
+<li>
+
+Electrical Short Circuit
+
+</li>
+
+<li>
+
+Water Leakage
+
+</li>
+
+<li>
+
+Lift Breakdown
+
+</li>
+
+</ul>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Emergency Cases
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📊
+
+</div>
+
+<h3>
+
+Category Report
+
+</h3>
+
+<ul>
+
+<li>
+
+Electrical : 18
+
+</li>
+
+<li>
+
+Water : 11
+
+</li>
+
+<li>
+
+Parking : 6
+
+</li>
+
+<li>
+
+Security : 4
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Statistics
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📢
+
+</div>
+
+<h3>
+
+Complaint Notices
+
+</h3>
+
+<p>
+
+Scheduled maintenance updates
+
+</p>
+
+<p>
+
+Emergency announcements
+
+</p>
+
+<p>
+
+Service interruption alerts
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Publish Notice
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+  <footer>
+
+<div class="container footer-content">
+
+<h2>
+
+📝 AKR House Apartments
+
+</h2>
+
+<p>
+
+Complaint Management Portal
+
+</p>
+
+<p>
+
+Version 1.0.0
+
+</p>
+
+<p>
+
+© 2026 AKR House Apartments
+
+All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+const action=this.innerText.trim();
+
+switch(action){
+
+case "Submit Complaint":
+
+alert("Complaint submitted successfully.");
+
+break;
+
+case "Submit Rating":
+
+alert("Thank you for your feedback.");
+
+break;
+
+case "Refresh Status":
+
+alert("Complaint status updated.");
+
+break;
+
+case "Post Comment":
+
+alert("Comment posted successfully.");
+
+break;
+
+case "Download Report":
+
+alert("Downloading complaint report...");
+
+break;
+
+case "Reschedule":
+
+alert("Maintenance visit reschedule request sent.");
+
+break;
+
+case "Publish Notice":
+
+alert("Complaint notice published.");
+
+break;
+
+default:
+
+console.log(action);
+
+}
+
+});
+
+});
+
+window.addEventListener("load",function(){
+
+console.log("================================");
+
+console.log("AKR AMS Complaint Module");
+
+console.log("Version : 1.0.0");
+
+console.log("Status : Ready");
+
+console.log("================================");
+
+});
+
+</script>
+
+</body>
+
+</html>
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
