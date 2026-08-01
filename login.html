@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Login | AKR House Apartments</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="login-page">
+
+<div class="login-card">
+
+<div class="login-header">
+
+<h1>
+
+🏢 AKR House
+
+</h1>
+
+<p>
+
+Apartment Management System
+
+</p>
+
+</div>
+
+<form id="loginForm">
+
+<div class="input-group">
+
+<label>
+
+Email Address
+
+</label>
+
+<input
+
+type="email"
+
+id="email"
+
+placeholder="Enter email"
+
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Password
+
+</label>
+
+<input
+
+type="password"
+
+id="password"
+
+placeholder="Enter password"
+
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Login As
+
+</label>
+
+<select id="role">
+
+<option value="resident">
+
+Primary Resident
+
+</option>
+
+<option value="family">
+
+Family Member
+
+</option>
+
+<option value="security">
+
+Security
+
+</option>
+
+<option value="admin">
+
+Administrator
+
+</option>
+
+</select>
+
+</div>
+
+<button
+
+class="btn primary"
+
+type="submit">
+
+Login
+
+</button>
+
+<div class="login-links">
+
+<a href="forgot-password.html">
+
+Forgot Password?
+
+</a>
+
+<a href="register.html">
+
+Create Account
+
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+
+<div class="remember-section">
+
+<label class="remember-me">
+
+<input
+type="checkbox"
+id="rememberMe">
+
+<span>
+
+Remember Me
+
+</span>
+
+</label>
+
+</div>
+
+<div class="password-tools">
+
+<button
+type="button"
+id="togglePassword"
+class="text-btn">
+
+👁 Show Password
+
+</button>
+
+</div>
+
+<div class="login-notice">
+
+<h3>
+
+🔒 Secure Login
+
+</h3>
+
+<p>
+
+Your account is protected with secure authentication.
+Never share your password with anyone.
+
+</p>
+
+</div>
+
+<div class="role-info">
+
+<h3>
+
+Available Roles
+
+</h3>
+
+<ul>
+
+<li>🏠 Primary Resident</li>
+
+<li>👨‍👩‍👧 Family Member</li>
+
+<li>🛡 Security Guard</li>
+
+<li>👑 Administrator</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="login-side">
+
+<h2>
+
+Welcome Back 👋
+
+</h2>
+
+<p>
+
+Manage visitors, complaints,
+payments, notices,
+community chat and much more
+from one secure application.
+
+</p>
+
+<div class="login-features">
+
+<div class="feature-item">
+
+✅ Visitor Approval
+
+</div>
+
+<div class="feature-item">
+
+✅ Community Chat
+
+</div>
+
+<div class="feature-item">
+
+✅ Vehicle Management
+
+</div>
+
+<div class="feature-item">
+
+✅ Maintenance Tracking
+
+</div>
+
+<div class="feature-item">
+
+✅ AI Assistant
+
+</div>
+
+<div class="feature-item">
+
+✅ Emergency Alerts
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+<footer class="login-footer">
+
+<p>
+
+© 2026 AKR House Apartments
+
+</p>
+
+<p>
+
+Version 1.0.0
+
+</p>
+
+</footer>
+
+<script>
+
+const passwordField=document.getElementById("password");
+
+const toggleButton=document.getElementById("togglePassword");
+
+toggleButton.addEventListener("click",function(){
+
+if(passwordField.type==="password"){
+
+passwordField.type="text";
+
+toggleButton.innerHTML="🙈 Hide Password";
+
+}else{
+
+passwordField.type="password";
+
+toggleButton.innerHTML="👁 Show Password";
+
+}
+
+});
+
+document.getElementById("loginForm")
+
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const email=document.getElementById("email").value.trim();
+
+const password=document.getElementById("password").value.trim();
+
+const role=document.getElementById("role").value;
+
+if(email===""||password===""){
+
+alert("Please enter Email and Password.");
+
+return;
+
+}
+
+alert(
+
+"Login successful.\n\nRole : "+role+
+
+"\n\nFirebase authentication will be connected in the next module."
+
+);
+
+});
+
+</script>
+
+
+
+
+
+<!-- =========================================
+     Future Firebase Integration
+========================================= -->
+
+<!--
+<script type="module" src="js/firebase.js"></script>
+<script type="module" src="js/login.js"></script>
+-->
+
+</body>
+
+</html>
+
+
+  
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
