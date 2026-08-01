@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>
+
+Security Dashboard
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>
+
+🛡 Security Dashboard
+
+</h2>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<nav>
+
+<a href="#">Dashboard</a>
+
+<a href="#">Visitors</a>
+
+<a href="#">Parcels</a>
+
+<a href="#">Residents</a>
+
+<a href="#">Emergency</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>
+
+Welcome Security Officer
+
+</h1>
+
+<p>
+
+Manage visitors, parcels, resident presence,
+emergency contacts and security operations.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📷
+
+</div>
+
+<h3>
+
+Register Visitor
+
+</h3>
+
+<p>
+
+Capture visitor photo,
+mobile number,
+vehicle number
+and purpose.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📦
+
+</div>
+
+<h3>
+
+Parcel Entry
+
+</h3>
+
+<p>
+
+Record incoming parcels
+and notify residents.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🏠
+
+</div>
+
+<h3>
+
+Resident Presence
+
+</h3>
+
+<p>
+
+View whether residents
+are In or Out.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💬
+
+</div>
+
+<h3>
+
+Messages
+
+</h3>
+
+<p>
+
+Chat with Admin
+and Residents.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+Visitor Registration
+
+</h2>
+
+<form id="visitorForm">
+
+<div class="input-group">
+
+<label>
+
+Visitor Name
+
+</label>
+
+<input
+type="text"
+id="visitorName"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Mobile Number
+
+</label>
+
+<input
+type="tel"
+id="visitorMobile"
+maxlength="10"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Purpose of Visit
+
+</label>
+
+<input
+type="text"
+id="visitorPurpose"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Vehicle Number (Optional)
+
+</label>
+
+<input
+type="text"
+id="vehicleNumber">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Resident / Flat Number
+
+</label>
+
+<input
+type="text"
+id="flatNumber"
+placeholder="Example: 101"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Visitor Photo
+
+</label>
+
+<input
+type="file"
+id="visitorPhoto"
+accept="image/*">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Security Notes
+
+</label>
+
+<textarea
+id="securityNotes"
+rows="4"
+placeholder="Enter remarks if required"></textarea>
+
+</div>
+
+<div class="hero-buttons">
+
+<button
+type="submit"
+class="btn primary">
+
+Register Visitor
+
+</button>
+
+<button
+type="button"
+class="btn secondary">
+
+Check-In
+
+</button>
+
+<button
+type="button"
+class="btn secondary">
+
+Check-Out
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🟢
+
+</div>
+
+<h3>
+
+Resident Presence
+
+</h3>
+
+<p>
+
+Update and monitor whether
+a resident is currently
+In or Out.
+
+</p>
+
+<select id="residentPresence">
+
+<option value="IN">
+
+Resident In
+
+</option>
+
+<option value="OUT">
+
+Resident Out
+
+</option>
+
+</select>
+
+<button
+class="btn primary">
+
+Update Status
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📦
+
+</div>
+
+<h3>
+
+Parcel Management
+
+</h3>
+
+<p>
+
+Record courier and parcel
+deliveries for residents.
+
+</p>
+
+<input
+type="text"
+placeholder="Parcel / Courier Company"
+id="parcelCompany">
+
+<input
+type="text"
+placeholder="Flat Number"
+id="parcelFlat">
+
+<button
+class="btn primary">
+
+Notify Resident
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚨
+
+</div>
+
+<h3>
+
+Emergency Quick Actions
+
+</h3>
+
+<div class="hero-buttons">
+
+<a href="tel:112" class="btn secondary">
+
+👮 Police
+
+</a>
+
+<a href="tel:108" class="btn secondary">
+
+🚑 Ambulance
+
+</a>
+
+<a href="tel:101" class="btn secondary">
+
+🔥 Fire
+
+</a>
+
+</div>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔔
+
+</div>
+
+<h3>
+
+Important Alerts
+
+</h3>
+
+<p>
+
+View urgent messages from
+Admin and Residents.
+
+</p>
+
+<ul>
+
+<li>
+
+Guest waiting for approval
+
+</li>
+
+<li>
+
+Maintenance emergency
+
+</li>
+
+<li>
+
+Noise complaint received
+
+</li>
+
+<li>
+
+Parcel awaiting collection
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+Security Communication Center
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💬
+
+</div>
+
+<h3>
+
+Chat
+
+</h3>
+
+<p>
+
+Communicate with Residents
+and Admin instantly.
+
+</p>
+
+<textarea
+
+id="chatMessage"
+
+rows="5"
+
+placeholder="Type your message...">
+
+</textarea>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Send Message
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📋
+
+</div>
+
+<h3>
+
+Visitor History
+
+</h3>
+
+<table>
+
+<tr>
+
+<th>Name</th>
+
+<th>Flat</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>Rahul</td>
+
+<td>203</td>
+
+<td>Checked In</td>
+
+</tr>
+
+<tr>
+
+<td>Priya</td>
+
+<td>105</td>
+
+<td>Checked Out</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📈
+
+</div>
+
+<h3>
+
+Today's Summary
+
+</h3>
+
+<ul>
+
+<li>Total Visitors : 18</li>
+
+<li>Checked In : 7</li>
+
+<li>Checked Out : 6</li>
+
+<li>Pending : 5</li>
+
+</ul>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🕒
+
+</div>
+
+<h3>
+
+Recent Activities
+
+</h3>
+
+<ul>
+
+<li>Visitor approved for Flat 301</li>
+
+<li>Parcel delivered to Flat 105</li>
+
+<li>Resident marked OUT</li>
+
+<li>Emergency alert acknowledged</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<footer>
+
+<div class="container footer-content">
+
+<h2>
+
+🛡 AKR House Security
+
+</h2>
+
+<p>
+
+Security Dashboard
+
+</p>
+
+<p>
+
+Version 1.0.0
+
+</p>
+
+<p>
+
+© 2026 AKR House Apartments
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document
+
+.getElementById("visitorForm")
+
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const visitorName=document
+
+.getElementById("visitorName").value;
+
+const flat=document
+
+.getElementById("flatNumber").value;
+
+if(visitorName===""||flat===""){
+
+alert(
+
+"Please fill all mandatory visitor details."
+
+);
+
+return;
+
+}
+
+alert(
+
+"Visitor registered successfully."
+
+);
+
+});
+
+const chatButton=document
+
+.querySelector("textarea + button");
+
+if(chatButton){
+
+chatButton.addEventListener("click",function(){
+
+const message=document
+
+.getElementById("chatMessage").value;
+
+if(message.trim()===""){
+
+alert("Enter a message.");
+
+return;
+
+}
+
+alert("Message sent successfully.");
+
+document
+
+.getElementById("chatMessage").value="";
+
+});
+
+}
+
+window.addEventListener("load",function(){
+
+console.log("================================");
+
+console.log("AKR AMS");
+
+console.log("Security Dashboard Loaded");
+
+console.log("Version : 1.0.0");
+
+console.log("Status : Ready");
+
+console.log("================================");
+
+});
+
+</script>
+
+</body>
+
+</html>
+
+
+
+
+  
+
+
+  
+
+  
+
+
+
+
+
+  
+
+  
