@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>
+
+Admin Dashboard
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>
+
+👑 Admin Dashboard
+
+</h2>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<nav>
+
+<a href="#">Dashboard</a>
+
+<a href="#">Residents</a>
+
+<a href="#">Visitors</a>
+
+<a href="#">Payments</a>
+
+<a href="#">Reports</a>
+
+<a href="#">Settings</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>
+
+Welcome Administrator
+
+</h1>
+
+<p>
+
+Manage residents, security, maintenance,
+payments, complaints, notices and the
+entire apartment from one dashboard.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👥
+
+</div>
+
+<h3>
+
+Resident Approval
+
+</h3>
+
+<p>
+
+Approve or reject
+Primary Residents
+and Family Members.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🛡
+
+</div>
+
+<h3>
+
+Security Management
+
+</h3>
+
+<p>
+
+Manage security staff
+and monitor activities.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📢
+
+</div>
+
+<h3>
+
+Bulk Notifications
+
+</h3>
+
+<p>
+
+Send notifications
+to all residents
+or selected floors.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📊
+
+</div>
+
+<h3>
+
+Reports
+
+</h3>
+
+<p>
+
+View apartment
+analytics and reports.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+Resident Approval Center
+
+</h2>
+
+<div class="feature-card">
+
+<input
+type="text"
+id="searchResident"
+placeholder="Search by Name, Flat or Mobile">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+
+<th>Flat</th>
+
+<th>Role</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Arun Kumar</td>
+
+<td>203</td>
+
+<td>Primary Resident</td>
+
+<td>
+
+<span class="pending">
+
+Pending
+
+</span>
+
+</td>
+
+<td>
+
+<button class="btn primary">
+
+Approve
+
+</button>
+
+<button class="btn secondary">
+
+Reject
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Murali Krishna</td>
+
+<td>203</td>
+
+<td>Family Member</td>
+
+<td>
+
+<span class="pending">
+
+Pending
+
+</span>
+
+</td>
+
+<td>
+
+<button class="btn primary">
+
+Approve
+
+</button>
+
+<button class="btn secondary">
+
+Reject
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🏠
+
+</div>
+
+<h3>
+
+Flat Management
+
+</h3>
+
+<p>
+
+Manage all apartment flats,
+owners, tenants and occupancy.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👨‍👩‍👧
+
+</div>
+
+<h3>
+
+Family Requests
+
+</h3>
+
+<p>
+
+Approve or reject
+family member requests.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚶
+
+</div>
+
+<h3>
+
+Visitor Approval Logs
+
+</h3>
+
+<p>
+
+View complete visitor
+history and approvals.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📦
+
+</div>
+
+<h3>
+
+Parcel Monitoring
+
+</h3>
+
+<p>
+
+Track parcels delivered
+to all residents.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📢 Notification & Alert Center
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📢
+
+</div>
+
+<h3>
+
+Floor-wise Notification
+
+</h3>
+
+<div class="input-group">
+
+<label>
+
+Select Floor
+
+</label>
+
+<select id="floorNotification">
+
+<option>Ground Floor</option>
+
+<option>1st Floor</option>
+
+<option>2nd Floor</option>
+
+<option>3rd Floor</option>
+
+<option>4th Floor</option>
+
+<option>5th Floor</option>
+
+<option>All Floors</option>
+
+</select>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Notification Message
+
+</label>
+
+<textarea
+
+id="floorMessage"
+
+rows="4"
+
+placeholder="Example: Residents of 4th Floor, please avoid making loud noise after 10 PM.">
+
+</textarea>
+
+</div>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Send Notification
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚨
+
+</div>
+
+<h3>
+
+Critical Resident Alert
+
+</h3>
+
+<div class="input-group">
+
+<label>
+
+Flat Number
+
+</label>
+
+<input
+
+type="text"
+
+id="criticalFlat"
+
+placeholder="Example: 203">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Alert Message
+
+</label>
+
+<textarea
+
+id="criticalMessage"
+
+rows="4"
+
+placeholder="Enter critical warning message">
+
+</textarea>
+
+</div>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Send 5 Second Alert
+
+</button>
+
+<p>
+
+Resident device will play a 5-second warning sound before displaying the message.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💬
+
+</div>
+
+<h3>
+
+Community Chat Moderation
+
+</h3>
+
+<p>
+
+✔ View all messages
+
+</p>
+
+<p>
+
+✔ Delete inappropriate messages
+
+</p>
+
+<p>
+
+✔ Mute resident
+
+</p>
+
+<p>
+
+✔ Broadcast announcements
+
+</p>
+
+<button
+
+class="btn secondary">
+
+Open Chat Panel
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📝
+
+</div>
+
+<h3>
+
+Complaint Management
+
+</h3>
+
+<p>
+
+Pending : 12
+
+</p>
+
+<p>
+
+Resolved : 48
+
+</p>
+
+<p>
+
+Escalated : 3
+
+</p>
+
+<button
+
+class="btn primary">
+
+Open Complaints
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📊 Apartment Analytics
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👨‍👩‍👧
+
+</div>
+
+<h3>
+
+Residents
+
+</h3>
+
+<h1>
+
+62
+
+</h1>
+
+<p>
+
+58 Active
+
+</p>
+
+<p>
+
+4 Pending Approval
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚶
+
+</div>
+
+<h3>
+
+Visitors Today
+
+</h3>
+
+<h1>
+
+21
+
+</h1>
+
+<p>
+
+16 Checked In
+
+</p>
+
+<p>
+
+5 Pending
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💰
+
+</div>
+
+<h3>
+
+Maintenance
+
+</h3>
+
+<h1>
+
+₹45,000
+
+</h1>
+
+<p>
+
+Collected
+
+</p>
+
+<p>
+
+₹8,000 Pending
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📝
+
+</div>
+
+<h3>
+
+Complaints
+
+</h3>
+
+<h1>
+
+15
+
+</h1>
+
+<p>
+
+10 Resolved
+
+</p>
+
+<p>
+
+5 Pending
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🟢
+
+</div>
+
+<h3>
+
+Resident Presence
+
+</h3>
+
+<p>
+
+Residents Currently In
+
+</p>
+
+<h2>
+
+38
+
+</h2>
+
+<p>
+
+Residents Currently Out
+
+</p>
+
+<h2>
+
+24
+
+</h2>
+
+<button class="btn primary">
+
+View Live Status
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚗
+
+</div>
+
+<h3>
+
+Vehicle Management
+
+</h3>
+
+<p>
+
+Registered Vehicles
+
+</p>
+
+<h2>
+
+49
+
+</h2>
+
+<p>
+
+Visitor Vehicles Today
+
+</p>
+
+<h2>
+
+8
+
+</h2>
+
+<button class="btn secondary">
+
+Manage Vehicles
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🤖
+
+</div>
+
+<h3>
+
+AKR AI Assistant
+
+</h3>
+
+<p>
+
+AI can help Admin with:
+
+</p>
+
+<ul>
+
+<li>Resident Search</li>
+
+<li>Complaint Summary</li>
+
+<li>Payment Reports</li>
+
+<li>Visitor Analytics</li>
+
+<li>Notice Drafting</li>
+
+</ul>
+
+<button class="btn primary">
+
+Open AI Assistant
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+⚙️
+
+</div>
+
+<h3>
+
+System Health
+
+</h3>
+
+<p>
+
+🟢 Firebase Connected</p>
+
+<p>
+
+🟢 Security Online</p>
+
+<p>
+
+🟢 Database Healthy</p>
+
+<p>
+
+🟢 Notifications Active</p>
+
+<button class="btn secondary">
+
+System Settings
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📅 Maintenance & Reports
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📅
+
+</div>
+
+<h3>
+
+Maintenance Calendar
+
+</h3>
+
+<p>
+
+Upcoming Maintenance
+
+</p>
+
+<ul>
+
+<li>05 Aug - Water Tank Cleaning</li>
+
+<li>10 Aug - Lift Inspection</li>
+
+<li>15 Aug - Generator Service</li>
+
+<li>20 Aug - Pest Control</li>
+
+</ul>
+
+<button class="btn primary">
+
+Manage Calendar
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📈
+
+</div>
+
+<h3>
+
+Monthly Reports
+
+</h3>
+
+<ul>
+
+<li>Visitor Report</li>
+
+<li>Complaint Report</li>
+
+<li>Maintenance Collection</li>
+
+<li>Resident Activity</li>
+
+<li>Vehicle Report</li>
+
+</ul>
+
+<button class="btn secondary">
+
+Download Reports
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📜
+
+</div>
+
+<h3>
+
+Audit Logs
+
+</h3>
+
+<p>
+
+✔ Resident Approved
+
+</p>
+
+<p>
+
+✔ Visitor Rejected
+
+</p>
+
+<p>
+
+✔ Notice Published
+
+</p>
+
+<p>
+
+✔ Payment Updated
+
+</p>
+
+<button class="btn primary">
+
+View Logs
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💾
+
+</div>
+
+<h3>
+
+Backup & Restore
+
+</h3>
+
+<p>
+
+Database Backup
+
+</p>
+
+<p>
+
+Images Backup
+
+</p>
+
+<p>
+
+Chat Backup
+
+</p>
+
+<p>
+
+Complaint Backup
+
+</p>
+
+<div class="hero-buttons">
+
+<button class="btn primary">
+
+Backup Now
+
+</button>
+
+<button class="btn secondary">
+
+Restore
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>
+
+👨‍💻 Administrator Activity
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+
+<th>Administrator</th>
+
+<th>Activity</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>01-Aug-2026</td>
+
+<td>Admin</td>
+
+<td>Approved Resident Registration</td>
+
+<td>Completed</td>
+
+</tr>
+
+<tr>
+
+<td>01-Aug-2026</td>
+
+<td>Admin</td>
+
+<td>Sent 4th Floor Notification</td>
+
+<td>Completed</td>
+
+</tr>
+
+<tr>
+
+<td>01-Aug-2026</td>
+
+<td>Admin</td>
+
+<td>Generated Monthly Report</td>
+
+<td>Completed</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<footer>
+
+<div class="container footer-content">
+
+<h2>
+
+👑 AKR House Apartments
+
+</h2>
+
+<p>
+
+Administrator Control Center
+
+</p>
+
+<p>
+
+Version 1.0.0
+
+</p>
+
+<p>
+
+© 2026 AKR House Apartments
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document.getElementById("searchResident")
+
+.addEventListener("keyup",function(){
+
+const value=this.value;
+
+console.log("Searching:",value);
+
+});
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+const text=this.innerText;
+
+switch(text){
+
+case "Approve":
+
+alert("Resident Approved Successfully.");
+
+break;
+
+case "Reject":
+
+alert("Resident Rejected.");
+
+break;
+
+case "Send Notification":
+
+alert("Notification sent successfully.");
+
+break;
+
+case "Send 5 Second Alert":
+
+alert("Critical alert sent with 5-second warning.");
+
+break;
+
+case "Open AI Assistant":
+
+alert("AKR AI Assistant will be available in Version 2.");
+
+break;
+
+case "Download Reports":
+
+alert("Downloading reports...");
+
+break;
+
+case "Backup Now":
+
+alert("Backup started successfully.");
+
+break;
+
+case "Restore":
+
+alert("Restore option selected.");
+
+break;
+
+default:
+
+console.log(text);
+
+}
+
+});
+
+});
+
+window.addEventListener("load",function(){
+
+console.log("================================");
+
+console.log("AKR AMS");
+
+console.log("Administrator Dashboard");
+
+console.log("Status : Ready");
+
+console.log("Version : 1.0.0");
+
+console.log("================================");
+
+});
+
+</script>
+
+</body>
+
+</html>
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
