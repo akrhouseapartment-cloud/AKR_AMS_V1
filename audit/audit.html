@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Audit Logs - AKR AMS</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/dashboard.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<h2>
+
+🏢 AKR AMS
+
+</h2>
+
+<p>
+
+Apartment Management
+
+</p>
+
+</div>
+
+<ul class="menu">
+
+<li><a href="../dashboard/dashboard.html">🏠 Dashboard</a></li>
+
+<li><a href="../reports/reports.html">📊 Reports</a></li>
+
+<li><a href="../backup/backup.html">💾 Backup</a></li>
+
+<li><a href="audit.html" class="active">📋 Audit Logs</a></li>
+
+<li><a href="../settings/settings.html">⚙️ Settings</a></li>
+
+</ul>
+
+</aside>
+
+<main class="content">
+
+<header class="topbar">
+
+<div>
+
+<h1>
+
+📋 Audit Logs
+
+</h1>
+
+<p>
+
+Track all system activities
+
+</p>
+
+</div>
+
+</header>
+
+<section class="cards">
+
+<div class="card">
+
+<h3>
+
+Today's Logs
+
+</h3>
+
+<h2>
+
+124
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Successful Actions
+
+</h3>
+
+<h2>
+
+120
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Failed Actions
+
+</h3>
+
+<h2>
+
+4
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Active Users
+
+</h3>
+
+<h2>
+
+18
+
+</h2>
+
+</div>
+
+</section>
+
+<section class="dashboard-card">
+
+<h2>
+
+📋 Audit Log History
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Date & Time</th>
+
+<th>User</th>
+
+<th>Module</th>
+
+<th>Action</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>02-Aug-2026 09:15</td>
+
+<td>Admin</td>
+
+<td>Residents</td>
+
+<td>Added Resident</td>
+
+<td>✅ Success</td>
+
+</tr>
+
+<tr>
+
+<td>02-Aug-2026 09:08</td>
+
+<td>Security</td>
+
+<td>Visitors</td>
+
+<td>Visitor Entry</td>
+
+<td>✅ Success</td>
+
+</tr>
+
+<tr>
+
+<td>02-Aug-2026 08:52</td>
+
+<td>Admin</td>
+
+<td>Maintenance</td>
+
+<td>Updated Payment</td>
+
+<td>✅ Success</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+
+<section class="dashboard-card">
+
+<h2>
+
+🔍 Search Audit Logs
+
+</h2>
+
+<input
+
+type="text"
+
+id="searchAudit"
+
+placeholder="Search by User, Module or Action">
+
+<br><br>
+
+<div class="dashboard-grid">
+
+<div>
+
+<label>
+
+From Date
+
+</label>
+
+<input
+
+type="date"
+
+id="fromDate">
+
+</div>
+
+<div>
+
+<label>
+
+To Date
+
+</label>
+
+<input
+
+type="date"
+
+id="toDate">
+
+</div>
+
+<div>
+
+<label>
+
+Module
+
+</label>
+
+<select id="moduleFilter">
+
+<option>All Modules</option>
+
+<option>Residents</option>
+
+<option>Flats</option>
+
+<option>Maintenance</option>
+
+<option>Complaints</option>
+
+<option>Visitors</option>
+
+<option>Vehicles</option>
+
+<option>Parcels</option>
+
+<option>Reports</option>
+
+<option>Settings</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>
+
+Status
+
+</label>
+
+<select id="statusFilter">
+
+<option>All</option>
+
+<option>Success</option>
+
+<option>Failed</option>
+
+</select>
+
+</div>
+
+</div>
+
+<br>
+
+<button class="btn primary">
+
+Search Logs
+
+</button>
+
+<button class="btn secondary">
+
+Reset Filters
+
+</button>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+👤 User Activity
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>User</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Admin</td>
+
+<td>68</td>
+
+</tr>
+
+<tr>
+
+<td>Security</td>
+
+<td>31</td>
+
+</tr>
+
+<tr>
+
+<td>Maintenance Staff</td>
+
+<td>17</td>
+
+</tr>
+
+<tr>
+
+<td>Resident</td>
+
+<td>8</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📊 Module Activity
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Module</th>
+
+<th>Events</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Residents</td>
+
+<td>25</td>
+
+</tr>
+
+<tr>
+
+<td>Maintenance</td>
+
+<td>18</td>
+
+</tr>
+
+<tr>
+
+<td>Visitors</td>
+
+<td>30</td>
+
+</tr>
+
+<tr>
+
+<td>Complaints</td>
+
+<td>12</td>
+
+</tr>
+
+<tr>
+
+<td>Reports</td>
+
+<td>7</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📥 Export Audit Logs
+
+</h2>
+
+<p>
+
+Download audit reports in different formats.
+
+</p>
+
+<button class="btn primary">
+
+Export Excel
+
+</button>
+
+<button class="btn secondary">
+
+Export CSV
+
+</button>
+
+<button class="btn secondary">
+
+Export PDF
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📈 Audit Analytics
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Total Logs</td>
+
+<td>5,284</td>
+
+</tr>
+
+<tr>
+
+<td>Today's Logs</td>
+
+<td>124</td>
+
+</tr>
+
+<tr>
+
+<td>Successful Actions</td>
+
+<td>5,170</td>
+
+</tr>
+
+<tr>
+
+<td>Failed Actions</td>
+
+<td>114</td>
+
+</tr>
+
+<tr>
+
+<td>Success Rate</td>
+
+<td>97.8%</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🚨 Failed Login Attempts
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>User</th>
+
+<th>Time</th>
+
+<th>Reason</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>admin@test.com</td>
+
+<td>02-Aug-2026 08:15</td>
+
+<td>Wrong Password</td>
+
+</tr>
+
+<tr>
+
+<td>resident203</td>
+
+<td>01-Aug-2026 09:45</td>
+
+<td>Invalid OTP</td>
+
+</tr>
+
+<tr>
+
+<td>security01</td>
+
+<td>31-Jul-2026 10:12</td>
+
+<td>Account Locked</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+🔐 Security Events
+
+</h2>
+
+<ul class="activity-list">
+
+<li>
+
+🟢 User Login Successful
+
+</li>
+
+<li>
+
+🟢 Password Changed
+
+</li>
+
+<li>
+
+🟢 Backup Completed
+
+</li>
+
+<li>
+
+🟡 Permission Updated
+
+</li>
+
+<li>
+
+🔴 Failed Login Attempt
+
+</li>
+
+</ul>
+
+<button class="btn primary">
+
+View Security Report
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🖥 System Changes
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+
+<th>Change</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>02-Aug-2026</td>
+
+<td>Updated Resident Record</td>
+
+</tr>
+
+<tr>
+
+<td>01-Aug-2026</td>
+
+<td>Backup Settings Modified</td>
+
+</tr>
+
+<tr>
+
+<td>31-Jul-2026</td>
+
+<td>Maintenance Rules Updated</td>
+
+</tr>
+
+<tr>
+
+<td>30-Jul-2026</td>
+
+<td>Added New Staff User</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📝 Admin Activity Log
+
+</h2>
+
+<ul class="activity-list">
+
+<li>
+
+👤 Added Resident - Flat 203
+
+</li>
+
+<li>
+
+💰 Updated Maintenance Payment
+
+</li>
+
+<li>
+
+📢 Published New Notice
+
+</li>
+
+<li>
+
+📦 Restored Backup
+
+</li>
+
+<li>
+
+⚙️ Updated System Settings
+
+</li>
+
+</ul>
+
+<button class="btn secondary">
+
+View Full Activity
+
+</button>
+
+</div>
+
+</section>
+
+  
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+👥 User Session History
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>User</th>
+
+<th>Login</th>
+
+<th>Logout</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Admin</td>
+
+<td>09:00 AM</td>
+
+<td>--</td>
+
+<td>Active</td>
+
+</tr>
+
+<tr>
+
+<td>Security</td>
+
+<td>08:15 AM</td>
+
+<td>04:30 PM</td>
+
+<td>Completed</td>
+
+</tr>
+
+<tr>
+
+<td>Resident</td>
+
+<td>07:45 AM</td>
+
+<td>08:10 AM</td>
+
+<td>Completed</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🌐 Device & Browser Logs
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>User</th>
+
+<th>Device</th>
+
+<th>Browser</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Admin</td>
+
+<td>Windows PC</td>
+
+<td>Chrome</td>
+
+</tr>
+
+<tr>
+
+<td>Security</td>
+
+<td>Android</td>
+
+<td>Chrome</td>
+
+</tr>
+
+<tr>
+
+<td>Resident</td>
+
+<td>iPhone</td>
+
+<td>Safari</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📍 Login Location History
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>User</th>
+
+<th>Location</th>
+
+<th>IP Address</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Admin</td>
+
+<td>Bengaluru</td>
+
+<td>192.168.1.20</td>
+
+</tr>
+
+<tr>
+
+<td>Security</td>
+
+<td>Main Gate</td>
+
+<td>192.168.1.45</td>
+
+</tr>
+
+<tr>
+
+<td>Resident</td>
+
+<td>Flat 203</td>
+
+<td>192.168.1.78</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+⏱ Session Duration
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>User</th>
+
+<th>Duration</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Admin</td>
+
+<td>3h 20m</td>
+
+</tr>
+
+<tr>
+
+<td>Security</td>
+
+<td>8h 00m</td>
+
+</tr>
+
+<tr>
+
+<td>Resident</td>
+
+<td>25m</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📊 Activity Timeline
+
+</h2>
+
+<ul class="activity-list">
+
+<li>
+
+09:15 AM - Resident Added
+
+</li>
+
+<li>
+
+09:05 AM - Visitor Approved
+
+</li>
+
+<li>
+
+08:52 AM - Maintenance Updated
+
+</li>
+
+<li>
+
+08:35 AM - Complaint Closed
+
+</li>
+
+<li>
+
+08:10 AM - User Login
+
+</li>
+
+</ul>
+
+<button class="btn primary">
+
+Refresh Timeline
+
+</button>
+
+</div>
+
+</section>
+
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📋 Compliance Report
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Check</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Daily Backup</td>
+
+<td>✅ Passed</td>
+
+</tr>
+
+<tr>
+
+<td>User Authentication</td>
+
+<td>✅ Passed</td>
+
+</tr>
+
+<tr>
+
+<td>Access Control</td>
+
+<td>✅ Passed</td>
+
+</tr>
+
+<tr>
+
+<td>Data Encryption</td>
+
+<td>✅ Enabled</td>
+
+</tr>
+
+<tr>
+
+<td>Audit Logging</td>
+
+<td>✅ Active</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+Generate Compliance Report
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📤 Export Audit Reports
+
+</h2>
+
+<p>
+
+Download audit information in different formats.
+
+</p>
+
+<button class="btn primary">
+
+Export Excel
+
+</button>
+
+<button class="btn secondary">
+
+Export CSV
+
+</button>
+
+<button class="btn secondary">
+
+Export PDF
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+🚨 Critical Events
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+
+<th>Event</th>
+
+<th>Priority</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>02-Aug-2026</td>
+
+<td>Failed Admin Login</td>
+
+<td>High</td>
+
+</tr>
+
+<tr>
+
+<td>01-Aug-2026</td>
+
+<td>Backup Verification</td>
+
+<td>Medium</td>
+
+</tr>
+
+<tr>
+
+<td>31-Jul-2026</td>
+
+<td>Permission Changed</td>
+
+<td>Medium</td>
+
+</tr>
+
+<tr>
+
+<td>30-Jul-2026</td>
+
+<td>Database Backup</td>
+
+<td>Low</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View Critical Events
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📊 Audit Dashboard
+
+</h2>
+
+<p>
+
+Total Logs
+
+</p>
+
+<h3>
+
+5,284
+
+</h3>
+
+<p>
+
+Today's Events
+
+</p>
+
+<h3>
+
+124
+
+</h3>
+
+<p>
+
+Security Alerts
+
+</p>
+
+<h3>
+
+4
+
+</h3>
+
+<p>
+
+Audit Health
+
+</p>
+
+<h3>
+
+Excellent ✅
+
+</h3>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🔒 Audit Settings
+
+</h2>
+
+<label>
+
+<input type="checkbox" checked>
+
+Enable Audit Logging
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Log Failed Login Attempts
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Log System Changes
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox">
+
+Email Critical Alerts
+
+</label>
+
+<br><br>
+
+<button class="btn primary">
+
+Save Audit Settings
+
+</button>
+
+</div>
+
+</section>
+  
+
+<footer class="dashboard-footer">
+
+<div class="container">
+
+<p>
+
+© 2026 AKR House Apartments | AKR AMS Version 2.0
+
+</p>
+
+<p>
+
+Audit Logs Module
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+const action=this.innerText.trim();
+
+switch(action){
+
+case "Search Logs":
+
+alert("Searching audit logs...");
+
+break;
+
+case "Reset Filters":
+
+alert("Filters reset successfully.");
+
+break;
+
+case "Export Excel":
+
+alert("Exporting audit logs to Excel...");
+
+break;
+
+case "Export CSV":
+
+alert("Exporting audit logs to CSV...");
+
+break;
+
+case "Export PDF":
+
+alert("Exporting audit logs to PDF...");
+
+break;
+
+case "View Security Report":
+
+alert("Opening security report.");
+
+break;
+
+case "View Full Activity":
+
+alert("Loading complete activity log.");
+
+break;
+
+case "Refresh Timeline":
+
+alert("Timeline refreshed.");
+
+break;
+
+case "Generate Compliance Report":
+
+alert("Compliance report generated.");
+
+break;
+
+case "View Critical Events":
+
+alert("Opening critical events.");
+
+break;
+
+case "Save Audit Settings":
+
+alert("Audit settings saved successfully.");
+
+break;
+
+default:
+
+console.log(action);
+
+}
+
+});
+
+});
+
+window.addEventListener("load",function(){
+
+console.log("================================");
+
+console.log("AKR AMS Audit Module");
+
+console.log("Version : 2.0");
+
+console.log("Status : Ready");
+
+console.log("================================");
+
+});
+
+</script>
+
+</main>
+
+</div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
