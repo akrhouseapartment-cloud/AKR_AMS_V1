@@ -1,6 +1,6 @@
 /* ==========================================
-   AKR House Apartments
-   Version 1.0
+AKR House Apartments
+Version 1.0
 ========================================== */
 
 *{
@@ -269,10 +269,8 @@ color:white;
 
 }
 
-
-
 /* ==========================================
-   Hero Section
+Hero Section
 ========================================== */
 
 .hero{
@@ -378,32 +376,15 @@ font-size:20px;
 }
 
 /* ==========================================
-   Features
+Features
 ========================================== */
 
 #features{
 
 padding:90px 0;
 
-.feature-card{
-    background:#1565C0 !important;
-    color:#ffffff !important;
-    border:2px solid red !important;
-    opacity:1 !important;
-    display:block !important;
-    visibility:visible !important;
-}
+background:#ffffff;
 
-.feature-card h3{
-    color:#ffffff !important;
-}
-
-.feature-card p{
-    color:#ffffff !important;
-}
-
-.feature-icon{
-    color:#ffffff !important;
 }
 
 #features h2{
@@ -500,11 +481,8 @@ transform:translateY(0);
 
 }
 
-
-
-
 /* ==========================================
-   About Section
+About Section
 ========================================== */
 
 #about{
@@ -582,7 +560,7 @@ color:#1565C0;
 }
 
 /* ==========================================
-   Statistics
+Statistics
 ========================================== */
 
 .statistics{
@@ -654,7 +632,7 @@ font-size:18px;
 }
 
 /* ==========================================
-   Contact
+Contact
 ========================================== */
 
 .contact{
@@ -735,10 +713,8 @@ margin-bottom:10px;
 
 }
 
-
-
 /* ==========================================
-   Footer
+Footer
 ========================================== */
 
 footer{
@@ -774,7 +750,7 @@ opacity:.9;
 }
 
 /* ==========================================
-   Scroll To Top
+Scroll To Top
 ========================================== */
 
 #scrollTop{
@@ -826,7 +802,7 @@ transform:translateY(-4px);
 }
 
 /* ==========================================
-   Responsive
+Responsive
 ========================================== */
 
 @media(max-width:992px){
@@ -962,7 +938,7 @@ padding:25px;
 }
 
 /* ==========================================
-   Utility
+Utility
 ========================================== */
 
 .hidden{
@@ -1011,11 +987,4 @@ border-radius:20px;
 
 animation:fadeUp .8s ease;
 
-}
-
-
-
-
-
-
-
+   }
