@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>
+
+AKR AI Assistant
+
+</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet" href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>
+
+🤖 AKR AI Assistant
+
+</h2>
+
+<p>
+
+Your Smart Apartment Assistant
+
+</p>
+
+</div>
+
+<nav>
+
+<a href="#">Home</a>
+
+<a href="#">Ask AI</a>
+
+<a href="#">History</a>
+
+<a href="#">Settings</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>
+
+Welcome to AKR AI
+
+</h1>
+
+<p>
+
+Ask questions about visitors,
+complaints,
+maintenance,
+payments,
+apartment rules,
+community notices,
+and more.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-card">
+
+<h2>
+
+Ask Anything
+
+</h2>
+
+<textarea
+
+id="aiPrompt"
+
+rows="6"
+
+placeholder="Example: Show my pending maintenance payment or create a visitor request.">
+
+</textarea>
+
+<br><br>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Ask AKR AI
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+💡 Quick Actions
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚶
+
+</div>
+
+<h3>
+
+Visitors
+
+</h3>
+
+<button class="btn primary">
+
+Create Visitor Request
+
+</button>
+
+<button class="btn secondary">
+
+Today's Visitors
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💰
+
+</div>
+
+<h3>
+
+Maintenance
+
+</h3>
+
+<button class="btn primary">
+
+View Due Amount
+
+</button>
+
+<button class="btn secondary">
+
+Payment History
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📦
+
+</div>
+
+<h3>
+
+Parcels
+
+</h3>
+
+<button class="btn primary">
+
+Track Parcel
+
+</button>
+
+<button class="btn secondary">
+
+Parcel History
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📝
+
+</div>
+
+<h3>
+
+Complaints
+
+</h3>
+
+<button class="btn primary">
+
+Raise Complaint
+
+</button>
+
+<button class="btn secondary">
+
+Complaint Status
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>
+
+💬 Suggested Questions
+
+</h2>
+
+<ul>
+
+<li>
+
+What is my maintenance due?
+
+</li>
+
+<li>
+
+Show today's visitors.
+
+</li>
+
+<li>
+
+Summarize recent notices.
+
+</li>
+
+<li>
+
+Track my parcel.
+
+</li>
+
+<li>
+
+How do I raise a complaint?
+
+</li>
+
+<li>
+
+Show my payment history.
+
+</li>
+
+<li>
+
+What apartment rules should I know?
+
+</li>
+
+<li>
+
+Who approved my family request?
+
+</li>
+
+</ul>
+
+</div>
+
+  </section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📜 AI Conversation History
+
+</h2>
+
+<div class="feature-card">
+
+<ul>
+
+<li>
+
+👤 Show my pending maintenance payment.
+
+</li>
+
+<li>
+
+🤖 Your maintenance due is ₹1,500.
+
+</li>
+
+<li>
+
+👤 Track my Flipkart parcel.
+
+</li>
+
+<li>
+
+🤖 Your parcel is available at the Security Gate.
+
+</li>
+
+<li>
+
+👤 Show today's visitors.
+
+</li>
+
+<li>
+
+🤖 You have 2 approved visitors today.
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Clear History
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📊 AI Dashboard Summary
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔔
+
+</div>
+
+<h3>
+
+Notice Summary
+
+</h3>
+
+<p>
+
+3 new notices available.
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Summarize Notices
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📈
+
+</div>
+
+<h3>
+
+Resident Insights
+
+</h3>
+
+<p>
+
+No pending visitor approvals.
+
+</p>
+
+<p>
+
+Maintenance due in 5 days.
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Insights
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💡
+
+</div>
+
+<h3>
+
+Smart Recommendations
+
+</h3>
+
+<ul>
+
+<li>
+
+Pay maintenance before due date.
+
+</li>
+
+<li>
+
+Update your vehicle details.
+
+</li>
+
+<li>
+
+Review apartment notices.
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Show More
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+🎯 Role-Based AI Assistant
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👑
+
+</div>
+
+<h3>
+
+Admin AI
+
+</h3>
+
+<ul>
+
+<li>
+
+Generate monthly reports
+
+</li>
+
+<li>
+
+Summarize complaints
+
+</li>
+
+<li>
+
+Analyze maintenance collection
+
+</li>
+
+<li>
+
+Identify pending approvals
+
+</li>
+
+<li>
+
+Suggest important notices
+
+</li>
+
+</ul>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Open Admin AI
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🛡
+
+</div>
+
+<h3>
+
+Security AI
+
+</h3>
+
+<ul>
+
+<li>
+
+View expected visitors
+
+</li>
+
+<li>
+
+Identify visitor patterns
+
+</li>
+
+<li>
+
+Emergency guidance
+
+</li>
+
+<li>
+
+Parcel assistance
+
+</li>
+
+<li>
+
+Security reminders
+
+</li>
+
+</ul>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Open Security AI
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🏠
+
+</div>
+
+<h3>
+
+Resident AI
+
+</h3>
+
+<ul>
+
+<li>
+
+Maintenance assistance
+
+</li>
+
+<li>
+
+Visitor management
+
+</li>
+
+<li>
+
+Complaint drafting
+
+</li>
+
+<li>
+
+Payment reminders
+
+</li>
+
+<li>
+
+Apartment rules
+
+</li>
+
+</ul>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Open Resident AI
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👨‍👩‍👧
+
+</div>
+
+<h3>
+
+Family AI
+
+</h3>
+
+<ul>
+
+<li>
+
+Visitor request help
+
+</li>
+
+<li>
+
+Service booking
+
+</li>
+
+<li>
+
+Complaint guidance
+
+</li>
+
+<li>
+
+Notice explanation
+
+</li>
+
+<li>
+
+General assistance
+
+</li>
+
+</ul>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Open Family AI
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-card">
+
+<h2>
+
+✨ AI Suggested Actions
+
+</h2>
+
+<ul>
+
+<li>
+
+🔔 Maintenance payment due in 5 days.
+
+</li>
+
+<li>
+
+📦 One parcel is waiting at Security.
+
+</li>
+
+<li>
+
+🚶 Visitor request awaiting approval.
+
+</li>
+
+<li>
+
+📢 Three new apartment notices available.
+
+</li>
+
+<li>
+
+🛠 You have one pending service request.
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+  </section>
+
+
+
+
+  <section>
+
+<div class="container">
+
+<h2>
+
+📊 AI Analytics & Settings
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📊
+
+</div>
+
+<h3>
+
+AI Analytics
+
+</h3>
+
+<p>
+
+Questions Asked : <b>125</b>
+
+</p>
+
+<p>
+
+Visitor Queries : <b>28</b>
+
+</p>
+
+<p>
+
+Complaint Queries : <b>19</b>
+
+</p>
+
+<p>
+
+Payment Queries : <b>41</b>
+
+</p>
+
+<p>
+
+General Queries : <b>37</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Full Analytics
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🧠
+
+</div>
+
+<h3>
+
+Smart Insights
+
+</h3>
+
+<ul>
+
+<li>
+
+Maintenance collection is improving.
+
+</li>
+
+<li>
+
+Most complaints are Electrical.
+
+</li>
+
+<li>
+
+Visitor traffic is highest on weekends.
+
+</li>
+
+<li>
+
+Parcel deliveries increased this week.
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Generate Insights
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🌍
+
+</div>
+
+<h3>
+
+Language
+
+</h3>
+
+<select>
+
+<option>English</option>
+
+<option>தமிழ்</option>
+
+<option>ಕನ್ನಡ</option>
+
+<option>हिन्दी</option>
+
+<option>తెలుగు</option>
+
+<option>മലയാളം</option>
+
+</select>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Save Language
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🎤
+
+</div>
+
+<h3>
+
+Voice Assistant
+
+</h3>
+
+<p>
+
+Talk naturally with AKR AI.
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Start Voice Assistant
+
+</button>
+
+<p>
+
+Voice support coming soon.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+⚙️
+
+</div>
+
+<h3>
+
+AI Settings
+
+</h3>
+
+<label>
+
+<input type="checkbox" checked>
+
+Enable Smart Suggestions
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Enable Notifications
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox">
+
+Voice Responses
+
+</label>
+
+<br><br>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Save Settings
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+  </section>
+
+
+
+
+  <footer>
+
+<div class="container footer-content">
+
+<h2>
+
+🤖 AKR House AI
+
+</h2>
+
+<p>
+
+Apartment Intelligence Assistant
+
+</p>
+
+<p>
+
+Version 1.0.0
+
+</p>
+
+<p>
+
+© 2026 AKR House Apartments
+
+All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+const aiButton=document.querySelector(".btn.primary");
+
+if(aiButton){
+
+aiButton.addEventListener("click",function(){
+
+const question=document
+
+.getElementById("aiPrompt").value.trim();
+
+if(question===""){
+
+alert("Please enter your question.");
+
+return;
+
+}
+
+let response="";
+
+const q=question.toLowerCase();
+
+if(q.includes("maintenance")){
+
+response="Your maintenance details will be displayed here.";
+
+}else if(q.includes("visitor")){
+
+response="You can create or view visitor requests from the Visitor module.";
+
+}else if(q.includes("complaint")){
+
+response="Open the Complaint section to raise or track complaints.";
+
+}else if(q.includes("parcel")){
+
+response="Parcel information will be retrieved from the Security module.";
+
+}else if(q.includes("payment")){
+
+response="Payment details will be available in the Maintenance section.";
+
+}else{
+
+response="AKR AI understood your request. Advanced AI responses will be available after backend integration.";
+
+}
+
+alert(response);
+
+});
+
+}
+
+window.addEventListener("load",function(){
+
+console.log("================================");
+
+console.log("AKR AI Assistant");
+
+console.log("Version : 1.0.0");
+
+console.log("Status : Ready");
+
+console.log("================================");
+
+});
+
+</script>
+
+</body>
+
+</html>
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
