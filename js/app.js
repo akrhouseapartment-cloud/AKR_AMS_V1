@@ -10,18 +10,13 @@
    App Loaded
 ========================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     console.log("================================");
-
     console.log("AKR House Apartments");
-
     console.log("Apartment Management System");
-
     console.log("Version : 1.0.0");
-
     console.log("Status : Ready");
-
     console.log("================================");
 
 });
@@ -30,25 +25,26 @@ document.addEventListener("DOMContentLoaded", () => {
    Splash Screen
 ========================================== */
 
-window.addEventListener("load", () => {
+window.addEventListener("load", function () {
 
     const splash = document.getElementById("splashScreen");
 
-    if (!splash) return;
+    if (splash) {
 
-    setTimeout(() => {
+        setTimeout(function () {
 
-        splash.style.opacity = "0";
+            splash.style.opacity = "0";
+            splash.style.transition = "0.5s";
 
-        splash.style.transition = "0.5s";
+            setTimeout(function () {
 
-        setTimeout(() => {
+                splash.style.display = "none";
 
-            splash.style.display = "none";
+            }, 500);
 
-        }, 500);
+        }, 2500);
 
-    }, 2500);
+    }
 
 });
 
@@ -58,7 +54,7 @@ window.addEventListener("load", () => {
 
 const scrollBtn = document.getElementById("scrollTop");
 
-window.addEventListener("scroll", () => {
+window.addEventListener("scroll", function () {
 
     if (!scrollBtn) return;
 
@@ -76,12 +72,11 @@ window.addEventListener("scroll", () => {
 
 if (scrollBtn) {
 
-    scrollBtn.addEventListener("click", () => {
+    scrollBtn.addEventListener("click", function () {
 
         window.scrollTo({
 
             top: 0,
-
             behavior: "smooth"
 
         });
@@ -94,7 +89,7 @@ if (scrollBtn) {
    Smooth Scroll
 ========================================== */
 
-document.querySelectorAll('a[href^="#"]').forEach(link => {
+document.querySelectorAll('a[href^="#"]').forEach(function (link) {
 
     link.addEventListener("click", function (e) {
 
@@ -120,53 +115,60 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
    Fade Animation
 ========================================== */
 
-const observer = new IntersectionObserver(
-
-(entries) => {
-
-entries.forEach(entry => {
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("fade");
-
-}
-
-});
-
-},
-
-{
-
-threshold:0.2
-
-}
-
+const cards = document.querySelectorAll(
+".feature-card,.about-card,.stat-card,.contact-card"
 );
 
-document.querySelectorAll(
+if ("IntersectionObserver" in window) {
 
-".feature-card,.about-card,.stat-card,.contact-card"
+    const observer = new IntersectionObserver(function (entries, observer) {
 
-).forEach(card=>{
+        entries.forEach(function (entry) {
 
-observer.observe(card);
+            if (entry.isIntersecting) {
 
-});
+                entry.target.classList.add("fade");
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, {
+
+        threshold: 0.2
+
+    });
+
+    cards.forEach(function (card) {
+
+        observer.observe(card);
+
+    });
+
+} else {
+
+    cards.forEach(function (card) {
+
+        card.classList.add("fade");
+
+    });
+
+}
 
 /* ==========================================
    Future Modules
 ========================================== */
 
-function openAKRAI(){
+function openAKRAI() {
 
-alert("🤖 AKR AI Assistant - Coming Soon");
+    alert("🤖 AKR AI Assistant - Coming Soon");
 
 }
 
-function notify(message){
+function notify(message) {
 
-console.log("Notification:",message);
+    console.log("Notification:", message);
 
 }
 
