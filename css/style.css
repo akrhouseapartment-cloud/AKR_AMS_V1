@@ -385,9 +385,25 @@ font-size:20px;
 
 padding:90px 0;
 
-.feature-card
-   {
-background:#1565C0;
+.feature-card{
+    background:#1565C0 !important;
+    color:#ffffff !important;
+    border:2px solid red !important;
+    opacity:1 !important;
+    display:block !important;
+    visibility:visible !important;
+}
+
+.feature-card h3{
+    color:#ffffff !important;
+}
+
+.feature-card p{
+    color:#ffffff !important;
+}
+
+.feature-icon{
+    color:#ffffff !important;
 }
 
 #features h2{
