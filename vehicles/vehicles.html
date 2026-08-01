@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>
+
+Vehicle Management
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>
+
+🚗 Vehicle Management
+
+</h2>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<nav>
+
+<a href="#">Dashboard</a>
+
+<a href="#">Vehicles</a>
+
+<a href="#">Parking</a>
+
+<a href="#">Visitors</a>
+
+<a href="#">Reports</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>
+
+Vehicle Management Portal
+
+</h1>
+
+<p>
+
+Manage resident vehicles,
+visitor vehicles,
+parking allocation,
+vehicle documents,
+and security verification.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚗
+
+</div>
+
+<h3>
+
+Registered Vehicles
+
+</h3>
+
+<h1>
+
+49
+
+</h1>
+
+<p>
+
+Resident Vehicles
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚙
+
+</div>
+
+<h3>
+
+Visitor Vehicles
+
+</h3>
+
+<h1>
+
+8
+
+</h1>
+
+<p>
+
+Today's Entries
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🅿️
+
+</div>
+
+<h3>
+
+Parking Slots
+
+</h3>
+
+<h1>
+
+60
+
+</h1>
+
+<p>
+
+Allocated Slots
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔍
+
+</div>
+
+<h3>
+
+Search Vehicle
+
+</h3>
+
+<input
+
+type="text"
+
+id="searchVehicle"
+
+placeholder="Vehicle Number">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Search
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>
+
+🚗 Vehicle Registration
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚗
+
+</div>
+
+<h3>
+
+Resident Vehicle
+
+</h3>
+
+<input
+
+type="text"
+
+id="vehicleNumber"
+
+placeholder="Vehicle Number">
+
+<input
+
+type="text"
+
+id="vehicleBrand"
+
+placeholder="Vehicle Brand">
+
+<input
+
+type="text"
+
+id="vehicleModel"
+
+placeholder="Vehicle Model">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Register Vehicle
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚙
+
+</div>
+
+<h3>
+
+Visitor Vehicle
+
+</h3>
+
+<input
+
+type="text"
+
+id="visitorVehicle"
+
+placeholder="Vehicle Number">
+
+<input
+
+type="text"
+
+id="visitorName"
+
+placeholder="Visitor Name">
+
+<input
+
+type="text"
+
+id="visitorFlat"
+
+placeholder="Flat Number">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Register Visitor Vehicle
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🅿️
+
+</div>
+
+<h3>
+
+Parking Slot
+
+</h3>
+
+<select id="parkingSlot">
+
+<option>P-01</option>
+
+<option>P-02</option>
+
+<option>P-03</option>
+
+<option>P-04</option>
+
+<option>P-05</option>
+
+<option>P-06</option>
+
+</select>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Assign Slot
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📷
+
+</div>
+
+<h3>
+
+Vehicle Photo
+
+</h3>
+
+<input
+
+type="file"
+
+accept="image/*">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Upload Photo
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📄
+
+</div>
+
+<h3>
+
+Vehicle Documents
+
+</h3>
+
+<input
+
+type="file"
+
+accept=".pdf,.jpg,.jpeg,.png">
+
+<p>
+
+Upload RC,
+
+Insurance,
+
+and PUC documents.
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Upload Documents
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>
+
+🚦 Vehicle Monitoring
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📅
+
+</div>
+
+<h3>
+
+Insurance & PUC Expiry
+
+</h3>
+
+<table>
+
+<tr>
+
+<th>Document</th>
+
+<th>Expiry</th>
+
+</tr>
+
+<tr>
+
+<td>Insurance</td>
+
+<td>15-Dec-2026</td>
+
+</tr>
+
+<tr>
+
+<td>PUC</td>
+
+<td>20-Oct-2026</td>
+
+</tr>
+
+</table>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Set Reminder
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚨
+
+</div>
+
+<h3>
+
+Unauthorized Vehicles
+
+</h3>
+
+<ul>
+
+<li>
+
+KA01AB9999
+
+</li>
+
+<li>
+
+TN09XY4567
+
+</li>
+
+<li>
+
+MH12CD7890
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Alerts
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📋
+
+</div>
+
+<h3>
+
+Vehicle History
+
+</h3>
+
+<p>
+
+Total Entries : <b>146</b>
+
+</p>
+
+<p>
+
+Total Exits : <b>145</b>
+
+</p>
+
+<p>
+
+Current Inside : <b>1</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View History
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔍
+
+</div>
+
+<h3>
+
+Search Result
+
+</h3>
+
+<p>
+
+Vehicle :
+
+KA01AB1234
+
+</p>
+
+<p>
+
+Owner :
+
+Arun Kumar
+
+</p>
+
+<p>
+
+Parking :
+
+P-12
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Open Details
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚦
+
+</div>
+
+<h3>
+
+Entry / Exit Log
+
+</h3>
+
+<ul>
+
+<li>
+
+08:30 AM - Entry
+
+</li>
+
+<li>
+
+01:15 PM - Exit
+
+</li>
+
+<li>
+
+06:45 PM - Entry
+
+</li>
+
+</ul>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Complete Log
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>
+
+🅿️ Parking & Security
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🅿️
+
+</div>
+
+<h3>
+
+Parking Analytics
+
+</h3>
+
+<p>
+
+Total Slots : <b>60</b>
+
+</p>
+
+<p>
+
+Occupied : <b>49</b>
+
+</p>
+
+<p>
+
+Available : <b>11</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Analytics
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👮
+
+</div>
+
+<h3>
+
+Security Verification
+
+</h3>
+
+<p>
+
+Verify vehicle before
+
+allowing entry.
+
+</p>
+
+<input
+
+type="text"
+
+placeholder="Vehicle Number">
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Verify Vehicle
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📊
+
+</div>
+
+<h3>
+
+Vehicle Reports
+
+</h3>
+
+<ul>
+
+<li>
+
+Resident Vehicles
+
+</li>
+
+<li>
+
+Visitor Vehicles
+
+</li>
+
+<li>
+
+Parking Usage
+
+</li>
+
+<li>
+
+Expired Documents
+
+</li>
+
+</ul>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Generate Report
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📷
+
+</div>
+
+<h3>
+
+ANPR Scanner
+
+</h3>
+
+<p>
+
+Automatic Number Plate
+
+Recognition
+
+(Coming Soon)
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Open Scanner
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚗
+
+</div>
+
+<h3>
+
+Visitor Parking
+
+</h3>
+
+<p>
+
+Visitor Slots :
+
+<b>8</b>
+
+</p>
+
+<p>
+
+Available :
+
+<b>3</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Manage Visitor Parking
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📈 Analytics & Maintenance
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📈
+
+</div>
+
+<h3>
+
+Vehicle Analytics
+
+</h3>
+
+<p>
+
+Registered Vehicles :
+
+<b>49</b>
+
+</p>
+
+<p>
+
+Visitor Vehicles Today :
+
+<b>8</b>
+
+</p>
+
+<p>
+
+Unauthorized Vehicles :
+
+<b>2</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Analytics
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚨
+
+</div>
+
+<h3>
+
+Security Alerts
+
+</h3>
+
+<ul>
+
+<li>
+
+Unauthorized vehicle detected
+
+</li>
+
+<li>
+
+Expired insurance found
+
+</li>
+
+<li>
+
+Parking violation reported
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Alerts
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🧾
+
+</div>
+
+<h3>
+
+Fine Management
+
+</h3>
+
+<p>
+
+Parking Fine :
+
+₹500
+
+</p>
+
+<p>
+
+Pending Fine :
+
+₹0
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Pay Fine
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🛠
+
+</div>
+
+<h3>
+
+Service Reminder
+
+</h3>
+
+<p>
+
+Next Service :
+
+15-Sep-2026
+
+</p>
+
+<p>
+
+PUC Renewal :
+
+20-Oct-2026
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Set Reminder
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📅
+
+</div>
+
+<h3>
+
+Parking Reservation
+
+</h3>
+
+<p>
+
+Reserve a visitor
+
+parking slot in advance.
+
+</p>
+
+<input
+
+type="date"
+
+id="parkingReservationDate">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Reserve Parking
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="container footer-content">
+
+<h2>
+
+🚗 AKR House Apartments
+
+</h2>
+
+<p>
+
+Vehicle Management Portal
+
+</p>
+
+<p>
+
+Version 1.0.0
+
+</p>
+
+<p>
+
+© 2026 AKR House Apartments
+
+All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+const action=this.innerText.trim();
+
+switch(action){
+
+case "Search":
+
+alert("Searching vehicle...");
+
+break;
+
+case "Register Vehicle":
+
+alert("Resident vehicle registered successfully.");
+
+break;
+
+case "Register Visitor Vehicle":
+
+alert("Visitor vehicle registered successfully.");
+
+break;
+
+case "Assign Slot":
+
+alert("Parking slot assigned successfully.");
+
+break;
+
+case "Upload Photo":
+
+alert("Vehicle photo uploaded.");
+
+break;
+
+case "Upload Documents":
+
+alert("Vehicle documents uploaded.");
+
+break;
+
+case "Verify Vehicle":
+
+alert("Vehicle verification completed.");
+
+break;
+
+case "Generate Report":
+
+alert("Vehicle report generated.");
+
+break;
+
+case "Reserve Parking":
+
+alert("Parking reservation completed.");
+
+break;
+
+case "Pay Fine":
+
+alert("Redirecting to fine payment.");
+
+break;
+
+default:
+
+console.log(action);
+
+}
+
+});
+
+});
+
+window.addEventListener("load",function(){
+
+console.log("================================");
+
+console.log("AKR AMS Vehicle Module");
+
+console.log("Version : 1.0.0");
+
+console.log("Status : Ready");
+
+console.log("================================");
+
+});
+
+</script>
+
+</body>
+
+</html>
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
