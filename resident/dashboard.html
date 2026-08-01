@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>
+
+Resident Dashboard
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>
+
+🏠 Resident Dashboard
+
+</h2>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<nav>
+
+<a href="#">Home</a>
+
+<a href="#">Visitors</a>
+
+<a href="#">Payments</a>
+
+<a href="#">Complaints</a>
+
+<a href="#">Chat</a>
+
+<a href="#">Profile</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>
+
+Welcome Resident
+
+</h1>
+
+<p>
+
+Manage your apartment,
+family members,
+visitors,
+payments and services.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚶
+
+</div>
+
+<h3>
+
+Visitor Approval
+
+</h3>
+
+<p>
+
+Approve or reject
+visitor requests instantly.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👨‍👩‍👧
+
+</div>
+
+<h3>
+
+Family Members
+
+</h3>
+
+<p>
+
+View and manage
+approved family members.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💰
+
+</div>
+
+<h3>
+
+Maintenance
+
+</h3>
+
+<p>
+
+View maintenance dues
+and payment history.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📦
+
+</div>
+
+<h3>
+
+Parcels
+
+</h3>
+
+<p>
+
+Track parcels
+received by security.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🟢
+
+</div>
+
+<h3>
+
+Resident Presence
+
+</h3>
+
+<p>
+
+Update your current
+status for Security
+and Admin.
+
+</p>
+
+<select id="presenceStatus">
+
+<option value="IN">
+
+🟢 In Home
+
+</option>
+
+<option value="OUT">
+
+🔴 Out
+
+</option>
+
+</select>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Update Status
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚗
+
+</div>
+
+<h3>
+
+Vehicle Management
+
+</h3>
+
+<p>
+
+Manage your registered
+vehicles.
+
+</p>
+
+<input
+
+type="text"
+
+id="vehicleNumber"
+
+placeholder="Vehicle Number">
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Save Vehicle
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📢
+
+</div>
+
+<h3>
+
+Apartment Notices
+
+</h3>
+
+<ul>
+
+<li>Water tank cleaning - 05 Aug</li>
+
+<li>Lift maintenance - 10 Aug</li>
+
+<li>Monthly meeting - 15 Aug</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View All Notices
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚨
+
+</div>
+
+<h3>
+
+Emergency Alerts
+
+</h3>
+
+<p>
+
+Critical alerts from
+Admin will appear here.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="tel:112" class="btn secondary">
+
+Police
+
+</a>
+
+<a href="tel:108" class="btn secondary">
+
+Ambulance
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💬
+
+</div>
+
+<h3>
+
+Community Chat
+
+</h3>
+
+<textarea
+
+id="residentChat"
+
+rows="5"
+
+placeholder="Send message to residents...">
+
+</textarea>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Send Message
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+👨‍👩‍👧 Family & Visitor Management
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👨‍👩‍👧
+
+</div>
+
+<h3>
+
+Family Members
+
+</h3>
+
+<table>
+
+<tr>
+
+<th>Name</th>
+
+<th>Relationship</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>Murali Krishna</td>
+
+<td>Brother</td>
+
+<td>Approved</td>
+
+</tr>
+
+<tr>
+
+<td>Sakshith Maanu</td>
+
+<td>Father</td>
+
+<td>Pending</td>
+
+</tr>
+
+</table>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Add Family Member
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚶
+
+</div>
+
+<h3>
+
+Visitor Pre-Approval
+
+</h3>
+
+<div class="input-group">
+
+<label>
+
+Visitor Name
+
+</label>
+
+<input
+
+type="text"
+
+id="visitorName"
+
+placeholder="Visitor Name">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Mobile Number
+
+</label>
+
+<input
+
+type="tel"
+
+id="visitorMobile"
+
+maxlength="10"
+
+placeholder="Mobile Number">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Expected Arrival Time
+
+</label>
+
+<input
+
+type="datetime-local"
+
+id="arrivalTime">
+
+</div>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Approve Visitor
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📅
+
+</div>
+
+<h3>
+
+Visitor History
+
+</h3>
+
+<ul>
+
+<li>
+
+Rahul - Checked Out
+
+</li>
+
+<li>
+
+Priya - Checked In
+
+</li>
+
+<li>
+
+Karthik - Rejected
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Full History
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📷
+
+</div>
+
+<h3>
+
+QR Visitor Pass
+
+</h3>
+
+<p>
+
+Generate a QR Pass for
+your approved visitors.
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Generate QR Pass
+
+</button>
+
+<p>
+
+Security can scan this QR
+for quick entry.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📝 Complaints & Payments
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📝
+
+</div>
+
+<h3>
+
+Raise Complaint
+
+</h3>
+
+<div class="input-group">
+
+<label>
+
+Complaint Category
+
+</label>
+
+<select id="complaintCategory">
+
+<option>Electrical</option>
+
+<option>Water</option>
+
+<option>Lift</option>
+
+<option>Noise</option>
+
+<option>Parking</option>
+
+<option>Security</option>
+
+<option>Others</option>
+
+</select>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Description
+
+</label>
+
+<textarea
+
+id="complaintDescription"
+
+rows="4"
+
+placeholder="Describe your complaint">
+
+</textarea>
+
+</div>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Submit Complaint
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🛠
+
+</div>
+
+<h3>
+
+Service Request
+
+</h3>
+
+<div class="input-group">
+
+<label>
+
+Select Service
+
+</label>
+
+<select>
+
+<option>Electrician</option>
+
+<option>Plumber</option>
+
+<option>Housekeeping</option>
+
+<option>Carpenter</option>
+
+<option>Internet</option>
+
+</select>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Preferred Time
+
+</label>
+
+<input
+
+type="datetime-local">
+
+</div>
+
+<button
+
+class="btn primary">
+
+Request Service
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💰
+
+</div>
+
+<h3>
+
+Maintenance Payment
+
+</h3>
+
+<p>
+
+Current Due
+
+</p>
+
+<h2>
+
+₹1,500
+
+</h2>
+
+<p>
+
+Due Date: 10-Aug-2026
+
+</p>
+
+<button
+
+class="btn primary">
+
+Pay Now
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📄
+
+</div>
+
+<h3>
+
+Payment History
+
+</h3>
+
+<ul>
+
+<li>
+
+July 2026 - Paid ✅
+
+</li>
+
+<li>
+
+June 2026 - Paid ✅
+
+</li>
+
+<li>
+
+May 2026 - Paid ✅
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary">
+
+Download Receipt
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+  </section>
+
+
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📦 Parcels, Vehicles & Documents
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📦
+
+</div>
+
+<h3>
+
+Parcel Tracking
+
+</h3>
+
+<ul>
+
+<li>
+
+Amazon - Delivered ✅
+
+</li>
+
+<li>
+
+Flipkart - At Security Gate
+
+</li>
+
+<li>
+
+BlueDart - Out for Delivery
+
+</li>
+
+</ul>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View All Parcels
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚗
+
+</div>
+
+<h3>
+
+My Vehicles
+
+</h3>
+
+<table>
+
+<tr>
+
+<th>Vehicle</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>KA01AB1234</td>
+
+<td>Registered</td>
+
+</tr>
+
+<tr>
+
+<td>KA05XY5678</td>
+
+<td>Registered</td>
+
+</tr>
+
+</table>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Add Vehicle
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📄
+
+</div>
+
+<h3>
+
+Documents
+
+</h3>
+
+<ul>
+
+<li>
+
+Rental Agreement
+
+</li>
+
+<li>
+
+Maintenance Receipt
+
+</li>
+
+<li>
+
+Vehicle Pass
+
+</li>
+
+<li>
+
+Resident ID Card
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Download Documents
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📘
+
+</div>
+
+<h3>
+
+Apartment Rules
+
+</h3>
+
+<ul>
+
+<li>
+
+Noise after 10 PM is prohibited.
+
+</li>
+
+<li>
+
+Visitors must be approved.
+
+</li>
+
+<li>
+
+Parking only in allotted slots.
+
+</li>
+
+<li>
+
+Keep common areas clean.
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Full Rules
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+⭐
+
+</div>
+
+<h3>
+
+Feedback
+
+</h3>
+
+<div class="input-group">
+
+<label>
+
+Rate Apartment Services
+
+</label>
+
+<select>
+
+<option>⭐⭐⭐⭐⭐ Excellent</option>
+
+<option>⭐⭐⭐⭐ Good</option>
+
+<option>⭐⭐⭐ Average</option>
+
+<option>⭐⭐ Poor</option>
+
+<option>⭐ Very Poor</option>
+
+</select>
+
+</div>
+
+<textarea
+
+rows="4"
+
+placeholder="Write your feedback...">
+
+</textarea>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Submit Feedback
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+  </section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+🤖 AI Assistant & Community
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🤖
+
+</div>
+
+<h3>
+
+AKR AI Assistant
+
+</h3>
+
+<p>
+
+Ask anything about apartment rules,
+maintenance, visitors,
+payments or complaints.
+
+</p>
+
+<textarea
+
+id="aiQuestion"
+
+rows="4"
+
+placeholder="Ask AKR AI...">
+
+</textarea>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Ask AI
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📅
+
+</div>
+
+<h3>
+
+Community Events
+
+</h3>
+
+<ul>
+
+<li>
+
+🎉 Independence Day Celebration
+
+</li>
+
+<li>
+
+🧹 Apartment Cleaning Drive
+
+</li>
+
+<li>
+
+👨‍👩‍👧 Residents Meeting
+
+</li>
+
+<li>
+
+🎄 Festival Celebration
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary">
+
+View Calendar
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🏛
+
+</div>
+
+<h3>
+
+Facility Booking
+
+</h3>
+
+<div class="input-group">
+
+<label>
+
+Book Facility
+
+</label>
+
+<select>
+
+<option>Community Hall</option>
+
+<option>Terrace</option>
+
+<option>Guest Parking</option>
+
+<option>Meeting Room</option>
+
+</select>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Booking Date
+
+</label>
+
+<input
+
+type="date">
+
+</div>
+
+<button
+
+class="btn primary">
+
+Book Now
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📊
+
+</div>
+
+<h3>
+
+My Dashboard
+
+</h3>
+
+<p>
+
+Visitors This Month : <b>12</b>
+
+</p>
+
+<p>
+
+Complaints Raised : <b>2</b>
+
+</p>
+
+<p>
+
+Payments Completed : <b>8</b>
+
+</p>
+
+<p>
+
+Family Members : <b>3</b>
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🌤
+
+</div>
+
+<h3>
+
+Weather
+
+</h3>
+
+<p>
+
+Bangalore
+
+</p>
+
+<h2>
+
+28°C
+
+</h2>
+
+<p>
+
+Partly Cloudy
+
+</p>
+
+<button
+
+class="btn secondary">
+
+Refresh
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+👤 Profile & Settings
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+👤
+
+</div>
+
+<h3>
+
+My Profile
+
+</h3>
+
+<p><strong>Name:</strong> Arun Kumar</p>
+
+<p><strong>Flat:</strong> 203</p>
+
+<p><strong>Mobile:</strong> **********</p>
+
+<p><strong>Email:</strong> user@email.com</p>
+
+<button class="btn primary">
+
+Edit Profile
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+⚙️
+
+</div>
+
+<h3>
+
+Settings
+
+</h3>
+
+<label>
+
+<input type="checkbox">
+
+Dark Mode
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Push Notifications
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Email Notifications
+
+</label>
+
+<br><br>
+
+<button class="btn secondary">
+
+Save Settings
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔔
+
+</div>
+
+<h3>
+
+Notification Center
+
+</h3>
+
+<ul>
+
+<li>
+
+📢 Water supply interruption tomorrow
+
+</li>
+
+<li>
+
+📦 Parcel arrived at Security
+
+</li>
+
+<li>
+
+🚶 Visitor waiting for approval
+
+</li>
+
+<li>
+
+💰 Maintenance due in 3 days
+
+</li>
+
+</ul>
+
+<button class="btn primary">
+
+View All Notifications
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+❤️
+
+</div>
+
+<h3>
+
+Emergency Contacts
+
+</h3>
+
+<div class="hero-buttons">
+
+<a href="tel:112" class="btn secondary">
+
+👮 Police
+
+</a>
+
+<a href="tel:108" class="btn secondary">
+
+🚑 Ambulance
+
+</a>
+
+<a href="tel:101" class="btn secondary">
+
+🔥 Fire
+
+</a>
+
+<a href="tel:+918668061458" class="btn secondary">
+
+🛡 Security
+
+</a>
+
+</div>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🆘
+
+</div>
+
+<h3>
+
+SOS Emergency
+
+</h3>
+
+<p>
+
+Press only during an emergency.
+
+Admin and Security will be notified immediately.
+
+</p>
+
+<button
+
+class="btn primary"
+
+style="background:#d32f2f;">
+
+🆘 SEND SOS
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<footer>
+
+<div class="container footer-content">
+
+<h2>
+
+🏠 AKR House Apartments
+
+</h2>
+
+<p>
+
+Resident Dashboard
+
+</p>
+
+<p>
+
+Version 1.0.0
+
+</p>
+
+<p>
+
+© 2026 AKR House Apartments
+
+All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+const action=this.innerText.trim();
+
+switch(action){
+
+case "Update Status":
+
+alert("Presence updated successfully.");
+
+break;
+
+case "Approve Visitor":
+
+alert("Visitor pre-approved successfully.");
+
+break;
+
+case "Submit Complaint":
+
+alert("Complaint submitted successfully.");
+
+break;
+
+case "Request Service":
+
+alert("Service request submitted.");
+
+break;
+
+case "Pay Now":
+
+alert("Redirecting to payment gateway...");
+
+break;
+
+case "Ask AI":
+
+alert("AKR AI Assistant will be available in Version 2.");
+
+break;
+
+case "Book Now":
+
+alert("Facility booking request submitted.");
+
+break;
+
+case "🆘 SEND SOS":
+
+alert("SOS Alert sent to Security and Admin.");
+
+break;
+
+case "Submit Feedback":
+
+alert("Thank you for your feedback.");
+
+break;
+
+default:
+
+console.log(action);
+
+}
+
+});
+
+});
+
+window.addEventListener("load",function(){
+
+console.log("================================");
+
+console.log("AKR AMS");
+
+console.log("Resident Dashboard Loaded");
+
+console.log("Status : Ready");
+
+console.log("Version : 1.0.0");
+
+console.log("================================");
+
+});
+
+</script>
+
+</body>
+
+</html>
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
