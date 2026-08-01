@@ -5,193 +5,123 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>
+<title>Residents - AKR AMS</title>
 
-Resident Management
+<link rel="stylesheet" href="../css/style.css">
 
-</title>
+<link rel="stylesheet" href="../css/dashboard.css">
 
-<link rel="stylesheet"
-href="../css/style.css">
-
-<link rel="stylesheet"
-href="../css/auth.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<header>
+<div class="dashboard-container">
 
-<div class="container">
+<aside class="sidebar">
 
 <div class="logo">
 
-<h2>
+<h2>🏢 AKR AMS</h2>
 
-👨‍👩‍👧 Resident Management
-
-</h2>
-
-<p>
-
-AKR House Apartments
-
-</p>
+<p>Apartment Management</p>
 
 </div>
 
-<nav>
+<ul class="menu">
 
-<a href="#">Dashboard</a>
+<li><a href="../dashboard/dashboard.html">🏠 Dashboard</a></li>
 
-<a href="#">Residents</a>
+<li><a href="residents.html" class="active">👨‍👩‍👧 Residents</a></li>
 
-<a href="#">Families</a>
+<li><a href="../flats/flats.html">🏠 Flats</a></li>
 
-<a href="#">Emergency</a>
+<li><a href="../maintenance/maintenance.html">💰 Maintenance</a></li>
 
-<a href="#">Reports</a>
+<li><a href="../complaints/complaints.html">📝 Complaints</a></li>
 
-</nav>
+<li><a href="../vehicles/vehicles.html">🚗 Vehicles</a></li>
+
+<li><a href="../parcels/parcels.html">📦 Parcels</a></li>
+
+<li><a href="../visitors/visitors.html">🚶 Visitors</a></li>
+
+<li><a href="../staff/staff.html">👨‍🔧 Staff</a></li>
+
+<li><a href="../reports/reports.html">📊 Reports</a></li>
+
+<li><a href="../settings/settings.html">⚙️ Settings</a></li>
+
+</ul>
+
+</aside>
+
+<main class="content">
+
+<header class="topbar">
+
+<div>
+
+<h1>Resident Management</h1>
+
+<p>Manage apartment residents</p>
 
 </div>
+
+<button class="btn primary">
+
++ Add Resident
+
+</button>
 
 </header>
 
-<section class="hero">
+<section class="cards">
 
-<div class="container">
+<div class="card">
 
-<h1>
+<h3>Total Residents</h3>
 
-Resident Directory
+<h2 id="residentCount">0</h2>
 
-</h1>
+</div>
 
-<p>
+<div class="card">
 
-Manage residents,
-owners,
-tenants,
-family members,
-and emergency contacts.
+<h3>Owners</h3>
 
-</p>
+<h2>22</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Tenants</h3>
+
+<h2>8</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Family Members</h3>
+
+<h2>66</h2>
 
 </div>
 
 </section>
 
-<section>
+<section class="dashboard-card">
 
-<div class="container">
+<h2>
 
-<div class="feature-grid">
+🔍 Search Residents
 
-<div class="feature-card">
-
-<div class="feature-icon">
-
-👥
-
-</div>
-
-<h3>
-
-Total Residents
-
-</h3>
-
-<h1>
-
-96
-
-</h1>
-
-<p>
-
-Registered Residents
-
-</p>
-
-</div>
-
-<div class="feature-card">
-
-<div class="feature-icon">
-
-🏠
-
-</div>
-
-<h3>
-
-Owners
-
-</h3>
-
-<h1>
-
-22
-
-</h1>
-
-<p>
-
-Flat Owners
-
-</p>
-
-</div>
-
-<div class="feature-card">
-
-<div class="feature-icon">
-
-👨‍👩‍👧
-
-</div>
-
-<h3>
-
-Family Members
-
-</h3>
-
-<h1>
-
-58
-
-</h1>
-
-<p>
-
-Linked Accounts
-
-</p>
-
-</div>
-
-<div class="feature-card">
-
-<div class="feature-icon">
-
-🔍
-
-</div>
-
-<h3>
-
-Search Resident
-
-</h3>
+</h2>
 
 <input
 
@@ -199,175 +129,234 @@ type="text"
 
 id="searchResident"
 
-placeholder="Name or Flat Number">
-
-<button
-
-class="btn primary"
-
-type="button">
-
-Search
-
-</button>
-
-</div>
-
-</div>
-
-</div>
+placeholder="Search by name, flat or mobile">
 
 </section>
 
-<section>
-
-<div class="container">
+<section class="dashboard-card">
 
 <h2>
 
-👤 Resident Information
+👥 Resident List
 
 </h2>
 
-<div class="feature-grid">
+<table
 
-<div class="feature-card">
+id="residentTable"
 
-<div class="feature-icon">
+class="summary-table">
 
-👤
+<thead>
 
-</div>
+<tr>
 
-<h3>
+<th>Flat</th>
 
-Resident Profile
+<th>Name</th>
 
-</h3>
+<th>Mobile</th>
 
-<p>
+<th>Role</th>
 
-Name :
+<th>Status</th>
 
-Arun Kumar
+</tr>
 
-</p>
+</thead>
 
-<p>
+<tbody>
 
-Flat :
+<tr>
 
-203
+<td>101</td>
 
-</p>
+<td>Arun Kumar</td>
 
-<p>
+<td>9876543210</td>
 
-Role :
+<td>Owner</td>
 
-Owner
+<td>Active</td>
 
-</p>
+</tr>
 
-<p>
+<tr>
 
-Mobile :
+<td>102</td>
 
-+91 XXXXXXXXXX
+<td>Ravi</td>
 
-</p>
+<td>9876500000</td>
 
-<button
+<td>Tenant</td>
 
-class="btn primary"
+<td>Active</td>
 
-type="button">
+</tr>
 
-View Profile
+<tr>
 
-</button>
+<td>203</td>
 
-</div>
+<td>Priya</td>
 
-<div class="feature-card">
+<td>9876511111</td>
 
-<div class="feature-icon">
+<td>Owner</td>
 
-👨‍👩‍👧
+<td>Active</td>
 
-</div>
+</tr>
 
-<h3>
+</tbody>
 
-Family Members
+</table>
 
-</h3>
+</section>
 
-<ul>
+<section class="dashboard-card">
 
-<li>
+<h2>
 
-Murali Krishna
+➕ Add / Edit Resident
 
-</li>
+</h2>
 
-<li>
+<form id="residentForm">
 
-Sakshith Maanu
+<div class="form-grid">
 
-</li>
+<div>
 
-<li>
-
-2 Linked Members
-
-</li>
-
-</ul>
-
-<button
-
-class="btn secondary"
-
-type="button">
-
-Manage Family
-
-</button>
-
-</div>
-
-<div class="feature-card">
-
-<div class="feature-icon">
-
-📞
-
-</div>
-
-<h3>
-
-Emergency Contact
-
-</h3>
+<label>Flat Number</label>
 
 <input
-
 type="text"
+id="flatNo"
+placeholder="101"
+required>
 
-placeholder="Contact Name">
+</div>
+
+<div>
+
+<label>Full Name</label>
 
 <input
+type="text"
+id="residentName"
+placeholder="Resident Name"
+required>
 
+</div>
+
+<div>
+
+<label>Mobile Number</label>
+
+<input
 type="tel"
+id="mobile"
+placeholder="9876543210"
+required>
 
-placeholder="Mobile Number">
+</div>
+
+<div>
+
+<label>Email</label>
+
+<input
+type="email"
+id="email"
+placeholder="resident@email.com">
+
+</div>
+
+<div>
+
+<label>Resident Type</label>
+
+<select id="residentType">
+
+<option>Owner</option>
+
+<option>Tenant</option>
+
+<option>Family Member</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>Status</label>
+
+<select id="status">
+
+<option>Active</option>
+
+<option>Inactive</option>
+
+</select>
+
+</div>
+
+</div>
+
+<br>
 
 <button
+type="submit"
+class="btn primary">
 
-class="btn primary"
+💾 Save Resident
 
-type="button">
+</button>
+
+<button
+type="reset"
+class="btn secondary">
+
+Clear
+
+</button>
+
+</form>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📞 Emergency Contact
+
+</h2>
+
+<label>Name</label>
+
+<input
+type="text"
+placeholder="Emergency Contact Name">
+
+<label>Relationship</label>
+
+<input
+type="text"
+placeholder="Father / Mother / Friend">
+
+<label>Mobile</label>
+
+<input
+type="tel"
+placeholder="9876543210">
+
+<button class="btn primary">
 
 Save Contact
 
@@ -375,345 +364,283 @@ Save Contact
 
 </div>
 
-<div class="feature-card">
+<div class="dashboard-card">
 
-<div class="feature-icon">
+<h2>
 
-🪪
+📄 Resident Documents
 
-</div>
+</h2>
 
-<h3>
+<label>Aadhaar</label>
 
-Resident ID
+<input
+type="file"
+accept=".pdf,.jpg,.png">
 
-</h3>
+<label>Rental Agreement</label>
 
-<p>
+<input
+type="file"
+accept=".pdf">
 
-Resident ID :
+<label>Profile Photo</label>
 
-AKR-0203
+<input
+type="file"
+accept="image/*">
 
-</p>
+<br><br>
 
-<p>
+<button class="btn primary">
 
-Status :
-
-Active
-
-</p>
-
-<button
-
-class="btn secondary"
-
-type="button">
-
-Download ID
+Upload Documents
 
 </button>
-
-</div>
-
-<div class="feature-card">
-
-<div class="feature-icon">
-
-📋
-
-</div>
-
-<h3>
-
-Resident Status
-
-</h3>
-
-<p>
-
-Account :
-
-Verified ✅
-
-</p>
-
-<p>
-
-Flat Status :
-
-Occupied
-
-</p>
-
-<p>
-
-Maintenance :
-
-Paid
-
-</p>
-
-<button
-
-class="btn primary"
-
-type="button">
-
-Update Status
-
-</button>
-
-</div>
-
-</div>
 
 </div>
 
 </section>
 
-<section>
-
-<div class="container">
+<section class="dashboard-card">
 
 <h2>
 
-📊 Resident Activity
+⚙ Resident Actions
 
 </h2>
 
-<div class="feature-grid">
+<button class="btn primary">
 
-<div class="feature-card">
+✏ Edit Resident
 
-<div class="feature-icon">
+</button>
 
-📅
+<button class="btn secondary">
 
-</div>
+🗑 Delete Resident
 
-<h3>
+</button>
 
-Activity History
+<button class="btn primary">
 
-</h3>
+📥 Export Resident
 
-<ul>
+</button>
 
-<li>
+<button class="btn secondary">
 
-01-Aug-2026 - Visitor Approved
+📄 Download ID Card
 
-</li>
+</button>
 
-<li>
+</section>
 
-30-Jul-2026 - Maintenance Paid
+<section class="dashboard-grid">
 
-</li>
+<div class="dashboard-card">
 
-<li>
+<h2>
 
-28-Jul-2026 - Complaint Submitted
+👨‍👩‍👧 Family Members
 
-</li>
+</h2>
 
-<li>
+<table class="summary-table">
 
-25-Jul-2026 - Parcel Collected
+<thead>
 
-</li>
+<tr>
 
-</ul>
+<th>Name</th>
 
-<button
+<th>Relationship</th>
 
-class="btn primary"
+<th>Age</th>
 
-type="button">
+<th>Mobile</th>
 
-View Full History
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Lakshmi</td>
+
+<td>Mother</td>
+
+<td>56</td>
+
+<td>9876501234</td>
+
+</tr>
+
+<tr>
+
+<td>Ramesh</td>
+
+<td>Brother</td>
+
+<td>28</td>
+
+<td>9876512345</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+➕ Add Family Member
 
 </button>
 
 </div>
 
-<div class="feature-card">
+<div class="dashboard-card">
 
-<div class="feature-icon">
+<h2>
 
-🚗
+🚗 Registered Vehicles
 
-</div>
+</h2>
 
-<h3>
+<table class="summary-table">
 
-Registered Vehicles
+<thead>
 
-</h3>
+<tr>
 
-<p>
+<th>Vehicle No</th>
 
-Two Wheeler :
+<th>Type</th>
 
-1
+<th>Status</th>
 
-</p>
+</tr>
 
-<p>
+</thead>
 
-Four Wheeler :
+<tbody>
 
-1
+<tr>
 
-</p>
+<td>KA01AB1234</td>
 
-<p>
+<td>Car</td>
 
-Parking Slot :
+<td>Active</td>
 
-P-12
+</tr>
 
-</p>
+<tr>
 
-<button
+<td>KA05XY5678</td>
 
-class="btn secondary"
+<td>Bike</td>
 
-type="button">
+<td>Active</td>
 
-Manage Vehicles
+</tr>
 
-</button>
+</tbody>
 
-</div>
+</table>
 
-<div class="feature-card">
+<button class="btn secondary">
 
-<div class="feature-icon">
-
-📦
-
-</div>
-
-<h3>
-
-Parcel Summary
-
-</h3>
-
-<p>
-
-Received :
-
-24
-
-</p>
-
-<p>
-
-Collected :
-
-23
-
-</p>
-
-<p>
-
-Pending :
-
-1
-
-</p>
-
-<button
-
-class="btn primary"
-
-type="button">
-
-View Parcels
+View Vehicles
 
 </button>
 
 </div>
 
-<div class="feature-card">
+</section>
 
-<div class="feature-icon">
+<section class="dashboard-grid">
 
-📝
+<div class="dashboard-card">
 
-</div>
+<h2>
 
-<h3>
+📦 Parcel History
 
-Complaint Summary
+</h2>
 
-</h3>
+<table class="summary-table">
 
-<p>
+<thead>
 
-Total Complaints :
+<tr>
 
-12
+<th>Date</th>
 
-</p>
+<th>Courier</th>
 
-<p>
+<th>Status</th>
 
-Resolved :
+</tr>
 
-10
+</thead>
 
-</p>
+<tbody>
 
-<p>
+<tr>
 
-Pending :
+<td>02-Aug-2026</td>
 
-2
+<td>Amazon</td>
 
-</p>
+<td>Collected</td>
 
-<button
+</tr>
 
-class="btn secondary"
+<tr>
 
-type="button">
+<td>30-Jul-2026</td>
 
-View Complaints
+<td>Flipkart</td>
+
+<td>Pending</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View All Parcels
 
 </button>
 
 </div>
 
-<div class="feature-card">
+<div class="dashboard-card">
 
-<div class="feature-icon">
+<h2>
 
-💰
+💰 Maintenance Status
 
-</div>
-
-<h3>
-
-Maintenance Summary
-
-</h3>
+</h2>
 
 <p>
 
-Current Status :
+Current Month:
 
-Paid ✅
+<strong>Paid ✅</strong>
 
 </p>
 
 <p>
 
-Last Payment :
+Last Payment:
 
 ₹1,500
 
@@ -721,17 +648,13 @@ Last Payment :
 
 <p>
 
-Due Date :
+Next Due Date:
 
 10-Aug-2026
 
 </p>
 
-<button
-
-class="btn primary"
-
-type="button">
+<button class="btn secondary">
 
 Payment History
 
@@ -739,65 +662,235 @@ Payment History
 
 </div>
 
-</div>
-
-</div>
-
 </section>
 
-<section>
-
-<div class="container">
+<section class="dashboard-card">
 
 <h2>
 
-📢 Communication & Documents
+📝 Complaint History
 
 </h2>
 
-<div class="feature-grid">
+<table class="summary-table">
 
-<div class="feature-card">
+<thead>
 
-<div class="feature-icon">
+<tr>
 
-📢
+<th>ID</th>
 
-</div>
+<th>Complaint</th>
 
-<h3>
+<th>Status</th>
 
-Resident Notices
+</tr>
 
-</h3>
+</thead>
 
-<ul>
+<tbody>
+
+<tr>
+
+<td>C001</td>
+
+<td>Water Leakage</td>
+
+<td>Resolved</td>
+
+</tr>
+
+<tr>
+
+<td>C014</td>
+
+<td>Parking Issue</td>
+
+<td>Open</td>
+
+</tr>
+
+<tr>
+
+<td>C028</td>
+
+<td>Lift Noise</td>
+
+<td>In Progress</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View Complaint Details
+
+</button>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📅 Resident Activity Timeline
+
+</h2>
+
+<ul class="activity-list">
 
 <li>
 
-Water tank cleaning on 05-Aug-2026
+✅ 02-Aug-2026 - Maintenance Payment Completed
 
 </li>
 
 <li>
 
-Monthly maintenance due on 10-Aug-2026
+📦 01-Aug-2026 - Amazon Parcel Collected
 
 </li>
 
 <li>
 
-Residents meeting on 20-Aug-2026
+🚗 31-Jul-2026 - Vehicle Registered
+
+</li>
+
+<li>
+
+📝 29-Jul-2026 - Complaint Submitted
+
+</li>
+
+<li>
+
+👨‍👩‍👧 28-Jul-2026 - Family Member Added
 
 </li>
 
 </ul>
 
-<button
+<button class="btn primary">
 
-class="btn primary"
+View Full Timeline
 
-type="button">
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🔔 Notifications
+
+</h2>
+
+<ul class="activity-list">
+
+<li>
+
+💰 Maintenance payment received.
+
+</li>
+
+<li>
+
+📦 New parcel available for collection.
+
+</li>
+
+<li>
+
+📢 Society meeting on 15-Aug-2026.
+
+</li>
+
+<li>
+
+🧯 Fire safety inspection on 20-Aug-2026.
+
+</li>
+
+<li>
+
+🚨 Water tank cleaning on 05-Aug-2026.
+
+</li>
+
+</ul>
+
+<button class="btn secondary">
+
+View All Notifications
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📢 Resident Notices
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+
+<th>Notice</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>01-Aug-2026</td>
+
+<td>Monthly Maintenance Due</td>
+
+</tr>
+
+<tr>
+
+<td>30-Jul-2026</td>
+
+<td>Lift Maintenance Schedule</td>
+
+</tr>
+
+<tr>
+
+<td>28-Jul-2026</td>
+
+<td>Parking Rules Updated</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
 
 View All Notices
 
@@ -805,89 +898,43 @@ View All Notices
 
 </div>
 
-<div class="feature-card">
+<div class="dashboard-card">
 
-<div class="feature-icon">
+<h2>
 
-💬
+⭐ Resident Feedback
 
-</div>
-
-<h3>
-
-Resident Communication
-
-</h3>
+</h2>
 
 <p>
 
-Community messages :
-
-<b>18</b>
+Average Rating
 
 </p>
+
+<h2>
+
+4.8 ⭐
+
+</h2>
 
 <p>
 
-Unread :
-
-<b>2</b>
+Overall Resident Satisfaction
 
 </p>
-
-<button
-
-class="btn secondary"
-
-type="button">
-
-Open Community Chat
-
-</button>
-
-</div>
-
-<div class="feature-card">
-
-<div class="feature-icon">
-
-⭐
-
-</div>
-
-<h3>
-
-Feedback & Ratings
-
-</h3>
-
-<select>
-
-<option>⭐⭐⭐⭐⭐ Excellent</option>
-
-<option>⭐⭐⭐⭐ Good</option>
-
-<option>⭐⭐⭐ Average</option>
-
-<option>⭐⭐ Poor</option>
-
-<option>⭐ Very Poor</option>
-
-</select>
 
 <textarea
 
 rows="4"
 
-placeholder="Share your feedback...">
+placeholder="Write your feedback...">
 
 </textarea>
 
-<button
+<br><br>
 
-class="btn primary"
-
-type="button">
+<button class="btn primary">
 
 Submit Feedback
 
@@ -895,351 +942,157 @@ Submit Feedback
 
 </div>
 
-<div class="feature-card">
-
-<div class="feature-icon">
-
-📄
-
-</div>
-
-<h3>
-
-Resident Documents
-
-</h3>
-
-<ul>
-
-<li>
-
-Resident ID Card
-
-</li>
-
-<li>
-
-Maintenance Receipts
-
-</li>
-
-<li>
-
-Rental Agreement
-
-</li>
-
-</ul>
-
-<button
-
-class="btn secondary"
-
-type="button">
-
-View Documents
-
-</button>
-
-</div>
-
-<div class="feature-card">
-
-<div class="feature-icon">
-
-🔔
-
-</div>
-
-<h3>
-
-Notification Center
-
-</h3>
-
-<ul>
-
-<li>
-
-Maintenance payment reminder
-
-</li>
-
-<li>
-
-New parcel received
-
-</li>
-
-<li>
-
-Complaint status updated
-
-</li>
-
-</ul>
-
-<button
-
-class="btn primary"
-
-type="button">
-
-View Notifications
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
 </section>
 
-<section>
-
-<div class="container">
+<section class="dashboard-card">
 
 <h2>
 
-📊 Reports & Security
+📊 Resident Statistics
 
 </h2>
 
-<div class="feature-grid">
+<table class="summary-table">
 
-<div class="feature-card">
+<thead>
 
-<div class="feature-icon">
+<tr>
 
-📊
+<th>Category</th>
 
-</div>
+<th>Count</th>
 
-<h3>
+</tr>
 
-Resident Analytics
+</thead>
 
-</h3>
+<tbody>
 
-<p>
+<tr>
 
-Total Residents :
+<td>Total Residents</td>
 
-<b>96</b>
+<td>96</td>
 
-</p>
+</tr>
 
-<p>
+<tr>
 
-Owners :
+<td>Owners</td>
 
-<b>22</b>
+<td>22</td>
 
-</p>
+</tr>
 
-<p>
+<tr>
 
-Tenants :
+<td>Tenants</td>
 
-<b>8</b>
+<td>8</td>
 
-</p>
+</tr>
 
-<p>
+<tr>
 
-Family Members :
+<td>Family Members</td>
 
-<b>66</b>
+<td>66</td>
 
-</p>
+</tr>
 
-<button
+<tr>
 
-class="btn primary"
+<td>Active Residents</td>
 
-type="button">
+<td>94</td>
 
-View Analytics
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+🔐 Resident Login Details
+
+</h2>
+
+<table class="summary-table">
+
+<tbody>
+
+<tr>
+
+<td>Username</td>
+
+<td>arunkumar</td>
+
+</tr>
+
+<tr>
+
+<td>Email</td>
+
+<td>arun@example.com</td>
+
+</tr>
+
+<tr>
+
+<td>Role</td>
+
+<td>Resident</td>
+
+</tr>
+
+<tr>
+
+<td>Account Status</td>
+
+<td>Active ✅</td>
+
+</tr>
+
+<tr>
+
+<td>Last Login</td>
+
+<td>02-Aug-2026 09:15 AM</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+Reset Password
 
 </button>
 
 </div>
 
-<div class="feature-card">
+<div class="dashboard-card">
 
-<div class="feature-icon">
+<h2>
 
-👨‍💼
+📱 Mobile App Settings
 
-</div>
-
-<h3>
-
-Admin Dashboard
-
-</h3>
-
-<p>
-
-Pending Approvals :
-
-<b>3</b>
-
-</p>
-
-<p>
-
-Inactive Accounts :
-
-<b>2</b>
-
-</p>
-
-<p>
-
-Verification Pending :
-
-<b>1</b>
-
-</p>
-
-<button
-
-class="btn secondary"
-
-type="button">
-
-Open Dashboard
-
-</button>
-
-</div>
-
-<div class="feature-card">
-
-<div class="feature-icon">
-
-📈
-
-</div>
-
-<h3>
-
-Monthly Statistics
-
-</h3>
-
-<p>
-
-New Residents :
-
-<b>4</b>
-
-</p>
-
-<p>
-
-Moved Out :
-
-<b>1</b>
-
-</p>
-
-<p>
-
-New Family Members :
-
-<b>6</b>
-
-</p>
-
-<button
-
-class="btn primary"
-
-type="button">
-
-View Statistics
-
-</button>
-
-</div>
-
-<div class="feature-card">
-
-<div class="feature-icon">
-
-📋
-
-</div>
-
-<h3>
-
-Resident Reports
-
-</h3>
-
-<ul>
-
-<li>
-
-Resident Directory
-
-</li>
-
-<li>
-
-Occupancy Report
-
-</li>
-
-<li>
-
-Emergency Contacts
-
-</li>
-
-<li>
-
-Verification Report
-
-</li>
-
-</ul>
-
-<button
-
-class="btn secondary"
-
-type="button">
-
-Generate Report
-
-</button>
-
-</div>
-
-<div class="feature-card">
-
-<div class="feature-icon">
-
-🔐
-
-</div>
-
-<h3>
-
-Account Security
-
-</h3>
+</h2>
 
 <label>
 
 <input type="checkbox" checked>
 
-Two-Factor Authentication
+Receive Push Notifications
 
 </label>
 
@@ -1249,7 +1102,17 @@ Two-Factor Authentication
 
 <input type="checkbox" checked>
 
-Login Notifications
+Receive SMS Alerts
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Receive Email Notifications
 
 </label>
 
@@ -1259,57 +1122,182 @@ Login Notifications
 
 <input type="checkbox">
 
-Biometric Login
+Enable Dark Mode
 
 </label>
 
 <br><br>
 
-<button
+<button class="btn primary">
 
-class="btn primary"
-
-type="button">
-
-Save Security Settings
+Save Preferences
 
 </button>
 
 </div>
 
-</div>
-
-</div>
-
 </section>
 
-<footer>
+<section class="dashboard-grid">
 
-<div class="container footer-content">
+<div class="dashboard-card">
 
 <h2>
 
-👨‍👩‍👧 AKR House Apartments
+📍 Address Information
 
 </h2>
 
 <p>
 
-Resident Management Portal
+<b>Flat No:</b> 203
 
 </p>
 
 <p>
 
-Version 1.0.0
+<b>Floor:</b> 2nd Floor
 
 </p>
 
 <p>
 
-© 2026 AKR House Apartments
+<b>Block:</b> A Block
 
-All Rights Reserved.
+</p>
+
+<p>
+
+<b>Address:</b>
+
+AKR House Apartments,
+
+Koramangala,
+
+Bengaluru - 560034
+
+</p>
+
+<button class="btn secondary">
+
+Update Address
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📋 Admin Notes
+
+</h2>
+
+<textarea
+
+rows="8"
+
+placeholder="Add internal notes about the resident...">
+
+</textarea>
+
+<br><br>
+
+<button class="btn primary">
+
+Save Notes
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-card">
+
+<h2>
+
+📈 Resident Analytics
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Activity</th>
+
+<th>Total</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Maintenance Payments</td>
+
+<td>12</td>
+
+</tr>
+
+<tr>
+
+<td>Complaints Raised</td>
+
+<td>3</td>
+
+</tr>
+
+<tr>
+
+<td>Visitor Approvals</td>
+
+<td>18</td>
+
+</tr>
+
+<tr>
+
+<td>Parcels Received</td>
+
+<td>24</td>
+
+</tr>
+
+<tr>
+
+<td>Vehicles Registered</td>
+
+<td>2</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+
+<footer class="dashboard-footer">
+
+<div class="container">
+
+<p>
+
+© 2026 AKR House Apartments | AKR AMS Version 2.0
+
+</p>
+
+<p>
+
+Resident Management Module
 
 </p>
 
@@ -1317,67 +1305,179 @@ All Rights Reserved.
 
 </footer>
 
-<script>
+<script type="module">
 
-document.querySelectorAll(".btn").forEach(button=>{
+import {
 
-button.addEventListener("click",function(){
+enableSearch
 
-const action=this.innerText.trim();
+} from "../js/search.js";
+
+import {
+
+showNotification
+
+} from "../js/notifications.js";
+
+// Enable Search
+
+enableSearch(
+
+"searchResident",
+
+"residentTable"
+
+);
+
+// Resident Form
+
+const residentForm=document.getElementById("residentForm");
+
+if(residentForm){
+
+residentForm.addEventListener("submit",(e)=>{
+
+e.preventDefault();
+
+showNotification(
+
+"Resident Saved",
+
+"Resident information has been saved successfully.",
+
+"success"
+
+);
+
+residentForm.reset();
+
+});
+
+}
+
+// Buttons
+
+document.querySelectorAll(".btn").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+const action=btn.innerText.trim();
 
 switch(action){
 
-case "Search":
+case "✏ Edit Resident":
 
-alert("Searching resident details...");
+showNotification(
+
+"Edit Resident",
+
+"Edit feature will be available after Firebase integration.",
+
+"info"
+
+);
 
 break;
 
-case "View Profile":
+case "🗑 Delete Resident":
 
-alert("Opening resident profile.");
+if(confirm("Delete this resident?")){
+
+showNotification(
+
+"Resident Deleted",
+
+"Resident removed successfully.",
+
+"success"
+
+);
+
+}
 
 break;
 
-case "Manage Family":
+case "📥 Export Resident":
 
-alert("Opening family management.");
+showNotification(
+
+"Export",
+
+"Resident report export started.",
+
+"success"
+
+);
+
+break;
+
+case "📄 Download ID Card":
+
+showNotification(
+
+"ID Card",
+
+"Resident ID Card downloaded.",
+
+"success"
+
+);
+
+break;
+
+case "Upload Documents":
+
+showNotification(
+
+"Upload",
+
+"Documents uploaded successfully.",
+
+"success"
+
+);
 
 break;
 
 case "Save Contact":
 
-alert("Emergency contact saved successfully.");
+showNotification(
+
+"Emergency Contact",
+
+"Emergency contact saved.",
+
+"success"
+
+);
 
 break;
 
-case "Download ID":
+case "Save Notes":
 
-alert("Resident ID download started.");
+showNotification(
 
-break;
+"Admin Notes",
 
-case "Update Status":
+"Notes saved successfully.",
 
-alert("Resident status updated.");
+"success"
 
-break;
-
-case "Submit Feedback":
-
-alert("Thank you for your feedback.");
+);
 
 break;
 
-case "Generate Report":
+case "Save Preferences":
 
-alert("Resident report generated.");
+showNotification(
 
-break;
+"Preferences",
 
-case "Save Security Settings":
+"Preferences updated successfully.",
 
-alert("Security settings saved.");
+"success"
+
+);
 
 break;
 
@@ -1391,21 +1491,13 @@ console.log(action);
 
 });
 
-window.addEventListener("load",function(){
-
-console.log("================================");
-
-console.log("AKR AMS Resident Module");
-
-console.log("Version : 1.0.0");
-
-console.log("Status : Ready");
-
-console.log("================================");
-
-});
+console.log("AKR AMS Resident Module Loaded");
 
 </script>
+
+</main>
+
+</div>
 
 </body>
 
@@ -1413,17 +1505,12 @@ console.log("================================");
   
 
   
-
-
+  
   
 
 
 
 
-
-
-
-  
 
 
 
