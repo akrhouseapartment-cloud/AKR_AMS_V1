@@ -14,50 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
-
-<script type="module">
-
-import {
-
-loginResident
-
-} from "../firebase/login-service.js";
-
-const form=
-
-document.querySelector("form");
-
-form.addEventListener(
-
-"submit",
-
-async function(e){
-
-e.preventDefault();
-
-const email=
-
-document.getElementById("email").value;
-
-const password=
-
-document.getElementById("password").value;
-
-await loginResident(
-
-email,
-
-password
-
-);
-
-}
-
-);
-
-     </script>
      
-
 <body>
 
 <div class="login-page">
@@ -414,6 +371,52 @@ alert(
 <script type="module" src="js/login.js"></script>
 -->
 
+
+<script type="module">
+
+import {
+
+loginResident
+
+} from "../firebase/login-service.js";
+
+const form=
+
+document.querySelector("form");
+
+form.addEventListener(
+
+"submit",
+
+async function(e){
+
+e.preventDefault();
+
+const email=
+
+document.getElementById("email").value;
+
+const password=
+
+document.getElementById("password").value;
+
+await loginResident(
+
+email,
+
+password
+
+);
+
+}
+
+);
+
+</script>
+
+
+
+     
 </body>
 
 </html>
