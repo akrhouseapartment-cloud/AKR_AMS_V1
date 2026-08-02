@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Security Dashboard - AKR AMS</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/dashboard.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<h2>🏢 AKR AMS</h2>
+
+<p>Security Portal</p>
+
+</div>
+
+<ul class="menu">
+
+<li><a href="security_dashboard.html" class="active">🏠 Dashboard</a></li>
+
+<li><a href="../visitors/visitors.html">🚶 Visitors</a></li>
+
+<li><a href="../parcels/parcels.html">📦 Parcels</a></li>
+
+<li><a href="../vehicles/vehicles.html">🚗 Vehicles</a></li>
+
+<li><a href="../emergency/emergency.html">🚨 Emergency</a></li>
+
+<li><a href="../reports/reports.html">📊 Reports</a></li>
+
+<li><a href="../settings/settings.html">⚙️ Settings</a></li>
+
+</ul>
+
+</aside>
+
+<main class="content">
+
+<header class="topbar">
+
+<div>
+
+<h1>
+
+🛡 Security Dashboard
+
+</h1>
+
+<p>
+
+AKR House Apartments Security Console
+
+</p>
+
+</div>
+
+</header>
+
+<section class="cards">
+
+<div class="card">
+
+<h3>Visitors Today</h3>
+
+<h2>18</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Parcels Received</h3>
+
+<h2>7</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Vehicles Entered</h3>
+
+<h2>36</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Emergency Alerts</h3>
+
+<h2>0</h2>
+
+</div>
+
+</section>
+
+<section class="dashboard-card">
+
+<h2>
+
+🛡 Security Overview
+
+</h2>
+
+<p>
+
+Monitor visitor entries, parcel deliveries, vehicle movements, emergency alerts and daily security activities from one dashboard.
+
+</p>
+
+</section>
+
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+🚶 Visitor Verification
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Visitor</th>
+
+<th>Flat</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Ramesh</td>
+
+<td>101</td>
+
+<td>Approved ✅</td>
+
+</tr>
+
+<tr>
+
+<td>Suresh</td>
+
+<td>203</td>
+
+<td>Waiting ⏳</td>
+
+</tr>
+
+<tr>
+
+<td>Courier</td>
+
+<td>305</td>
+
+<td>Entered 🚶</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+Manage Visitors
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📦 Parcel Register
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Courier</th>
+
+<th>Flat</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Amazon</td>
+
+<td>102</td>
+
+<td>Delivered ✅</td>
+
+</tr>
+
+<tr>
+
+<td>Flipkart</td>
+
+<td>204</td>
+
+<td>Waiting</td>
+
+</tr>
+
+<tr>
+
+<td>DTDC</td>
+
+<td>301</td>
+
+<td>Collected</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+Manage Parcels
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+🚗 Vehicle Register
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Vehicle</th>
+
+<th>Number</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Car</td>
+
+<td>KA01AB1234</td>
+
+</tr>
+
+<tr>
+
+<td>Bike</td>
+
+<td>KA05CD5678</td>
+
+</tr>
+
+<tr>
+
+<td>Visitor Car</td>
+
+<td>KA03EF9876</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+Manage Vehicles
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🚨 Emergency Alerts
+
+</h2>
+
+<ul class="activity-list">
+
+<li>✅ No active emergency alerts.</li>
+
+<li>🚒 Fire equipment inspection completed.</li>
+
+<li>🛡 CCTV system operational.</li>
+
+<li>🚪 All entry gates secured.</li>
+
+</ul>
+
+<button class="btn secondary">
+
+View Alerts
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📢 Security Notices
+
+</h2>
+
+<ul class="activity-list">
+
+<li>📢 Night shift starts at 8:00 PM.</li>
+
+<li>📢 Visitor ID verification is mandatory.</li>
+
+<li>📢 Parcel log must be updated daily.</li>
+
+<li>📢 Security meeting on Saturday.</li>
+
+</ul>
+
+<button class="btn primary">
+
+View Notices
+
+</button>
+
+</div>
+
+</section>
+
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+👮 Security Staff
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+
+<th>Shift</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Ravi</td>
+
+<td>Day</td>
+
+<td>On Duty ✅</td>
+
+</tr>
+
+<tr>
+
+<td>Kumar</td>
+
+<td>Night</td>
+
+<td>Off Duty</td>
+
+</tr>
+
+<tr>
+
+<td>Suresh</td>
+
+<td>Evening</td>
+
+<td>On Duty ✅</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+Manage Staff
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📋 Daily Security Log
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Time</th>
+
+<th>Activity</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>08:15 AM</td>
+
+<td>Visitor Entry</td>
+
+</tr>
+
+<tr>
+
+<td>10:30 AM</td>
+
+<td>Parcel Received</td>
+
+</tr>
+
+<tr>
+
+<td>01:20 PM</td>
+
+<td>Vehicle Checked</td>
+
+</tr>
+
+<tr>
+
+<td>05:45 PM</td>
+
+<td>Gate Inspection</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+View Full Log
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+🚪 Gate Entry Records
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Gate</th>
+
+<th>Entries</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Main Gate</td>
+
+<td>82</td>
+
+</tr>
+
+<tr>
+
+<td>Parking Gate</td>
+
+<td>35</td>
+
+</tr>
+
+<tr>
+
+<td>Service Gate</td>
+
+<td>12</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View Gate Register
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📷 CCTV Monitoring
+
+</h2>
+
+<ul class="activity-list">
+
+<li>📹 Camera 1 - Online ✅</li>
+
+<li>📹 Camera 2 - Online ✅</li>
+
+<li>📹 Camera 3 - Maintenance</li>
+
+<li>📹 Camera 4 - Online ✅</li>
+
+<li>📹 Camera 5 - Online ✅</li>
+
+</ul>
+
+<button class="btn secondary">
+
+View CCTV Status
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📊 Daily Security Statistics
+
+</h2>
+
+<ul class="activity-list">
+
+<li>🚶 Visitors Verified : 18</li>
+
+<li>📦 Parcels Received : 7</li>
+
+<li>🚗 Vehicles Entered : 36</li>
+
+<li>🚪 Gate Entries : 129</li>
+
+<li>🚨 Emergency Alerts : 0</li>
+
+<li>📷 CCTV Online : 4 / 5</li>
+
+</ul>
+
+</div>
+
+</section>
+
+
+  <section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📅 Security Schedule
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Shift</th>
+
+<th>Timing</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Morning</td>
+
+<td>06:00 AM - 02:00 PM</td>
+
+</tr>
+
+<tr>
+
+<td>Evening</td>
+
+<td>02:00 PM - 10:00 PM</td>
+
+</tr>
+
+<tr>
+
+<td>Night</td>
+
+<td>10:00 PM - 06:00 AM</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View Schedule
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🛠 Incident Reports
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Incident</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Parking Issue</td>
+
+<td>Resolved ✅</td>
+
+</tr>
+
+<tr>
+
+<td>Gate Access</td>
+
+<td>Open</td>
+
+</tr>
+
+<tr>
+
+<td>Visitor Dispute</td>
+
+<td>In Progress</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+View Incidents
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📞 Emergency Contacts
+
+</h2>
+
+<table class="summary-table">
+
+<tbody>
+
+<tr>
+
+<td>Apartment Manager</td>
+
+<td>+91-XXXXXXXXXX</td>
+
+</tr>
+
+<tr>
+
+<td>Owner</td>
+
+<td>+91-XXXXXXXXXX</td>
+
+</tr>
+
+<tr>
+
+<td>Police</td>
+
+<td>112</td>
+
+</tr>
+
+<tr>
+
+<td>Fire</td>
+
+<td>101</td>
+
+</tr>
+
+<tr>
+
+<td>Ambulance</td>
+
+<td>108</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+Call Contacts
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+⚠️ Pending Tasks
+
+</h2>
+
+<ul class="activity-list">
+
+<li>☐ Verify 2 visitor requests</li>
+
+<li>☐ Update parcel register</li>
+
+<li>☐ Check CCTV Camera 3</li>
+
+<li>☐ Complete gate inspection</li>
+
+<li>☐ Submit shift report</li>
+
+</ul>
+
+<button class="btn secondary">
+
+View Tasks
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+⭐ Security Performance
+
+</h2>
+
+<table class="summary-table">
+
+<tbody>
+
+<tr>
+
+<td>Visitors Verified</td>
+
+<td>100%</td>
+
+</tr>
+
+<tr>
+
+<td>Gate Checks</td>
+
+<td>98%</td>
+
+</tr>
+
+<tr>
+
+<td>Parcel Accuracy</td>
+
+<td>99%</td>
+
+</tr>
+
+<tr>
+
+<td>CCTV Uptime</td>
+
+<td>99%</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View Performance
+
+</button>
+
+</div>
+
+</section>
+
+
+  <section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📢 Security Notifications
+
+</h2>
+
+<ul class="activity-list">
+
+<li>📦 New parcel received for Flat 204.</li>
+
+<li>🚶 Visitor approval pending for Flat 106.</li>
+
+<li>🚗 Visitor vehicle entered at 03:15 PM.</li>
+
+<li>📷 CCTV Camera 3 requires maintenance.</li>
+
+<li>🛡 Night shift handover due at 10:00 PM.</li>
+
+</ul>
+
+<button class="btn primary">
+
+View Notifications
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🚪 Visitor History
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+
+<th>Visitor</th>
+
+<th>Flat</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>02-Aug</td>
+
+<td>Ramesh</td>
+
+<td>101</td>
+
+</tr>
+
+<tr>
+
+<td>02-Aug</td>
+
+<td>Courier</td>
+
+<td>305</td>
+
+</tr>
+
+<tr>
+
+<td>01-Aug</td>
+
+<td>Suresh</td>
+
+<td>203</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+View Complete History
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📦 Parcel History
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Courier</th>
+
+<th>Flat</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Amazon</td>
+
+<td>102</td>
+
+<td>Collected ✅</td>
+
+</tr>
+
+<tr>
+
+<td>Flipkart</td>
+
+<td>204</td>
+
+<td>Waiting</td>
+
+</tr>
+
+<tr>
+
+<td>Blue Dart</td>
+
+<td>301</td>
+
+<td>Collected ✅</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View Parcel History
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📊 Security Analytics
+
+</h2>
+
+<table class="summary-table">
+
+<tbody>
+
+<tr>
+
+<td>Total Visitors Today</td>
+
+<td>18</td>
+
+</tr>
+
+<tr>
+
+<td>Vehicles Checked</td>
+
+<td>36</td>
+
+</tr>
+
+<tr>
+
+<td>Parcels Logged</td>
+
+<td>7</td>
+
+</tr>
+
+<tr>
+
+<td>Gate Entries</td>
+
+<td>129</td>
+
+</tr>
+
+<tr>
+
+<td>Incidents</td>
+
+<td>2</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+View Analytics
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+⚡ Quick Security Actions
+
+</h2>
+
+<button class="btn primary">
+
+Approve Visitor
+
+</button>
+
+<br><br>
+
+<button class="btn secondary">
+
+Register Parcel
+
+</button>
+
+<br><br>
+
+<button class="btn primary">
+
+Register Vehicle
+
+</button>
+
+<br><br>
+
+<button class="btn secondary">
+
+Report Incident
+
+</button>
+
+</div>
+
+  </section>
+
+
+
+<footer class="dashboard-footer">
+
+<p>
+
+© 2026 AKR House Apartments | Security Portal | AKR AMS Version 2.0
+
+</p>
+
+</footer>
+
+</main>
+
+</div>
+
+<script>
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+const action=this.innerText.trim();
+
+switch(action){
+
+case "Manage Visitors":
+
+alert("Opening Visitor Management...");
+
+break;
+
+case "Manage Parcels":
+
+alert("Opening Parcel Management...");
+
+break;
+
+case "Manage Vehicles":
+
+alert("Opening Vehicle Management...");
+
+break;
+
+case "View Alerts":
+
+alert("Opening Emergency Alerts...");
+
+break;
+
+case "View Notices":
+
+alert("Opening Security Notices...");
+
+break;
+
+case "Manage Staff":
+
+alert("Opening Security Staff...");
+
+break;
+
+case "View Full Log":
+
+alert("Opening Daily Security Log...");
+
+break;
+
+case "View Gate Register":
+
+alert("Opening Gate Entry Register...");
+
+break;
+
+case "View CCTV Status":
+
+alert("Opening CCTV Monitoring...");
+
+break;
+
+case "View Schedule":
+
+alert("Opening Security Schedule...");
+
+break;
+
+case "View Incidents":
+
+alert("Opening Incident Reports...");
+
+break;
+
+case "Call Contacts":
+
+alert("Opening Emergency Contacts...");
+
+break;
+
+case "View Tasks":
+
+alert("Opening Pending Tasks...");
+
+break;
+
+case "View Performance":
+
+alert("Opening Security Performance...");
+
+break;
+
+case "View Notifications":
+
+alert("Opening Security Notifications...");
+
+break;
+
+case "View Complete History":
+
+alert("Opening Visitor History...");
+
+break;
+
+case "View Parcel History":
+
+alert("Opening Parcel History...");
+
+break;
+
+case "View Analytics":
+
+alert("Opening Security Analytics...");
+
+break;
+
+case "Approve Visitor":
+
+alert("Opening Visitor Approval...");
+
+break;
+
+case "Register Parcel":
+
+alert("Opening Parcel Registration...");
+
+break;
+
+case "Register Vehicle":
+
+alert("Opening Vehicle Registration...");
+
+break;
+
+case "Report Incident":
+
+alert("Opening Incident Report Form...");
+
+break;
+
+default:
+
+console.log(action);
+
+}
+
+});
+
+});
+
+window.addEventListener("load",()=>{
+
+console.log("================================");
+
+console.log("AKR AMS Security Dashboard");
+
+console.log("Security Module Loaded");
+
+console.log("Version : 2.0");
+
+console.log("================================");
+
+});
+
+</script>
+
+</body>
+
+  </html>
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
