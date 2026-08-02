@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+System Settings
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>
+
+⚙️ System Settings
+
+</h1>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<button
+class="btn primary"
+onclick="location.href='Dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</header>
+
+<div class="dashboard-grid">
+
+<div class="dashboard-panel">
+
+<h2>
+
+🏢 Apartment Settings
+
+</h2>
+
+<label>
+
+Apartment Name
+
+</label>
+
+<input
+type="text"
+id="apartmentName"
+placeholder="AKR House Apartments">
+
+<label>
+
+Total Floors
+
+</label>
+
+<input
+type="number"
+id="totalFloors"
+placeholder="6">
+
+<label>
+
+Total Flats
+
+</label>
+
+<input
+type="number"
+id="totalFlats"
+placeholder="30">
+
+<button
+class="btn success"
+id="saveApartment">
+
+💾 Save
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+💳 Maintenance Settings
+
+</h2>
+
+<label>
+
+Default Monthly Maintenance
+
+</label>
+
+<input
+type="number"
+id="maintenanceAmount"
+placeholder="1500">
+
+<label>
+
+Due Date
+
+</label>
+
+<input
+type="number"
+id="dueDate"
+placeholder="10">
+
+<button
+class="btn success"
+id="saveMaintenance">
+
+💾 Save
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+🔐 Security Settings
+
+</h2>
+
+<label>
+
+Allow Visitor Registration
+
+</label>
+
+<select id="visitorSetting">
+
+<option>
+
+Enabled
+
+</option>
+
+<option>
+
+Disabled
+
+</option>
+
+</select>
+
+<label>
+
+Enable OTP Verification
+
+</label>
+
+<select id="otpSetting">
+
+<option>
+
+Enabled
+
+</option>
+
+<option>
+
+Disabled
+
+</option>
+
+</select>
+
+<button
+class="btn success"
+id="saveSecurity">
+
+💾 Save
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+🔔 Notification Settings
+
+</h2>
+
+<label>
+
+Email Notifications
+
+</label>
+
+<select id="emailNotify">
+
+<option>
+
+Enabled
+
+</option>
+
+<option>
+
+Disabled
+
+</option>
+
+</select>
+
+<label>
+
+App Notifications
+
+</label>
+
+<select id="appNotify">
+
+<option>
+
+Enabled
+
+</option>
+
+<option>
+
+Disabled
+
+</option>
+
+</select>
+
+<button
+class="btn success"
+id="saveNotification">
+
+💾 Save
+
+</button>
+
+</div>
+
+</div>
+
+<div id="settingsMessage">
+
+</div>
+
+<div class="dashboard-grid">
+
+<div class="dashboard-panel">
+
+<h2>
+
+👤 Administrator
+
+</h2>
+
+<label>
+
+Admin Name
+
+</label>
+
+<input
+type="text"
+id="adminName"
+placeholder="Administrator">
+
+<label>
+
+Admin Email
+
+</label>
+
+<input
+type="email"
+id="adminEmail"
+placeholder="admin@akrhouse.com">
+
+<button
+class="btn success"
+id="saveAdmin">
+
+💾 Save
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+🎨 Appearance
+
+</h2>
+
+<label>
+
+Theme
+
+</label>
+
+<select id="theme">
+
+<option>
+
+Light
+
+</option>
+
+<option>
+
+Dark
+
+</option>
+
+<option>
+
+System
+
+</option>
+
+</select>
+
+<label>
+
+Primary Color
+
+</label>
+
+<input
+type="color"
+id="primaryColor"
+value="#2563eb">
+
+<button
+class="btn success"
+id="saveTheme">
+
+💾 Save Theme
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+💾 Backup & Restore
+
+</h2>
+
+<button
+class="btn primary"
+id="backupData">
+
+📥 Backup Data
+
+</button>
+
+<br><br>
+
+<button
+class="btn warning"
+id="restoreData">
+
+📤 Restore Data
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+🧹 System
+
+</h2>
+
+<button
+class="btn secondary"
+id="clearCache">
+
+🗑 Clear Cache
+
+</button>
+
+<br><br>
+
+<button
+class="btn danger"
+id="resetSettings">
+
+♻ Reset Settings
+
+</button>
+
+</div>
+
+</div>
+
+
+  <script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+doc,
+getDoc,
+setDoc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const settingsRef =
+doc(db,"settings","system");
+
+/* ==========================================
+   Load Settings
+========================================== */
+
+async function loadSettings(){
+
+const snapshot =
+await getDoc(settingsRef);
+
+if(!snapshot.exists()) return;
+
+const data = snapshot.data();
+
+document.getElementById("apartmentName").value =
+data.apartmentName || "";
+
+document.getElementById("totalFloors").value =
+data.totalFloors || "";
+
+document.getElementById("totalFlats").value =
+data.totalFlats || "";
+
+document.getElementById("maintenanceAmount").value =
+data.maintenanceAmount || "";
+
+document.getElementById("dueDate").value =
+data.dueDate || "";
+
+document.getElementById("visitorSetting").value =
+data.visitorSetting || "Enabled";
+
+document.getElementById("otpSetting").value =
+data.otpSetting || "Enabled";
+
+document.getElementById("emailNotify").value =
+data.emailNotify || "Enabled";
+
+document.getElementById("appNotify").value =
+data.appNotify || "Enabled";
+
+document.getElementById("adminName").value =
+data.adminName || "";
+
+document.getElementById("adminEmail").value =
+data.adminEmail || "";
+
+document.getElementById("theme").value =
+data.theme || "Light";
+
+document.getElementById("primaryColor").value =
+data.primaryColor || "#2563eb";
+
+}
+
+/* ==========================================
+   Save Settings
+========================================== */
+
+async function saveSettings(){
+
+await setDoc(settingsRef,{
+
+apartmentName:
+document.getElementById("apartmentName").value,
+
+totalFloors:
+Number(document.getElementById("totalFloors").value),
+
+totalFlats:
+Number(document.getElementById("totalFlats").value),
+
+maintenanceAmount:
+Number(document.getElementById("maintenanceAmount").value),
+
+dueDate:
+Number(document.getElementById("dueDate").value),
+
+visitorSetting:
+document.getElementById("visitorSetting").value,
+
+otpSetting:
+document.getElementById("otpSetting").value,
+
+emailNotify:
+document.getElementById("emailNotify").value,
+
+appNotify:
+document.getElementById("appNotify").value,
+
+adminName:
+document.getElementById("adminName").value,
+
+adminEmail:
+document.getElementById("adminEmail").value,
+
+theme:
+document.getElementById("theme").value,
+
+primaryColor:
+document.getElementById("primaryColor").value,
+
+updatedOn:
+new Date().toLocaleString()
+
+});
+
+document.getElementById("settingsMessage").innerHTML =
+
+"<p style='color:green;font-weight:bold;'>✅ Settings Saved Successfully</p>";
+
+}
+
+/* ==========================================
+   Buttons
+========================================== */
+
+document.getElementById("saveApartment").onclick =
+saveSettings;
+
+document.getElementById("saveMaintenance").onclick =
+saveSettings;
+
+document.getElementById("saveSecurity").onclick =
+saveSettings;
+
+document.getElementById("saveNotification").onclick =
+saveSettings;
+
+document.getElementById("saveAdmin").onclick =
+saveSettings;
+
+document.getElementById("saveTheme").onclick =
+saveSettings;
+
+/* ==========================================
+   Backup & Restore
+========================================== */
+
+document.getElementById("backupData").onclick = ()=>{
+
+alert("Backup feature will be enabled after full Firebase integration.");
+
+};
+
+document.getElementById("restoreData").onclick = ()=>{
+
+alert("Restore feature will be enabled after full Firebase integration.");
+
+};
+
+document.getElementById("clearCache").onclick = ()=>{
+
+localStorage.clear();
+
+alert("Local cache cleared.");
+
+};
+
+document.getElementById("resetSettings").onclick = ()=>{
+
+if(confirm("Reset all settings?")){
+
+location.reload();
+
+}
+
+};
+
+loadSettings();
+
+</script>
+
+
+  <script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(()=>{
+
+loadSettings();
+
+document.getElementById("lastUpdated").innerHTML=
+new Date().toLocaleTimeString();
+
+},30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate=document.createElement("div");
+
+lastUpdate.style.marginTop="20px";
+
+lastUpdate.style.fontWeight="600";
+
+lastUpdate.innerHTML=
+
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout Button
+========================================== */
+
+const logoutBtn=document.createElement("button");
+
+logoutBtn.className="btn danger";
+
+logoutBtn.innerHTML="🚪 Logout";
+
+logoutBtn.style.marginLeft="15px";
+
+logoutBtn.onclick=function(){
+
+if(confirm("Logout from AKR AMS?")){
+
+window.location.href="../login.html";
+
+}
+
+};
+
+document.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadSettings();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
