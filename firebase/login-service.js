@@ -15,10 +15,15 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
+/* ==========================================
+   Login Resident / Admin
+========================================== */
+
 export async function loginResident(email, password) {
 
   try {
 
+    // Login with Firebase Authentication
     const credential = await signInWithEmailAndPassword(
       auth,
       email,
@@ -27,11 +32,14 @@ export async function loginResident(email, password) {
 
     const uid = credential.user.uid;
 
-    const snap = await getDoc(doc(db, "residents", uid));
+    // Get User Details
+    const docRef = doc(db, "residents", uid);
+
+    const snap = await getDoc(docRef);
 
     if (!snap.exists()) {
 
-      alert("Resident record not found.");
+      alert("User record not found.");
 
       await signOut(auth);
 
@@ -39,11 +47,12 @@ export async function loginResident(email, password) {
 
     }
 
-    const resident = snap.data();
+    const user = snap.data();
 
-    if (resident.status !== "Approved") {
+    // Pending Approval
+    if (user.status === "Pending") {
 
-      alert("Your account is still waiting for Admin Approval.");
+      alert("Your account is waiting for Admin Approval.");
 
       await signOut(auth);
 
@@ -51,16 +60,96 @@ export async function loginResident(email, password) {
 
     }
 
+    // Rejected
+    if (user.status === "Rejected") {
+
+      alert("Your account has been rejected.");
+
+      await signOut(auth);
+
+      return;
+
+    }
+
+    // Approved check
+    if (user.approved !== true) {
+
+      alert("Your account is not approved.");
+
+      await signOut(auth);
+
+      return;
+
+    }
+
+    // Success
     alert("Login Successful");
 
-    window.location.href = "dashboard/index.html";
+    // Redirect by Role
+    switch (user.role) {
+
+      case "admin":
+
+        window.location.href = "admin/Dashboard.html";
+
+        break;
+
+      case "security":
+
+        window.location.href = "security/Dashboard.html";
+
+        break;
+
+      case "family":
+
+        window.location.href = "resident/Dashboard.html";
+
+        break;
+
+      case "resident":
+
+      case "Primary Resident":
+
+        window.location.href = "resident/Dashboard.html";
+
+        break;
+
+      default:
+
+        window.location.href = "index.html";
+
+        break;
+
+    }
 
   } catch (error) {
 
-    alert(error.message);
-
     console.error(error);
+
+    switch (error.code) {
+
+      case "auth/user-not-found":
+        alert("User not found.");
+        break;
+
+      case "auth/wrong-password":
+        alert("Incorrect password.");
+        break;
+
+      case "auth/invalid-credential":
+        alert("Invalid email or password.");
+        break;
+
+      case "auth/network-request-failed":
+        alert("Network error. Please check your internet.");
+        break;
+
+      default:
+        alert(error.message);
+        break;
+
+    }
 
   }
 
-}
+  }
