@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Complaints Management</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>
+
+📝 Complaints Management
+
+</h1>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<div>
+
+<button class="btn primary"
+onclick="location.href='Dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</div>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="totalComplaints">
+
+0
+
+</h2>
+
+<p>
+
+Total Complaints
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="openComplaints">
+
+0
+
+</h2>
+
+<p>
+
+Open
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="progressComplaints">
+
+0
+
+</h2>
+
+<p>
+
+In Progress
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="resolvedComplaints">
+
+0
+
+</h2>
+
+<p>
+
+Resolved
+
+</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Search Complaint
+
+</h3>
+
+<input
+type="text"
+id="searchComplaint"
+placeholder="Search by Resident, Flat or Complaint ID">
+
+</div>
+
+<div id="complaintContainer">
+
+Loading...
+
+  </div>
+
+<div class="complaint-card template" id="complaintTemplate" style="display:none;">
+
+<div class="complaint-header">
+
+<h3 class="complaint-title">
+
+Complaint Title
+
+</h3>
+
+<span class="complaint-status pending">
+
+Open
+
+</span>
+
+</div>
+
+<div class="complaint-details">
+
+<p>
+
+<b>Complaint ID:</b>
+
+<span class="complaint-id"></span>
+
+</p>
+
+<p>
+
+<b>Resident:</b>
+
+<span class="complaint-resident"></span>
+
+</p>
+
+<p>
+
+<b>Flat:</b>
+
+<span class="complaint-flat"></span>
+
+</p>
+
+<p>
+
+<b>Category:</b>
+
+<span class="complaint-category"></span>
+
+</p>
+
+<p>
+
+<b>Priority:</b>
+
+<span class="complaint-priority"></span>
+
+</p>
+
+<p>
+
+<b>Description:</b>
+
+<span class="complaint-description"></span>
+
+</p>
+
+<p>
+
+<b>Assigned To:</b>
+
+<span class="complaint-staff"></span>
+
+</p>
+
+<p>
+
+<b>Created On:</b>
+
+<span class="complaint-date"></span>
+
+</p>
+
+</div>
+
+<div class="complaint-actions">
+
+<button
+class="btn warning progress-btn">
+
+🟡 In Progress
+
+</button>
+
+<button
+class="btn success resolve-btn">
+
+✅ Resolve
+
+</button>
+
+<button
+class="btn secondary assign-btn">
+
+👷 Assign Staff
+
+</button>
+
+<button
+class="btn primary details-btn">
+
+👁 View Details
+
+</button>
+
+</div>
+
+</div>
+
+<div id="emptyComplaints"
+
+class="empty-state"
+
+style="display:none;">
+
+<h3>
+
+🎉 No Complaints
+
+</h3>
+
+<p>
+
+There are currently no complaints.
+
+</p>
+
+</div>
+
+<script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+doc,
+updateDoc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const complaintContainer =
+document.getElementById("complaintContainer");
+
+const complaintTemplate =
+document.getElementById("complaintTemplate");
+
+const searchBox =
+document.getElementById("searchComplaint");
+
+let complaints = [];
+
+async function loadComplaints(){
+
+complaintContainer.innerHTML = "";
+
+const snapshot =
+await getDocs(collection(db,"complaints"));
+
+complaints = [];
+
+let total = 0;
+let open = 0;
+let progress = 0;
+let resolved = 0;
+
+snapshot.forEach((docSnap)=>{
+
+const data = docSnap.data();
+
+data.id = docSnap.id;
+
+complaints.push(data);
+
+total++;
+
+if(data.status==="Open"){
+
+open++;
+
+}else if(data.status==="In Progress"){
+
+progress++;
+
+}else if(data.status==="Resolved"){
+
+resolved++;
+
+}
+
+});
+
+document.getElementById("totalComplaints").innerHTML = total;
+document.getElementById("openComplaints").innerHTML = open;
+document.getElementById("progressComplaints").innerHTML = progress;
+document.getElementById("resolvedComplaints").innerHTML = resolved;
+
+if(complaints.length===0){
+
+document.getElementById("emptyComplaints").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyComplaints").style.display="none";
+
+complaints.forEach(createCard);
+
+}
+
+function createCard(data){
+
+const card =
+complaintTemplate.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display = "block";
+
+card.querySelector(".complaint-title").textContent =
+data.title || "-";
+
+card.querySelector(".complaint-status").textContent =
+data.status || "Open";
+
+card.querySelector(".complaint-id").textContent =
+data.complaintId || "-";
+
+card.querySelector(".complaint-resident").textContent =
+data.resident || "-";
+
+card.querySelector(".complaint-flat").textContent =
+data.flat || "-";
+
+card.querySelector(".complaint-category").textContent =
+data.category || "-";
+
+card.querySelector(".complaint-priority").textContent =
+data.priority || "-";
+
+card.querySelector(".complaint-description").textContent =
+data.description || "-";
+
+card.querySelector(".complaint-staff").textContent =
+data.assignedTo || "Not Assigned";
+
+card.querySelector(".complaint-date").textContent =
+data.createdOn || "-";
+
+card.querySelector(".progress-btn").onclick =
+()=>updateStatus(data.id,"In Progress");
+
+card.querySelector(".resolve-btn").onclick =
+()=>updateStatus(data.id,"Resolved");
+
+card.querySelector(".assign-btn").onclick =
+()=>assignStaff(data.id);
+
+card.querySelector(".details-btn").onclick =
+()=>{
+
+alert(JSON.stringify(data,null,2));
+
+};
+
+complaintContainer.appendChild(card);
+
+}
+
+async function updateStatus(id,status){
+
+await updateDoc(doc(db,"complaints",id),{
+
+status:status
+
+});
+
+alert("Complaint updated successfully.");
+
+loadComplaints();
+
+}
+
+async function assignStaff(id){
+
+const staff = prompt("Enter Staff Name");
+
+if(!staff) return;
+
+await updateDoc(doc(db,"complaints",id),{
+
+assignedTo:staff
+
+});
+
+alert("Staff assigned successfully.");
+
+loadComplaints();
+
+}
+
+searchBox.addEventListener("input",()=>{
+
+const keyword =
+searchBox.value.toLowerCase();
+
+complaintContainer.innerHTML = "";
+
+complaints.filter(c=>
+
+(c.title||"").toLowerCase().includes(keyword) ||
+
+(c.resident||"").toLowerCase().includes(keyword) ||
+
+(c.flat||"").toLowerCase().includes(keyword) ||
+
+(c.complaintId||"").toLowerCase().includes(keyword)
+
+).forEach(createCard);
+
+});
+
+loadComplaints();
+
+</script>
+
+
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(() => {
+
+    loadComplaints();
+
+    document.getElementById("lastUpdated").innerHTML =
+        new Date().toLocaleTimeString();
+
+}, 30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate = document.createElement("div");
+
+lastUpdate.style.marginTop = "20px";
+lastUpdate.style.fontWeight = "600";
+
+lastUpdate.innerHTML =
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document
+.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout Button
+========================================== */
+
+const logoutBtn = document.createElement("button");
+
+logoutBtn.className = "btn danger";
+
+logoutBtn.innerHTML = "🚪 Logout";
+
+logoutBtn.style.marginLeft = "15px";
+
+logoutBtn.onclick = function(){
+
+    if(confirm("Logout from AKR AMS?")){
+
+        window.location.href="../login.html";
+
+    }
+
+};
+
+document
+.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadComplaints();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
