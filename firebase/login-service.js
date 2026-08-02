@@ -1,151 +1,66 @@
 /* ==========================================
    AKR House Apartments
-   Resident Login Service
-   Version 2.0
+   Login Service
 ========================================== */
 
-import {
-
-auth,
-db
-
-} from "./firebase-config.js";
+import { auth, db } from "./firebase-config.js";
 
 import {
-
-signInWithEmailAndPassword,
-signOut
-
+  signInWithEmailAndPassword,
+  signOut
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
-
-doc,
-getDoc
-
+  doc,
+  getDoc
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-/* ==========================================
-   Resident Login
-========================================== */
+export async function loginResident(email, password) {
 
-export async function loginResident(
+  try {
 
-email,
-password
+    const credential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-){
+    const uid = credential.user.uid;
 
-try{
+    const snap = await getDoc(doc(db, "residents", uid));
 
-const credential=
+    if (!snap.exists()) {
 
-await signInWithEmailAndPassword(
+      alert("Resident record not found.");
 
-auth,
+      await signOut(auth);
 
-email,
+      return;
 
-password
+    }
 
-);
+    const resident = snap.data();
 
-const uid=
+    if (resident.status !== "Approved") {
 
-credential.user.uid;
+      alert("Your account is still waiting for Admin Approval.");
 
-const residentRef=
+      await signOut(auth);
 
-doc(
+      return;
 
-db,
+    }
 
-"residents",
+    alert("Login Successful");
 
-uid
+    window.location.href = "dashboard/index.html";
 
-);
+  } catch (error) {
 
-const residentSnap=
+    alert(error.message);
 
-await getDoc(
+    console.error(error);
 
-residentRef
-
-);
-
-if(!residentSnap.exists()){
-
-alert(
-
-"Resident record not found."
-
-);
-
-await signOut(auth);
-
-return;
+  }
 
 }
-
-const resident=
-
-residentSnap.data();
-
-if(resident.status!=="Approved"){
-
-alert(
-
-"Your account is awaiting admin approval."
-
-);
-
-await signOut(auth);
-
-return;
-
-}
-
-alert(
-
-"Welcome "+resident.name
-
-);
-
-window.location.href=
-
-"../dashboard.html";
-
-}catch(error){
-
-alert(error.message);
-
-console.error(error);
-
-}
-
-}
-
-/* ==========================================
-   Resident Logout
-========================================== */
-
-export async function logoutResident(){
-
-try{
-
-await signOut(auth);
-
-window.location.href="../login.html";
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-/* ==========================================
-   End
-========================================== */
