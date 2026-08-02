@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard - AKR AMS</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/dashboard.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<h2>🏢 AKR AMS</h2>
+
+<p>Administrator</p>
+
+</div>
+
+<ul class="menu">
+
+<li><a href="admin_dashboard.html" class="active">🏠 Dashboard</a></li>
+
+<li><a href="../residents/residents.html">👨 Residents</a></li>
+
+<li><a href="../flats/flats.html">🏠 Flats</a></li>
+
+<li><a href="../maintenance/maintenance.html">💰 Maintenance</a></li>
+
+<li><a href="../billing/billing.html">🧾 Billing</a></li>
+
+<li><a href="../complaints/complaints.html">📝 Complaints</a></li>
+
+<li><a href="../visitors/visitors.html">🚶 Visitors</a></li>
+
+<li><a href="../staff/staff.html">👷 Staff</a></li>
+
+<li><a href="../reports/reports.html">📊 Reports</a></li>
+
+<li><a href="../settings/settings.html">⚙️ Settings</a></li>
+
+</ul>
+
+</aside>
+
+<main class="content">
+
+<header class="topbar">
+
+<div>
+
+<h1>
+
+🏢 Admin Dashboard
+
+</h1>
+
+<p>
+
+AKR House Apartments Management Console
+
+</p>
+
+</div>
+
+</header>
+
+<section class="cards">
+
+<div class="card">
+
+<h3>Total Flats</h3>
+
+<h2>30</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Total Residents</h3>
+
+<h2>60</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Pending Complaints</h3>
+
+<h2>4</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Monthly Collection</h3>
+
+<h2>₹45,000</h2>
+
+</div>
+
+</section>
+
+<section class="dashboard-card">
+
+<h2>
+
+📋 Administrator Overview
+
+</h2>
+
+<p>
+
+Welcome to the AKR House Apartments Administration Dashboard. Manage residents, maintenance, billing, complaints, visitors and apartment operations from one place.
+
+</p>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+👨 Resident Summary
+
+</h2>
+
+<table class="summary-table">
+
+<tbody>
+
+<tr>
+
+<td>Total Residents</td>
+
+<td>60</td>
+
+</tr>
+
+<tr>
+
+<td>Owners</td>
+
+<td>24</td>
+
+</tr>
+
+<tr>
+
+<td>Tenants</td>
+
+<td>36</td>
+
+</tr>
+
+<tr>
+
+<td>Vacant Flats</td>
+
+<td>2</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View Residents
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+💰 Maintenance Collection
+
+</h2>
+
+<table class="summary-table">
+
+<tbody>
+
+<tr>
+
+<td>Total Expected</td>
+
+<td>₹45,000</td>
+
+</tr>
+
+<tr>
+
+<td>Collected</td>
+
+<td>₹42,000</td>
+
+</tr>
+
+<tr>
+
+<td>Pending</td>
+
+<td>₹3,000</td>
+
+</tr>
+
+<tr>
+
+<td>Collection Rate</td>
+
+<td>93%</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+View Collections
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📝 Complaint Overview
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Category</th>
+
+<th>Count</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Open</td>
+
+<td>4</td>
+
+</tr>
+
+<tr>
+
+<td>In Progress</td>
+
+<td>2</td>
+
+</tr>
+
+<tr>
+
+<td>Resolved</td>
+
+<td>18</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+Manage Complaints
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🚶 Visitor Summary
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Today</th>
+
+<th>Count</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Approved</td>
+
+<td>12</td>
+
+</tr>
+
+<tr>
+
+<td>Pending</td>
+
+<td>2</td>
+
+</tr>
+
+<tr>
+
+<td>Rejected</td>
+
+<td>1</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+View Visitors
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📢 Recent Notices
+
+</h2>
+
+<ul class="activity-list">
+
+<li>📌 Maintenance due reminder sent.</li>
+
+<li>📌 Water tank cleaning scheduled.</li>
+
+<li>📌 Security meeting on Saturday.</li>
+
+<li>📌 Parking inspection this weekend.</li>
+
+</ul>
+
+<button class="btn primary">
+
+Manage Notices
+
+</button>
+
+</div>
+
+</section>
+
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+👷 Staff Overview
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Staff</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Security Guards</td>
+
+<td>2 Active</td>
+
+</tr>
+
+<tr>
+
+<td>Housekeeping</td>
+
+<td>3 Active</td>
+
+</tr>
+
+<tr>
+
+<td>Maintenance Staff</td>
+
+<td>2 Active</td>
+
+</tr>
+
+<tr>
+
+<td>Manager</td>
+
+<td>1 Active</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+Manage Staff
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📦 Parcel Summary
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Status</th>
+
+<th>Count</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Delivered</td>
+
+<td>18</td>
+
+</tr>
+
+<tr>
+
+<td>Waiting Pickup</td>
+
+<td>4</td>
+
+</tr>
+
+<tr>
+
+<td>Returned</td>
+
+<td>1</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+Manage Parcels
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+🚗 Vehicle Summary
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Vehicle Type</th>
+
+<th>Registered</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Cars</td>
+
+<td>22</td>
+
+</tr>
+
+<tr>
+
+<td>Bikes</td>
+
+<td>41</td>
+
+</tr>
+
+<tr>
+
+<td>Visitor Vehicles</td>
+
+<td>8 Today</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+Manage Vehicles
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📄 Documents
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Document</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Rental Agreements</td>
+
+<td>26 Uploaded</td>
+
+</tr>
+
+<tr>
+
+<td>ID Proofs</td>
+
+<td>60 Uploaded</td>
+
+</tr>
+
+<tr>
+
+<td>Pending Verification</td>
+
+<td>3</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+View Documents
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📊 Quick Statistics
+
+</h2>
+
+<ul class="activity-list">
+
+<li>🏠 Total Flats : 30</li>
+
+<li>👨 Total Residents : 60</li>
+
+<li>💰 Collection : 93%</li>
+
+<li>📝 Open Complaints : 4</li>
+
+<li>🚶 Today's Visitors : 15</li>
+
+<li>📦 Pending Parcels : 4</li>
+
+</ul>
+
+</div>
+
+  </section>
+
+
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+💳 Recent Transactions
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Flat</th>
+
+<th>Amount</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>101</td>
+
+<td>₹1,500</td>
+
+<td>Paid ✅</td>
+
+</tr>
+
+<tr>
+
+<td>203</td>
+
+<td>₹1,500</td>
+
+<td>Paid ✅</td>
+
+</tr>
+
+<tr>
+
+<td>305</td>
+
+<td>₹1,500</td>
+
+<td>Pending</td>
+
+</tr>
+
+<tr>
+
+<td>402</td>
+
+<td>₹1,500</td>
+
+<td>Paid ✅</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View All Transactions
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📅 Upcoming Events
+
+</h2>
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>Event</th>
+
+<th>Date</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Residents Meeting</td>
+
+<td>15-Aug-2026</td>
+
+</tr>
+
+<tr>
+
+<td>Fire Safety Inspection</td>
+
+<td>20-Aug-2026</td>
+
+</tr>
+
+<tr>
+
+<td>Water Tank Cleaning</td>
+
+<td>22-Aug-2026</td>
+
+</tr>
+
+<tr>
+
+<td>General Body Meeting</td>
+
+<td>31-Aug-2026</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+Manage Events
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+⚠️ Pending Tasks
+
+</h2>
+
+<ul class="activity-list">
+
+<li>📝 Verify 3 resident documents</li>
+
+<li>💰 Collect maintenance from 2 flats</li>
+
+<li>📦 Hand over 4 pending parcels</li>
+
+<li>🚶 Approve 2 visitor requests</li>
+
+<li>🛠 Assign 1 maintenance request</li>
+
+</ul>
+
+<button class="btn primary">
+
+View Task List
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📞 Emergency Contacts
+
+</h2>
+
+<table class="summary-table">
+
+<tbody>
+
+<tr>
+
+<td>Security</td>
+
+<td>+91-XXXXXXXXXX</td>
+
+</tr>
+
+<tr>
+
+<td>Maintenance</td>
+
+<td>+91-XXXXXXXXXX</td>
+
+</tr>
+
+<tr>
+
+<td>Electrician</td>
+
+<td>+91-XXXXXXXXXX</td>
+
+</tr>
+
+<tr>
+
+<td>Plumber</td>
+
+<td>+91-XXXXXXXXXX</td>
+
+</tr>
+
+<tr>
+
+<td>Police</td>
+
+<td>112</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn secondary">
+
+Update Contacts
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📈 Monthly Performance
+
+</h2>
+
+<table class="summary-table">
+
+<tbody>
+
+<tr>
+
+<td>Maintenance Collection</td>
+
+<td>93%</td>
+
+</tr>
+
+<tr>
+
+<td>Complaint Resolution</td>
+
+<td>95%</td>
+
+</tr>
+
+<tr>
+
+<td>Visitor Approval</td>
+
+<td>98%</td>
+
+</tr>
+
+<tr>
+
+<td>Resident Satisfaction</td>
+
+<td>4.8 / 5</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View Performance Report
+
+</button>
+
+</div>
+
+  </section>
+
+
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+📊 Revenue Summary
+
+</h2>
+
+<table class="summary-table">
+
+<tbody>
+
+<tr>
+
+<td>Maintenance Collection</td>
+
+<td>₹42,000</td>
+
+</tr>
+
+<tr>
+
+<td>Other Income</td>
+
+<td>₹3,500</td>
+
+</tr>
+
+<tr>
+
+<td>Total Income</td>
+
+<td>₹45,500</td>
+
+</tr>
+
+<tr>
+
+<td>Pending Amount</td>
+
+<td>₹3,000</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View Revenue Report
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📢 Admin Notifications
+
+</h2>
+
+<ul class="activity-list">
+
+<li>📢 New resident registration pending approval.</li>
+
+<li>📝 Complaint #CMP-102 requires attention.</li>
+
+<li>💳 Maintenance payment received from Flat 204.</li>
+
+<li>📦 Parcel received for Flat 305.</li>
+
+<li>🚶 Visitor approval request waiting.</li>
+
+</ul>
+
+<button class="btn secondary">
+
+View All Notifications
+
+</button>
+
+</div>
+
+</section>
+
+<section class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h2>
+
+⚡ Quick Admin Actions
+
+</h2>
+
+<button class="btn primary">
+
+Add Resident
+
+</button>
+
+<br><br>
+
+<button class="btn secondary">
+
+Create Notice
+
+</button>
+
+<br><br>
+
+<button class="btn primary">
+
+Generate Report
+
+</button>
+
+<br><br>
+
+<button class="btn secondary">
+
+Backup Data
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+📋 Audit Summary
+
+</h2>
+
+<table class="summary-table">
+
+<tbody>
+
+<tr>
+
+<td>Today's Activities</td>
+
+<td>48</td>
+
+</tr>
+
+<tr>
+
+<td>User Logins</td>
+
+<td>22</td>
+
+</tr>
+
+<tr>
+
+<td>Data Changes</td>
+
+<td>15</td>
+
+</tr>
+
+<tr>
+
+<td>Security Alerts</td>
+
+<td>0</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button class="btn primary">
+
+View Audit Logs
+
+</button>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>
+
+🏢 Apartment Overview
+
+</h2>
+
+<ul class="activity-list">
+
+<li>🏠 Total Flats : 30</li>
+
+<li>👨 Total Residents : 60</li>
+
+<li>👷 Staff Members : 8</li>
+
+<li>🚗 Registered Vehicles : 63</li>
+
+<li>📦 Pending Parcels : 4</li>
+
+<li>📝 Open Complaints : 4</li>
+
+<li>💰 Collection Rate : 93%</li>
+
+</ul>
+
+</div>
+
+                        </section>
+
+
+  <footer class="dashboard-footer">
+
+<p>
+
+© 2026 AKR House Apartments | Administrator Portal | AKR AMS Version 2.0
+
+</p>
+
+</footer>
+
+</main>
+
+</div>
+
+<script>
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+const action=this.innerText.trim();
+
+switch(action){
+
+case "View Residents":
+
+alert("Opening Residents Module...");
+
+break;
+
+case "View Collections":
+
+alert("Opening Maintenance Collection...");
+
+break;
+
+case "Manage Complaints":
+
+alert("Opening Complaints Module...");
+
+break;
+
+case "View Visitors":
+
+alert("Opening Visitors Module...");
+
+break;
+
+case "Manage Notices":
+
+alert("Opening Notices Module...");
+
+break;
+
+case "Manage Staff":
+
+alert("Opening Staff Module...");
+
+break;
+
+case "Manage Parcels":
+
+alert("Opening Parcels Module...");
+
+break;
+
+case "Manage Vehicles":
+
+alert("Opening Vehicles Module...");
+
+break;
+
+case "View Documents":
+
+alert("Opening Documents Module...");
+
+break;
+
+case "View All Transactions":
+
+alert("Opening Transactions...");
+
+break;
+
+case "Manage Events":
+
+alert("Opening Events Module...");
+
+break;
+
+case "View Task List":
+
+alert("Opening Pending Tasks...");
+
+break;
+
+case "Update Contacts":
+
+alert("Opening Emergency Contacts...");
+
+break;
+
+case "View Performance Report":
+
+alert("Opening Performance Report...");
+
+break;
+
+case "View Revenue Report":
+
+alert("Opening Revenue Report...");
+
+break;
+
+case "View All Notifications":
+
+alert("Opening Notifications...");
+
+break;
+
+case "Add Resident":
+
+alert("Opening Add Resident Form...");
+
+break;
+
+case "Create Notice":
+
+alert("Opening Create Notice...");
+
+break;
+
+case "Generate Report":
+
+alert("Generating Report...");
+
+break;
+
+case "Backup Data":
+
+alert("Starting Backup...");
+
+break;
+
+case "View Audit Logs":
+
+alert("Opening Audit Logs...");
+
+break;
+
+default:
+
+console.log(action);
+
+}
+
+});
+
+});
+
+window.addEventListener("load",()=>{
+
+console.log("================================");
+
+console.log("AKR AMS Admin Dashboard");
+
+console.log("Administrator Module Loaded");
+
+console.log("Version : 2.0");
+
+console.log("================================");
+
+});
+
+</script>
+
+</body>
+
+</html>
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
