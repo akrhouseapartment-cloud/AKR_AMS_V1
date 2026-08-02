@@ -44,19 +44,21 @@ password
 );
 
 await setDoc(
-await setDoc(
 doc(db,"residents",userCredential.user.uid),
 {
 uid: userCredential.user.uid,
 name: name,
+mobile: mobile,
 email: email,
 role: role,
+floor: floor,
+flat: flat,
+vehicle: vehicle,
+emergencyContact: emergencyContact,
+photo: photo,
+primaryResidentMobile: primaryResidentMobile,
+relationship: relationship,
 status: "Pending",
-mobile: "",
-floor: "",
-flat: "",
-vehicle: "",
-photo: "",
 createdAt: new Date().toISOString()
 }
 );
