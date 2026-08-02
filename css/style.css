@@ -979,7 +979,17 @@ border-radius:20px;
 }
 
 .fade{
+opacity:1;
+transform:translateY(0);
+}
 
-animation:fadeUp .8s ease;
 
-   }
+
+
+
+
+
+
+
+
+
