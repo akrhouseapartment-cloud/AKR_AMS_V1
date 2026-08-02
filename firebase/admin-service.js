@@ -1,224 +1,58 @@
-/* ==========================================
-   AKR House Apartments
-   Admin Service
-   Version 2.0
-========================================== */
+import { db } from "./firebase-config.js";
 
 import {
-
-auth,
-db
-
-} from "./firebase-config.js";
-
-import {
-
-signInWithEmailAndPassword
-
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-import {
-
-doc,
-getDoc,
-getDocs,
-collection,
-updateDoc,
-deleteDoc,
-query,
-where
-
+  collection,
+  getDocs,
+  doc,
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-/* ==========================================
-   Admin Login
-========================================== */
+export async function getPendingResidents() {
 
-export async function loginAdmin(
+  const residents = [];
 
-email,
-password
+  const snapshot = await getDocs(collection(db, "residents"));
 
-){
+  snapshot.forEach((docSnap) => {
 
-try{
+    const data = docSnap.data();
 
-const credential=
+    if (data.status === "Pending") {
 
-await signInWithEmailAndPassword(
+      residents.push(data);
 
-auth,
+    }
 
-email,
+  });
 
-password
-
-);
-
-const uid=
-
-credential.user.uid;
-
-const adminRef=
-
-doc(
-
-db,
-
-"admins",
-
-uid
-
-);
-
-const adminSnap=
-
-await getDoc(
-
-adminRef
-
-);
-
-if(!adminSnap.exists()){
-
-alert("Admin account not found.");
-
-return;
+  return residents;
 
 }
 
-alert("Welcome Administrator");
+export async function approveResident(uid) {
 
-window.location.href="../admin/admin.html";
+  await updateDoc(doc(db, "residents", uid), {
 
-}catch(error){
+    status: "Approved",
 
-alert(error.message);
+    approved: true
 
-console.error(error);
+  });
 
-}
-
-}
-
-/* ==========================================
-   Pending Residents
-========================================== */
-
-export async function getPendingResidents(){
-
-const residents=[];
-
-const q=query(
-
-collection(db,"residents"),
-
-where("status","==","Pending")
-
-);
-
-const snapshot=
-
-await getDocs(q);
-
-snapshot.forEach(doc=>{
-
-residents.push({
-
-id:doc.id,
-
-...doc.data()
-
-});
-
-});
-
-return residents;
+  alert("Resident Approved");
 
 }
 
-/* ==========================================
-   Approve Resident
-========================================== */
+export async function rejectResident(uid) {
 
-export async function approveResident(id){
+  await updateDoc(doc(db, "residents", uid), {
 
-await updateDoc(
+    status: "Rejected",
 
-doc(db,"residents",id),
+    approved: false
 
-{
+  });
 
-status:"Approved"
+  alert("Resident Rejected");
 
 }
-
-);
-
-alert("Resident Approved");
-
-}
-
-/* ==========================================
-   Reject Resident
-========================================== */
-
-export async function rejectResident(id){
-
-await updateDoc(
-
-doc(db,"residents",id),
-
-{
-
-status:"Rejected"
-
-}
-
-);
-
-alert("Resident Rejected");
-
-}
-
-/* ==========================================
-   Suspend Resident
-========================================== */
-
-export async function suspendResident(id){
-
-await updateDoc(
-
-doc(db,"residents",id),
-
-{
-
-status:"Suspended"
-
-}
-
-);
-
-alert("Resident Suspended");
-
-}
-
-/* ==========================================
-   Delete Resident
-========================================== */
-
-export async function deleteResident(id){
-
-await deleteDoc(
-
-doc(db,"residents",id)
-
-);
-
-alert("Resident Deleted");
-
-}
-
-/* ==========================================
-   End
-========================================== */
