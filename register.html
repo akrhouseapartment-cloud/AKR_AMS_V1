@@ -5,19 +5,15 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Register | AKR House Apartments</title>
 
-<link rel="stylesheet"
-href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
 
-<link rel="stylesheet"
-href="css/auth.css">
+<link rel="stylesheet" href="css/auth.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -29,17 +25,9 @@ rel="stylesheet">
 
 <div class="login-header">
 
-<h1>
+<h1>🏢 Register</h1>
 
-🏢 Register
-
-</h1>
-
-<p>
-
-AKR House Apartments
-
-</p>
+<p>AKR House Apartments</p>
 
 </div>
 
@@ -47,11 +35,7 @@ AKR House Apartments
 
 <div class="input-group">
 
-<label>
-
-Full Name
-
-</label>
+<label>Full Name</label>
 
 <input
 type="text"
@@ -62,11 +46,7 @@ required>
 
 <div class="input-group">
 
-<label>
-
-Mobile Number
-
-</label>
+<label>Mobile Number</label>
 
 <input
 type="tel"
@@ -78,11 +58,7 @@ required>
 
 <div class="input-group">
 
-<label>
-
-Email Address
-
-</label>
+<label>Email Address</label>
 
 <input
 type="email"
@@ -93,11 +69,7 @@ required>
 
 <div class="input-group">
 
-<label>
-
-Password
-
-</label>
+<label>Password</label>
 
 <input
 type="password"
@@ -108,11 +80,7 @@ required>
 
 <div class="input-group">
 
-<label>
-
-Confirm Password
-
-</label>
+<label>Confirm Password</label>
 
 <input
 type="password"
@@ -123,11 +91,7 @@ required>
 
 <div class="input-group">
 
-<label>
-
-Role
-
-</label>
+<label>Role</label>
 
 <select id="role">
 
@@ -147,14 +111,9 @@ Family Member
 
 </div>
 
-
 <div class="input-group">
 
-<label>
-
-Floor Number
-
-</label>
+<label>Floor Number</label>
 
 <select id="floor" required>
 
@@ -178,11 +137,7 @@ Floor Number
 
 <div class="input-group">
 
-<label>
-
-Flat Number
-
-</label>
+<label>Flat Number</label>
 
 <input
 type="text"
@@ -293,8 +248,6 @@ Select Relationship
 
 </div>
 
-
-
 <div class="input-group">
 
 <label class="remember-me">
@@ -307,7 +260,8 @@ required>
 <span>
 
 I agree to the Apartment Rules,
-Privacy Policy and Terms & Conditions.
+Privacy Policy and
+Terms & Conditions.
 
 </span>
 
@@ -325,8 +279,7 @@ Register
 
 <div class="login-links">
 
-<a
-href="login.html">
+<a href="login.html">
 
 Already have an account?
 
@@ -346,12 +299,12 @@ Login
 
 <p>
 
-Primary Resident registration requires
-Admin approval.
+Primary Resident registration
+requires Admin approval.
 
-Family Member registration requires
-both Primary Resident approval
-and Admin approval before activation.
+Family Member registration
+requires both Primary Resident
+approval and Admin approval.
 
 </p>
 
@@ -372,9 +325,15 @@ Join AKR House Apartments
 <p>
 
 Create your secure account to access
-visitor approvals, community chat,
-maintenance, rent, complaints,
-vehicles and emergency services.
+visitor approvals,
+community chat,
+maintenance,
+payments,
+complaints,
+vehicles,
+documents,
+emergency services
+and much more.
 
 </p>
 
@@ -422,7 +381,6 @@ vehicles and emergency services.
 
 </div>
 
-
 <footer class="login-footer">
 
 <p>
@@ -439,78 +397,101 @@ Version 1.0.0
 
 </footer>
 
-<script>
 
 <script type="module">
 
-import {
+import { registerResident } from "./firebase/register-service.js";
 
-registerResident
+const form = document.getElementById("registerForm");
 
-} from "./firebase/register-service.js";
+form.addEventListener("submit", async (e) => {
 
-const form=
+    e.preventDefault();
 
-document.querySelector("form");
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
-form.addEventListener(
+    if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+    }
 
-"submit",
+    const role = document.getElementById("role").value;
 
-async function(e){
+    if (
+        role === "family" &&
+        document.getElementById("primaryResident").value.trim() === ""
+    ) {
+        alert("Primary Resident Mobile Number is required.");
+        return;
+    }
 
-e.preventDefault();
+    try {
 
-await registerResident({
+        await registerResident({
 
-name:
+            name: document.getElementById("fullName").value,
 
-document.getElementById("fullName").value,
+            mobile: document.getElementById("mobile").value,
 
-mobile:
+            email: document.getElementById("email").value,
 
-document.getElementById("mobile").value,
+            password: password,
 
-email:
+            floor: document.getElementById("floor").value,
 
-document.getElementById("email").value,
+            flat: document.getElementById("flatNumber").value,
 
-password:
+            vehicle: document.getElementById("vehicleNumber").value,
 
-document.getElementById("password").value,
+            emergencyContact: document.getElementById("emergencyContact").value,
 
-flat:
+            role: role,
 
-document.getElementById("flatNumber").value
+            primaryResidentMobile: document.getElementById("primaryResident").value,
 
-});
+            relationship: document.getElementById("relationship").value,
+
+            photo: ""
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
 
 });
 
 </script>
 
-
-  
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-  
-
   
 
 
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   
