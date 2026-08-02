@@ -1,1 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>
+
+Inventory Management
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>
+
+📦 Inventory Management
+
+</h2>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<nav>
+
+<a href="#">Dashboard</a>
+
+<a href="#">Inventory</a>
+
+<a href="#">Stock</a>
+
+<a href="#">Reports</a>
+
+<a href="#">Suppliers</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>
+
+Apartment Inventory
+
+</h1>
+
+<p>
+
+Manage apartment inventory,
+track stock,
+monitor purchases,
+and maintain asset availability.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📦
+
+</div>
+
+<h3>
+
+Total Items
+
+</h3>
+
+<h1>
+
+248
+
+</h1>
+
+<p>
+
+Available Inventory
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+⚠️
+
+</div>
+
+<h3>
+
+Low Stock
+
+</h3>
+
+<h1>
+
+8
+
+</h1>
+
+<p>
+
+Needs Refill
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💰
+
+</div>
+
+<h3>
+
+Inventory Value
+
+</h3>
+
+<h1>
+
+₹3,45,000
+
+</h1>
+
+<p>
+
+Current Value
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📦 Inventory Management
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+➕
+
+</div>
+
+<h3>
+
+Add New Item
+
+</h3>
+
+<input
+
+type="text"
+
+placeholder="Item Name">
+
+<input
+
+type="text"
+
+placeholder="Item Code">
+
+<input
+
+type="number"
+
+placeholder="Quantity">
+
+<select>
+
+<option>Select Category</option>
+
+<option>Electrical</option>
+
+<option>Plumbing</option>
+
+<option>Cleaning</option>
+
+<option>Security</option>
+
+<option>Garden</option>
+
+<option>Office</option>
+
+</select>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Add Item
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔍
+
+</div>
+
+<h3>
+
+Search Inventory
+
+</h3>
+
+<input
+
+type="text"
+
+placeholder="Search Item">
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Search
+
+</button>
+
+<br><br>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Show All Items
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📂
+
+</div>
+
+<h3>
+
+Inventory Categories
+
+</h3>
+
+<ul>
+
+<li>⚡ Electrical</li>
+
+<li>🚰 Plumbing</li>
+
+<li>🧹 Cleaning</li>
+
+<li>🛡 Security</li>
+
+<li>🌳 Garden</li>
+
+<li>🏢 Office</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📋 Inventory List
+
+</h2>
+
+<div class="feature-card">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Item</th>
+
+<th>Category</th>
+
+<th>Stock</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>LED Bulb</td>
+
+<td>Electrical</td>
+
+<td>48</td>
+
+<td>Available ✅</td>
+
+</tr>
+
+<tr>
+
+<td>PVC Pipe</td>
+
+<td>Plumbing</td>
+
+<td>12</td>
+
+<td>Available ✅</td>
+
+</tr>
+
+<tr>
+
+<td>Floor Cleaner</td>
+
+<td>Cleaning</td>
+
+<td>6</td>
+
+<td>Low Stock ⚠️</td>
+
+</tr>
+
+<tr>
+
+<td>CCTV Cable</td>
+
+<td>Security</td>
+
+<td>20</td>
+
+<td>Available ✅</td>
+
+</tr>
+
+<tr>
+
+<td>Garden Hose</td>
+
+<td>Garden</td>
+
+<td>3</td>
+
+<td>Low Stock ⚠️</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+  <section>
+
+<div class="container">
+
+<h2>
+
+🏪 Supplier Details
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🏪
+
+</div>
+
+<h3>
+
+Primary Supplier
+
+</h3>
+
+<p>
+
+ABC Electricals
+
+</p>
+
+<p>
+
+📞 +91-9876543210
+
+</p>
+
+<p>
+
+📍 Bangalore
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Supplier
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🚚
+
+</div>
+
+<h3>
+
+Recent Purchase
+
+</h3>
+
+<p>
+
+LED Bulbs × 50
+
+</p>
+
+<p>
+
+Purchased on
+
+02-Aug-2026
+
+</p>
+
+<p>
+
+₹2,500
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Purchase History
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📅
+
+</div>
+
+<h3>
+
+Next Delivery
+
+</h3>
+
+<p>
+
+Electrical Items
+
+</p>
+
+<p>
+
+Expected:
+
+08-Aug-2026
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Track Delivery
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📦 Stock Register
+
+</h2>
+
+<div class="feature-card">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+
+<th>Item</th>
+
+<th>Type</th>
+
+<th>Qty</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>02-Aug-2026</td>
+
+<td>LED Bulb</td>
+
+<td>Purchased</td>
+
+<td>50</td>
+
+</tr>
+
+<tr>
+
+<td>02-Aug-2026</td>
+
+<td>Floor Cleaner</td>
+
+<td>Issued</td>
+
+<td>4</td>
+
+</tr>
+
+<tr>
+
+<td>01-Aug-2026</td>
+
+<td>PVC Pipe</td>
+
+<td>Purchased</td>
+
+<td>20</td>
+
+</tr>
+
+<tr>
+
+<td>31-Jul-2026</td>
+
+<td>CCTV Cable</td>
+
+<td>Returned</td>
+
+<td>2</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📤
+
+</div>
+
+<h3>
+
+Stock Issued
+
+</h3>
+
+<p>
+
+Today
+
+</p>
+
+<h2>
+
+18 Items
+
+</h2>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Issues
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📥
+
+</div>
+
+<h3>
+
+Returned Items
+
+</h3>
+
+<p>
+
+This Month
+
+</p>
+
+<h2>
+
+9 Items
+
+</h2>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Returns
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📊
+
+</div>
+
+<h3>
+
+Inventory Summary
+
+</h3>
+
+<p>
+
+Total Items : <b>248</b>
+
+</p>
+
+<p>
+
+Available : <b>240</b>
+
+</p>
+
+<p>
+
+Low Stock : <b>8</b>
+
+</p>
+
+<p>
+
+Inventory Value :
+
+<b>₹3,45,000</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Report
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+  </section>
+
+
+<section>
+
+<div class="container">
+
+<h2>
+
+📈 Inventory Analytics
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📊
+
+</div>
+
+<h3>
+
+Monthly Purchases
+
+</h3>
+
+<p>
+
+Items Purchased
+
+</p>
+
+<h2>
+
+125
+
+</h2>
+
+<p>
+
+Total Cost
+
+<b>₹48,500</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Analytics
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📦
+
+</div>
+
+<h3>
+
+Stock Utilization
+
+</h3>
+
+<p>
+
+Items Issued
+
+</p>
+
+<h2>
+
+89
+
+</h2>
+
+<p>
+
+Efficiency
+
+<b>92%</b>
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Usage Report
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+💰
+
+</div>
+
+<h3>
+
+Inventory Value
+
+</h3>
+
+<p>
+
+Current Stock Value
+
+</p>
+
+<h2>
+
+₹3,45,000
+
+</h2>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Financial Report
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>
+
+⚠️ Low Stock Alerts
+
+</h2>
+
+<div class="feature-card">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Item</th>
+
+<th>Available</th>
+
+<th>Minimum</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Floor Cleaner</td>
+
+<td>6</td>
+
+<td>10</td>
+
+<td>⚠️ Reorder</td>
+
+</tr>
+
+<tr>
+
+<td>Garden Hose</td>
+
+<td>3</td>
+
+<td>5</td>
+
+<td>⚠️ Reorder</td>
+
+</tr>
+
+<tr>
+
+<td>Cleaning Gloves</td>
+
+<td>2</td>
+
+<td>10</td>
+
+<td>🔴 Critical</td>
+
+</tr>
+
+<tr>
+
+<td>LED Tube Light</td>
+
+<td>5</td>
+
+<td>10</td>
+
+<td>⚠️ Reorder</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Generate Purchase Order
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📄
+
+</div>
+
+<h3>
+
+Purchase History
+
+</h3>
+
+<p>
+
+Total Purchases
+
+<b>156</b>
+
+</p>
+
+<p>
+
+This Month
+
+<b>18</b>
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Purchase History
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🏪
+
+</div>
+
+<h3>
+
+Supplier Directory
+
+</h3>
+
+<p>
+
+Registered Suppliers
+
+<b>12</b>
+
+</p>
+
+<p>
+
+Active Suppliers
+
+<b>10</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Suppliers
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+🔔
+
+</div>
+
+<h3>
+
+Inventory Notifications
+
+</h3>
+
+<ul>
+
+<li>
+
+⚠️ 4 items need restocking.
+
+</li>
+
+<li>
+
+📦 New stock received today.
+
+</li>
+
+<li>
+
+🏪 Supplier delivery scheduled.
+
+</li>
+
+<li>
+
+📋 Monthly audit due.
+
+</li>
+
+</ul>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Notifications
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+  <section>
+
+<div class="container">
+
+<h2>
+
+📋 Inventory Audit
+
+</h2>
+
+<div class="feature-card">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Audit Date</th>
+
+<th>Auditor</th>
+
+<th>Status</th>
+
+<th>Remarks</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>01-Aug-2026</td>
+
+<td>Admin</td>
+
+<td>Completed ✅</td>
+
+<td>All items verified</td>
+
+</tr>
+
+<tr>
+
+<td>01-Jul-2026</td>
+
+<td>Manager</td>
+
+<td>Completed ✅</td>
+
+<td>Minor stock variation</td>
+
+</tr>
+
+<tr>
+
+<td>01-Jun-2026</td>
+
+<td>Admin</td>
+
+<td>Completed ✅</td>
+
+<td>No issues found</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Audit History
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📤
+
+</div>
+
+<h3>
+
+Issue History
+
+</h3>
+
+<p>
+
+Items Issued Today
+
+</p>
+
+<h2>
+
+18
+
+</h2>
+
+<p>
+
+This Month
+
+<b>89</b>
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+View Issue History
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📥
+
+</div>
+
+<h3>
+
+Return History
+
+</h3>
+
+<p>
+
+Items Returned
+
+</p>
+
+<h2>
+
+9
+
+</h2>
+
+<p>
+
+This Month
+
+<b>21</b>
+
+</p>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+View Return History
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📊
+
+</div>
+
+<h3>
+
+Monthly Inventory Report
+
+</h3>
+
+<p>
+
+Purchased
+
+<b>125</b>
+
+</p>
+
+<p>
+
+Issued
+
+<b>89</b>
+
+</p>
+
+<p>
+
+Returned
+
+<b>21</b>
+
+</p>
+
+<p>
+
+Low Stock
+
+<b>8</b>
+
+</p>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Generate Report
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2>
+
+⚡ Quick Inventory Actions
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+➕
+
+</div>
+
+<h3>
+
+Add Stock
+
+</h3>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Add Stock
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📝
+
+</div>
+
+<h3>
+
+Update Item
+
+</h3>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Edit Inventory
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📤
+
+</div>
+
+<h3>
+
+Issue Stock
+
+</h3>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Issue Item
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📥
+
+</div>
+
+<h3>
+
+Receive Stock
+
+</h3>
+
+<button
+
+class="btn secondary"
+
+type="button">
+
+Receive Item
+
+</button>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+📄
+
+</div>
+
+<h3>
+
+Export Inventory
+
+</h3>
+
+<button
+
+class="btn primary"
+
+type="button">
+
+Export CSV
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+  </section>
+
+
+<footer>
+
+<div class="container footer-content">
+
+<h2>
+
+📦 AKR House Apartments
+
+</h2>
+
+<p>
+
+Inventory Management System
+
+</p>
+
+<p>
+
+Version 1.0.0
+
+</p>
+
+<p>
+
+© 2026 AKR House Apartments
+
+All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document.querySelectorAll(".btn").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+const action=this.innerText.trim();
+
+switch(action){
+
+case "Add Item":
+
+alert("Opening Add Item Form...");
+
+break;
+
+case "Search":
+
+alert("Searching Inventory...");
+
+break;
+
+case "Show All Items":
+
+alert("Loading Inventory List...");
+
+break;
+
+case "View Supplier":
+
+alert("Opening Supplier Details...");
+
+break;
+
+case "Purchase History":
+
+alert("Opening Purchase History...");
+
+break;
+
+case "Track Delivery":
+
+alert("Opening Delivery Tracking...");
+
+break;
+
+case "View Issues":
+
+alert("Opening Stock Issue Register...");
+
+break;
+
+case "View Returns":
+
+alert("Opening Stock Return Register...");
+
+break;
+
+case "View Report":
+
+alert("Opening Inventory Report...");
+
+break;
+
+case "View Analytics":
+
+alert("Opening Inventory Analytics...");
+
+break;
+
+case "Usage Report":
+
+alert("Opening Stock Usage Report...");
+
+break;
+
+case "Financial Report":
+
+alert("Opening Inventory Value Report...");
+
+break;
+
+case "Generate Purchase Order":
+
+alert("Generating Purchase Order...");
+
+break;
+
+case "View Purchase History":
+
+alert("Opening Complete Purchase History...");
+
+break;
+
+case "View Suppliers":
+
+alert("Opening Supplier Directory...");
+
+break;
+
+case "View Notifications":
+
+alert("Opening Inventory Notifications...");
+
+break;
+
+case "View Audit History":
+
+alert("Opening Audit History...");
+
+break;
+
+case "View Issue History":
+
+alert("Opening Issue History...");
+
+break;
+
+case "View Return History":
+
+alert("Opening Return History...");
+
+break;
+
+case "Generate Report":
+
+alert("Generating Monthly Inventory Report...");
+
+break;
+
+case "Add Stock":
+
+alert("Opening Add Stock Form...");
+
+break;
+
+case "Edit Inventory":
+
+alert("Opening Edit Inventory...");
+
+break;
+
+case "Issue Item":
+
+alert("Opening Issue Stock Form...");
+
+break;
+
+case "Receive Item":
+
+alert("Opening Receive Stock Form...");
+
+break;
+
+case "Export CSV":
+
+alert("Exporting Inventory to CSV...");
+
+break;
+
+default:
+
+console.log(action);
+
+}
+
+});
+
+});
+
+window.addEventListener("load",function(){
+
+console.log("================================");
+
+console.log("AKR AMS Inventory Module");
+
+console.log("Version : 1.0.0");
+
+console.log("Status : Ready");
+
+console.log("================================");
+
+});
+
+</script>
+
+</body>
+
+</html>
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
