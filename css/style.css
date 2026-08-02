@@ -986,7 +986,17 @@ transform:translateY(0);
 
 
 
+.feature-card,
+.feature-card *{
+    opacity:1 !important;
+    visibility:visible !important;
+    display:block !important;
+    color:#000 !important;
+}
 
+.feature-icon{
+    font-size:48px !important;
+}
 
 
 
