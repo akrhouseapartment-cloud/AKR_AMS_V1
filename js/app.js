@@ -112,49 +112,10 @@ document.querySelectorAll('a[href^="#"]').forEach(function (link) {
 });
 
 /* ==========================================
-   Fade Animation
+   Fade Animation Disabled (Testing)
 ========================================== */
 
-const cards = document.querySelectorAll(
-".feature-card,.about-card,.stat-card,.contact-card"
-);
-
-if ("IntersectionObserver" in window) {
-
-    const observer = new IntersectionObserver(function (entries, observer) {
-
-        entries.forEach(function (entry) {
-
-            if (entry.isIntersecting) {
-
-                entry.target.classList.add("fade");
-                observer.unobserve(entry.target);
-
-            }
-
-        });
-
-    }, {
-
-        threshold: 0.2
-
-    });
-
-    cards.forEach(function (card) {
-
-        observer.observe(card);
-
-    });
-
-} else {
-
-    cards.forEach(function (card) {
-
-        card.classList.add("fade");
-
-    });
-
-}
+// Fade animation temporarily disabled.
 
 /* ==========================================
    Future Modules
