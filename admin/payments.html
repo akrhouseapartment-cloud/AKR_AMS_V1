@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Maintenance Payments</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet" href="../css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>💳 Maintenance Payments</h1>
+
+<p>AKR House Apartments</p>
+
+</div>
+
+<div>
+
+<button class="btn primary"
+onclick="location.href='Dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</div>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="totalCollection">
+
+₹0
+
+</h2>
+
+<p>Total Collection</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="pendingAmount">
+
+₹0
+
+</h2>
+
+<p>Pending Amount</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="paidResidents">
+
+0
+
+</h2>
+
+<p>Paid Residents</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="pendingResidents">
+
+0
+
+</h2>
+
+<p>Pending Residents</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Search Payments
+
+</h3>
+
+<input
+type="text"
+id="searchPayment"
+placeholder="Search by Name, Flat or Transaction ID">
+
+</div>
+
+<div id="paymentContainer">
+
+Loading...
+
+</div>
+
+<div class="payment-card template" id="paymentTemplate" style="display:none;">
+
+<div class="payment-header">
+
+<h3 class="resident-name">
+
+Resident Name
+
+</h3>
+
+<span class="payment-status pending">
+
+Pending
+
+</span>
+
+</div>
+
+<div class="payment-details">
+
+<p>
+
+<b>Flat:</b>
+
+<span class="resident-flat"></span>
+
+</p>
+
+<p>
+
+<b>Amount:</b>
+
+₹<span class="payment-amount"></span>
+
+</p>
+
+<p>
+
+<b>Month:</b>
+
+<span class="payment-month"></span>
+
+</p>
+
+<p>
+
+<b>Due Date:</b>
+
+<span class="payment-due"></span>
+
+</p>
+
+<p>
+
+<b>Transaction ID:</b>
+
+<span class="transaction-id"></span>
+
+</p>
+
+<p>
+
+<b>Payment Date:</b>
+
+<span class="payment-date"></span>
+
+</p>
+
+</div>
+
+<div class="payment-actions">
+
+<button
+class="btn success paid-btn">
+
+✅ Mark Paid
+
+</button>
+
+<button
+class="btn danger pending-btn">
+
+⏳ Mark Pending
+
+</button>
+
+<button
+class="btn secondary receipt-btn">
+
+🧾 View Receipt
+
+</button>
+
+</div>
+
+</div>
+
+<div id="emptyPayments"
+
+class="empty-state"
+
+style="display:none;">
+
+<h3>
+
+💳 No Payment Records
+
+</h3>
+
+<p>
+
+No maintenance payment records found.
+
+</p>
+
+</div>
+
+<script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+doc,
+updateDoc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const paymentContainer =
+document.getElementById("paymentContainer");
+
+const paymentTemplate =
+document.getElementById("paymentTemplate");
+
+const searchBox =
+document.getElementById("searchPayment");
+
+let payments = [];
+
+async function loadPayments(){
+
+paymentContainer.innerHTML = "";
+
+const snapshot =
+await getDocs(collection(db,"payments"));
+
+payments = [];
+
+let totalCollection = 0;
+let pendingAmount = 0;
+let paidResidents = 0;
+let pendingResidents = 0;
+
+snapshot.forEach((docSnap)=>{
+
+const data = docSnap.data();
+
+data.id = docSnap.id;
+
+payments.push(data);
+
+const amount = Number(data.amount || 0);
+
+if(data.status === "Paid"){
+
+paidResidents++;
+
+totalCollection += amount;
+
+}else{
+
+pendingResidents++;
+
+pendingAmount += amount;
+
+}
+
+});
+
+document.getElementById("totalCollection").innerHTML =
+"₹" + totalCollection;
+
+document.getElementById("pendingAmount").innerHTML =
+"₹" + pendingAmount;
+
+document.getElementById("paidResidents").innerHTML =
+paidResidents;
+
+document.getElementById("pendingResidents").innerHTML =
+pendingResidents;
+
+if(payments.length===0){
+
+document.getElementById("emptyPayments").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyPayments").style.display="none";
+
+payments.forEach(createCard);
+
+}
+
+function createCard(data){
+
+const card = paymentTemplate.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display = "block";
+
+card.querySelector(".resident-name").textContent =
+data.name || "-";
+
+card.querySelector(".resident-flat").textContent =
+data.flat || "-";
+
+card.querySelector(".payment-amount").textContent =
+data.amount || "0";
+
+card.querySelector(".payment-month").textContent =
+data.month || "-";
+
+card.querySelector(".payment-due").textContent =
+data.dueDate || "-";
+
+card.querySelector(".transaction-id").textContent =
+data.transactionId || "-";
+
+card.querySelector(".payment-date").textContent =
+data.paymentDate || "-";
+
+card.querySelector(".payment-status").textContent =
+data.status || "Pending";
+
+card.querySelector(".paid-btn").onclick =
+()=>markPaid(data.id);
+
+card.querySelector(".pending-btn").onclick =
+()=>markPending(data.id);
+
+card.querySelector(".receipt-btn").onclick =
+()=>{
+
+alert(
+JSON.stringify(data,null,2)
+);
+
+};
+
+paymentContainer.appendChild(card);
+
+}
+
+async function markPaid(id){
+
+await updateDoc(doc(db,"payments",id),{
+
+status:"Paid"
+
+});
+
+alert("Payment marked as Paid");
+
+loadPayments();
+
+}
+
+async function markPending(id){
+
+await updateDoc(doc(db,"payments",id),{
+
+status:"Pending"
+
+});
+
+alert("Payment marked as Pending");
+
+loadPayments();
+
+}
+
+searchBox.addEventListener("input",()=>{
+
+const keyword =
+searchBox.value.toLowerCase();
+
+paymentContainer.innerHTML = "";
+
+payments
+.filter(p=>
+
+(p.name||"").toLowerCase().includes(keyword) ||
+
+(p.flat||"").toLowerCase().includes(keyword) ||
+
+(p.transactionId||"")
+.toLowerCase()
+.includes(keyword)
+
+)
+.forEach(createCard);
+
+});
+
+loadPayments();
+
+  </script>
+
+
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(() => {
+
+    loadPayments();
+
+    document.getElementById("lastUpdated").innerHTML =
+        new Date().toLocaleTimeString();
+
+}, 30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate = document.createElement("div");
+
+lastUpdate.style.marginTop = "20px";
+lastUpdate.style.fontWeight = "600";
+
+lastUpdate.innerHTML =
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document
+.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout Button
+========================================== */
+
+const logoutBtn = document.createElement("button");
+
+logoutBtn.className = "btn danger";
+
+logoutBtn.innerHTML = "🚪 Logout";
+
+logoutBtn.style.marginLeft = "15px";
+
+logoutBtn.onclick = function(){
+
+    if(confirm("Logout from AKR AMS?")){
+
+        window.location.href="../login.html";
+
+    }
+
+};
+
+document
+.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadPayments();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
