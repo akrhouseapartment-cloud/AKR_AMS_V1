@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Parcel Management
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/security.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>
+
+📦 Parcel Management
+
+</h1>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<button
+
+class="btn primary"
+
+onclick="location.href='dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="totalParcels">
+
+0
+
+</h2>
+
+<p>
+
+Total Parcels
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="pendingParcels">
+
+0
+
+</h2>
+
+<p>
+
+Waiting Pickup
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="deliveredParcels">
+
+0
+
+</h2>
+
+<p>
+
+Delivered
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="todayParcels">
+
+0
+
+</h2>
+
+<p>
+
+Today's Parcels
+
+</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+📦 Add Parcel
+
+</h2>
+
+<input
+type="text"
+id="residentName"
+placeholder="Resident Name">
+
+<input
+type="text"
+id="flatNumber"
+placeholder="Flat Number">
+
+<input
+type="text"
+id="courierName"
+placeholder="Courier Company">
+
+<input
+type="text"
+id="trackingNumber"
+placeholder="Tracking Number">
+
+<select id="parcelStatus">
+
+<option>
+
+Waiting Pickup
+
+</option>
+
+<option>
+
+Delivered
+
+</option>
+
+</select>
+
+<button
+
+class="btn success"
+
+id="saveParcel">
+
+➕ Save Parcel
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+🔍 Search Parcel
+
+</h2>
+
+<input
+
+type="text"
+
+id="searchParcel"
+
+placeholder="Search by Resident, Flat or Tracking Number">
+
+</div>
+
+<div id="parcelContainer">
+
+Loading...
+
+</div>
+
+<div class="parcel-card template"
+
+id="parcelTemplate"
+
+style="display:none;">
+
+<div class="parcel-header">
+
+<h3 class="parcel-resident">
+
+Resident Name
+
+</h3>
+
+<span class="parcel-status">
+
+Waiting Pickup
+
+</span>
+
+</div>
+
+<div class="parcel-details">
+
+<p>
+
+<b>🏠 Flat:</b>
+
+<span class="parcel-flat">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>📦 Courier:</b>
+
+<span class="parcel-courier">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>🔢 Tracking No:</b>
+
+<span class="parcel-tracking">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>📅 Received On:</b>
+
+<span class="parcel-date">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>👮 Received By:</b>
+
+<span class="parcel-security">
+
+Security
+
+</span>
+
+</p>
+
+</div>
+
+<div class="parcel-actions">
+
+<button
+class="btn success deliver-btn">
+
+✅ Mark Delivered
+
+</button>
+
+<button
+class="btn primary notify-btn">
+
+📞 Notify Resident
+
+</button>
+
+<button
+class="btn secondary view-btn">
+
+👁 View
+
+</button>
+
+<button
+class="btn danger delete-btn">
+
+🗑 Delete
+
+</button>
+
+</div>
+
+</div>
+
+<div
+id="emptyParcels"
+
+class="empty-state"
+
+style="display:none;">
+
+<h3>
+
+📦 No Parcels Found
+
+</h3>
+
+<p>
+
+No parcel records are available.
+
+</p>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+📊 Parcel Summary
+
+</h2>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="pickupToday">
+
+0
+
+</h2>
+
+<p>
+
+Picked Up Today
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="waitingToday">
+
+0
+
+</h2>
+
+<p>
+
+Waiting Pickup
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="notificationsSent">
+
+0
+
+</h2>
+
+<p>
+
+Notifications Sent
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="courierCompanies">
+
+0
+
+</h2>
+
+<p>
+
+Courier Companies
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+addDoc,
+updateDoc,
+deleteDoc,
+doc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const parcelContainer =
+document.getElementById("parcelContainer");
+
+const parcelTemplate =
+document.getElementById("parcelTemplate");
+
+const searchBox =
+document.getElementById("searchParcel");
+
+let parcels=[];
+
+let notifications=0;
+
+/* ==========================================
+   Load Parcels
+========================================== */
+
+async function loadParcels(){
+
+parcelContainer.innerHTML="";
+
+parcels=[];
+
+const snapshot=
+await getDocs(collection(db,"parcels"));
+
+let total=0;
+let waiting=0;
+let delivered=0;
+let today=0;
+
+const courierSet=new Set();
+
+const todayDate=
+new Date().toLocaleDateString();
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+data.id=docSnap.id;
+
+parcels.push(data);
+
+total++;
+
+courierSet.add(data.courier);
+
+if(data.status==="Waiting Pickup"){
+
+waiting++;
+
+}
+
+if(data.status==="Delivered"){
+
+delivered++;
+
+}
+
+if((data.receivedOn||"").includes(todayDate)){
+
+today++;
+
+}
+
+});
+
+document.getElementById("totalParcels").innerHTML=total;
+
+document.getElementById("pendingParcels").innerHTML=waiting;
+
+document.getElementById("deliveredParcels").innerHTML=delivered;
+
+document.getElementById("todayParcels").innerHTML=today;
+
+document.getElementById("pickupToday").innerHTML=delivered;
+
+document.getElementById("waitingToday").innerHTML=waiting;
+
+document.getElementById("notificationsSent").innerHTML=notifications;
+
+document.getElementById("courierCompanies").innerHTML=
+courierSet.size;
+
+if(parcels.length===0){
+
+document.getElementById("emptyParcels").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyParcels").style.display="none";
+
+renderParcels(parcels);
+
+}
+
+/* ==========================================
+   Render Parcels
+========================================== */
+
+function renderParcels(list){
+
+parcelContainer.innerHTML="";
+
+list.forEach(createCard);
+
+}
+
+/* ==========================================
+   Create Parcel Card
+========================================== */
+
+function createCard(data){
+
+const card=
+parcelTemplate.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display="block";
+
+card.querySelector(".parcel-resident").textContent=
+data.resident||"-";
+
+card.querySelector(".parcel-status").textContent=
+data.status||"-";
+
+card.querySelector(".parcel-flat").textContent=
+data.flat||"-";
+
+card.querySelector(".parcel-courier").textContent=
+data.courier||"-";
+
+card.querySelector(".parcel-tracking").textContent=
+data.tracking||"-";
+
+card.querySelector(".parcel-date").textContent=
+data.receivedOn||"-";
+
+card.querySelector(".parcel-security").textContent=
+data.receivedBy||"Security";
+
+card.querySelector(".deliver-btn").onclick=
+()=>markDelivered(data.id);
+
+card.querySelector(".notify-btn").onclick=
+()=>notifyResident(data.resident);
+
+card.querySelector(".view-btn").onclick=
+()=>alert(JSON.stringify(data,null,2));
+
+card.querySelector(".delete-btn").onclick=
+()=>deleteParcel(data.id);
+
+parcelContainer.appendChild(card);
+
+}
+
+/* ==========================================
+   Save Parcel
+========================================== */
+
+document.getElementById("saveParcel").onclick=
+async()=>{
+
+const resident=
+document.getElementById("residentName").value;
+
+const flat=
+document.getElementById("flatNumber").value;
+
+const courier=
+document.getElementById("courierName").value;
+
+const tracking=
+document.getElementById("trackingNumber").value;
+
+const status=
+document.getElementById("parcelStatus").value;
+
+if(resident.trim()===""||flat.trim()===""){
+
+alert("Please fill all required fields.");
+
+return;
+
+}
+
+await addDoc(collection(db,"parcels"),{
+
+resident,
+flat,
+courier,
+tracking,
+status,
+
+receivedBy:"Security",
+
+receivedOn:new Date().toLocaleString()
+
+});
+
+alert("Parcel saved successfully.");
+
+document.getElementById("residentName").value="";
+document.getElementById("flatNumber").value="";
+document.getElementById("courierName").value="";
+document.getElementById("trackingNumber").value="";
+
+loadParcels();
+
+};
+
+/* ==========================================
+   Mark Delivered
+========================================== */
+
+async function markDelivered(id){
+
+await updateDoc(doc(db,"parcels",id),{
+
+status:"Delivered",
+
+deliveredOn:new Date().toLocaleString()
+
+});
+
+alert("Parcel marked as delivered.");
+
+loadParcels();
+
+}
+
+/* ==========================================
+   Notify Resident
+========================================== */
+
+function notifyResident(name){
+
+notifications++;
+
+document.getElementById("notificationsSent").innerHTML=
+notifications;
+
+alert("Resident notification sent to "+name);
+
+}
+
+/* ==========================================
+   Delete Parcel
+========================================== */
+
+async function deleteParcel(id){
+
+if(!confirm("Delete parcel record?")) return;
+
+await deleteDoc(doc(db,"parcels",id));
+
+loadParcels();
+
+}
+
+/* ==========================================
+   Search
+========================================== */
+
+searchBox.addEventListener("input",()=>{
+
+const keyword=
+searchBox.value.toLowerCase();
+
+const filtered=
+parcels.filter(parcel=>
+
+(parcel.resident||"").toLowerCase().includes(keyword)||
+
+(parcel.flat||"").toLowerCase().includes(keyword)||
+
+(parcel.tracking||"").toLowerCase().includes(keyword)
+
+);
+
+renderParcels(filtered);
+
+});
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadParcels();
+
+</script>
+
+
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(()=>{
+
+loadParcels();
+
+document.getElementById("lastUpdated").innerHTML=
+new Date().toLocaleTimeString();
+
+},30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate=document.createElement("div");
+
+lastUpdate.style.marginTop="20px";
+
+lastUpdate.style.fontWeight="600";
+
+lastUpdate.innerHTML=
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout
+========================================== */
+
+const logoutBtn=document.createElement("button");
+
+logoutBtn.className="btn danger";
+
+logoutBtn.innerHTML="🚪 Logout";
+
+logoutBtn.style.marginLeft="15px";
+
+logoutBtn.onclick=function(){
+
+if(confirm("Logout from Security Portal?")){
+
+window.location.href="../login.html";
+
+}
+
+};
+
+document.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadParcels();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
