@@ -1,0 +1,766 @@
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Admin Dashboard
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>
+
+🏢 AKR House Apartments
+
+</h1>
+
+<p>
+
+Administrator Dashboard
+
+</p>
+
+</div>
+
+<button
+id="logoutBtn"
+class="btn danger">
+
+Logout
+
+</button>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="totalResidents">
+
+0
+
+</h2>
+
+<p>
+
+Residents
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="pendingResidents">
+
+0
+
+</h2>
+
+<p>
+
+Pending
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="approvedResidents">
+
+0
+
+</h2>
+
+<p>
+
+Approved
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="rejectedResidents">
+
+0
+
+</h2>
+
+<p>
+
+Rejected
+
+</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-grid">
+
+<div class="dashboard-panel">
+
+<h3>
+
+Recent Registrations
+
+</h3>
+
+<div id="recentResidents">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Quick Actions
+
+</h3>
+
+<button class="btn primary"
+onclick="location.href='pending-residents.html'">
+
+Pending Approvals
+
+</button>
+
+<button class="btn primary"
+onclick="location.href='residents.html'">
+
+Residents
+
+</button>
+
+<button class="btn primary"
+onclick="location.href='payments.html'">
+
+Payments
+
+</button>
+
+<button class="btn primary"
+onclick="location.href='complaints.html'">
+
+Complaints
+
+</button>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+import {
+
+db
+
+} from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+async function loadDashboard(){
+
+const snapshot =
+await getDocs(
+collection(db,"residents")
+);
+
+let total=0;
+let pending=0;
+let approved=0;
+let rejected=0;
+
+const recent=[];
+
+snapshot.forEach(doc=>{
+
+const resident=doc.data();
+
+total++;
+
+if(resident.status==="Pending"){
+
+pending++;
+
+}else if(resident.status==="Approved"){
+
+approved++;
+
+}else if(resident.status==="Rejected"){
+
+rejected++;
+
+}
+
+recent.push(resident);
+
+});
+
+document.getElementById("totalResidents").innerHTML=total;
+
+document.getElementById("pendingResidents").innerHTML=pending;
+
+document.getElementById("approvedResidents").innerHTML=approved;
+
+document.getElementById("rejectedResidents").innerHTML=rejected;
+
+recent.sort((a,b)=>{
+
+if(!a.createdAt||!b.createdAt) return 0;
+
+return b.createdAt.seconds-a.createdAt.seconds;
+
+});
+
+const list=document.getElementById("recentResidents");
+
+list.innerHTML="";
+
+recent.slice(0,10).forEach(r=>{
+
+const div=document.createElement("div");
+
+div.className="recent-item";
+
+div.innerHTML=`
+
+<strong>${r.name}</strong><br>
+
+${r.email}<br>
+
+Flat : ${r.flat}<br>
+
+Status : ${r.status}
+
+<hr>
+
+`;
+
+list.appendChild(div);
+
+});
+
+}
+
+loadDashboard();
+
+document
+.getElementById("logoutBtn")
+.addEventListener("click",()=>{
+
+if(confirm("Logout?")){
+
+location.href="../login.html";
+
+}
+
+});
+
+</script>
+
+  
+<div class="dashboard-grid">
+
+<div class="dashboard-panel">
+
+<h3>
+
+Visitor Summary
+
+</h3>
+
+<div class="summary-card">
+
+<p>
+
+Today's Visitors
+
+</p>
+
+<h2 id="todayVisitors">
+
+0
+
+</h2>
+
+</div>
+
+<div class="summary-card">
+
+<p>
+
+Pending Approvals
+
+</p>
+
+<h2 id="pendingVisitors">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Complaint Summary
+
+</h3>
+
+<div class="summary-card">
+
+<p>
+
+Open Complaints
+
+</p>
+
+<h2 id="openComplaints">
+
+0
+
+</h2>
+
+</div>
+
+<div class="summary-card">
+
+<p>
+
+Resolved
+
+</p>
+
+<h2 id="resolvedComplaints">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Maintenance Collection
+
+</h3>
+
+<div class="summary-card">
+
+<p>
+
+Collected
+
+</p>
+
+<h2 id="maintenanceCollected">
+
+₹0
+
+</h2>
+
+</div>
+
+<div class="summary-card">
+
+<p>
+
+Pending Amount
+
+</p>
+
+<h2 id="maintenancePending">
+
+₹0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Inventory
+
+</h3>
+
+<div class="summary-card">
+
+<p>
+
+Available Items
+
+</p>
+
+<h2 id="inventoryItems">
+
+0
+
+</h2>
+
+</div>
+
+<div class="summary-card">
+
+<p>
+
+Low Stock
+
+</p>
+
+<h2 id="lowStockItems">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Quick Navigation
+
+</h3>
+
+<div class="quick-grid">
+
+<button class="btn primary"
+onclick="location.href='pending-residents.html'">
+
+👥 Pending Residents
+
+</button>
+
+<button class="btn primary"
+onclick="location.href='visitors.html'">
+
+🚶 Visitors
+
+</button>
+
+<button class="btn primary"
+onclick="location.href='payments.html'">
+
+💳 Payments
+
+</button>
+
+<button class="btn primary"
+onclick="location.href='complaints.html'">
+
+🛠 Complaints
+
+</button>
+
+<button class="btn primary"
+onclick="location.href='inventory.html'">
+
+📦 Inventory
+
+</button>
+
+<button class="btn primary"
+onclick="location.href='settings.html'">
+
+⚙ Settings
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="dashboard-grid">
+
+<div class="dashboard-panel">
+
+<h3>
+
+📈 Live Activity
+
+</h3>
+
+<div id="activityFeed">
+
+Loading...
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+🖥 System Health
+
+</h3>
+
+<div class="summary-card">
+
+<p>
+
+Firebase
+
+</p>
+
+<h2 id="firebaseStatus">
+
+🟢 Connected
+
+</h2>
+
+</div>
+
+<div class="summary-card">
+
+<p>
+
+Database
+
+</p>
+
+<h2 id="databaseStatus">
+
+🟢 Online
+
+</h2>
+
+</div>
+
+<div class="summary-card">
+
+<p>
+
+Last Refresh
+
+</p>
+
+<h2 id="lastRefresh">
+
+--
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module">
+
+async function refreshDashboard(){
+
+await loadDashboard();
+
+document.getElementById("lastRefresh").innerHTML =
+new Date().toLocaleTimeString();
+
+}
+
+setInterval(
+
+refreshDashboard,
+
+30000
+
+);
+
+refreshDashboard();
+
+function addActivity(message){
+
+const feed =
+
+document.getElementById("activityFeed");
+
+const item =
+
+document.createElement("div");
+
+item.className="activity-item";
+
+item.innerHTML=
+
+new Date().toLocaleTimeString()
+
++
+
+" - "
+
++
+
+message;
+
+feed.prepend(item);
+
+while(feed.children.length>20){
+
+feed.removeChild(feed.lastChild);
+
+}
+
+}
+
+addActivity("Dashboard Loaded");
+
+</script>
+
+
+  <script type="module">
+
+import { auth } from "../firebase/firebase-config.js";
+
+import {
+
+onAuthStateChanged,
+signOut
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+/* ==========================================
+   Admin Session Check
+========================================== */
+
+onAuthStateChanged(auth,(user)=>{
+
+if(!user){
+
+alert("Please login first.");
+
+window.location.href="../login.html";
+
+}
+
+});
+
+/* ==========================================
+   Secure Logout
+========================================== */
+
+const logoutBtn =
+document.getElementById("logoutBtn");
+
+logoutBtn.addEventListener("click",async()=>{
+
+const confirmLogout =
+confirm("Are you sure you want to logout?");
+
+if(!confirmLogout) return;
+
+await signOut(auth);
+
+window.location.href="../login.html";
+
+});
+
+/* ==========================================
+   Welcome Message
+========================================== */
+
+setTimeout(()=>{
+
+addActivity("Administrator logged in.");
+
+},1000);
+
+/* ==========================================
+   Future Dashboard Modules
+========================================== */
+
+// Residents
+// Payments
+// Complaints
+// Notices
+// Visitors
+// Inventory
+// Documents
+// Emergency
+// AI Assistant
+// Reports
+// Analytics
+// Settings
+
+</script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
