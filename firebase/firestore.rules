@@ -1,0 +1,197 @@
+rules_version = '2';
+
+service cloud.firestore {
+
+match /databases/{database}/documents {
+
+/* ==========================================
+   Admin Collection
+========================================== */
+
+match /admins/{document=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* ==========================================
+   Residents
+========================================== */
+
+match /residents/{document=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* ==========================================
+   Flats
+========================================== */
+
+match /flats/{document=**} {
+
+allow read:
+
+if request.auth != null;
+
+allow write:
+
+if request.auth != null;
+
+}
+
+/* ==========================================
+   Maintenance
+========================================== */
+
+match /maintenance/{document=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* ==========================================
+   Payments
+========================================== */
+
+match /payments/{document=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* ==========================================
+   Complaints
+========================================== */
+
+match /complaints/{document=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* ==========================================
+   Visitors
+========================================== */
+
+match /visitors/{document=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* ==========================================
+   Notices
+========================================== */
+
+match /notices/{document=**} {
+
+allow read:
+
+if true;
+
+allow write:
+
+if request.auth != null;
+
+}
+
+/* ==========================================
+   Documents
+========================================== */
+
+match /documents/{document=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* ==========================================
+   Feedback
+========================================== */
+
+match /feedback/{document=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* ==========================================
+   Inventory
+========================================== */
+
+match /inventory/{document=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* ==========================================
+   Assets
+========================================== */
+
+match /assets/{document=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* ==========================================
+   Communication
+========================================== */
+
+match /communication/{document=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* ==========================================
+   Analytics
+========================================== */
+
+match /analytics/{document=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* ==========================================
+   Settings
+========================================== */
+
+match /settings/{document=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+}
+
+}
