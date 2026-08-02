@@ -36,25 +36,22 @@ password
 );
 
 await setDoc(
-
-doc(db,"users",userCredential.user.uid),
-
+await setDoc(
+doc(db,"residents",userCredential.user.uid),
 {
-
-uid:userCredential.user.uid,
-
-name:name,
-
-email:email,
-
-role:role,
-
-createdAt:new Date().toISOString()
-
+uid: userCredential.user.uid,
+name: name,
+email: email,
+role: role,
+status: "Pending",
+mobile: "",
+floor: "",
+flat: "",
+vehicle: "",
+photo: "",
+createdAt: new Date().toISOString()
 }
-
 );
-
 alert("Registration Successful");
 
 }
