@@ -1,84 +1,104 @@
 /* ==========================================
    AKR House Apartments
    Resident Registration Service
-   Version 2.0
 ========================================== */
 
-import {
-
-auth,
-db
-
-} from "./firebase-config.js";
+import { auth, db } from "./firebase-config.js";
 
 import {
-
-createUserWithEmailAndPassword
-
+  createUserWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
-
-doc,
-setDoc,
-serverTimestamp
-
+  doc,
+  setDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 /* ==========================================
    Register Resident
 ========================================== */
 
-export async function registerResident(data){
+export async function registerResident(data) {
 
-try{
+  try {
 
-const credential=
+    // Create Authentication User
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      data.email,
+      data.password
+    );
 
-await createUserWithEmailAndPassword(
+    const uid = userCredential.user.uid;
 
-auth,
+    // Save Resident Details
+    await setDoc(doc(db, "residents", uid), {
 
-data.email,
+      uid: uid,
 
-data.password
+      name: data.name,
 
-);
+      mobile: data.mobile,
 
-const uid=credential.user.uid;
+      email: data.email,
 
-await setDoc(
-doc(db,"residents",uid),
-{
-uid: uid,
-name: data.name,
-mobile: data.mobile,
-email: data.email,
-floor: data.floor,
-flat: data.flat,
-vehicle: data.vehicle,
-emergencyContact: data.emergencyContact,
-photo: data.photo || "",
-role: data.role || "Primary Resident",
-primaryResidentMobile: data.primaryResidentMobile || "",
-relationship: data.relationship || "",
-status: "Pending",
-createdAt: serverTimestamp()
+      floor: data.floor,
+
+      flat: data.flat,
+
+      vehicle: data.vehicle,
+
+      emergencyContact: data.emergencyContact,
+
+      role: data.role,
+
+      primaryResidentMobile: data.primaryResidentMobile,
+
+      relationship: data.relationship,
+
+      photo: data.photo || "",
+
+      status: "Pending",
+
+      approved: false,
+
+      createdAt: serverTimestamp()
+
+    });
+
+    alert("Registration Successful. Waiting for Admin Approval.");
+
+    window.location.href = "./login.html";
+
+  } catch (error) {
+
+    console.error("Registration Error:", error);
+
+    switch (error.code) {
+
+      case "auth/email-already-in-use":
+        alert("This email is already registered.");
+        break;
+
+      case "auth/invalid-email":
+        alert("Invalid email address.");
+        break;
+
+      case "auth/weak-password":
+        alert("Password must be at least 6 characters.");
+        break;
+
+      case "auth/network-request-failed":
+        alert("Network error. Please check your internet.");
+        break;
+
+      default:
+        alert(error.message);
+        break;
+
+    }
+
+  }
+
 }
-);
-
-alert("Registration Successful. Waiting for Admin Approval.");
-
-}catch(error){
-
-alert(error.message);
-
-console.error(error);
-
-}
-
-}
-
-/* ==========================================
-   End
-========================================== */
