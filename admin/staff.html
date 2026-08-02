@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Staff Management
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>
+
+👷 Staff Management
+
+</h1>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<div>
+
+<button
+class="btn primary"
+onclick="location.href='Dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</div>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="totalStaff">
+
+0
+
+</h2>
+
+<p>
+
+Total Staff
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="activeStaff">
+
+0
+
+</h2>
+
+<p>
+
+Active
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="inactiveStaff">
+
+0
+
+</h2>
+
+<p>
+
+Inactive
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="onDuty">
+
+0
+
+</h2>
+
+<p>
+
+On Duty
+
+</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Add Staff
+
+</h3>
+
+<input
+type="text"
+id="staffName"
+placeholder="Full Name">
+
+<input
+type="text"
+id="staffMobile"
+placeholder="Mobile Number">
+
+<select id="staffRole">
+
+<option value="Security">
+
+Security
+
+</option>
+
+<option value="Housekeeping">
+
+Housekeeping
+
+</option>
+
+<option value="Electrician">
+
+Electrician
+
+</option>
+
+<option value="Plumber">
+
+Plumber
+
+</option>
+
+<option value="Gardener">
+
+Gardener
+
+</option>
+
+<option value="Manager">
+
+Manager
+
+</option>
+
+<option value="Other">
+
+Other
+
+</option>
+
+</select>
+
+<select id="staffStatus">
+
+<option value="Active">
+
+Active
+
+</option>
+
+<option value="Inactive">
+
+Inactive
+
+</option>
+
+<option value="On Duty">
+
+On Duty
+
+</option>
+
+</select>
+
+<button
+class="btn success"
+id="addStaff">
+
+➕ Add Staff
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Search Staff
+
+</h3>
+
+<input
+type="text"
+id="searchStaff"
+placeholder="Search by Name, Role or Mobile">
+
+</div>
+
+<div id="staffContainer">
+
+Loading...
+
+</div>
+
+
+<div class="staff-card template"
+
+id="staffTemplate"
+
+style="display:none;">
+
+<div class="staff-header">
+
+<h3 class="staff-name">
+
+Staff Name
+
+</h3>
+
+<span class="staff-status">
+
+Active
+
+</span>
+
+</div>
+
+<div class="staff-details">
+
+<p>
+
+<b>Role:</b>
+
+<span class="staff-role">
+
+Security
+
+</span>
+
+</p>
+
+<p>
+
+<b>Mobile:</b>
+
+<span class="staff-mobile">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>Employee ID:</b>
+
+<span class="staff-id">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>Joined On:</b>
+
+<span class="staff-joined">
+
+--
+
+</span>
+
+</p>
+
+</div>
+
+<div class="staff-actions">
+
+<button
+class="btn primary edit-btn">
+
+✏ Edit
+
+</button>
+
+<button
+class="btn warning duty-btn">
+
+🔄 Change Status
+
+</button>
+
+<button
+class="btn danger delete-btn">
+
+🗑 Delete
+
+</button>
+
+<button
+class="btn secondary view-btn">
+
+👁 View
+
+</button>
+
+</div>
+
+</div>
+
+<div
+id="emptyStaff"
+
+class="empty-state"
+
+style="display:none;">
+
+<h3>
+
+👷 No Staff Members
+
+</h3>
+
+<p>
+
+No staff records available.
+
+</p>
+
+</div>
+
+
+<script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+addDoc,
+doc,
+updateDoc,
+deleteDoc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const staffContainer =
+document.getElementById("staffContainer");
+
+const staffTemplate =
+document.getElementById("staffTemplate");
+
+const searchBox =
+document.getElementById("searchStaff");
+
+const addButton =
+document.getElementById("addStaff");
+
+let staffList = [];
+
+async function loadStaff(){
+
+staffContainer.innerHTML="";
+
+const snapshot =
+await getDocs(collection(db,"staff"));
+
+staffList=[];
+
+let total=0;
+let active=0;
+let inactive=0;
+let onDuty=0;
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+data.id=docSnap.id;
+
+staffList.push(data);
+
+total++;
+
+if(data.status==="Active"){
+
+active++;
+
+}else if(data.status==="Inactive"){
+
+inactive++;
+
+}else if(data.status==="On Duty"){
+
+onDuty++;
+
+}
+
+});
+
+document.getElementById("totalStaff").innerHTML=total;
+document.getElementById("activeStaff").innerHTML=active;
+document.getElementById("inactiveStaff").innerHTML=inactive;
+document.getElementById("onDuty").innerHTML=onDuty;
+
+if(staffList.length===0){
+
+document.getElementById("emptyStaff").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyStaff").style.display="none";
+
+staffList.forEach(createCard);
+
+}
+
+function createCard(data){
+
+const card =
+staffTemplate.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display="block";
+
+card.querySelector(".staff-name").textContent =
+data.name || "-";
+
+card.querySelector(".staff-role").textContent =
+data.role || "-";
+
+card.querySelector(".staff-mobile").textContent =
+data.mobile || "-";
+
+card.querySelector(".staff-id").textContent =
+data.employeeId || "-";
+
+card.querySelector(".staff-joined").textContent =
+data.joinedOn || "-";
+
+card.querySelector(".staff-status").textContent =
+data.status || "Active";
+
+card.querySelector(".edit-btn").onclick =
+()=>editStaff(data.id);
+
+card.querySelector(".duty-btn").onclick =
+()=>changeStatus(data.id);
+
+card.querySelector(".delete-btn").onclick =
+()=>deleteStaff(data.id);
+
+card.querySelector(".view-btn").onclick =
+()=>alert(JSON.stringify(data,null,2));
+
+staffContainer.appendChild(card);
+
+}
+
+addButton.onclick = async()=>{
+
+const name =
+document.getElementById("staffName").value;
+
+const mobile =
+document.getElementById("staffMobile").value;
+
+const role =
+document.getElementById("staffRole").value;
+
+const status =
+document.getElementById("staffStatus").value;
+
+if(name.trim()===""){
+
+alert("Please enter staff name.");
+
+return;
+
+}
+
+await addDoc(collection(db,"staff"),{
+
+name,
+mobile,
+role,
+status,
+employeeId:"EMP-"+Date.now(),
+joinedOn:new Date().toLocaleDateString()
+
+});
+
+document.getElementById("staffName").value="";
+document.getElementById("staffMobile").value="";
+document.getElementById("staffRole").selectedIndex=0;
+document.getElementById("staffStatus").selectedIndex=0;
+
+alert("Staff added successfully.");
+
+loadStaff();
+
+};
+
+async function editStaff(id){
+
+const newName =
+prompt("Enter new staff name");
+
+if(!newName) return;
+
+await updateDoc(doc(db,"staff",id),{
+
+name:newName
+
+});
+
+loadStaff();
+
+}
+
+async function changeStatus(id){
+
+const status =
+prompt("Enter Status (Active / Inactive / On Duty)");
+
+if(!status) return;
+
+await updateDoc(doc(db,"staff",id),{
+
+status:status
+
+});
+
+loadStaff();
+
+}
+
+async function deleteStaff(id){
+
+if(!confirm("Delete this staff member?")) return;
+
+await deleteDoc(doc(db,"staff",id));
+
+loadStaff();
+
+}
+
+searchBox.addEventListener("input",()=>{
+
+const keyword =
+searchBox.value.toLowerCase();
+
+staffContainer.innerHTML="";
+
+staffList.filter(staff=>
+
+(staff.name||"").toLowerCase().includes(keyword) ||
+
+(staff.role||"").toLowerCase().includes(keyword) ||
+
+(staff.mobile||"").toLowerCase().includes(keyword)
+
+).forEach(createCard);
+
+});
+
+loadStaff();
+
+  </script>
+
+
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(() => {
+
+    loadStaff();
+
+    document.getElementById("lastUpdated").innerHTML =
+        new Date().toLocaleTimeString();
+
+}, 30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate = document.createElement("div");
+
+lastUpdate.style.marginTop = "20px";
+lastUpdate.style.fontWeight = "600";
+
+lastUpdate.innerHTML =
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document
+.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout Button
+========================================== */
+
+const logoutBtn = document.createElement("button");
+
+logoutBtn.className = "btn danger";
+
+logoutBtn.innerHTML = "🚪 Logout";
+
+logoutBtn.style.marginLeft = "15px";
+
+logoutBtn.onclick = function(){
+
+    if(confirm("Logout from AKR AMS?")){
+
+        window.location.href="../login.html";
+
+    }
+
+};
+
+document
+.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadStaff();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
