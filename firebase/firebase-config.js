@@ -23,19 +23,13 @@ getStorage
 ========================================== */
 
 const firebaseConfig = {
-
-apiKey: "YOUR_API_KEY",
-
-authDomain: "YOUR_PROJECT.firebaseapp.com",
-
-projectId: "YOUR_PROJECT_ID",
-
-storageBucket: "YOUR_PROJECT.appspot.com",
-
-messagingSenderId: "YOUR_SENDER_ID",
-
-appId: "YOUR_APP_ID"
-
+  apiKey: "YOUR_REAL_API_KEY",
+  authDomain: "akr-house-apartments.firebaseapp.com",
+  projectId: "akr-house-apartments",
+  storageBucket: "akr-house-apartments.firebasestorage.app",
+  messagingSenderId: "49078938153",
+  appId: "1:49078938153:web:54144db767a86ba9db8a38",
+  measurementId: "G-693DBNK9Z8"
 };
 
 /* ==========================================
