@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Audit Logs
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>
+
+📋 Audit Logs
+
+</h1>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<button
+class="btn primary"
+onclick="location.href='Dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="totalLogs">
+
+0
+
+</h2>
+
+<p>
+
+Total Logs
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="todayLogs">
+
+0
+
+</h2>
+
+<p>
+
+Today's Logs
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="adminActions">
+
+0
+
+</h2>
+
+<p>
+
+Admin Actions
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="securityActions">
+
+0
+
+</h2>
+
+<p>
+
+Security Actions
+
+</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+🔍 Search Logs
+
+</h2>
+
+<input
+type="text"
+id="searchLog"
+placeholder="Search by User, Action or Module">
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+⚡ Quick Filters
+
+</h2>
+
+<button
+class="btn primary"
+id="allLogs">
+
+All
+
+</button>
+
+<button
+class="btn primary"
+id="residentLogs">
+
+Residents
+
+</button>
+
+<button
+class="btn primary"
+id="paymentLogs">
+
+Payments
+
+</button>
+
+<button
+class="btn primary"
+id="complaintLogs">
+
+Complaints
+
+</button>
+
+<button
+class="btn primary"
+id="visitorLogs">
+
+Visitors
+
+</button>
+
+</div>
+
+<div id="auditContainer">
+
+Loading...
+
+</div>
+
+<div class="audit-card template"
+
+id="auditTemplate"
+
+style="display:none;">
+
+<div class="audit-header">
+
+<h3 class="audit-user">
+
+Administrator
+
+</h3>
+
+<span class="audit-module">
+
+Dashboard
+
+</span>
+
+</div>
+
+<div class="audit-details">
+
+<p>
+
+<b>Action:</b>
+
+<span class="audit-action">
+
+Login
+
+</span>
+
+</p>
+
+<p>
+
+<b>Module:</b>
+
+<span class="audit-page">
+
+Dashboard
+
+</span>
+
+</p>
+
+<p>
+
+<b>Date & Time:</b>
+
+<span class="audit-date">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>IP Address:</b>
+
+<span class="audit-ip">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>Status:</b>
+
+<span class="audit-status">
+
+Success
+
+</span>
+
+</p>
+
+</div>
+
+<div class="audit-actions">
+
+<button
+class="btn primary view-btn">
+
+👁 View
+
+</button>
+
+<button
+class="btn warning export-btn">
+
+📄 Export
+
+</button>
+
+<button
+class="btn danger delete-btn">
+
+🗑 Delete
+
+</button>
+
+</div>
+
+</div>
+
+<div
+id="emptyLogs"
+
+class="empty-state"
+
+style="display:none;">
+
+<h3>
+
+📋 No Audit Logs
+
+</h3>
+
+<p>
+
+No audit logs found.
+
+</p>
+
+</div>
+
+<script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+deleteDoc,
+doc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const auditContainer =
+document.getElementById("auditContainer");
+
+const auditTemplate =
+document.getElementById("auditTemplate");
+
+const searchBox =
+document.getElementById("searchLog");
+
+let logs=[];
+
+/* ==========================================
+   Load Audit Logs
+========================================== */
+
+async function loadLogs(){
+
+auditContainer.innerHTML="";
+
+logs=[];
+
+const snapshot=
+await getDocs(collection(db,"audit_logs"));
+
+let total=0;
+let today=0;
+let admin=0;
+let security=0;
+
+const todayDate=
+new Date().toLocaleDateString();
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+data.id=docSnap.id;
+
+logs.push(data);
+
+total++;
+
+if((data.date||"").includes(todayDate)){
+
+today++;
+
+}
+
+if((data.userRole||"").toLowerCase()==="admin"){
+
+admin++;
+
+}
+
+if((data.userRole||"").toLowerCase()==="security"){
+
+security++;
+
+}
+
+});
+
+document.getElementById("totalLogs").innerHTML=total;
+document.getElementById("todayLogs").innerHTML=today;
+document.getElementById("adminActions").innerHTML=admin;
+document.getElementById("securityActions").innerHTML=security;
+
+if(logs.length===0){
+
+document.getElementById("emptyLogs").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyLogs").style.display="none";
+
+logs.forEach(createCard);
+
+}
+
+/* ==========================================
+   Create Card
+========================================== */
+
+function createCard(data){
+
+const card=
+auditTemplate.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display="block";
+
+card.querySelector(".audit-user").textContent=
+data.user||"-";
+
+card.querySelector(".audit-module").textContent=
+data.module||"-";
+
+card.querySelector(".audit-action").textContent=
+data.action||"-";
+
+card.querySelector(".audit-page").textContent=
+data.module||"-";
+
+card.querySelector(".audit-date").textContent=
+data.date||"-";
+
+card.querySelector(".audit-ip").textContent=
+data.ip||"-";
+
+card.querySelector(".audit-status").textContent=
+data.status||"Success";
+
+card.querySelector(".view-btn").onclick=
+()=>{
+
+alert(JSON.stringify(data,null,2));
+
+};
+
+card.querySelector(".export-btn").onclick=
+()=>{
+
+alert("Export feature will be enabled later.");
+
+};
+
+card.querySelector(".delete-btn").onclick=
+()=>deleteLog(data.id);
+
+auditContainer.appendChild(card);
+
+}
+
+/* ==========================================
+   Delete Log
+========================================== */
+
+async function deleteLog(id){
+
+if(!confirm("Delete this audit log?")) return;
+
+await deleteDoc(doc(db,"audit_logs",id));
+
+loadLogs();
+
+}
+
+/* ==========================================
+   Search
+========================================== */
+
+searchBox.addEventListener("input",()=>{
+
+const keyword=
+searchBox.value.toLowerCase();
+
+auditContainer.innerHTML="";
+
+logs.filter(log=>
+
+(log.user||"").toLowerCase().includes(keyword)||
+
+(log.action||"").toLowerCase().includes(keyword)||
+
+(log.module||"").toLowerCase().includes(keyword)
+
+).forEach(createCard);
+
+});
+
+/* ==========================================
+   Quick Filters
+========================================== */
+
+function filterLogs(module){
+
+auditContainer.innerHTML="";
+
+if(module==="All"){
+
+logs.forEach(createCard);
+
+return;
+
+}
+
+logs.filter(log=>
+
+(log.module||"").toLowerCase()===module.toLowerCase()
+
+).forEach(createCard);
+
+}
+
+document.getElementById("allLogs").onclick=
+()=>filterLogs("All");
+
+document.getElementById("residentLogs").onclick=
+()=>filterLogs("Residents");
+
+document.getElementById("paymentLogs").onclick=
+()=>filterLogs("Payments");
+
+document.getElementById("complaintLogs").onclick=
+()=>filterLogs("Complaints");
+
+document.getElementById("visitorLogs").onclick=
+()=>filterLogs("Visitors");
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadLogs();
+
+  </script>
+
+  
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(()=>{
+
+loadLogs();
+
+document.getElementById("lastUpdated").innerHTML=
+new Date().toLocaleTimeString();
+
+},30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate=document.createElement("div");
+
+lastUpdate.style.marginTop="20px";
+
+lastUpdate.style.fontWeight="600";
+
+lastUpdate.innerHTML=
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout Button
+========================================== */
+
+const logoutBtn=document.createElement("button");
+
+logoutBtn.className="btn danger";
+
+logoutBtn.innerHTML="🚪 Logout";
+
+logoutBtn.style.marginLeft="15px";
+
+logoutBtn.onclick=function(){
+
+if(confirm("Logout from AKR AMS?")){
+
+window.location.href="../login.html";
+
+}
+
+};
+
+document.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadLogs();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
