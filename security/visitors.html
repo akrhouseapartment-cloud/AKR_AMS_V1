@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Visitor Entry</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/security.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>🚶 Visitor Entry</h1>
+
+<p>AKR House Apartments</p>
+
+</div>
+
+<button
+class="btn primary"
+onclick="location.href='dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</header>
+
+<div class="dashboard-panel">
+
+<h2>New Visitor</h2>
+
+<input
+type="text"
+id="visitorName"
+placeholder="Visitor Name">
+
+<input
+type="text"
+id="mobile"
+placeholder="Mobile Number">
+
+<input
+type="text"
+id="vehicle"
+placeholder="Vehicle Number (Optional)">
+
+<input
+type="text"
+id="flat"
+placeholder="Flat Number">
+
+<input
+type="text"
+id="purpose"
+placeholder="Purpose of Visit">
+
+<select id="status">
+
+<option>Pending</option>
+<option>Approved</option>
+<option>Rejected</option>
+
+</select>
+
+<button
+class="btn success"
+id="saveVisitor">
+
+➕ Register Visitor
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>Today's Visitors</h2>
+
+<input
+type="text"
+id="searchVisitor"
+placeholder="Search Visitor">
+
+</div>
+
+<div id="visitorContainer">
+
+Loading...
+
+</div>
+
+
+<div class="visitor-card template"
+
+id="visitorTemplate"
+
+style="display:none;">
+
+<div class="visitor-header">
+
+<h3 class="visitor-name">
+
+Visitor Name
+
+</h3>
+
+<span class="visitor-status">
+
+Pending
+
+</span>
+
+</div>
+
+<div class="visitor-details">
+
+<p>
+
+<b>📱 Mobile:</b>
+
+<span class="visitor-mobile">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>🏠 Flat:</b>
+
+<span class="visitor-flat">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>🚗 Vehicle:</b>
+
+<span class="visitor-vehicle">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>📝 Purpose:</b>
+
+<span class="visitor-purpose">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>🕒 Entry Time:</b>
+
+<span class="visitor-time">
+
+--
+
+</span>
+
+</p>
+
+</div>
+
+<div class="visitor-actions">
+
+<button
+class="btn success approve-btn">
+
+✅ Approve
+
+</button>
+
+<button
+class="btn warning checkout-btn">
+
+🚪 Check Out
+
+</button>
+
+<button
+class="btn primary view-btn">
+
+👁 View
+
+</button>
+
+<button
+class="btn danger delete-btn">
+
+🗑 Delete
+
+</button>
+
+</div>
+
+</div>
+
+<div
+id="emptyVisitors"
+
+class="empty-state"
+
+style="display:none;">
+
+<h3>
+
+🚶 No Visitors Found
+
+</h3>
+
+<p>
+
+There are no visitor records.
+
+</p>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+📊 Today's Summary
+
+</h2>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="visitorCount">
+
+0
+
+</h2>
+
+<p>
+
+Visitors
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="approvedCount">
+
+0
+
+</h2>
+
+<p>
+
+Approved
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="pendingCount">
+
+0
+
+</h2>
+
+<p>
+
+Pending
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="checkedOutCount">
+
+0
+
+</h2>
+
+<p>
+
+Checked Out
+
+</p>
+
+</div>
+
+</div>
+
+  </div>
+
+
+<script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+addDoc,
+updateDoc,
+deleteDoc,
+doc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const visitorContainer =
+document.getElementById("visitorContainer");
+
+const visitorTemplate =
+document.getElementById("visitorTemplate");
+
+const searchBox =
+document.getElementById("searchVisitor");
+
+let visitors=[];
+
+/* ==========================================
+   Load Visitors
+========================================== */
+
+async function loadVisitors(){
+
+visitorContainer.innerHTML="";
+
+visitors=[];
+
+const snapshot=
+await getDocs(collection(db,"visitors"));
+
+let total=0;
+let approved=0;
+let pending=0;
+let checkedOut=0;
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+data.id=docSnap.id;
+
+visitors.push(data);
+
+total++;
+
+if(data.status==="Approved") approved++;
+
+if(data.status==="Pending") pending++;
+
+if(data.status==="Checked Out") checkedOut++;
+
+});
+
+document.getElementById("visitorCount").innerHTML=total;
+
+document.getElementById("approvedCount").innerHTML=approved;
+
+document.getElementById("pendingCount").innerHTML=pending;
+
+document.getElementById("checkedOutCount").innerHTML=checkedOut;
+
+if(visitors.length===0){
+
+document.getElementById("emptyVisitors").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyVisitors").style.display="none";
+
+visitors.forEach(createCard);
+
+}
+
+/* ==========================================
+   Create Visitor Card
+========================================== */
+
+function createCard(data){
+
+const card=
+visitorTemplate.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display="block";
+
+card.querySelector(".visitor-name").textContent=
+data.name||"-";
+
+card.querySelector(".visitor-status").textContent=
+data.status||"Pending";
+
+card.querySelector(".visitor-mobile").textContent=
+data.mobile||"-";
+
+card.querySelector(".visitor-flat").textContent=
+data.flat||"-";
+
+card.querySelector(".visitor-vehicle").textContent=
+data.vehicle||"-";
+
+card.querySelector(".visitor-purpose").textContent=
+data.purpose||"-";
+
+card.querySelector(".visitor-time").textContent=
+data.entryTime||"-";
+
+card.querySelector(".approve-btn").onclick=
+()=>approveVisitor(data.id);
+
+card.querySelector(".checkout-btn").onclick=
+()=>checkOutVisitor(data.id);
+
+card.querySelector(".view-btn").onclick=
+()=>alert(JSON.stringify(data,null,2));
+
+card.querySelector(".delete-btn").onclick=
+()=>deleteVisitor(data.id);
+
+visitorContainer.appendChild(card);
+
+}
+
+/* ==========================================
+   Register Visitor
+========================================== */
+
+document.getElementById("saveVisitor").onclick=
+async()=>{
+
+const name=
+document.getElementById("visitorName").value;
+
+const mobile=
+document.getElementById("mobile").value;
+
+const vehicle=
+document.getElementById("vehicle").value;
+
+const flat=
+document.getElementById("flat").value;
+
+const purpose=
+document.getElementById("purpose").value;
+
+const status=
+document.getElementById("status").value;
+
+if(name.trim()==="" || mobile.trim()==="" || flat.trim()===""){
+
+alert("Please fill all required fields.");
+
+return;
+
+}
+
+await addDoc(collection(db,"visitors"),{
+
+name,
+mobile,
+vehicle,
+flat,
+purpose,
+status,
+
+entryTime:new Date().toLocaleString()
+
+});
+
+alert("Visitor Registered Successfully.");
+
+document.getElementById("visitorName").value="";
+document.getElementById("mobile").value="";
+document.getElementById("vehicle").value="";
+document.getElementById("flat").value="";
+document.getElementById("purpose").value="";
+
+loadVisitors();
+
+};
+
+/* ==========================================
+   Approve Visitor
+========================================== */
+
+async function approveVisitor(id){
+
+await updateDoc(doc(db,"visitors",id),{
+
+status:"Approved"
+
+});
+
+loadVisitors();
+
+}
+
+/* ==========================================
+   Check Out Visitor
+========================================== */
+
+async function checkOutVisitor(id){
+
+await updateDoc(doc(db,"visitors",id),{
+
+status:"Checked Out",
+
+exitTime:new Date().toLocaleString()
+
+});
+
+loadVisitors();
+
+}
+
+/* ==========================================
+   Delete Visitor
+========================================== */
+
+async function deleteVisitor(id){
+
+if(!confirm("Delete visitor record?")) return;
+
+await deleteDoc(doc(db,"visitors",id));
+
+loadVisitors();
+
+}
+
+/* ==========================================
+   Search Visitors
+========================================== */
+
+searchBox.addEventListener("input",()=>{
+
+const keyword=
+searchBox.value.toLowerCase();
+
+visitorContainer.innerHTML="";
+
+visitors.filter(v=>
+
+(v.name||"").toLowerCase().includes(keyword) ||
+
+(v.mobile||"").toLowerCase().includes(keyword) ||
+
+(v.flat||"").toLowerCase().includes(keyword)
+
+).forEach(createCard);
+
+});
+
+loadVisitors();
+
+  </script>
+
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(()=>{
+
+loadVisitors();
+
+document.getElementById("lastUpdated").innerHTML=
+new Date().toLocaleTimeString();
+
+},30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate=document.createElement("div");
+
+lastUpdate.style.marginTop="20px";
+
+lastUpdate.style.fontWeight="600";
+
+lastUpdate.innerHTML=
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout
+========================================== */
+
+document.getElementById("logoutBtn")?.addEventListener("click",()=>{
+
+if(confirm("Logout from Security Portal?")){
+
+window.location.href="../login.html";
+
+}
+
+});
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadVisitors();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
