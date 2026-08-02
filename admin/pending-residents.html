@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Pending Residents
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="admin-container">
+
+<header class="admin-header">
+
+<h1>
+
+🏢 AKR House Apartments
+
+</h1>
+
+<p>
+
+Pending Resident Approvals
+
+</p>
+
+</header>
+
+<div class="search-bar">
+
+<input
+type="text"
+id="searchResident"
+placeholder="Search by Name, Email or Flat">
+
+</div>
+
+<div id="residentContainer"
+
+class="resident-list">
+
+<!-- Residents Loaded Here -->
+
+</div>
+
+<div class="resident-card template" id="residentTemplate" style="display:none;">
+
+<div class="resident-header">
+
+<h3 class="resident-name">
+
+Resident Name
+
+</h3>
+
+<span class="status pending">
+
+Pending
+
+</span>
+
+</div>
+
+<div class="resident-details">
+
+<p>
+
+<b>Email:</b>
+
+<span class="resident-email"></span>
+
+</p>
+
+<p>
+
+<b>Mobile:</b>
+
+<span class="resident-mobile"></span>
+
+</p>
+
+<p>
+
+<b>Floor:</b>
+
+<span class="resident-floor"></span>
+
+</p>
+
+<p>
+
+<b>Flat:</b>
+
+<span class="resident-flat"></span>
+
+</p>
+
+<p>
+
+<b>Vehicle:</b>
+
+<span class="resident-vehicle"></span>
+
+</p>
+
+<p>
+
+<b>Role:</b>
+
+<span class="resident-role"></span>
+
+</p>
+
+<p>
+
+<b>Registered On:</b>
+
+<span class="resident-date"></span>
+
+</p>
+
+</div>
+
+<div class="resident-actions">
+
+<button
+class="btn success approve-btn">
+
+✅ Approve
+
+</button>
+
+<button
+class="btn danger reject-btn">
+
+❌ Reject
+
+</button>
+
+<button
+class="btn secondary view-btn">
+
+👁 View Details
+
+</button>
+
+</div>
+
+</div>
+
+<div id="emptyState" class="empty-state" style="display:none;">
+
+<h3>
+
+🎉 No Pending Residents
+
+</h3>
+
+<p>
+
+There are currently no resident registrations awaiting approval.
+
+</p>
+
+</div>
+
+<script type="module">
+
+import {
+
+getPendingResidents,
+approveResident,
+rejectResident
+
+} from "../firebase/admin-service.js";
+
+const container =
+document.getElementById("residentContainer");
+
+const template =
+document.getElementById("residentTemplate");
+
+const search =
+document.getElementById("searchResident");
+
+let residents = [];
+
+async function loadResidents(){
+
+container.innerHTML = "";
+
+residents = await getPendingResidents();
+
+if(residents.length===0){
+
+document.getElementById("emptyState").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyState").style.display="none";
+
+residents.forEach(createCard);
+
+}
+
+function createCard(data){
+
+const card = template.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display = "block";
+
+card.querySelector(".resident-name").textContent =
+data.name || "";
+
+card.querySelector(".resident-email").textContent =
+data.email || "";
+
+card.querySelector(".resident-mobile").textContent =
+data.mobile || "";
+
+card.querySelector(".resident-floor").textContent =
+data.floor || "";
+
+card.querySelector(".resident-flat").textContent =
+data.flat || "";
+
+card.querySelector(".resident-vehicle").textContent =
+data.vehicle || "-";
+
+card.querySelector(".resident-role").textContent =
+data.role || "";
+
+card.querySelector(".resident-date").textContent =
+data.createdAt?.toDate ?
+data.createdAt.toDate().toLocaleString() :
+"-";
+
+card.querySelector(".approve-btn")
+.addEventListener("click",async()=>{
+
+await approveResident(data.uid);
+
+loadResidents();
+
+});
+
+card.querySelector(".reject-btn")
+.addEventListener("click",async()=>{
+
+await rejectResident(data.uid);
+
+loadResidents();
+
+});
+
+card.querySelector(".view-btn")
+.addEventListener("click",()=>{
+
+alert(
+JSON.stringify(data,null,2)
+);
+
+});
+
+container.appendChild(card);
+
+}
+
+search.addEventListener("input",()=>{
+
+const keyword =
+search.value.toLowerCase();
+
+container.innerHTML="";
+
+residents
+.filter(r=>
+
+(r.name||"").toLowerCase().includes(keyword) ||
+
+(r.email||"").toLowerCase().includes(keyword) ||
+
+(r.flat||"").toLowerCase().includes(keyword)
+
+)
+.forEach(createCard);
+
+});
+
+loadResidents();
+
+                  </script>
+
+
+
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(() => {
+
+    loadResidents();
+
+}, 30000);
+
+/* ==========================================
+   Pending Counter
+========================================== */
+
+function updatePendingCount() {
+
+    let counter = document.getElementById("pendingCount");
+
+    if (!counter) {
+
+        counter = document.createElement("div");
+
+        counter.id = "pendingCount";
+
+        counter.className = "pending-counter";
+
+        document.querySelector(".admin-header").appendChild(counter);
+
+    }
+
+    counter.innerHTML =
+        "📋 Pending Residents : " + residents.length;
+
+}
+
+const originalLoadResidents = loadResidents;
+
+loadResidents = async function () {
+
+    await originalLoadResidents();
+
+    updatePendingCount();
+
+};
+
+/* ==========================================
+   Logout
+========================================== */
+
+const logoutButton = document.createElement("button");
+
+logoutButton.innerHTML = "🚪 Logout";
+
+logoutButton.className = "btn danger";
+
+logoutButton.style.marginTop = "20px";
+
+logoutButton.addEventListener("click", () => {
+
+    if (confirm("Are you sure you want to logout?")) {
+
+        window.location.href = "../login.html";
+
+    }
+
+});
+
+document.querySelector(".admin-header").appendChild(logoutButton);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadResidents();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
