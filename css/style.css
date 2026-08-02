@@ -460,13 +460,8 @@ color:#666;
 /* Card Fade Animation */
 
 .feature-card{
-
-opacity:0;
-
-transform:translateY(40px);
-
-animation:fadeUp .8s forwards;
-
+opacity:1;
+transform:translateY(0);
 }
 
 @keyframes fadeUp{
