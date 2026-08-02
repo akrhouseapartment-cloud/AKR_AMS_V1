@@ -21,9 +21,17 @@ getDoc
 
 export async function registerUser(
 name,
+mobile,
 email,
 password,
-role="resident"
+role,
+floor,
+flat,
+vehicle,
+emergencyContact,
+photo,
+primaryResidentMobile,
+relationship
 ){
 
 try{
