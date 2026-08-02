@@ -5,16 +5,18 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Login | AKR House Apartments</title>
 
 <link rel="stylesheet" href="css/style.css">
 
+<link rel="stylesheet" href="css/auth.css">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
-     
+
 <body>
 
 <div class="login-page">
@@ -23,17 +25,9 @@
 
 <div class="login-header">
 
-<h1>
+<h1>🏢 AKR House Apartments</h1>
 
-🏢 AKR House
-
-</h1>
-
-<p>
-
-Apartment Management System
-
-</p>
+<p>Apartment Management System</p>
 
 </div>
 
@@ -41,51 +35,31 @@ Apartment Management System
 
 <div class="input-group">
 
-<label>
-
-Email Address
-
-</label>
+<label>Email Address</label>
 
 <input
-
 type="email"
-
 id="email"
-
-placeholder="Enter email"
-
+placeholder="Enter your email"
 required>
 
 </div>
 
 <div class="input-group">
 
-<label>
-
-Password
-
-</label>
+<label>Password</label>
 
 <input
-
 type="password"
-
 id="password"
-
-placeholder="Enter password"
-
+placeholder="Enter your password"
 required>
 
 </div>
 
 <div class="input-group">
 
-<label>
-
-Login As
-
-</label>
+<label>Login As</label>
 
 <select id="role">
 
@@ -103,7 +77,7 @@ Family Member
 
 <option value="security">
 
-Security
+Security Guard
 
 </option>
 
@@ -116,39 +90,6 @@ Administrator
 </select>
 
 </div>
-
-<button
-
-class="btn primary"
-
-type="submit">
-
-Login
-
-</button>
-
-<div class="login-links">
-
-<a href="forgot-password.html">
-
-Forgot Password?
-
-</a>
-
-<a href="register.html">
-
-Create Account
-
-</a>
-
-</div>
-
-</form>
-
-</div>
-
-</div>
-
 
 <div class="remember-section">
 
@@ -181,6 +122,30 @@ class="text-btn">
 
 </div>
 
+<button
+type="submit"
+class="btn primary">
+
+Login
+
+</button>
+
+<div class="login-links">
+
+<a href="forgot-password.html">
+
+Forgot Password?
+
+</a>
+
+<a href="register.html">
+
+Create Account
+
+</a>
+
+</div>
+
 <div class="login-notice">
 
 <h3>
@@ -191,34 +156,17 @@ class="text-btn">
 
 <p>
 
-Your account is protected with secure authentication.
-Never share your password with anyone.
+Only approved residents can access
+the Apartment Management System.
+
+If your registration is pending,
+please wait for Admin approval.
 
 </p>
 
 </div>
 
-<div class="role-info">
-
-<h3>
-
-Available Roles
-
-</h3>
-
-<ul>
-
-<li>🏠 Primary Resident</li>
-
-<li>👨‍👩‍👧 Family Member</li>
-
-<li>🛡 Security Guard</li>
-
-<li>👑 Administrator</li>
-
-</ul>
-
-</div>
+</form>
 
 </div>
 
@@ -232,9 +180,13 @@ Welcome Back 👋
 
 <p>
 
-Manage visitors, complaints,
-payments, notices,
-community chat and much more
+Manage visitors, maintenance,
+payments, complaints,
+community chat,
+vehicles,
+documents,
+notices
+and emergency services
 from one secure application.
 
 </p>
@@ -243,37 +195,37 @@ from one secure application.
 
 <div class="feature-item">
 
-✅ Visitor Approval
+🏠 Smart Apartment
 
 </div>
 
 <div class="feature-item">
 
-✅ Community Chat
+🚶 Visitor Approval
 
 </div>
 
 <div class="feature-item">
 
-✅ Vehicle Management
+💬 Community Chat
 
 </div>
 
 <div class="feature-item">
 
-✅ Maintenance Tracking
+🚗 Vehicle Management
 
 </div>
 
 <div class="feature-item">
 
-✅ AI Assistant
+📢 Notices & Alerts
 
 </div>
 
 <div class="feature-item">
 
-✅ Emergency Alerts
+🤖 AKR AI Assistant
 
 </div>
 
@@ -282,9 +234,6 @@ from one secure application.
 </div>
 
 </div>
-
-
-
 
 <footer class="login-footer">
 
@@ -302,137 +251,92 @@ Version 1.0.0
 
 </footer>
 
-<script>
+  <script type="module">
 
-const passwordField=document.getElementById("password");
+import { loginResident } from "./firebase/login-service.js";
 
-const toggleButton=document.getElementById("togglePassword");
+const passwordField = document.getElementById("password");
+const toggleButton = document.getElementById("togglePassword");
 
-toggleButton.addEventListener("click",function(){
+toggleButton.addEventListener("click", () => {
 
-if(passwordField.type==="password"){
+    if (passwordField.type === "password") {
 
-passwordField.type="text";
+        passwordField.type = "text";
+        toggleButton.innerHTML = "🙈 Hide Password";
 
-toggleButton.innerHTML="🙈 Hide Password";
+    } else {
 
-}else{
+        passwordField.type = "password";
+        toggleButton.innerHTML = "👁 Show Password";
 
-passwordField.type="password";
-
-toggleButton.innerHTML="👁 Show Password";
-
-}
+    }
 
 });
 
-document.getElementById("loginForm")
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
-.addEventListener("submit",function(e){
+    e.preventDefault();
 
-e.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-const email=document.getElementById("email").value.trim();
+    if (email === "" || password === "") {
 
-const password=document.getElementById("password").value.trim();
+        alert("Please enter Email and Password.");
 
-const role=document.getElementById("role").value;
+        return;
 
-if(email===""||password===""){
+    }
 
-alert("Please enter Email and Password.");
+    try {
 
-return;
+        await loginResident(email, password);
 
-}
+    } catch (error) {
 
-alert(
+        console.error(error);
 
-"Login successful.\n\nRole : "+role+
+        alert(error.message);
 
-"\n\nFirebase authentication will be connected in the next module."
-
-);
+    }
 
 });
 
 </script>
 
+</body>
+
+</html>   
 
 
 
 
-<!-- =========================================
-     Future Firebase Integration
-========================================= -->
-
-<!--
-<script type="module" src="js/firebase.js"></script>
-<script type="module" src="js/login.js"></script>
--->
 
 
-<script type="module">
 
-import {
 
-loginResident
 
-} from "../firebase/login-service.js";
 
-const form=
 
-document.querySelector("form");
 
-form.addEventListener(
 
-"submit",
 
-async function(e){
 
-e.preventDefault();
 
-const email=
 
-document.getElementById("email").value;
 
-const password=
 
-document.getElementById("password").value;
 
-await loginResident(
 
-email,
 
-password
 
-);
 
-}
 
-);
-
-</script>
 
 
 
      
-</body>
-
-</html>
 
 
-  
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
+     
