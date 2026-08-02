@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Visitor Approval
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/security.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>
+
+✅ Visitor Approval
+
+</h1>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<button
+
+class="btn primary"
+
+onclick="location.href='dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="pendingVisitors">
+
+0
+
+</h2>
+
+<p>
+
+Pending Visitors
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="approvedVisitors">
+
+0
+
+</h2>
+
+<p>
+
+Approved
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="rejectedVisitors">
+
+0
+
+</h2>
+
+<p>
+
+Rejected
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="todayRequests">
+
+0
+
+</h2>
+
+<p>
+
+Today's Requests
+
+</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+🔍 Search Visitor
+
+</h2>
+
+<input
+
+type="text"
+
+id="searchVisitor"
+
+placeholder="Search by Name, Flat or Mobile">
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+📋 Filter
+
+</h2>
+
+<select id="approvalFilter">
+
+<option value="All">
+
+All Requests
+
+</option>
+
+<option value="Pending">
+
+Pending
+
+</option>
+
+<option value="Approved">
+
+Approved
+
+</option>
+
+<option value="Rejected">
+
+Rejected
+
+</option>
+
+</select>
+
+</div>
+
+<div id="approvalContainer">
+
+Loading...
+
+</div>
+
+<div class="approval-card template"
+
+id="approvalTemplate"
+
+style="display:none;">
+
+<div class="approval-header">
+
+<h3 class="visitor-name">
+
+Visitor Name
+
+</h3>
+
+<span class="visitor-status">
+
+Pending
+
+</span>
+
+</div>
+
+<div class="approval-details">
+
+<p>
+
+<b>📱 Mobile:</b>
+
+<span class="visitor-mobile">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>🏠 Flat:</b>
+
+<span class="visitor-flat">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>🚗 Vehicle:</b>
+
+<span class="visitor-vehicle">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>📝 Purpose:</b>
+
+<span class="visitor-purpose">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>🕒 Request Time:</b>
+
+<span class="visitor-time">
+
+--
+
+</span>
+
+</p>
+
+</div>
+
+<div class="approval-actions">
+
+<button
+class="btn success approve-btn">
+
+✅ Approve
+
+</button>
+
+<button
+class="btn danger reject-btn">
+
+❌ Reject
+
+</button>
+
+<button
+class="btn primary call-btn">
+
+📞 Call Resident
+
+</button>
+
+<button
+class="btn secondary view-btn">
+
+👁 View
+
+</button>
+
+</div>
+
+</div>
+
+<div
+id="emptyApprovals"
+
+class="empty-state"
+
+style="display:none;">
+
+<h3>
+
+📭 No Pending Requests
+
+</h3>
+
+<p>
+
+There are no visitor approval requests at the moment.
+
+</p>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+📊 Approval Summary
+
+</h2>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="approvedToday">
+
+0
+
+</h2>
+
+<p>
+
+Approved Today
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="rejectedToday">
+
+0
+
+</h2>
+
+<p>
+
+Rejected Today
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="waitingApproval">
+
+0
+
+</h2>
+
+<p>
+
+Waiting Approval
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="residentCalls">
+
+0
+
+</h2>
+
+<p>
+
+Resident Calls
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+updateDoc,
+doc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const approvalContainer =
+document.getElementById("approvalContainer");
+
+const approvalTemplate =
+document.getElementById("approvalTemplate");
+
+const searchBox =
+document.getElementById("searchVisitor");
+
+const filter =
+document.getElementById("approvalFilter");
+
+let visitors=[];
+let residentCalls=0;
+
+/* ==========================================
+   Load Visitor Requests
+========================================== */
+
+async function loadApprovals(){
+
+approvalContainer.innerHTML="";
+
+visitors=[];
+
+const snapshot=
+await getDocs(collection(db,"visitors"));
+
+let pending=0;
+let approved=0;
+let rejected=0;
+let today=0;
+
+const todayDate=
+new Date().toLocaleDateString();
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+data.id=docSnap.id;
+
+visitors.push(data);
+
+if((data.entryTime||"").includes(todayDate)){
+
+today++;
+
+}
+
+if(data.status==="Pending") pending++;
+
+if(data.status==="Approved") approved++;
+
+if(data.status==="Rejected") rejected++;
+
+});
+
+document.getElementById("pendingVisitors").innerHTML=pending;
+
+document.getElementById("approvedVisitors").innerHTML=approved;
+
+document.getElementById("rejectedVisitors").innerHTML=rejected;
+
+document.getElementById("todayRequests").innerHTML=today;
+
+document.getElementById("approvedToday").innerHTML=approved;
+
+document.getElementById("rejectedToday").innerHTML=rejected;
+
+document.getElementById("waitingApproval").innerHTML=pending;
+
+document.getElementById("residentCalls").innerHTML=residentCalls;
+
+if(visitors.length===0){
+
+document.getElementById("emptyApprovals").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyApprovals").style.display="none";
+
+renderVisitors(visitors);
+
+}
+
+/* ==========================================
+   Render Visitors
+========================================== */
+
+function renderVisitors(list){
+
+approvalContainer.innerHTML="";
+
+list.forEach(createCard);
+
+}
+
+/* ==========================================
+   Create Card
+========================================== */
+
+function createCard(data){
+
+const card=
+approvalTemplate.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display="block";
+
+card.querySelector(".visitor-name").textContent=
+data.name||"-";
+
+card.querySelector(".visitor-status").textContent=
+data.status||"-";
+
+card.querySelector(".visitor-mobile").textContent=
+data.mobile||"-";
+
+card.querySelector(".visitor-flat").textContent=
+data.flat||"-";
+
+card.querySelector(".visitor-vehicle").textContent=
+data.vehicle||"-";
+
+card.querySelector(".visitor-purpose").textContent=
+data.purpose||"-";
+
+card.querySelector(".visitor-time").textContent=
+data.entryTime||"-";
+
+card.querySelector(".approve-btn").onclick=
+()=>approveVisitor(data.id);
+
+card.querySelector(".reject-btn").onclick=
+()=>rejectVisitor(data.id);
+
+card.querySelector(".call-btn").onclick=
+()=>callResident(data.mobile);
+
+card.querySelector(".view-btn").onclick=
+()=>alert(JSON.stringify(data,null,2));
+
+approvalContainer.appendChild(card);
+
+}
+
+/* ==========================================
+   Approve Visitor
+========================================== */
+
+async function approveVisitor(id){
+
+await updateDoc(doc(db,"visitors",id),{
+
+status:"Approved"
+
+});
+
+alert("Visitor Approved.");
+
+loadApprovals();
+
+}
+
+/* ==========================================
+   Reject Visitor
+========================================== */
+
+async function rejectVisitor(id){
+
+await updateDoc(doc(db,"visitors",id),{
+
+status:"Rejected"
+
+});
+
+alert("Visitor Rejected.");
+
+loadApprovals();
+
+}
+
+/* ==========================================
+   Call Resident
+========================================== */
+
+function callResident(number){
+
+residentCalls++;
+
+document.getElementById("residentCalls").innerHTML=
+residentCalls;
+
+window.location.href="tel:"+number;
+
+}
+
+/* ==========================================
+   Search & Filter
+========================================== */
+
+searchBox.addEventListener("input",filterVisitors);
+
+filter.addEventListener("change",filterVisitors);
+
+function filterVisitors(){
+
+const keyword=
+searchBox.value.toLowerCase();
+
+const status=
+filter.value;
+
+const filtered=
+visitors.filter(v=>{
+
+const matchSearch=
+
+(v.name||"").toLowerCase().includes(keyword)||
+
+(v.mobile||"").toLowerCase().includes(keyword)||
+
+(v.flat||"").toLowerCase().includes(keyword);
+
+const matchStatus=
+
+status==="All" ||
+
+v.status===status;
+
+return matchSearch && matchStatus;
+
+});
+
+renderVisitors(filtered);
+
+}
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadApprovals();
+
+</script>
+
+
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(()=>{
+
+loadApprovals();
+
+document.getElementById("lastUpdated").innerHTML=
+new Date().toLocaleTimeString();
+
+},30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate=document.createElement("div");
+
+lastUpdate.style.marginTop="20px";
+
+lastUpdate.style.fontWeight="600";
+
+lastUpdate.innerHTML=
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout
+========================================== */
+
+const logoutBtn=document.createElement("button");
+
+logoutBtn.className="btn danger";
+
+logoutBtn.innerHTML="🚪 Logout";
+
+logoutBtn.style.marginLeft="15px";
+
+logoutBtn.onclick=function(){
+
+if(confirm("Logout from Security Portal?")){
+
+window.location.href="../login.html";
+
+}
+
+};
+
+document.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadApprovals();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
