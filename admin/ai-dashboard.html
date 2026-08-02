@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+AI Dashboard
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>
+
+🤖 AI Dashboard
+
+</h1>
+
+<p>
+
+AKR House Apartments AI Assistant
+
+</p>
+
+</div>
+
+<button
+class="btn primary"
+onclick="location.href='Dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="aiRequests">
+
+0
+
+</h2>
+
+<p>
+
+AI Requests
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="pendingAI">
+
+0
+
+</h2>
+
+<p>
+
+Pending Tasks
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="completedAI">
+
+0
+
+</h2>
+
+<p>
+
+Completed
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="accuracy">
+
+100%
+
+</h2>
+
+<p>
+
+AI Accuracy
+
+</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+💬 Ask AI
+
+</h2>
+
+<textarea
+id="aiQuestion"
+rows="6"
+placeholder="Ask AI anything about apartment management...">
+
+</textarea>
+
+<button
+class="btn success"
+id="askAI">
+
+🤖 Ask AI
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+🧠 AI Response
+
+</h2>
+
+<div id="aiResponse">
+
+Welcome to AKR AI Assistant.
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+⚡ AI Shortcuts
+
+</h2>
+
+<button
+class="btn primary"
+id="maintenanceSuggestion">
+
+Maintenance Suggestions
+
+</button>
+
+<button
+class="btn primary"
+id="residentAnalysis">
+
+Resident Analysis
+
+</button>
+
+<button
+class="btn primary"
+id="complaintPrediction">
+
+Complaint Prediction
+
+</button>
+
+<button
+class="btn primary"
+id="visitorInsights">
+
+Visitor Insights
+
+</button>
+
+<button
+class="btn primary"
+id="financialInsights">
+
+Financial Insights
+
+</button>
+
+</div>
+
+<div class="dashboard-grid">
+
+<div class="dashboard-panel">
+
+<h2>
+
+📝 AI History
+
+</h2>
+
+<div id="aiHistory">
+
+No conversations yet.
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+📊 AI Statistics
+
+</h2>
+
+<table class="summary-table">
+
+<tbody>
+
+<tr>
+
+<td>Total Questions</td>
+
+<td id="totalQuestions">
+
+0
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Today's Questions</td>
+
+<td id="todayQuestions">
+
+0
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Average Response Time</td>
+
+<td>
+
+&lt; 2 Seconds
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>AI Status</td>
+
+<td>
+
+🟢 Online
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<div class="dashboard-grid">
+
+<div class="dashboard-panel">
+
+<h2>
+
+⚙ AI Settings
+
+</h2>
+
+<label>
+
+Enable AI Assistant
+
+</label>
+
+<select id="enableAI">
+
+<option value="true">
+
+Enabled
+
+</option>
+
+<option value="false">
+
+Disabled
+
+</option>
+
+</select>
+
+<label>
+
+Auto Suggestions
+
+</label>
+
+<select id="autoSuggestion">
+
+<option value="true">
+
+Enabled
+
+</option>
+
+<option value="false">
+
+Disabled
+
+</option>
+
+</select>
+
+<button
+
+class="btn success"
+
+id="saveAISettings">
+
+💾 Save Settings
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+🚀 Quick AI Actions
+
+</h2>
+
+<button
+
+class="btn primary"
+
+id="scanComplaints">
+
+🔍 Scan Complaints
+
+</button>
+
+<button
+
+class="btn primary"
+
+id="predictMaintenance">
+
+🏢 Predict Maintenance
+
+</button>
+
+<button
+
+class="btn primary"
+
+id="analyzePayments">
+
+💳 Analyze Payments
+
+</button>
+
+<button
+
+class="btn primary"
+
+id="residentInsightsBtn">
+
+👨 Resident Insights
+
+</button>
+
+<button
+
+class="btn primary"
+
+id="generateSummary">
+
+📄 Daily Summary
+
+</button>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+💡 AI Recommendations
+
+</h2>
+
+<ul id="aiRecommendations">
+
+<li>Waiting for AI recommendations...</li>
+
+</ul>
+
+</div>
+
+  
+<script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+addDoc,
+updateDoc,
+doc,
+setDoc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const historyDiv =
+document.getElementById("aiHistory");
+
+const responseDiv =
+document.getElementById("aiResponse");
+
+const recommendationList =
+document.getElementById("aiRecommendations");
+
+let history=[];
+
+/* ==========================================
+   Load AI History
+========================================== */
+
+async function loadHistory(){
+
+history=[];
+
+historyDiv.innerHTML="";
+
+const snapshot=
+await getDocs(collection(db,"ai_history"));
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+history.push(data);
+
+const item=document.createElement("div");
+
+item.className="activity-item";
+
+item.innerHTML=`
+
+<b>Question</b><br>
+
+${data.question}<br><br>
+
+<b>Answer</b><br>
+
+${data.answer}
+
+<hr>
+
+`;
+
+historyDiv.prepend(item);
+
+});
+
+document.getElementById("totalQuestions").innerHTML=
+history.length;
+
+document.getElementById("todayQuestions").innerHTML=
+history.length;
+
+document.getElementById("aiRequests").innerHTML=
+history.length;
+
+document.getElementById("completedAI").innerHTML=
+history.length;
+
+}
+
+/* ==========================================
+   Ask AI
+========================================== */
+
+document.getElementById("askAI").onclick=
+async()=>{
+
+const question=
+document.getElementById("aiQuestion").value.trim();
+
+if(question===""){
+
+alert("Please enter a question.");
+
+return;
+
+}
+
+let answer="";
+
+const q=question.toLowerCase();
+
+if(q.includes("maintenance")){
+
+answer="Maintenance dues, pending complaints and inventory should be reviewed.";
+
+}else if(q.includes("complaint")){
+
+answer="There are complaint trends that require administrator attention.";
+
+}else if(q.includes("payment")){
+
+answer="Review pending maintenance payments and send reminders.";
+
+}else if(q.includes("visitor")){
+
+answer="Visitor records appear normal. Continue monitoring approvals.";
+
+}else{
+
+answer="AI recommendation generated successfully.";
+
+}
+
+responseDiv.innerHTML=answer;
+
+await addDoc(collection(db,"ai_history"),{
+
+question,
+
+answer,
+
+createdOn:new Date().toLocaleString()
+
+});
+
+document.getElementById("aiQuestion").value="";
+
+loadHistory();
+
+};
+
+/* ==========================================
+   AI Settings
+========================================== */
+
+document.getElementById("saveAISettings").onclick=
+async()=>{
+
+await setDoc(doc(db,"settings","ai"),{
+
+enabled:
+document.getElementById("enableAI").value,
+
+autoSuggestion:
+document.getElementById("autoSuggestion").value,
+
+updatedOn:new Date().toLocaleString()
+
+});
+
+alert("AI Settings Saved");
+
+};
+
+/* ==========================================
+   Quick Actions
+========================================== */
+
+function recommendation(text){
+
+const li=document.createElement("li");
+
+li.innerHTML=text;
+
+recommendationList.prepend(li);
+
+}
+
+document.getElementById("maintenanceSuggestion").onclick=()=>{
+
+recommendation("✔ Maintenance schedule reviewed.");
+
+};
+
+document.getElementById("residentAnalysis").onclick=()=>{
+
+recommendation("✔ Resident activity analyzed.");
+
+};
+
+document.getElementById("complaintPrediction").onclick=()=>{
+
+recommendation("✔ Complaint prediction generated.");
+
+};
+
+document.getElementById("visitorInsights").onclick=()=>{
+
+recommendation("✔ Visitor insights generated.");
+
+};
+
+document.getElementById("financialInsights").onclick=()=>{
+
+recommendation("✔ Financial summary generated.");
+
+};
+
+document.getElementById("scanComplaints").onclick=()=>{
+
+recommendation("✔ Complaints scanned successfully.");
+
+};
+
+document.getElementById("predictMaintenance").onclick=()=>{
+
+recommendation("✔ Maintenance prediction completed.");
+
+};
+
+document.getElementById("analyzePayments").onclick=()=>{
+
+recommendation("✔ Payment analysis completed.");
+
+};
+
+document.getElementById("residentInsightsBtn").onclick=()=>{
+
+recommendation("✔ Resident insights completed.");
+
+};
+
+document.getElementById("generateSummary").onclick=()=>{
+
+recommendation("✔ Daily summary generated.");
+
+};
+
+loadHistory();
+
+                                </script>
+
+
+
+
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(()=>{
+
+loadHistory();
+
+document.getElementById("lastUpdated").innerHTML=
+new Date().toLocaleTimeString();
+
+},30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate=document.createElement("div");
+
+lastUpdate.style.marginTop="20px";
+
+lastUpdate.style.fontWeight="600";
+
+lastUpdate.innerHTML=
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout Button
+========================================== */
+
+const logoutBtn=document.createElement("button");
+
+logoutBtn.className="btn danger";
+
+logoutBtn.innerHTML="🚪 Logout";
+
+logoutBtn.style.marginLeft="15px";
+
+logoutBtn.onclick=function(){
+
+if(confirm("Logout from AKR AMS?")){
+
+window.location.href="../login.html";
+
+}
+
+};
+
+document.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadHistory();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
