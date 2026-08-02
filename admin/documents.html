@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Documents Management
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>
+
+📄 Documents Management
+
+</h1>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<div>
+
+<button
+class="btn primary"
+onclick="location.href='Dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</div>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="totalDocuments">
+
+0
+
+</h2>
+
+<p>
+
+Total Documents
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="verifiedDocuments">
+
+0
+
+</h2>
+
+<p>
+
+Verified
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="pendingDocuments">
+
+0
+
+</h2>
+
+<p>
+
+Pending
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="rejectedDocuments">
+
+0
+
+</h2>
+
+<p>
+
+Rejected
+
+</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Upload Document
+
+</h3>
+
+<input
+type="text"
+id="residentName"
+placeholder="Resident Name">
+
+<input
+type="text"
+id="flatNumber"
+placeholder="Flat Number">
+
+<select id="documentType">
+
+<option>
+
+Aadhaar Card
+
+</option>
+
+<option>
+
+PAN Card
+
+</option>
+
+<option>
+
+Rental Agreement
+
+</option>
+
+<option>
+
+Sale Deed
+
+</option>
+
+<option>
+
+Driving Licence
+
+</option>
+
+<option>
+
+Passport
+
+</option>
+
+<option>
+
+Other
+
+</option>
+
+</select>
+
+<input
+type="file"
+id="documentFile">
+
+<button
+class="btn success"
+id="uploadDocument">
+
+📤 Upload
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Search Documents
+
+</h3>
+
+<input
+type="text"
+id="searchDocument"
+placeholder="Search by Resident, Flat or Document Type">
+
+</div>
+
+<div id="documentContainer">
+
+Loading...
+
+</div>
+
+
+<div class="document-card template"
+
+id="documentTemplate"
+
+style="display:none;">
+
+<div class="document-header">
+
+<h3 class="document-name">
+
+Resident Name
+
+</h3>
+
+<span class="document-status">
+
+Pending
+
+</span>
+
+</div>
+
+<div class="document-details">
+
+<p>
+
+<b>Flat:</b>
+
+<span class="document-flat">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>Document Type:</b>
+
+<span class="document-type">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>Uploaded On:</b>
+
+<span class="document-date">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>Verified By:</b>
+
+<span class="document-verified">
+
+Not Verified
+
+</span>
+
+</p>
+
+</div>
+
+<div class="document-actions">
+
+<button
+class="btn success verify-btn">
+
+✅ Verify
+
+</button>
+
+<button
+class="btn danger reject-btn">
+
+❌ Reject
+
+</button>
+
+<button
+class="btn primary download-btn">
+
+📥 Download
+
+</button>
+
+<button
+class="btn secondary view-btn">
+
+👁 View
+
+</button>
+
+<button
+class="btn warning delete-btn">
+
+🗑 Delete
+
+</button>
+
+</div>
+
+</div>
+
+<div
+id="emptyDocuments"
+
+class="empty-state"
+
+style="display:none;">
+
+<h3>
+
+📄 No Documents Found
+
+</h3>
+
+<p>
+
+No resident documents are available.
+
+</p>
+
+</div>
+
+
+<script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+addDoc,
+doc,
+updateDoc,
+deleteDoc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const documentContainer =
+document.getElementById("documentContainer");
+
+const documentTemplate =
+document.getElementById("documentTemplate");
+
+const searchBox =
+document.getElementById("searchDocument");
+
+const uploadButton =
+document.getElementById("uploadDocument");
+
+let documents=[];
+
+async function loadDocuments(){
+
+documentContainer.innerHTML="";
+
+const snapshot =
+await getDocs(collection(db,"documents"));
+
+documents=[];
+
+let total=0;
+let verified=0;
+let pending=0;
+let rejected=0;
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+data.id=docSnap.id;
+
+documents.push(data);
+
+total++;
+
+if(data.status==="Verified"){
+
+verified++;
+
+}else if(data.status==="Rejected"){
+
+rejected++;
+
+}else{
+
+pending++;
+
+}
+
+});
+
+document.getElementById("totalDocuments").innerHTML=total;
+document.getElementById("verifiedDocuments").innerHTML=verified;
+document.getElementById("pendingDocuments").innerHTML=pending;
+document.getElementById("rejectedDocuments").innerHTML=rejected;
+
+if(documents.length===0){
+
+document.getElementById("emptyDocuments").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyDocuments").style.display="none";
+
+documents.forEach(createCard);
+
+}
+
+function createCard(data){
+
+const card=
+documentTemplate.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display="block";
+
+card.querySelector(".document-name").textContent=
+data.name||"-";
+
+card.querySelector(".document-flat").textContent=
+data.flat||"-";
+
+card.querySelector(".document-type").textContent=
+data.type||"-";
+
+card.querySelector(".document-date").textContent=
+data.uploadedOn||"-";
+
+card.querySelector(".document-status").textContent=
+data.status||"Pending";
+
+card.querySelector(".document-verified").textContent=
+data.verifiedBy||"Not Verified";
+
+card.querySelector(".verify-btn").onclick=
+()=>verifyDocument(data.id);
+
+card.querySelector(".reject-btn").onclick=
+()=>rejectDocument(data.id);
+
+card.querySelector(".download-btn").onclick=
+()=>downloadDocument(data);
+
+card.querySelector(".view-btn").onclick=
+()=>viewDocument(data);
+
+card.querySelector(".delete-btn").onclick=
+()=>removeDocument(data.id);
+
+documentContainer.appendChild(card);
+
+}
+
+uploadButton.onclick=async()=>{
+
+const name=
+document.getElementById("residentName").value;
+
+const flat=
+document.getElementById("flatNumber").value;
+
+const type=
+document.getElementById("documentType").value;
+
+if(name.trim()===""){
+
+alert("Please enter resident name.");
+
+return;
+
+}
+
+await addDoc(collection(db,"documents"),{
+
+name,
+flat,
+type,
+status:"Pending",
+verifiedBy:"",
+uploadedOn:new Date().toLocaleString(),
+fileName:document.getElementById("documentFile").files[0]?.name||""
+
+});
+
+alert("Document details saved.");
+
+document.getElementById("residentName").value="";
+document.getElementById("flatNumber").value="";
+document.getElementById("documentFile").value="";
+
+loadDocuments();
+
+};
+
+async function verifyDocument(id){
+
+await updateDoc(doc(db,"documents",id),{
+
+status:"Verified",
+
+verifiedBy:"Admin"
+
+});
+
+loadDocuments();
+
+}
+
+async function rejectDocument(id){
+
+await updateDoc(doc(db,"documents",id),{
+
+status:"Rejected",
+
+verifiedBy:"Admin"
+
+});
+
+loadDocuments();
+
+}
+
+async function removeDocument(id){
+
+if(!confirm("Delete this document?")) return;
+
+await deleteDoc(doc(db,"documents",id));
+
+loadDocuments();
+
+}
+
+function downloadDocument(data){
+
+alert("Firebase Storage integration will be enabled later.\n\nFile : "+(data.fileName||"Not Available"));
+
+}
+
+function viewDocument(data){
+
+alert(JSON.stringify(data,null,2));
+
+}
+
+searchBox.addEventListener("input",()=>{
+
+const keyword=
+searchBox.value.toLowerCase();
+
+documentContainer.innerHTML="";
+
+documents.filter(d=>
+
+(d.name||"").toLowerCase().includes(keyword)||
+
+(d.flat||"").toLowerCase().includes(keyword)||
+
+(d.type||"").toLowerCase().includes(keyword)
+
+).forEach(createCard);
+
+});
+
+loadDocuments();
+
+</script>
+
+
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(() => {
+
+    loadDocuments();
+
+    document.getElementById("lastUpdated").innerHTML =
+        new Date().toLocaleTimeString();
+
+}, 30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate = document.createElement("div");
+
+lastUpdate.style.marginTop = "20px";
+
+lastUpdate.style.fontWeight = "600";
+
+lastUpdate.innerHTML =
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document
+.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout Button
+========================================== */
+
+const logoutBtn = document.createElement("button");
+
+logoutBtn.className = "btn danger";
+
+logoutBtn.innerHTML = "🚪 Logout";
+
+logoutBtn.style.marginLeft = "15px";
+
+logoutBtn.onclick = function(){
+
+    if(confirm("Logout from AKR AMS?")){
+
+        window.location.href="../login.html";
+
+    }
+
+};
+
+document
+.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadDocuments();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
