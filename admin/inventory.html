@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Inventory Management
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>
+
+📦 Inventory Management
+
+</h1>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<div>
+
+<button
+class="btn primary"
+onclick="location.href='Dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</div>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="totalItems">
+
+0
+
+</h2>
+
+<p>
+
+Total Items
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="availableItems">
+
+0
+
+</h2>
+
+<p>
+
+Available
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="lowStockItems">
+
+0
+
+</h2>
+
+<p>
+
+Low Stock
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="outOfStockItems">
+
+0
+
+</h2>
+
+<p>
+
+Out Of Stock
+
+</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Add Inventory Item
+
+</h3>
+
+<input
+type="text"
+id="itemName"
+placeholder="Item Name">
+
+<input
+type="number"
+id="itemQuantity"
+placeholder="Quantity">
+
+<input
+type="text"
+id="itemCategory"
+placeholder="Category">
+
+<input
+type="text"
+id="itemLocation"
+placeholder="Storage Location">
+
+<button
+class="btn success"
+id="addInventory">
+
+➕ Add Item
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Search Inventory
+
+</h3>
+
+<input
+type="text"
+id="searchInventory"
+placeholder="Search Item">
+
+</div>
+
+<div id="inventoryContainer">
+
+Loading...
+
+</div>
+
+
+<div class="inventory-card template"
+
+id="inventoryTemplate"
+
+style="display:none;">
+
+<div class="inventory-header">
+
+<h3 class="item-name">
+
+Item Name
+
+</h3>
+
+<span class="item-status">
+
+Available
+
+</span>
+
+</div>
+
+<div class="inventory-details">
+
+<p>
+
+<b>Category:</b>
+
+<span class="item-category">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>Quantity:</b>
+
+<span class="item-quantity">
+
+0
+
+</span>
+
+</p>
+
+<p>
+
+<b>Location:</b>
+
+<span class="item-location">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>Last Updated:</b>
+
+<span class="item-updated">
+
+--
+
+</span>
+
+</p>
+
+</div>
+
+<div class="inventory-actions">
+
+<button
+class="btn primary edit-btn">
+
+✏ Edit
+
+</button>
+
+<button
+class="btn warning stock-btn">
+
+➕ Update Stock
+
+</button>
+
+<button
+class="btn danger delete-btn">
+
+🗑 Delete
+
+</button>
+
+<button
+class="btn secondary view-btn">
+
+👁 View
+
+</button>
+
+</div>
+
+</div>
+
+<div
+id="emptyInventory"
+
+class="empty-state"
+
+style="display:none;">
+
+<h3>
+
+📦 No Inventory Items
+
+</h3>
+
+<p>
+
+No inventory items have been added.
+
+</p>
+
+</div>
+
+
+<script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+addDoc,
+doc,
+updateDoc,
+deleteDoc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const inventoryContainer =
+document.getElementById("inventoryContainer");
+
+const inventoryTemplate =
+document.getElementById("inventoryTemplate");
+
+const searchBox =
+document.getElementById("searchInventory");
+
+const addButton =
+document.getElementById("addInventory");
+
+let inventory=[];
+
+async function loadInventory(){
+
+inventoryContainer.innerHTML="";
+
+const snapshot =
+await getDocs(collection(db,"inventory"));
+
+inventory=[];
+
+let total=0;
+let available=0;
+let lowStock=0;
+let outOfStock=0;
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+data.id=docSnap.id;
+
+inventory.push(data);
+
+total++;
+
+const qty=Number(data.quantity||0);
+
+if(qty<=0){
+
+outOfStock++;
+
+}else if(qty<=5){
+
+lowStock++;
+
+}else{
+
+available++;
+
+}
+
+});
+
+document.getElementById("totalItems").innerHTML=total;
+document.getElementById("availableItems").innerHTML=available;
+document.getElementById("lowStockItems").innerHTML=lowStock;
+document.getElementById("outOfStockItems").innerHTML=outOfStock;
+
+if(inventory.length===0){
+
+document.getElementById("emptyInventory").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyInventory").style.display="none";
+
+inventory.forEach(createCard);
+
+}
+
+function createCard(data){
+
+const card=
+inventoryTemplate.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display="block";
+
+card.querySelector(".item-name").textContent=
+data.name||"-";
+
+card.querySelector(".item-category").textContent=
+data.category||"-";
+
+card.querySelector(".item-quantity").textContent=
+data.quantity||0;
+
+card.querySelector(".item-location").textContent=
+data.location||"-";
+
+card.querySelector(".item-updated").textContent=
+data.updatedOn||"-";
+
+const qty=Number(data.quantity||0);
+
+let status="Available";
+
+if(qty<=0){
+
+status="Out Of Stock";
+
+}else if(qty<=5){
+
+status="Low Stock";
+
+}
+
+card.querySelector(".item-status").textContent=status;
+
+card.querySelector(".edit-btn").onclick=
+()=>editItem(data.id);
+
+card.querySelector(".stock-btn").onclick=
+()=>updateStock(data.id,data.quantity);
+
+card.querySelector(".delete-btn").onclick=
+()=>deleteItem(data.id);
+
+card.querySelector(".view-btn").onclick=
+()=>alert(JSON.stringify(data,null,2));
+
+inventoryContainer.appendChild(card);
+
+}
+
+addButton.onclick=async()=>{
+
+const name=
+document.getElementById("itemName").value;
+
+const quantity=
+Number(document.getElementById("itemQuantity").value);
+
+const category=
+document.getElementById("itemCategory").value;
+
+const location=
+document.getElementById("itemLocation").value;
+
+if(name.trim()===""){
+
+alert("Enter item name.");
+
+return;
+
+}
+
+await addDoc(collection(db,"inventory"),{
+
+name,
+quantity,
+category,
+location,
+updatedOn:new Date().toLocaleString()
+
+});
+
+document.getElementById("itemName").value="";
+document.getElementById("itemQuantity").value="";
+document.getElementById("itemCategory").value="";
+document.getElementById("itemLocation").value="";
+
+alert("Inventory item added.");
+
+loadInventory();
+
+};
+
+async function editItem(id){
+
+const newName=
+prompt("Enter new item name");
+
+if(!newName) return;
+
+await updateDoc(doc(db,"inventory",id),{
+
+name:newName,
+updatedOn:new Date().toLocaleString()
+
+});
+
+loadInventory();
+
+}
+
+async function updateStock(id,currentQty){
+
+const qty=
+prompt("Enter new quantity",currentQty);
+
+if(qty===null) return;
+
+await updateDoc(doc(db,"inventory",id),{
+
+quantity:Number(qty),
+updatedOn:new Date().toLocaleString()
+
+});
+
+loadInventory();
+
+}
+
+async function deleteItem(id){
+
+if(!confirm("Delete this inventory item?")) return;
+
+await deleteDoc(doc(db,"inventory",id));
+
+loadInventory();
+
+}
+
+searchBox.addEventListener("input",()=>{
+
+const keyword=
+searchBox.value.toLowerCase();
+
+inventoryContainer.innerHTML="";
+
+inventory.filter(item=>
+
+(item.name||"").toLowerCase().includes(keyword)||
+
+(item.category||"").toLowerCase().includes(keyword)||
+
+(item.location||"").toLowerCase().includes(keyword)
+
+).forEach(createCard);
+
+});
+
+loadInventory();
+
+</script>
+
+
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(() => {
+
+    loadInventory();
+
+    document.getElementById("lastUpdated").innerHTML =
+        new Date().toLocaleTimeString();
+
+}, 30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate = document.createElement("div");
+
+lastUpdate.style.marginTop = "20px";
+
+lastUpdate.style.fontWeight = "600";
+
+lastUpdate.innerHTML =
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document
+.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout Button
+========================================== */
+
+const logoutBtn = document.createElement("button");
+
+logoutBtn.className = "btn danger";
+
+logoutBtn.innerHTML = "🚪 Logout";
+
+logoutBtn.style.marginLeft = "15px";
+
+logoutBtn.onclick = function(){
+
+    if(confirm("Logout from AKR AMS?")){
+
+        window.location.href="../login.html";
+
+    }
+
+};
+
+document
+.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadInventory();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
