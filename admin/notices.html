@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Notices Management
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>
+
+📢 Notices Management
+
+</h1>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<div>
+
+<button class="btn primary"
+onclick="location.href='Dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</div>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="totalNotices">
+
+0
+
+</h2>
+
+<p>
+
+Total Notices
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="activeNotices">
+
+0
+
+</h2>
+
+<p>
+
+Active
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="expiredNotices">
+
+0
+
+</h2>
+
+<p>
+
+Expired
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="pinnedNotices">
+
+0
+
+</h2>
+
+<p>
+
+Pinned
+
+</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Create New Notice
+
+</h3>
+
+<input
+type="text"
+id="noticeTitle"
+placeholder="Notice Title">
+
+<textarea
+id="noticeMessage"
+placeholder="Write your notice here..."
+rows="5">
+
+</textarea>
+
+<input
+type="date"
+id="expiryDate">
+
+<label>
+
+<input
+type="checkbox"
+id="pinNotice">
+
+Pin this Notice
+
+</label>
+
+<button
+class="btn success"
+id="publishNotice">
+
+📢 Publish Notice
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Search Notices
+
+</h3>
+
+<input
+type="text"
+id="searchNotice"
+placeholder="Search notices">
+
+</div>
+
+<div id="noticeContainer">
+
+Loading...
+
+</div>
+
+
+<div class="notice-card template"
+
+id="noticeTemplate"
+
+style="display:none;">
+
+<div class="notice-header">
+
+<h3 class="notice-title">
+
+Notice Title
+
+</h3>
+
+<span class="notice-badge">
+
+General
+
+</span>
+
+</div>
+
+<div class="notice-body">
+
+<p class="notice-message">
+
+Notice Message
+
+</p>
+
+<p>
+
+<b>Expiry Date:</b>
+
+<span class="notice-expiry">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>Published On:</b>
+
+<span class="notice-date">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>Status:</b>
+
+<span class="notice-status">
+
+Active
+
+</span>
+
+</p>
+
+</div>
+
+<div class="notice-actions">
+
+<button
+class="btn primary edit-btn">
+
+✏ Edit
+
+</button>
+
+<button
+class="btn warning pin-btn">
+
+📌 Pin
+
+</button>
+
+<button
+class="btn danger delete-btn">
+
+🗑 Delete
+
+</button>
+
+<button
+class="btn secondary view-btn">
+
+👁 View
+
+</button>
+
+</div>
+
+</div>
+
+<div
+id="emptyNotices"
+
+class="empty-state"
+
+style="display:none;">
+
+<h3>
+
+📢 No Notices Available
+
+</h3>
+
+<p>
+
+No notices have been published.
+
+</p>
+
+</div>
+
+
+  <script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+addDoc,
+doc,
+updateDoc,
+deleteDoc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const noticeContainer =
+document.getElementById("noticeContainer");
+
+const noticeTemplate =
+document.getElementById("noticeTemplate");
+
+const searchBox =
+document.getElementById("searchNotice");
+
+const publishButton =
+document.getElementById("publishNotice");
+
+let notices=[];
+
+async function loadNotices(){
+
+noticeContainer.innerHTML="";
+
+const snapshot =
+await getDocs(collection(db,"notices"));
+
+notices=[];
+
+let total=0;
+let active=0;
+let expired=0;
+let pinned=0;
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+data.id=docSnap.id;
+
+notices.push(data);
+
+total++;
+
+if(data.status==="Active") active++;
+if(data.status==="Expired") expired++;
+if(data.pinned===true) pinned++;
+
+});
+
+document.getElementById("totalNotices").innerHTML=total;
+document.getElementById("activeNotices").innerHTML=active;
+document.getElementById("expiredNotices").innerHTML=expired;
+document.getElementById("pinnedNotices").innerHTML=pinned;
+
+if(notices.length===0){
+
+document.getElementById("emptyNotices").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyNotices").style.display="none";
+
+notices.forEach(createCard);
+
+}
+
+function createCard(data){
+
+const card=
+noticeTemplate.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display="block";
+
+card.querySelector(".notice-title").textContent=
+data.title||"-";
+
+card.querySelector(".notice-message").textContent=
+data.message||"-";
+
+card.querySelector(".notice-expiry").textContent=
+data.expiryDate||"-";
+
+card.querySelector(".notice-date").textContent=
+data.createdOn||"-";
+
+card.querySelector(".notice-status").textContent=
+data.status||"Active";
+
+card.querySelector(".notice-badge").textContent=
+data.pinned?"📌 Pinned":"General";
+
+card.querySelector(".edit-btn").onclick=
+()=>editNotice(data.id);
+
+card.querySelector(".pin-btn").onclick=
+()=>pinNotice(data.id,!data.pinned);
+
+card.querySelector(".delete-btn").onclick=
+()=>removeNotice(data.id);
+
+card.querySelector(".view-btn").onclick=
+()=>alert(JSON.stringify(data,null,2));
+
+noticeContainer.appendChild(card);
+
+}
+
+publishButton.onclick=async()=>{
+
+const title=
+document.getElementById("noticeTitle").value;
+
+const message=
+document.getElementById("noticeMessage").value;
+
+const expiryDate=
+document.getElementById("expiryDate").value;
+
+const pinned=
+document.getElementById("pinNotice").checked;
+
+if(title.trim()===""||message.trim()===""){
+
+alert("Please enter title and notice.");
+
+return;
+
+}
+
+await addDoc(collection(db,"notices"),{
+
+title,
+message,
+expiryDate,
+pinned,
+status:"Active",
+createdOn:new Date().toLocaleString()
+
+});
+
+alert("Notice Published");
+
+document.getElementById("noticeTitle").value="";
+document.getElementById("noticeMessage").value="";
+document.getElementById("expiryDate").value="";
+document.getElementById("pinNotice").checked=false;
+
+loadNotices();
+
+};
+
+async function pinNotice(id,value){
+
+await updateDoc(doc(db,"notices",id),{
+
+pinned:value
+
+});
+
+loadNotices();
+
+}
+
+async function removeNotice(id){
+
+if(!confirm("Delete this notice?")) return;
+
+await deleteDoc(doc(db,"notices",id));
+
+loadNotices();
+
+}
+
+async function editNotice(id){
+
+const newTitle=
+prompt("Enter new title");
+
+if(!newTitle) return;
+
+await updateDoc(doc(db,"notices",id),{
+
+title:newTitle
+
+});
+
+loadNotices();
+
+}
+
+searchBox.addEventListener("input",()=>{
+
+const keyword=
+searchBox.value.toLowerCase();
+
+noticeContainer.innerHTML="";
+
+notices.filter(n=>
+
+(n.title||"").toLowerCase().includes(keyword)||
+
+(n.message||"").toLowerCase().includes(keyword)
+
+).forEach(createCard);
+
+});
+
+loadNotices();
+
+  </script>
+
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(() => {
+
+    loadNotices();
+
+    document.getElementById("lastUpdated").innerHTML =
+        new Date().toLocaleTimeString();
+
+}, 30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate = document.createElement("div");
+
+lastUpdate.style.marginTop = "20px";
+
+lastUpdate.style.fontWeight = "600";
+
+lastUpdate.innerHTML =
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document
+.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout Button
+========================================== */
+
+const logoutBtn = document.createElement("button");
+
+logoutBtn.className = "btn danger";
+
+logoutBtn.innerHTML = "🚪 Logout";
+
+logoutBtn.style.marginLeft = "15px";
+
+logoutBtn.onclick = function(){
+
+    if(confirm("Logout from AKR AMS?")){
+
+        window.location.href="../login.html";
+
+    }
+
+};
+
+document
+.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadNotices();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
