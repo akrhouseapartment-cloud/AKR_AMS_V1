@@ -511,6 +511,56 @@ Send approval notification
 
 </script>
 
+<script type="module">
+
+import {
+
+registerResident
+
+} from "../firebase/register-service.js";
+
+const form=
+
+document.querySelector("form");
+
+form.addEventListener(
+
+"submit",
+
+async function(e){
+
+e.preventDefault();
+
+await registerResident({
+
+name:
+
+document.getElementById("name").value,
+
+mobile:
+
+document.getElementById("mobile").value,
+
+email:
+
+document.getElementById("email").value,
+
+password:
+
+document.getElementById("password").value,
+
+flat:
+
+document.getElementById("flat").value
+
+});
+
+});
+
+</script>
+
+
+  
 </body>
 
 </html>
