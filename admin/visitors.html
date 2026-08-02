@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Visitors Management</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet" href="../css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>🚶 Visitors Management</h1>
+
+<p>AKR House Apartments</p>
+
+</div>
+
+<div>
+
+<button class="btn primary"
+onclick="location.href='Dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</div>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="todayVisitors">
+
+0
+
+</h2>
+
+<p>
+
+Today's Visitors
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="pendingVisitors">
+
+0
+
+</h2>
+
+<p>
+
+Pending Approval
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="approvedVisitors">
+
+0
+
+</h2>
+
+<p>
+
+Approved
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="rejectedVisitors">
+
+0
+
+</h2>
+
+<p>
+
+Rejected
+
+</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h3>
+
+Visitor Search
+
+</h3>
+
+<input
+type="text"
+id="searchVisitor"
+placeholder="Search by Visitor Name, Resident or Flat">
+
+</div>
+
+<div id="visitorContainer">
+
+Loading...
+
+</div>
+
+
+<div class="visitor-card template" id="visitorTemplate" style="display:none;">
+
+<div class="visitor-header">
+
+<h3 class="visitor-name">
+
+Visitor Name
+
+</h3>
+
+<span class="status pending">
+
+Pending
+
+</span>
+
+</div>
+
+<div class="visitor-details">
+
+<p>
+
+<b>Resident:</b>
+
+<span class="visitor-resident"></span>
+
+</p>
+
+<p>
+
+<b>Flat:</b>
+
+<span class="visitor-flat"></span>
+
+</p>
+
+<p>
+
+<b>Mobile:</b>
+
+<span class="visitor-mobile"></span>
+
+</p>
+
+<p>
+
+<b>Purpose:</b>
+
+<span class="visitor-purpose"></span>
+
+</p>
+
+<p>
+
+<b>Check-In:</b>
+
+<span class="visitor-checkin"></span>
+
+</p>
+
+<p>
+
+<b>Vehicle:</b>
+
+<span class="visitor-vehicle"></span>
+
+</p>
+
+</div>
+
+<div class="visitor-actions">
+
+<button
+class="btn success approve-btn">
+
+✅ Approve
+
+</button>
+
+<button
+class="btn danger reject-btn">
+
+❌ Reject
+
+</button>
+
+<button
+class="btn secondary details-btn">
+
+👁 Details
+
+</button>
+
+</div>
+
+</div>
+
+<div id="emptyVisitors"
+
+class="empty-state"
+
+style="display:none;">
+
+<h3>
+
+🚶 No Visitors Found
+
+</h3>
+
+<p>
+
+There are currently no visitor requests.
+
+</p>
+
+</div>
+
+<script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+doc,
+updateDoc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const visitorContainer =
+document.getElementById("visitorContainer");
+
+const visitorTemplate =
+document.getElementById("visitorTemplate");
+
+const searchBox =
+document.getElementById("searchVisitor");
+
+let visitors = [];
+
+async function loadVisitors(){
+
+visitorContainer.innerHTML="";
+
+const snapshot =
+await getDocs(collection(db,"visitors"));
+
+visitors=[];
+
+let pending=0;
+let approved=0;
+let rejected=0;
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+data.id=docSnap.id;
+
+visitors.push(data);
+
+if(data.status==="Pending") pending++;
+else if(data.status==="Approved") approved++;
+else if(data.status==="Rejected") rejected++;
+
+});
+
+document.getElementById("todayVisitors").innerHTML=visitors.length;
+
+document.getElementById("pendingVisitors").innerHTML=pending;
+
+document.getElementById("approvedVisitors").innerHTML=approved;
+
+document.getElementById("rejectedVisitors").innerHTML=rejected;
+
+if(visitors.length===0){
+
+document.getElementById("emptyVisitors").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyVisitors").style.display="none";
+
+visitors.forEach(createCard);
+
+}
+
+function createCard(data){
+
+const card=visitorTemplate.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display="block";
+
+card.querySelector(".visitor-name").textContent=data.name||"-";
+
+card.querySelector(".visitor-resident").textContent=data.resident||"-";
+
+card.querySelector(".visitor-flat").textContent=data.flat||"-";
+
+card.querySelector(".visitor-mobile").textContent=data.mobile||"-";
+
+card.querySelector(".visitor-purpose").textContent=data.purpose||"-";
+
+card.querySelector(".visitor-checkin").textContent=data.checkin||"-";
+
+card.querySelector(".visitor-vehicle").textContent=data.vehicle||"-";
+
+card.querySelector(".approve-btn").onclick=()=>approveVisitor(data.id);
+
+card.querySelector(".reject-btn").onclick=()=>rejectVisitor(data.id);
+
+card.querySelector(".details-btn").onclick=()=>{
+
+alert(JSON.stringify(data,null,2));
+
+};
+
+visitorContainer.appendChild(card);
+
+}
+
+async function approveVisitor(id){
+
+await updateDoc(doc(db,"visitors",id),{
+
+status:"Approved"
+
+});
+
+alert("Visitor Approved");
+
+loadVisitors();
+
+}
+
+async function rejectVisitor(id){
+
+await updateDoc(doc(db,"visitors",id),{
+
+status:"Rejected"
+
+});
+
+alert("Visitor Rejected");
+
+loadVisitors();
+
+}
+
+searchBox.addEventListener("input",()=>{
+
+const keyword=
+searchBox.value.toLowerCase();
+
+visitorContainer.innerHTML="";
+
+visitors.filter(v=>
+
+(v.name||"").toLowerCase().includes(keyword) ||
+
+(v.resident||"").toLowerCase().includes(keyword) ||
+
+(v.flat||"").toLowerCase().includes(keyword)
+
+).forEach(createCard);
+
+});
+
+loadVisitors();
+
+</script>
+
+
+  <script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(() => {
+
+    loadVisitors();
+
+    document.getElementById("lastUpdated").innerHTML =
+        new Date().toLocaleTimeString();
+
+}, 30000);
+
+/* ==========================================
+   Create Last Updated Label
+========================================== */
+
+const lastUpdate = document.createElement("div");
+
+lastUpdate.style.marginTop = "20px";
+
+lastUpdate.style.fontWeight = "600";
+
+lastUpdate.innerHTML =
+
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout Button
+========================================== */
+
+const logoutBtn = document.createElement("button");
+
+logoutBtn.className = "btn danger";
+
+logoutBtn.innerHTML = "🚪 Logout";
+
+logoutBtn.style.marginLeft = "15px";
+
+logoutBtn.onclick = function(){
+
+if(confirm("Logout from AKR AMS?")){
+
+window.location.href="../login.html";
+
+}
+
+};
+
+document.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadVisitors();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
