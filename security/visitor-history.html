@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Visitor History
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/security.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>
+
+📜 Visitor History
+
+</h1>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<button
+
+class="btn primary"
+
+onclick="location.href='dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="totalVisitors">
+
+0
+
+</h2>
+
+<p>
+
+Total Visitors
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="todayVisitors">
+
+0
+
+</h2>
+
+<p>
+
+Today's Visitors
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="approvedVisitors">
+
+0
+
+</h2>
+
+<p>
+
+Approved
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="checkedOutVisitors">
+
+0
+
+</h2>
+
+<p>
+
+Checked Out
+
+</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+🔍 Search Visitor History
+
+</h2>
+
+<input
+
+type="text"
+
+id="searchHistory"
+
+placeholder="Search by Name, Mobile or Flat">
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+📅 Filter
+
+</h2>
+
+<select id="statusFilter">
+
+<option value="All">
+
+All Visitors
+
+</option>
+
+<option value="Pending">
+
+Pending
+
+</option>
+
+<option value="Approved">
+
+Approved
+
+</option>
+
+<option value="Checked Out">
+
+Checked Out
+
+</option>
+
+</select>
+
+</div>
+
+<div id="historyContainer">
+
+Loading...
+
+</div>
+
+<div class="history-card template"
+
+id="historyTemplate"
+
+style="display:none;">
+
+<div class="history-header">
+
+<h3 class="history-name">
+
+Visitor Name
+
+</h3>
+
+<span class="history-status">
+
+Approved
+
+</span>
+
+</div>
+
+<div class="history-details">
+
+<p>
+
+<b>📱 Mobile:</b>
+
+<span class="history-mobile">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>🏠 Flat:</b>
+
+<span class="history-flat">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>🚗 Vehicle:</b>
+
+<span class="history-vehicle">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>📝 Purpose:</b>
+
+<span class="history-purpose">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>🕒 Entry Time:</b>
+
+<span class="history-entry">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>🚪 Exit Time:</b>
+
+<span class="history-exit">
+
+--
+
+</span>
+
+</p>
+
+</div>
+
+<div class="history-actions">
+
+<button
+class="btn primary view-btn">
+
+👁 View
+
+</button>
+
+<button
+class="btn success print-btn">
+
+🖨 Print
+
+</button>
+
+<button
+class="btn danger delete-btn">
+
+🗑 Delete
+
+</button>
+
+</div>
+
+</div>
+
+<div
+id="emptyHistory"
+
+class="empty-state"
+
+style="display:none;">
+
+<h3>
+
+📜 No Visitor History
+
+</h3>
+
+<p>
+
+No visitor records found.
+
+</p>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+📊 History Summary
+
+</h2>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="weeklyVisitors">
+
+0
+
+</h2>
+
+<p>
+
+This Week
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="monthlyVisitors">
+
+0
+
+</h2>
+
+<p>
+
+This Month
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="rejectedVisitors">
+
+0
+
+</h2>
+
+<p>
+
+Rejected
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="repeatVisitors">
+
+0
+
+</h2>
+
+<p>
+
+Repeat Visitors
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+deleteDoc,
+doc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const historyContainer =
+document.getElementById("historyContainer");
+
+const historyTemplate =
+document.getElementById("historyTemplate");
+
+const searchBox =
+document.getElementById("searchHistory");
+
+const statusFilter =
+document.getElementById("statusFilter");
+
+let visitors=[];
+
+/* ==========================================
+   Load Visitor History
+========================================== */
+
+async function loadHistory(){
+
+historyContainer.innerHTML="";
+
+visitors=[];
+
+const snapshot =
+await getDocs(collection(db,"visitors"));
+
+let total=0;
+let today=0;
+let approved=0;
+let checkedOut=0;
+let rejected=0;
+
+const todayDate =
+new Date().toLocaleDateString();
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+data.id=docSnap.id;
+
+visitors.push(data);
+
+total++;
+
+if((data.entryTime||"").includes(todayDate)){
+
+today++;
+
+}
+
+if(data.status==="Approved"){
+
+approved++;
+
+}
+
+if(data.status==="Checked Out"){
+
+checkedOut++;
+
+}
+
+if(data.status==="Rejected"){
+
+rejected++;
+
+}
+
+});
+
+document.getElementById("totalVisitors").innerHTML=total;
+
+document.getElementById("todayVisitors").innerHTML=today;
+
+document.getElementById("approvedVisitors").innerHTML=approved;
+
+document.getElementById("checkedOutVisitors").innerHTML=checkedOut;
+
+document.getElementById("weeklyVisitors").innerHTML=total;
+
+document.getElementById("monthlyVisitors").innerHTML=total;
+
+document.getElementById("rejectedVisitors").innerHTML=rejected;
+
+document.getElementById("repeatVisitors").innerHTML="0";
+
+if(visitors.length===0){
+
+document.getElementById("emptyHistory").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyHistory").style.display="none";
+
+renderHistory(visitors);
+
+}
+
+/* ==========================================
+   Render History
+========================================== */
+
+function renderHistory(list){
+
+historyContainer.innerHTML="";
+
+list.forEach(createCard);
+
+}
+
+/* ==========================================
+   Create Card
+========================================== */
+
+function createCard(data){
+
+const card =
+historyTemplate.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display="block";
+
+card.querySelector(".history-name").textContent =
+data.name||"-";
+
+card.querySelector(".history-status").textContent =
+data.status||"-";
+
+card.querySelector(".history-mobile").textContent =
+data.mobile||"-";
+
+card.querySelector(".history-flat").textContent =
+data.flat||"-";
+
+card.querySelector(".history-vehicle").textContent =
+data.vehicle||"-";
+
+card.querySelector(".history-purpose").textContent =
+data.purpose||"-";
+
+card.querySelector(".history-entry").textContent =
+data.entryTime||"-";
+
+card.querySelector(".history-exit").textContent =
+data.exitTime||"Still Inside";
+
+card.querySelector(".view-btn").onclick=()=>{
+
+alert(JSON.stringify(data,null,2));
+
+};
+
+card.querySelector(".print-btn").onclick=()=>{
+
+window.print();
+
+};
+
+card.querySelector(".delete-btn").onclick=()=>{
+
+deleteVisitor(data.id);
+
+};
+
+historyContainer.appendChild(card);
+
+}
+
+/* ==========================================
+   Delete Visitor
+========================================== */
+
+async function deleteVisitor(id){
+
+if(!confirm("Delete this visitor history?")) return;
+
+await deleteDoc(doc(db,"visitors",id));
+
+loadHistory();
+
+}
+
+/* ==========================================
+   Search
+========================================== */
+
+searchBox.addEventListener("input",filterHistory);
+
+statusFilter.addEventListener("change",filterHistory);
+
+function filterHistory(){
+
+const keyword=
+searchBox.value.toLowerCase();
+
+const status=
+statusFilter.value;
+
+const filtered=
+visitors.filter(v=>{
+
+const matchSearch=
+
+(v.name||"").toLowerCase().includes(keyword) ||
+
+(v.mobile||"").toLowerCase().includes(keyword) ||
+
+(v.flat||"").toLowerCase().includes(keyword);
+
+const matchStatus=
+
+status==="All" ||
+
+v.status===status;
+
+return matchSearch && matchStatus;
+
+});
+
+renderHistory(filtered);
+
+}
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadHistory();
+
+</script>
+
+
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(()=>{
+
+loadHistory();
+
+document.getElementById("lastUpdated").innerHTML=
+new Date().toLocaleTimeString();
+
+},30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate=document.createElement("div");
+
+lastUpdate.style.marginTop="20px";
+
+lastUpdate.style.fontWeight="600";
+
+lastUpdate.innerHTML=
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout
+========================================== */
+
+const logoutBtn=document.createElement("button");
+
+logoutBtn.className="btn danger";
+
+logoutBtn.innerHTML="🚪 Logout";
+
+logoutBtn.style.marginLeft="15px";
+
+logoutBtn.onclick=function(){
+
+if(confirm("Logout from Security Portal?")){
+
+window.location.href="../login.html";
+
+}
+
+};
+
+document.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadHistory();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
