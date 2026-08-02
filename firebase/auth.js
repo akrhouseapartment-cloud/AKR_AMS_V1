@@ -1,20 +1,10 @@
 /* ==========================================
    AKR House Apartments
-   Authentication Module
+   Firebase Authentication
    Version 1.0.0
 ========================================== */
 
-import {
-
-auth,
-
-db,
-
-USER_ROLES,
-
-COLLECTIONS
-
-} from "./firebase-config.js";
+import { auth } from "./firebase-config.js";
 
 import {
 
@@ -28,113 +18,49 @@ signOut,
 
 onAuthStateChanged
 
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-import {
-
-doc,
-
-setDoc,
-
-getDoc,
-
-serverTimestamp
-
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 /* ==========================================
-   Register User
+   Resident Registration
 ========================================== */
 
-export async function registerUser(userData){
+export async function registerUser(email,password){
 
 try{
 
-const credential=
+const userCredential=
 
 await createUserWithEmailAndPassword(
 
 auth,
 
-userData.email,
+email,
 
-userData.password
-
-);
-
-const user=credential.user;
-
-await setDoc(
-
-doc(db,COLLECTIONS.USERS,user.uid),
-
-{
-
-uid:user.uid,
-
-name:userData.name,
-
-email:userData.email,
-
-mobile:userData.mobile,
-
-role:userData.role,
-
-floor:userData.floor,
-
-flat:userData.flat,
-
-status:"Pending",
-
-approved:false,
-
-createdAt:serverTimestamp()
-
-}
+password
 
 );
 
-return{
+alert("Registration Successful");
 
-success:true,
-
-uid:user.uid
-
-};
+return userCredential.user;
 
 }catch(error){
 
-return{
-
-success:false,
-
-message:error.message
-
-};
+alert(error.message);
 
 }
 
 }
-
-
 
 /* ==========================================
-   Login User
+   Login
 ========================================== */
 
-export async function loginUser(
-
-email,
-
-password,
-
-selectedRole
-
-){
+export async function loginUser(email,password){
 
 try{
 
-const credential=
+const userCredential=
 
 await signInWithEmailAndPassword(
 
@@ -146,151 +72,20 @@ password
 
 );
 
-const user=credential.user;
+alert("Login Successful");
 
-const userRef=doc(
-
-db,
-
-COLLECTIONS.USERS,
-
-user.uid
-
-);
-
-const userSnap=await getDoc(userRef);
-
-if(!userSnap.exists()){
-
-return{
-
-success:false,
-
-message:"User profile not found."
-
-};
-
-}
-
-const profile=userSnap.data();
-
-if(profile.role!==selectedRole){
-
-await signOut(auth);
-
-return{
-
-success:false,
-
-message:"Incorrect login role selected."
-
-};
-
-}
-
-if(profile.approved!==true){
-
-await signOut(auth);
-
-return{
-
-success:false,
-
-message:"Your account is awaiting approval."
-
-};
-
-}
-
-return{
-
-success:true,
-
-user:profile
-
-};
+return userCredential.user;
 
 }catch(error){
 
-return{
-
-success:false,
-
-message:error.message
-
-};
+alert(error.message);
 
 }
 
 }
 
 /* ==========================================
-   Dashboard Redirect
-========================================== */
-
-export function getDashboard(role){
-
-switch(role){
-
-case USER_ROLES.ADMIN:
-
-return "/admin/dashboard.html";
-
-case USER_ROLES.RESIDENT:
-
-return "/resident/dashboard.html";
-
-case USER_ROLES.FAMILY:
-
-return "/family/dashboard.html";
-
-case USER_ROLES.SECURITY:
-
-return "/security/dashboard.html";
-
-default:
-
-return "/login.html";
-
-}
-
-}
-
-
-/* ==========================================
-   Logout User
-========================================== */
-
-export async function logoutUser(){
-
-try{
-
-await signOut(auth);
-
-return{
-
-success:true,
-
-message:"Logged out successfully."
-
-};
-
-}catch(error){
-
-return{
-
-success:false,
-
-message:error.message
-
-};
-
-}
-
-}
-
-/* ==========================================
-   Password Reset
+   Forgot Password
 ========================================== */
 
 export async function resetPassword(email){
@@ -305,41 +100,57 @@ email
 
 );
 
-return{
-
-success:true,
-
-message:"Password reset email sent."
-
-};
+alert("Password Reset Email Sent");
 
 }catch(error){
 
-return{
-
-success:false,
-
-message:error.message
-
-};
+alert(error.message);
 
 }
 
 }
 
 /* ==========================================
-   Authentication State Listener
+   Logout
 ========================================== */
 
-export function monitorAuthState(callback){
+export async function logoutUser(){
 
-return onAuthStateChanged(
+try{
+
+await signOut(auth);
+
+alert("Logged Out Successfully");
+
+}catch(error){
+
+alert(error.message);
+
+}
+
+}
+
+/* ==========================================
+   Authentication Status
+========================================== */
+
+export function checkUser(){
+
+onAuthStateChanged(
 
 auth,
 
 (user)=>{
 
-callback(user);
+if(user){
+
+console.log("Logged In :",user.email);
+
+}else{
+
+console.log("No Active User");
+
+}
 
 }
 
@@ -348,109 +159,5 @@ callback(user);
 }
 
 /* ==========================================
-   Current User
+   End
 ========================================== */
-
-export function getCurrentUser(){
-
-return auth.currentUser;
-
-}
-
-
-
-
-/* ==========================================
-   Session Validation
-========================================== */
-
-export function isLoggedIn(){
-
-return auth.currentUser!==null;
-
-}
-
-/* ==========================================
-   Role Helpers
-========================================== */
-
-export function isAdmin(user){
-
-return user?.role===USER_ROLES.ADMIN;
-
-}
-
-export function isResident(user){
-
-return user?.role===USER_ROLES.RESIDENT;
-
-}
-
-export function isFamily(user){
-
-return user?.role===USER_ROLES.FAMILY;
-
-}
-
-export function isSecurity(user){
-
-return user?.role===USER_ROLES.SECURITY;
-
-}
-
-/* ==========================================
-   Approval Status
-========================================== */
-
-export function isApproved(user){
-
-return user?.approved===true;
-
-}
-
-/* ==========================================
-   Authentication Initialization
-========================================== */
-
-export function initializeAuthentication(){
-
-console.log("================================");
-
-console.log("AKR AMS Authentication");
-
-console.log("Status : Ready");
-
-console.log("Login : Enabled");
-
-console.log("Registration : Enabled");
-
-console.log("Password Reset : Enabled");
-
-console.log("================================");
-
-}
-
-initializeAuthentication();
-
-/* ==========================================
-   End of File
-========================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
