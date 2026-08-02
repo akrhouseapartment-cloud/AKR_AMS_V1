@@ -48,29 +48,23 @@ data.password
 const uid=credential.user.uid;
 
 await setDoc(
-
 doc(db,"residents",uid),
-
 {
-
-uid:uid,
-
-name:data.name,
-
-mobile:data.mobile,
-
-email:data.email,
-
-flat:data.flat,
-
-role:"resident",
-
-status:"Pending",
-
-createdAt:serverTimestamp()
-
+uid: uid,
+name: data.name,
+mobile: data.mobile,
+email: data.email,
+floor: data.floor,
+flat: data.flat,
+vehicle: data.vehicle,
+emergencyContact: data.emergencyContact,
+photo: data.photo || "",
+role: data.role || "Primary Resident",
+primaryResidentMobile: data.primaryResidentMobile || "",
+relationship: data.relationship || "",
+status: "Pending",
+createdAt: serverTimestamp()
 }
-
 );
 
 alert("Registration Successful. Waiting for Admin Approval.");
