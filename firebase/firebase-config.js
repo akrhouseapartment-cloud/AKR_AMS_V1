@@ -1,29 +1,22 @@
 /* ==========================================
    AKR House Apartments
    Firebase Configuration
-   Version 1.0.0
 ========================================== */
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-import {
-getAuth
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-import {
-getFirestore
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-import {
-getStorage
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
 
 /* ==========================================
    Firebase Configuration
 ========================================== */
 
 const firebaseConfig = {
-  apiKey: "YOUR_REAL_API_KEY",
+  apiKey: "AIzaSyCpnDAAgivJNSHauGftN0xd9oed2vqXNFA",
   authDomain: "akr-house-apartments.firebaseapp.com",
   projectId: "akr-house-apartments",
   storageBucket: "akr-house-apartments.firebasestorage.app",
@@ -49,21 +42,10 @@ const storage = getStorage(app);
 ========================================== */
 
 export {
-
-app,
-
-auth,
-
-db,
-
-storage
-
+  app,
+  auth,
+  db,
+  storage
 };
 
-console.log("================================");
-
-console.log("Firebase Initialized");
-
-console.log("AKR House Apartments");
-
-console.log("================================");
+console.log("Firebase Connected Successfully");
