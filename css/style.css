@@ -73,7 +73,7 @@ z-index:99999;
 
 text-align:center;
 
-color:Blue;
+color:White;
 
 }
 
@@ -145,7 +145,7 @@ to{
 
 transform:translateY(-12px);
 
-opacity:.4;
+opacity:.3;
 
 }
 
@@ -265,7 +265,7 @@ color:#1565C0;
 
 background:#1565C0;
 
-color:white;
+color:green;
 
 }
 
@@ -395,7 +395,7 @@ font-size:42px;
 
 margin-bottom:60px;
 
-color:#1565C0;
+color:#4bcc5f;
 
 }
 
@@ -411,7 +411,7 @@ gap:20px;
 
 .feature-card{
 
-background:#ffffff;
+background:##1c87d9;
 
 padding:22px;
 
