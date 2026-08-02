@@ -1,0 +1,79 @@
+rules_version = '2';
+
+service firebase.storage {
+
+match /b/{bucket}/o {
+
+/* Profile Images */
+
+match /profiles/{allPaths=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* Complaint Images */
+
+match /complaints/{allPaths=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* Payment Receipts */
+
+match /receipts/{allPaths=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* Apartment Documents */
+
+match /documents/{allPaths=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* Asset Images */
+
+match /assets/{allPaths=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* Inventory Files */
+
+match /inventory/{allPaths=**} {
+
+allow read, write:
+
+if request.auth != null;
+
+}
+
+/* Default */
+
+match /{allPaths=**} {
+
+allow read, write:
+
+if false;
+
+}
+
+}
+
+}
