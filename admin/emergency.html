@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Emergency Contacts
+
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>
+
+🚨 Emergency Contacts
+
+</h1>
+
+<p>
+
+AKR House Apartments
+
+</p>
+
+</div>
+
+<button
+class="btn primary"
+onclick="location.href='Dashboard.html'">
+
+🏠 Dashboard
+
+</button>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="totalContacts">
+
+0
+
+</h2>
+
+<p>
+
+Emergency Contacts
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="activeServices">
+
+0
+
+</h2>
+
+<p>
+
+Active Services
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="hospitalCount">
+
+0
+
+</h2>
+
+<p>
+
+Hospitals
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="policeCount">
+
+0
+
+</h2>
+
+<p>
+
+Police
+
+</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+➕ Add Emergency Contact
+
+</h2>
+
+<input
+type="text"
+id="contactName"
+placeholder="Contact Name">
+
+<input
+type="text"
+id="department"
+placeholder="Department">
+
+<input
+type="text"
+id="phoneNumber"
+placeholder="Phone Number">
+
+<input
+type="email"
+id="emailAddress"
+placeholder="Email Address">
+
+<input
+type="text"
+id="address"
+placeholder="Address">
+
+<select id="contactStatus">
+
+<option>
+
+Active
+
+</option>
+
+<option>
+
+Inactive
+
+</option>
+
+</select>
+
+<button
+class="btn success"
+id="addContact">
+
+➕ Add Contact
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+🔍 Search Contact
+
+</h2>
+
+<input
+type="text"
+id="searchContact"
+placeholder="Search by Name, Department or Phone">
+
+</div>
+
+<div id="contactContainer">
+
+Loading...
+
+</div>
+
+
+<div class="contact-card template"
+
+id="contactTemplate"
+
+style="display:none;">
+
+<div class="contact-header">
+
+<h3 class="contact-name">
+
+Contact Name
+
+</h3>
+
+<span class="contact-status">
+
+Active
+
+</span>
+
+</div>
+
+<div class="contact-details">
+
+<p>
+
+<b>Department:</b>
+
+<span class="contact-department">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>Phone:</b>
+
+<span class="contact-phone">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>Email:</b>
+
+<span class="contact-email">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>Address:</b>
+
+<span class="contact-address">
+
+--
+
+</span>
+
+</p>
+
+</div>
+
+<div class="contact-actions">
+
+<button
+class="btn success call-btn">
+
+📞 Call
+
+</button>
+
+<button
+class="btn primary edit-btn">
+
+✏ Edit
+
+</button>
+
+<button
+class="btn warning status-btn">
+
+🔄 Change Status
+
+</button>
+
+<button
+class="btn danger delete-btn">
+
+🗑 Delete
+
+</button>
+
+<button
+class="btn secondary view-btn">
+
+👁 View
+
+</button>
+
+</div>
+
+</div>
+
+<div
+id="emptyContacts"
+
+class="empty-state"
+
+style="display:none;">
+
+<h3>
+
+🚨 No Emergency Contacts
+
+</h3>
+
+<p>
+
+No emergency contacts have been added.
+
+</p>
+
+</div>
+
+
+<script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+addDoc,
+doc,
+updateDoc,
+deleteDoc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const contactContainer =
+document.getElementById("contactContainer");
+
+const contactTemplate =
+document.getElementById("contactTemplate");
+
+const searchBox =
+document.getElementById("searchContact");
+
+const addButton =
+document.getElementById("addContact");
+
+let contacts=[];
+
+/* ==========================================
+   Load Contacts
+========================================== */
+
+async function loadContacts(){
+
+contactContainer.innerHTML="";
+
+contacts=[];
+
+const snapshot=
+await getDocs(collection(db,"emergency"));
+
+let total=0;
+let active=0;
+let hospital=0;
+let police=0;
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+data.id=docSnap.id;
+
+contacts.push(data);
+
+total++;
+
+if(data.status==="Active"){
+
+active++;
+
+}
+
+if((data.department||"").toLowerCase().includes("hospital")){
+
+hospital++;
+
+}
+
+if((data.department||"").toLowerCase().includes("police")){
+
+police++;
+
+}
+
+});
+
+document.getElementById("totalContacts").innerHTML=total;
+
+document.getElementById("activeServices").innerHTML=active;
+
+document.getElementById("hospitalCount").innerHTML=hospital;
+
+document.getElementById("policeCount").innerHTML=police;
+
+if(contacts.length===0){
+
+document.getElementById("emptyContacts").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyContacts").style.display="none";
+
+contacts.forEach(createCard);
+
+}
+
+/* ==========================================
+   Create Card
+========================================== */
+
+function createCard(data){
+
+const card=
+contactTemplate.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display="block";
+
+card.querySelector(".contact-name").textContent=
+data.name||"-";
+
+card.querySelector(".contact-status").textContent=
+data.status||"Active";
+
+card.querySelector(".contact-department").textContent=
+data.department||"-";
+
+card.querySelector(".contact-phone").textContent=
+data.phone||"-";
+
+card.querySelector(".contact-email").textContent=
+data.email||"-";
+
+card.querySelector(".contact-address").textContent=
+data.address||"-";
+
+card.querySelector(".call-btn").onclick=
+()=>{
+
+window.location.href="tel:"+data.phone;
+
+};
+
+card.querySelector(".edit-btn").onclick=
+()=>editContact(data.id);
+
+card.querySelector(".status-btn").onclick=
+()=>changeStatus(data.id);
+
+card.querySelector(".delete-btn").onclick=
+()=>deleteContact(data.id);
+
+card.querySelector(".view-btn").onclick=
+()=>alert(JSON.stringify(data,null,2));
+
+contactContainer.appendChild(card);
+
+}
+
+/* ==========================================
+   Add Contact
+========================================== */
+
+addButton.onclick=async()=>{
+
+const name=
+document.getElementById("contactName").value;
+
+const department=
+document.getElementById("department").value;
+
+const phone=
+document.getElementById("phoneNumber").value;
+
+const email=
+document.getElementById("emailAddress").value;
+
+const address=
+document.getElementById("address").value;
+
+const status=
+document.getElementById("contactStatus").value;
+
+if(name.trim()===""){
+
+alert("Please enter contact name.");
+
+return;
+
+}
+
+await addDoc(collection(db,"emergency"),{
+
+name,
+department,
+phone,
+email,
+address,
+status,
+createdOn:new Date().toLocaleString()
+
+});
+
+alert("Emergency contact added.");
+
+document.getElementById("contactName").value="";
+document.getElementById("department").value="";
+document.getElementById("phoneNumber").value="";
+document.getElementById("emailAddress").value="";
+document.getElementById("address").value="";
+
+loadContacts();
+
+};
+
+/* ==========================================
+   Edit Contact
+========================================== */
+
+async function editContact(id){
+
+const newName=
+prompt("Enter new contact name");
+
+if(!newName) return;
+
+await updateDoc(doc(db,"emergency",id),{
+
+name:newName
+
+});
+
+loadContacts();
+
+}
+
+/* ==========================================
+   Change Status
+========================================== */
+
+async function changeStatus(id){
+
+const status=
+prompt("Enter Status (Active / Inactive)");
+
+if(!status) return;
+
+await updateDoc(doc(db,"emergency",id),{
+
+status
+
+});
+
+loadContacts();
+
+}
+
+/* ==========================================
+   Delete Contact
+========================================== */
+
+async function deleteContact(id){
+
+if(!confirm("Delete this contact?")) return;
+
+await deleteDoc(doc(db,"emergency",id));
+
+loadContacts();
+
+}
+
+/* ==========================================
+   Search
+========================================== */
+
+searchBox.addEventListener("input",()=>{
+
+const keyword=
+searchBox.value.toLowerCase();
+
+contactContainer.innerHTML="";
+
+contacts.filter(contact=>
+
+(contact.name||"").toLowerCase().includes(keyword)||
+
+(contact.department||"").toLowerCase().includes(keyword)||
+
+(contact.phone||"").toLowerCase().includes(keyword)
+
+).forEach(createCard);
+
+});
+
+loadContacts();
+
+</script>
+
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(()=>{
+
+loadContacts();
+
+document.getElementById("lastUpdated").innerHTML=
+new Date().toLocaleTimeString();
+
+},30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate=document.createElement("div");
+
+lastUpdate.style.marginTop="20px";
+
+lastUpdate.style.fontWeight="600";
+
+lastUpdate.innerHTML=
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout Button
+========================================== */
+
+const logoutBtn=document.createElement("button");
+
+logoutBtn.className="btn danger";
+
+logoutBtn.innerHTML="🚪 Logout";
+
+logoutBtn.style.marginLeft="15px";
+
+logoutBtn.onclick=function(){
+
+if(confirm("Logout from AKR AMS?")){
+
+window.location.href="../login.html";
+
+}
+
+};
+
+document.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadContacts();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
