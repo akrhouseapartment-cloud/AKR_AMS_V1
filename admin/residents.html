@@ -1,142 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Residents</title>
-
-<link rel="stylesheet" href="../css/style.css">
-
-<style>
-
-body{
-font-family:Poppins,Arial,sans-serif;
-background:#f5f7fa;
-margin:0;
-}
-
-header{
-background:#17375e;
-color:white;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.container{
-padding:15px;
-}
-
-input{
-width:100%;
-padding:12px;
-border:1px solid #ccc;
-border-radius:8px;
-margin-bottom:20px;
-font-size:16px;
-box-sizing:border-box;
-}
-
-.card{
-
-background:white;
-padding:15px;
-margin-bottom:15px;
-border-radius:10px;
-box-shadow:0 2px 8px rgba(0,0,0,.1);
-
-}
-
-.card h3{
-
-margin:0 0 10px;
-
-}
-
-.card p{
-
-margin:6px 0;
-
-}
-
-.btn{
-
-padding:10px 16px;
-border:none;
-border-radius:8px;
-cursor:pointer;
-margin-top:10px;
-
-}
-
-.primary{
-
-background:#1565c0;
-color:white;
-
-}
-
-.success{
-
-background:#2e7d32;
-color:white;
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<header>
-
-<h2>🏠 Residents</h2>
-
-<button
-class="btn primary"
-onclick="location.href='Dashboard.html'">
-
-Dashboard
-
-</button>
-
-</header>
-
-<div class="container">
-
-<input
-type="text"
-id="search"
-placeholder="Search Name / Flat / Mobile">
-
-<div id="residentList">
-
-Loading...
-
-</div>
-
-</div>
-
 <script type="module">
 
-import {db} from "../firebase/firebase-config.js";
+import { db } from "../firebase/firebase-config.js";
 
 import {
-
 collection,
 getDocs
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-}
+const residentList = document.getElementById("residentList");
+const search = document.getElementById("search");
 
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-const residentList=document.getElementById("residentList");
-
-const search=document.getElementById("search");
-
-let residents=[];
+let residents = [];
 
 async function loadResidents(){
 
@@ -144,13 +18,22 @@ residentList.innerHTML="Loading...";
 
 residents=[];
 
-const snapshot=await getDocs(collection(db,"residents"));
+try{
+
+const snapshot = await getDocs(collection(db,"residents"));
 
 snapshot.forEach((doc)=>{
 
-const data=doc.data();
+const data = doc.data();
 
-if(data.status==="Approved"){
+/* Show only Approved Residents */
+
+if(
+
+data.status==="Approved" &&
+data.role==="resident"
+
+){
 
 residents.push(data);
 
@@ -159,6 +42,14 @@ residents.push(data);
 });
 
 displayResidents(residents);
+
+}catch(error){
+
+console.error(error);
+
+residentList.innerHTML="<h3>Error loading residents.</h3>";
+
+}
 
 }
 
@@ -176,9 +67,11 @@ return;
 
 list.forEach((r)=>{
 
-residentList.innerHTML+=`
+const card=document.createElement("div");
 
-<div class="card">
+card.className="card";
+
+card.innerHTML=`
 
 <h3>${r.name || "-"}</h3>
 
@@ -192,13 +85,11 @@ residentList.innerHTML+=`
 
 <p><b>Vehicle:</b> ${r.vehicle || "-"}</p>
 
-<p><b>Role:</b> ${r.role || "-"}</p>
-
 <p><b>Status:</b> ${r.status || "-"}</p>
 
-</div>
-
 `;
+
+residentList.appendChild(card);
 
 });
 
@@ -206,19 +97,19 @@ residentList.innerHTML+=`
 
 search.addEventListener("input",()=>{
 
-const value=search.value.toLowerCase();
+const keyword=search.value.toLowerCase();
 
 const filtered=residents.filter((r)=>{
 
 return(
 
-(r.name||"").toLowerCase().includes(value)||
+(r.name || "").toLowerCase().includes(keyword) ||
 
-(r.mobile||"").toLowerCase().includes(value)||
+(r.email || "").toLowerCase().includes(keyword) ||
 
-(r.flat||"").toLowerCase().includes(value)||
+(r.mobile || "").toLowerCase().includes(keyword) ||
 
-(r.email||"").toLowerCase().includes(value)
+(r.flat || "").toLowerCase().includes(keyword)
 
 );
 
@@ -231,6 +122,3 @@ displayResidents(filtered);
 loadResidents();
 
 </script>
-
-</body>
-</html>
