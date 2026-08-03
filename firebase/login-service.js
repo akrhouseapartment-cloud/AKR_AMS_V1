@@ -16,14 +16,14 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 /* ==========================================
-   Login Resident / Admin
+   Login
 ========================================== */
 
 export async function loginResident(email, password) {
 
   try {
 
-    // Login with Firebase Authentication
+    // Firebase Login
     const credential = await signInWithEmailAndPassword(
       auth,
       email,
@@ -32,10 +32,8 @@ export async function loginResident(email, password) {
 
     const uid = credential.user.uid;
 
-    // Get User Details
-    const docRef = doc(db, "residents", uid);
-
-    const snap = await getDoc(docRef);
+    // Read user from Firestore
+    const snap = await getDoc(doc(db, "residents", uid));
 
     if (!snap.exists()) {
 
@@ -49,7 +47,7 @@ export async function loginResident(email, password) {
 
     const user = snap.data();
 
-    // Pending Approval
+    // Pending
     if (user.status === "Pending") {
 
       alert("Your account is waiting for Admin Approval.");
@@ -71,7 +69,7 @@ export async function loginResident(email, password) {
 
     }
 
-    // Approved check
+    // Not approved
     if (user.approved !== true) {
 
       alert("Your account is not approved.");
@@ -85,40 +83,31 @@ export async function loginResident(email, password) {
     // Success
     alert("Login Successful");
 
-    // Redirect by Role
     switch (user.role) {
 
       case "admin":
 
         window.location.href = "admin/Dashboard.html";
-
         break;
 
       case "security":
 
-        window.location.href = "security/Dashboard.html";
-
-        break;
-
-      case "family":
-
-        window.location.href = "resident/Dashboard.html";
-
+        window.location.href = "security/dashboard.html";
         break;
 
       case "resident":
 
       case "Primary Resident":
 
-        window.location.href = "resident/Dashboard.html";
+      case "family":
 
+        window.location.href = "resident/dashboard.html";
         break;
 
       default:
 
-        window.location.href = "index.html";
-
-        break;
+        alert("Invalid user role.");
+        await signOut(auth);
 
     }
 
@@ -152,4 +141,4 @@ export async function loginResident(email, password) {
 
   }
 
-  }
+}
