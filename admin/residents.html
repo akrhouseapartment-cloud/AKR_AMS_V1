@@ -1,39 +1,211 @@
 <!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>Residents</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+
+}
+
+body{
+
+background:#f5f7fb;
+
+}
+
+header{
+
+background:#16355d;
+color:#fff;
+padding:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+header h1{
+
+font-size:26px;
+
+}
+
+.btn{
+
+background:#1565c0;
+color:white;
+border:none;
+padding:12px 18px;
+border-radius:8px;
+cursor:pointer;
+
+}
+
+.container{
+
+padding:18px;
+
+}
+
+.search{
+
+width:100%;
+padding:14px;
+border-radius:10px;
+border:1px solid #ccc;
+margin-bottom:20px;
+font-size:16px;
+
+}
+
+.card{
+
+background:white;
+border-radius:12px;
+padding:16px;
+margin-bottom:16px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+
+}
+
+.card h2{
+
+color:#16355d;
+margin-bottom:10px;
+
+}
+
+.card p{
+
+margin:6px 0;
+
+}
+
+.status{
+
+display:inline-block;
+padding:6px 10px;
+background:#28a745;
+color:white;
+border-radius:20px;
+font-size:13px;
+margin-top:10px;
+
+}
+
+.empty{
+
+text-align:center;
+padding:40px;
+font-size:20px;
+color:#666;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🏠 Residents</h1>
+
+<button
+class="btn"
+onclick="location.href='Dashboard.html'">
+
+Dashboard
+
+</button>
+
+</header>
+
+<div class="container">
+
+<input
+
+id="search"
+
+class="search"
+
+placeholder="Search Name / Flat / Mobile">
+
+<div id="residentList">
+
+<div class="empty">
+
+Loading...
+
+</div>
+
+</div>
+
+</div>
 
 <script type="module">
 
 import { db } from "../firebase/firebase-config.js";
 
 import {
+
 collection,
 getDocs
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-const residentList = document.getElementById("residentList");
-const search = document.getElementById("search");
+}
 
-let residents = [];
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const residentList=document.getElementById("residentList");
+
+const search=document.getElementById("search");
+
+let residents=[];
 
 async function loadResidents(){
 
-residentList.innerHTML="Loading...";
+residentList.innerHTML="<div class='empty'>Loading...</div>";
 
 residents=[];
 
-try{
-
-const snapshot = await getDocs(collection(db,"residents"));
+const snapshot=await getDocs(collection(db,"residents"));
 
 snapshot.forEach((doc)=>{
 
-const data = doc.data();
-
-/* Show only Approved Residents */
+const data=doc.data();
 
 if(
 
-data.status==="Approved" &&
-data.role==="resident"
+data.role==="resident" &&
+data.status==="Approved"
 
 ){
 
@@ -43,25 +215,22 @@ residents.push(data);
 
 });
 
-displayResidents(residents);
-
-}catch(error){
-
-console.error(error);
-
-residentList.innerHTML="<h3>Error loading residents.</h3>";
+renderResidents(residents);
 
 }
 
-}
 
-function displayResidents(list){
+function renderResidents(list){
 
 residentList.innerHTML="";
 
 if(list.length===0){
 
-residentList.innerHTML="<h2>No Residents Found</h2>";
+residentList.innerHTML=`
+<div class="empty">
+No Approved Residents Found
+</div>
+`;
 
 return;
 
@@ -75,19 +244,21 @@ card.className="card";
 
 card.innerHTML=`
 
-<h3>${r.name || "-"}</h3>
+<h2>${r.name || "-"}</h2>
 
-<p><b>Email:</b> ${r.email || "-"}</p>
+<p><b>📧 Email:</b> ${r.email || "-"}</p>
 
-<p><b>Mobile:</b> ${r.mobile || "-"}</p>
+<p><b>📱 Mobile:</b> ${r.mobile || "-"}</p>
 
-<p><b>Flat:</b> ${r.flat || "-"}</p>
+<p><b>🏠 Flat:</b> ${r.flat || "-"}</p>
 
-<p><b>Floor:</b> ${r.floor || "-"}</p>
+<p><b>🏢 Floor:</b> ${r.floor || "-"}</p>
 
-<p><b>Vehicle:</b> ${r.vehicle || "-"}</p>
+<p><b>🚗 Vehicle:</b> ${r.vehicle || "-"}</p>
 
-<p><b>Status:</b> ${r.status || "-"}</p>
+<span class="status">
+${r.status || "Approved"}
+</span>
 
 `;
 
@@ -117,7 +288,7 @@ return(
 
 });
 
-displayResidents(filtered);
+renderResidents(filtered);
 
 });
 
@@ -125,3 +296,16 @@ loadResidents();
 
 </script>
 
+</body>
+
+</html>
+
+
+
+
+  
+
+
+
+
+  
