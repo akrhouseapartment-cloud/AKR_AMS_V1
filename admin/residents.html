@@ -3,23 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Residents - AKR House Apartments</title>
+<title>Residents</title>
 
 <link rel="stylesheet" href="../css/style.css">
-<link rel="link" href="../css/admin.css">
 
 <style>
 
 body{
-font-family:Poppins,sans-serif;
-background:#f5f7fb;
+font-family:Poppins,Arial,sans-serif;
+background:#f5f7fa;
 margin:0;
 }
 
 header{
-background:#16355d;
-color:#fff;
+background:#17375e;
+color:white;
 padding:15px;
 display:flex;
 justify-content:space-between;
@@ -27,45 +25,63 @@ align-items:center;
 }
 
 .container{
-padding:20px;
+padding:15px;
 }
 
 input{
 width:100%;
 padding:12px;
-margin-bottom:20px;
-border-radius:8px;
 border:1px solid #ccc;
+border-radius:8px;
+margin-bottom:20px;
+font-size:16px;
+box-sizing:border-box;
 }
 
 .card{
-background:#fff;
+
+background:white;
 padding:15px;
 margin-bottom:15px;
 border-radius:10px;
 box-shadow:0 2px 8px rgba(0,0,0,.1);
+
 }
 
 .card h3{
+
 margin:0 0 10px;
+
 }
 
-button{
+.card p{
+
+margin:6px 0;
+
+}
+
+.btn{
+
 padding:10px 16px;
 border:none;
 border-radius:8px;
 cursor:pointer;
-margin:5px;
+margin-top:10px;
+
 }
 
 .primary{
-background:#0d6efd;
-color:#fff;
+
+background:#1565c0;
+color:white;
+
 }
 
-.danger{
-background:#dc3545;
-color:#fff;
+.success{
+
+background:#2e7d32;
+color:white;
+
 }
 
 </style>
@@ -78,7 +94,8 @@ color:#fff;
 
 <h2>🏠 Residents</h2>
 
-<button class="primary"
+<button
+class="btn primary"
 onclick="location.href='Dashboard.html'">
 
 Dashboard
@@ -106,14 +123,16 @@ Loading...
 
 import {db} from "../firebase/firebase-config.js";
 
-import{
+import {
 
 collection,
 getDocs
 
-}from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+}
 
-const container=document.getElementById("residentList");
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const residentList=document.getElementById("residentList");
 
 const search=document.getElementById("search");
 
@@ -121,17 +140,17 @@ let residents=[];
 
 async function loadResidents(){
 
-container.innerHTML="Loading...";
-
-const snapshot=await getDocs(collection(db,"users"));
+residentList.innerHTML="Loading...";
 
 residents=[];
 
-snapshot.forEach(doc=>{
+const snapshot=await getDocs(collection(db,"residents"));
+
+snapshot.forEach((doc)=>{
 
 const data=doc.data();
 
-if(data.role==="resident" && data.status==="Approved"){
+if(data.status==="Approved"){
 
 residents.push(data);
 
@@ -139,41 +158,43 @@ residents.push(data);
 
 });
 
-showResidents(residents);
+displayResidents(residents);
 
 }
 
-function showResidents(list){
+function displayResidents(list){
 
-container.innerHTML="";
+residentList.innerHTML="";
 
-if(list.length==0){
+if(list.length===0){
 
-container.innerHTML="<h3>No Residents Found</h3>";
+residentList.innerHTML="<h2>No Residents Found</h2>";
 
 return;
 
 }
 
-list.forEach(r=>{
+list.forEach((r)=>{
 
-container.innerHTML+=`
+residentList.innerHTML+=`
 
 <div class="card">
 
-<h3>${r.name}</h3>
+<h3>${r.name || "-"}</h3>
 
-<p><b>Email:</b> ${r.email}</p>
+<p><b>Email:</b> ${r.email || "-"}</p>
 
-<p><b>Mobile:</b> ${r.mobile}</p>
+<p><b>Mobile:</b> ${r.mobile || "-"}</p>
 
-<p><b>Flat:</b> ${r.flat}</p>
+<p><b>Flat:</b> ${r.flat || "-"}</p>
 
-<p><b>Floor:</b> ${r.floor}</p>
+<p><b>Floor:</b> ${r.floor || "-"}</p>
 
-<p><b>Vehicle:</b> ${r.vehicle}</p>
+<p><b>Vehicle:</b> ${r.vehicle || "-"}</p>
 
-<p><b>Status:</b> ${r.status}</p>
+<p><b>Role:</b> ${r.role || "-"}</p>
+
+<p><b>Status:</b> ${r.status || "-"}</p>
 
 </div>
 
@@ -187,17 +208,23 @@ search.addEventListener("input",()=>{
 
 const value=search.value.toLowerCase();
 
-const filtered=residents.filter(r=>
+const filtered=residents.filter((r)=>{
+
+return(
 
 (r.name||"").toLowerCase().includes(value)||
 
+(r.mobile||"").toLowerCase().includes(value)||
+
 (r.flat||"").toLowerCase().includes(value)||
 
-(r.mobile||"").toLowerCase().includes(value)
+(r.email||"").toLowerCase().includes(value)
 
 );
 
-showResidents(filtered);
+});
+
+displayResidents(filtered);
 
 });
 
