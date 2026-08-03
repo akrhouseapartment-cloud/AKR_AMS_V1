@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Flat Management</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<header class="dashboard-header">
+
+<div>
+
+<h1>🏠 Flat Management</h1>
+
+<p>AKR House Apartments</p>
+
+</div>
+
+<button
+class="btn primary"
+onclick="location.href='Dashboard.html'">
+
+Dashboard
+
+</button>
+
+</header>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="totalFlats">0</h2>
+
+<p>Total Flats</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="occupiedFlats">0</h2>
+
+<p>Occupied</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="vacantFlats">0</h2>
+
+<p>Vacant</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="ownersCount">0</h2>
+
+<p>Owners</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>➕ Add Flat</h2>
+
+<input
+type="text"
+id="flatNumber"
+placeholder="Flat Number">
+
+<input
+type="text"
+id="floor"
+placeholder="Floor">
+
+<select id="flatStatus">
+
+<option>Occupied</option>
+
+<option>Vacant</option>
+
+</select>
+
+<button
+class="btn success"
+id="saveFlat">
+
+Save Flat
+
+</button>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>🔍 Search Flat</h2>
+
+<input
+type="text"
+id="searchFlat"
+placeholder="Search by Flat Number">
+
+</div>
+
+<div id="flatContainer">
+
+Loading...
+
+</div>
+
+<div class="flat-card template"
+
+id="flatTemplate"
+
+style="display:none;">
+
+<div class="flat-header">
+
+<h3 class="flat-number">
+
+Flat 101
+
+</h3>
+
+<span class="flat-status">
+
+Occupied
+
+</span>
+
+</div>
+
+<div class="flat-details">
+
+<p>
+
+<b>🏢 Floor:</b>
+
+<span class="flat-floor">
+
+Ground Floor
+
+</span>
+
+</p>
+
+<p>
+
+<b>👤 Resident:</b>
+
+<span class="flat-owner">
+
+Not Assigned
+
+</span>
+
+</p>
+
+<p>
+
+<b>📞 Mobile:</b>
+
+<span class="flat-mobile">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>🚗 Vehicle:</b>
+
+<span class="flat-vehicle">
+
+--
+
+</span>
+
+</p>
+
+<p>
+
+<b>📅 Created:</b>
+
+<span class="flat-date">
+
+--
+
+</span>
+
+</p>
+
+</div>
+
+<div class="flat-actions">
+
+<button
+class="btn primary edit-btn">
+
+✏️ Edit
+
+</button>
+
+<button
+class="btn success occupy-btn">
+
+🏠 Occupy
+
+</button>
+
+<button
+class="btn warning vacant-btn">
+
+🚪 Vacant
+
+</button>
+
+<button
+class="btn danger delete-btn">
+
+🗑 Delete
+
+</button>
+
+</div>
+
+</div>
+
+<div
+id="emptyFlats"
+
+class="empty-state"
+
+style="display:none;">
+
+<h3>
+
+🏠 No Flats Available
+
+</h3>
+
+<p>
+
+No flat records found.
+
+</p>
+
+</div>
+
+<div class="dashboard-panel">
+
+<h2>
+
+📊 Flat Summary
+
+</h2>
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2 id="groundFloor">
+
+0
+
+</h2>
+
+<p>
+
+Ground Floor
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="firstFloor">
+
+0
+
+</h2>
+
+<p>
+
+1st Floor
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="secondFloor">
+
+0
+
+</h2>
+
+<p>
+
+2nd Floor
+
+</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2 id="thirdFloor">
+
+0
+
+</h2>
+
+<p>
+
+3rd Floor & Above
+
+</p>
+
+</div>
+
+</div>
+
+  </div>
+
+<script type="module">
+
+import { db } from "../firebase/firebase-config.js";
+
+import {
+
+collection,
+getDocs,
+addDoc,
+updateDoc,
+deleteDoc,
+doc
+
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const flatContainer=document.getElementById("flatContainer");
+const flatTemplate=document.getElementById("flatTemplate");
+const searchBox=document.getElementById("searchFlat");
+
+let flats=[];
+
+/* ==========================================
+   Load Flats
+========================================== */
+
+async function loadFlats(){
+
+flatContainer.innerHTML="";
+
+flats=[];
+
+const snapshot=await getDocs(collection(db,"flats"));
+
+let total=0;
+let occupied=0;
+let vacant=0;
+
+let ground=0;
+let first=0;
+let second=0;
+let third=0;
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+data.id=docSnap.id;
+
+flats.push(data);
+
+total++;
+
+if(data.status==="Occupied") occupied++;
+if(data.status==="Vacant") vacant++;
+
+switch(data.floor){
+
+case "Ground Floor":
+
+ground++;
+
+break;
+
+case "1st Floor":
+
+first++;
+
+break;
+
+case "2nd Floor":
+
+second++;
+
+break;
+
+default:
+
+third++;
+
+}
+
+});
+
+document.getElementById("totalFlats").innerHTML=total;
+document.getElementById("occupiedFlats").innerHTML=occupied;
+document.getElementById("vacantFlats").innerHTML=vacant;
+document.getElementById("ownersCount").innerHTML=occupied;
+
+document.getElementById("groundFloor").innerHTML=ground;
+document.getElementById("firstFloor").innerHTML=first;
+document.getElementById("secondFloor").innerHTML=second;
+document.getElementById("thirdFloor").innerHTML=third;
+
+if(flats.length===0){
+
+document.getElementById("emptyFlats").style.display="block";
+
+return;
+
+}
+
+document.getElementById("emptyFlats").style.display="none";
+
+renderFlats(flats);
+
+}
+
+/* ==========================================
+   Render Flats
+========================================== */
+
+function renderFlats(list){
+
+flatContainer.innerHTML="";
+
+list.forEach(createCard);
+
+}
+
+/* ==========================================
+   Create Card
+========================================== */
+
+function createCard(data){
+
+const card=flatTemplate.cloneNode(true);
+
+card.removeAttribute("id");
+
+card.style.display="block";
+
+card.querySelector(".flat-number").textContent=data.flatNumber||"-";
+card.querySelector(".flat-status").textContent=data.status||"-";
+card.querySelector(".flat-floor").textContent=data.floor||"-";
+card.querySelector(".flat-owner").textContent=data.owner||"Not Assigned";
+card.querySelector(".flat-mobile").textContent=data.mobile||"-";
+card.querySelector(".flat-vehicle").textContent=data.vehicle||"-";
+card.querySelector(".flat-date").textContent=data.createdAt||"-";
+
+card.querySelector(".occupy-btn").onclick=()=>changeStatus(data.id,"Occupied");
+
+card.querySelector(".vacant-btn").onclick=()=>changeStatus(data.id,"Vacant");
+
+card.querySelector(".delete-btn").onclick=()=>deleteFlat(data.id);
+
+card.querySelector(".edit-btn").onclick=()=>{
+
+const owner=prompt("Owner Name",data.owner||"");
+
+if(owner!==null){
+
+updateDoc(doc(db,"flats",data.id),{
+
+owner:owner
+
+}).then(loadFlats);
+
+}
+
+};
+
+flatContainer.appendChild(card);
+
+}
+
+/* ==========================================
+   Add Flat
+========================================== */
+
+document.getElementById("saveFlat").onclick=async()=>{
+
+const flatNumber=document.getElementById("flatNumber").value.trim();
+
+const floor=document.getElementById("floor").value.trim();
+
+const status=document.getElementById("flatStatus").value;
+
+if(flatNumber===""||floor===""){
+
+alert("Enter Flat Number and Floor");
+
+return;
+
+}
+
+await addDoc(collection(db,"flats"),{
+
+flatNumber,
+floor,
+status,
+owner:"",
+mobile:"",
+vehicle:"",
+createdAt:new Date().toLocaleString()
+
+});
+
+alert("Flat Added Successfully");
+
+document.getElementById("flatNumber").value="";
+document.getElementById("floor").value="";
+
+loadFlats();
+
+};
+
+/* ==========================================
+   Update Status
+========================================== */
+
+async function changeStatus(id,status){
+
+await updateDoc(doc(db,"flats",id),{
+
+status
+
+});
+
+loadFlats();
+
+}
+
+/* ==========================================
+   Delete Flat
+========================================== */
+
+async function deleteFlat(id){
+
+if(!confirm("Delete this flat?")) return;
+
+await deleteDoc(doc(db,"flats",id));
+
+loadFlats();
+
+}
+
+/* ==========================================
+   Search
+========================================== */
+
+searchBox.addEventListener("input",()=>{
+
+const keyword=searchBox.value.toLowerCase();
+
+const filtered=flats.filter(f=>
+
+(f.flatNumber||"").toLowerCase().includes(keyword)||
+
+(f.owner||"").toLowerCase().includes(keyword)
+
+);
+
+renderFlats(filtered);
+
+});
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadFlats();
+
+  </script>
+
+
+<script type="module">
+
+/* ==========================================
+   Auto Refresh Every 30 Seconds
+========================================== */
+
+setInterval(()=>{
+
+loadFlats();
+
+document.getElementById("lastUpdated").innerHTML=
+new Date().toLocaleTimeString();
+
+},30000);
+
+/* ==========================================
+   Last Updated
+========================================== */
+
+const lastUpdate=document.createElement("div");
+
+lastUpdate.style.marginTop="20px";
+lastUpdate.style.fontWeight="600";
+
+lastUpdate.innerHTML=
+'Last Updated : <span id="lastUpdated">Just Now</span>';
+
+document.querySelector(".dashboard-header")
+.appendChild(lastUpdate);
+
+/* ==========================================
+   Logout Button
+========================================== */
+
+const logoutBtn=document.createElement("button");
+
+logoutBtn.className="btn danger";
+
+logoutBtn.innerHTML="🚪 Logout";
+
+logoutBtn.style.marginLeft="15px";
+
+logoutBtn.onclick=function(){
+
+if(confirm("Logout from AKR AMS Admin Portal?")){
+
+window.location.href="../login.html";
+
+}
+
+};
+
+document.querySelector(".dashboard-header")
+.appendChild(logoutBtn);
+
+/* ==========================================
+   Initial Load
+========================================== */
+
+loadFlats();
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
