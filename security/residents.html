@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Residents</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+.search-box{
+
+margin:20px 0;
+
+}
+
+.search-box input{
+
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+
+}
+
+.card{
+
+background:#fff;
+padding:18px;
+border-radius:10px;
+margin-bottom:15px;
+box-shadow:0 2px 8px rgba(0,0,0,.1);
+
+}
+
+.badge{
+
+background:#28a745;
+color:white;
+padding:5px 12px;
+border-radius:20px;
+display:inline-block;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>🏠 Resident Directory</h2>
+
+<p>Security Portal</p>
+
+</div>
+
+<nav>
+
+<a href="dashboard.html">Dashboard</a>
+<a href="visitors.html">Visitors</a>
+<a href="parcels.html">Parcels</a>
+<a href="residents.html">Residents</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>Resident Search</h1>
+
+<p>Search and verify apartment residents.</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="search-box">
+
+<input
+
+type="text"
+
+id="searchResident"
+
+placeholder="Search by Name, Flat or Mobile">
+
+</div>
+
+<div id="residentList">
+
+<div class="card">
+
+<h3>Arun Kumar</h3>
+
+<p><b>Flat:</b> 203</p>
+
+<p><b>Mobile:</b> **********</p>
+
+<p><b>Vehicle:</b> KA01AB1234</p>
+
+<span class="badge">
+
+Approved
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="container footer-content">
+
+<h2>🛡 Security Portal</h2>
+
+<p>AKR House Apartments</p>
+
+</div>
+
+</footer>
+
+<script>
+
+const search=document.getElementById("searchResident");
+
+search.addEventListener("keyup",function(){
+
+const value=this.value.toLowerCase();
+
+document.querySelectorAll("#residentList .card").forEach(card=>{
+
+card.style.display=
+
+card.innerText.toLowerCase().includes(value)
+
+?
+
+"block"
+
+:
+
+"none";
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>
