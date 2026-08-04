@@ -1,16 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Visitors</title>
+<title>Visitor Management</title>
 
 <link rel="stylesheet" href="../css/style.css">
-<link rel="link" href="../css/auth.css">
+
+<link rel="stylesheet" href="../css/auth.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+margin-bottom:20px;
+}
+
+input,textarea{
+
+width:100%;
+padding:12px;
+margin-top:8px;
+margin-bottom:15px;
+border:1px solid #ccc;
+border-radius:8px;
+
+}
+
+table{
+
+width:100%;
+border-collapse:collapse;
+
+}
+
+table th,
+table td{
+
+padding:12px;
+border:1px solid #ddd;
+text-align:left;
+
+}
+
+.status{
+
+padding:5px 12px;
+border-radius:20px;
+color:#fff;
+font-size:13px;
+
+}
+
+.pending{
+
+background:#ff9800;
+
+}
+
+.approved{
+
+background:#4caf50;
+
+}
+
+.rejected{
+
+background:#f44336;
+
+}
+
+</style>
 
 </head>
 
@@ -22,19 +97,32 @@
 
 <div class="logo">
 
-<h2>🚶 Visitor Management</h2>
+<h2>
 
-<p>AKR House Apartments</p>
+🚶 Visitor Management
+
+</h2>
+
+<p>
+
+Resident Portal
+
+</p>
 
 </div>
 
 <nav>
 
 <a href="dashboard.html">Dashboard</a>
+
 <a href="visitors.html">Visitors</a>
+
 <a href="payments.html">Payments</a>
+
 <a href="complaints.html">Complaints</a>
+
 <a href="chat.html">Chat</a>
+
 <a href="profile.html">Profile</a>
 
 </nav>
@@ -47,69 +135,72 @@
 
 <div class="container">
 
-<h1>Visitor Approval</h1>
+<h1>
 
-<p>Approve visitors before they arrive.</p>
+Visitor Requests
+
+</h1>
+
+<p>
+
+Create visitor requests for Security approval.
+
+</p>
 
 </div>
 
 </section>
 
-<section>
-
 <div class="container">
 
-<div class="feature-card">
+<div class="card">
 
-<h3>Approve New Visitor</h3>
+<h2>
 
-<div class="input-group">
+New Visitor
 
-<label>Visitor Name</label>
+</h2>
 
-<input type="text" id="visitorName">
+<input
+type="text"
+id="visitorName"
+placeholder="Visitor Name">
 
-</div>
+<input
+type="tel"
+id="visitorMobile"
+placeholder="Mobile Number">
 
-<div class="input-group">
+<input
+type="text"
+id="visitorPurpose"
+placeholder="Purpose">
 
-<label>Mobile Number</label>
+<input
+type="datetime-local"
+id="arrivalTime">
 
-<input type="tel" id="visitorMobile">
+<button
+class="btn primary"
+id="saveVisitor">
 
-</div>
-
-<div class="input-group">
-
-<label>Purpose</label>
-
-<input type="text" id="visitorPurpose">
-
-</div>
-
-<div class="input-group">
-
-<label>Expected Time</label>
-
-<input type="datetime-local" id="arrivalTime">
-
-</div>
-
-<button class="btn primary" id="approveBtn">
-
-Approve Visitor
+Submit Request
 
 </button>
 
 </div>
 
-<br>
+<div class="card">
 
-<div class="feature-card">
+<h2>
 
-<h3>Today's Approved Visitors</h3>
+My Visitor Requests
+
+</h2>
 
 <table>
+
+<thead>
 
 <tr>
 
@@ -117,17 +208,21 @@ Approve Visitor
 
 <th>Purpose</th>
 
+<th>Arrival</th>
+
 <th>Status</th>
 
 </tr>
+
+</thead>
 
 <tbody id="visitorTable">
 
 <tr>
 
-<td colspan="3">
+<td colspan="4">
 
-No Visitors
+Loading...
 
 </td>
 
@@ -141,57 +236,215 @@ No Visitors
 
 </div>
 
-</section>
+<script type="module">
 
-<footer>
+import { auth, db } from "../firebase/firebase-config.js";
 
-<div class="container footer-content">
+import {
 
-<h2>🏠 AKR House Apartments</h2>
+collection,
+addDoc,
+query,
+where,
+getDocs,
+serverTimestamp
 
-<p>Resident Portal</p>
-
-</div>
-
-</footer>
-
-<script>
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const table=document.getElementById("visitorTable");
 
-document.getElementById("approveBtn").onclick=function(){
+async function loadVisitors(){
 
-const name=document.getElementById("visitorName").value;
+const user=auth.currentUser;
 
-const purpose=document.getElementById("visitorPurpose").value;
+if(!user){
 
-if(name===""){
-
-alert("Enter Visitor Name");
+table.innerHTML="<tr><td colspan='4'>Please login again.</td></tr>";
 
 return;
 
 }
 
+const q=query(
+
+collection(db,"visitors"),
+
+where("residentUid","==",user.uid)
+
+);
+
+const snapshot=await getDocs(q);
+
+table.innerHTML="";
+
+if(snapshot.empty){
+
+table.innerHTML="<tr><td colspan='4'>No visitor requests found.</td></tr>";
+
+return;
+
+}
+
+snapshot.forEach((doc)=>{
+
+const data=doc.data();
+
+let css="pending";
+
+if(data.status==="Approved") css="approved";
+
+if(data.status==="Rejected") css="rejected";
+
 table.innerHTML+=`
 
 <tr>
 
-<td>${name}</td>
+<td>${data.visitorName}</td>
 
-<td>${purpose}</td>
+<td>${data.purpose}</td>
 
-<td style="color:green;">Approved</td>
+<td>${data.arrivalTime}</td>
+
+<td>
+
+<span class="status ${css}">
+
+${data.status}
+
+</span>
+
+</td>
 
 </tr>
 
 `;
 
-alert("Visitor Approved");
+});
+
+}
+
+document.getElementById("saveVisitor").onclick=async()=>{
+
+const user=auth.currentUser;
+
+if(!user){
+
+alert("Please login again.");
+
+return;
+
+}
+
+const visitorName=document.getElementById("visitorName").value.trim();
+
+const visitorMobile=document.getElementById("visitorMobile").value.trim();
+
+const visitorPurpose=document.getElementById("visitorPurpose").value.trim();
+
+const arrivalTime=document.getElementById("arrivalTime").value;
+
+if(
+
+visitorName===""||
+
+visitorMobile===""||
+
+visitorPurpose===""||
+
+arrivalTime===""
+
+){
+
+alert("Please fill all fields.");
+
+return;
+
+}
+
+await addDoc(collection(db,"visitors"),{
+
+residentUid:user.uid,
+
+residentName:user.displayName||"Resident",
+
+flat:"",
+
+visitorName,
+
+visitorMobile,
+
+purpose:visitorPurpose,
+
+arrivalTime,
+
+status:"Pending",
+
+requestTime:serverTimestamp(),
+
+approvedBy:"",
+
+checkInTime:"",
+
+checkOutTime:"",
+
+remarks:""
+
+});
+
+alert("Visitor request submitted successfully.");
+
+document.getElementById("visitorName").value="";
+
+document.getElementById("visitorMobile").value="";
+
+document.getElementById("visitorPurpose").value="";
+
+document.getElementById("arrivalTime").value="";
+
+loadVisitors();
 
 };
+
+auth.onAuthStateChanged((user)=>{
+
+if(user){
+
+loadVisitors();
+
+}else{
+
+table.innerHTML="<tr><td colspan='4'>Please login.</td></tr>";
+
+}
+
+});
 
 </script>
 
 </body>
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
