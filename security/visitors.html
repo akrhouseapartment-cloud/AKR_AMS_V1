@@ -5,325 +5,162 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
 
-<title>Visitor Entry</title>
+<title>
 
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/security.css">
+Visitor Approval
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</title>
+
+<link rel="stylesheet"
+href="../css/style.css">
+
+<link rel="stylesheet"
+href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+margin-bottom:20px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+table th,
+table td{
+padding:12px;
+border:1px solid #ddd;
+text-align:left;
+}
+
+button{
+margin:2px;
+}
+
+.pending{
+background:#ff9800;
+color:white;
+padding:5px 10px;
+border-radius:20px;
+}
+
+.approved{
+background:#4caf50;
+color:white;
+padding:5px 10px;
+border-radius:20px;
+}
+
+.rejected{
+background:#f44336;
+color:white;
+padding:5px 10px;
+border-radius:20px;
+}
+
+</style>
 
 </head>
 
 <body>
 
-<div class="dashboard-container">
+<header>
 
-<header class="dashboard-header">
-
-<div>
-
-<h1>🚶 Visitor Entry</h1>
-
-<p>AKR House Apartments</p>
-
-</div>
-
-<button
-class="btn primary"
-onclick="location.href='dashboard.html'">
-
-🏠 Dashboard
-
-</button>
-
-</header>
-
-<div class="dashboard-panel">
-
-<h2>New Visitor</h2>
-
-<input
-type="text"
-id="visitorName"
-placeholder="Visitor Name">
-
-<input
-type="text"
-id="mobile"
-placeholder="Mobile Number">
-
-<input
-type="text"
-id="vehicle"
-placeholder="Vehicle Number (Optional)">
-
-<input
-type="text"
-id="flat"
-placeholder="Flat Number">
-
-<input
-type="text"
-id="purpose"
-placeholder="Purpose of Visit">
-
-<select id="status">
-
-<option>Pending</option>
-<option>Approved</option>
-<option>Rejected</option>
-
-</select>
-
-<button
-class="btn success"
-id="saveVisitor">
-
-➕ Register Visitor
-
-</button>
-
-</div>
-
-<div class="dashboard-panel">
-
-<h2>Today's Visitors</h2>
-
-<input
-type="text"
-id="searchVisitor"
-placeholder="Search Visitor">
-
-</div>
-
-<div id="visitorContainer">
-
-Loading...
-
-</div>
-
-
-<div class="visitor-card template"
-
-id="visitorTemplate"
-
-style="display:none;">
-
-<div class="visitor-header">
-
-<h3 class="visitor-name">
-
-Visitor Name
-
-</h3>
-
-<span class="visitor-status">
-
-Pending
-
-</span>
-
-</div>
-
-<div class="visitor-details">
-
-<p>
-
-<b>📱 Mobile:</b>
-
-<span class="visitor-mobile">
-
---
-
-</span>
-
-</p>
-
-<p>
-
-<b>🏠 Flat:</b>
-
-<span class="visitor-flat">
-
---
-
-</span>
-
-</p>
-
-<p>
-
-<b>🚗 Vehicle:</b>
-
-<span class="visitor-vehicle">
-
---
-
-</span>
-
-</p>
-
-<p>
-
-<b>📝 Purpose:</b>
-
-<span class="visitor-purpose">
-
---
-
-</span>
-
-</p>
-
-<p>
-
-<b>🕒 Entry Time:</b>
-
-<span class="visitor-time">
-
---
-
-</span>
-
-</p>
-
-</div>
-
-<div class="visitor-actions">
-
-<button
-class="btn success approve-btn">
-
-✅ Approve
-
-</button>
-
-<button
-class="btn warning checkout-btn">
-
-🚪 Check Out
-
-</button>
-
-<button
-class="btn primary view-btn">
-
-👁 View
-
-</button>
-
-<button
-class="btn danger delete-btn">
-
-🗑 Delete
-
-</button>
-
-</div>
-
-</div>
-
-<div
-id="emptyVisitors"
-
-class="empty-state"
-
-style="display:none;">
-
-<h3>
-
-🚶 No Visitors Found
-
-</h3>
-
-<p>
-
-There are no visitor records.
-
-</p>
-
-</div>
-
-<div class="dashboard-panel">
+<div class="container">
 
 <h2>
 
-📊 Today's Summary
+🚶 Visitor Approval
 
 </h2>
 
-<div class="dashboard-cards">
+<nav>
 
-<div class="dashboard-card">
+<a href="dashboard.html">Dashboard</a>
 
-<h2 id="visitorCount">
+<a href="visitors.html">Visitors</a>
 
-0
+<a href="parcels.html">Parcels</a>
+
+<a href="residents.html">Residents</a>
+
+<a href="emergency.html">Emergency</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>
+
+Pending Visitor Requests
 
 </h2>
 
-<p>
+<table>
 
-Visitors
+<thead>
 
-</p>
+<tr>
 
-</div>
+<th>Visitor</th>
 
-<div class="dashboard-card">
+<th>Resident</th>
 
-<h2 id="approvedCount">
+<th>Flat</th>
 
-0
+<th>Arrival</th>
 
-</h2>
+<th>Status</th>
 
-<p>
+<th>Action</th>
 
-Approved
+</tr>
 
-</p>
+</thead>
 
-</div>
+<tbody id="visitorTable">
 
-<div class="dashboard-card">
+<tr>
 
-<h2 id="pendingCount">
+<td colspan="6">
 
-0
+Loading...
 
-</h2>
+</td>
 
-<p>
+</tr>
 
-Pending
+</tbody>
 
-</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<h2 id="checkedOutCount">
-
-0
-
-</h2>
-
-<p>
-
-Checked Out
-
-</p>
+</table>
 
 </div>
 
 </div>
-
-  </div>
-
 
 <script type="module">
 
@@ -333,325 +170,190 @@ import {
 
 collection,
 getDocs,
-addDoc,
 updateDoc,
-deleteDoc,
 doc
 
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+}
 
-const visitorContainer =
-document.getElementById("visitorContainer");
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-const visitorTemplate =
-document.getElementById("visitorTemplate");
-
-const searchBox =
-document.getElementById("searchVisitor");
-
-let visitors=[];
-
-/* ==========================================
-   Load Visitors
-========================================== */
+const table=document.getElementById("visitorTable");
 
 async function loadVisitors(){
 
-visitorContainer.innerHTML="";
+const snapshot=await getDocs(collection(db,"visitors"));
 
-visitors=[];
+table.innerHTML="";
 
-const snapshot=
-await getDocs(collection(db,"visitors"));
+if(snapshot.empty){
 
-let total=0;
-let approved=0;
-let pending=0;
-let checkedOut=0;
+table.innerHTML="<tr><td colspan='6'>No Visitor Requests</td></tr>";
+
+return;
+
+}
 
 snapshot.forEach((docSnap)=>{
 
 const data=docSnap.data();
 
-data.id=docSnap.id;
+let css="pending";
 
-visitors.push(data);
+if(data.status==="Approved") css="approved";
 
-total++;
+if(data.status==="Rejected") css="rejected";
 
-if(data.status==="Approved") approved++;
+table.innerHTML+=`
 
-if(data.status==="Pending") pending++;
+<tr>
 
-if(data.status==="Checked Out") checkedOut++;
+<td>${data.visitorName}</td>
 
-});
+<td>${data.residentName || "-"}</td>
 
-document.getElementById("visitorCount").innerHTML=total;
+<td>${data.flat || "-"}</td>
 
-document.getElementById("approvedCount").innerHTML=approved;
+<td>${data.arrivalTime || "-"}</td>
 
-document.getElementById("pendingCount").innerHTML=pending;
+<td>
 
-document.getElementById("checkedOutCount").innerHTML=checkedOut;
+<span class="${css}">
 
-if(visitors.length===0){
+${data.status}
 
-document.getElementById("emptyVisitors").style.display="block";
+</span>
 
-return;
+</td>
 
-}
+<td>
 
-document.getElementById("emptyVisitors").style.display="none";
+<button
 
-visitors.forEach(createCard);
+class="btn primary"
 
-}
+onclick="approveVisitor('${docSnap.id}')">
 
-/* ==========================================
-   Create Visitor Card
-========================================== */
+Approve
 
-function createCard(data){
+</button>
 
-const card=
-visitorTemplate.cloneNode(true);
+<button
 
-card.removeAttribute("id");
+class="btn danger"
 
-card.style.display="block";
+onclick="rejectVisitor('${docSnap.id}')">
 
-card.querySelector(".visitor-name").textContent=
-data.name||"-";
+Reject
 
-card.querySelector(".visitor-status").textContent=
-data.status||"Pending";
+</button>
 
-card.querySelector(".visitor-mobile").textContent=
-data.mobile||"-";
+<button
 
-card.querySelector(".visitor-flat").textContent=
-data.flat||"-";
+class="btn secondary"
 
-card.querySelector(".visitor-vehicle").textContent=
-data.vehicle||"-";
+onclick="checkInVisitor('${docSnap.id}')">
 
-card.querySelector(".visitor-purpose").textContent=
-data.purpose||"-";
+Check-In
 
-card.querySelector(".visitor-time").textContent=
-data.entryTime||"-";
+</button>
 
-card.querySelector(".approve-btn").onclick=
-()=>approveVisitor(data.id);
+<button
 
-card.querySelector(".checkout-btn").onclick=
-()=>checkOutVisitor(data.id);
+class="btn secondary"
 
-card.querySelector(".view-btn").onclick=
-()=>alert(JSON.stringify(data,null,2));
+onclick="checkOutVisitor('${docSnap.id}')">
 
-card.querySelector(".delete-btn").onclick=
-()=>deleteVisitor(data.id);
+Check-Out
 
-visitorContainer.appendChild(card);
+</button>
 
-}
+</td>
 
-/* ==========================================
-   Register Visitor
-========================================== */
+</tr>
 
-document.getElementById("saveVisitor").onclick=
-async()=>{
-
-const name=
-document.getElementById("visitorName").value;
-
-const mobile=
-document.getElementById("mobile").value;
-
-const vehicle=
-document.getElementById("vehicle").value;
-
-const flat=
-document.getElementById("flat").value;
-
-const purpose=
-document.getElementById("purpose").value;
-
-const status=
-document.getElementById("status").value;
-
-if(name.trim()==="" || mobile.trim()==="" || flat.trim()===""){
-
-alert("Please fill all required fields.");
-
-return;
-
-}
-
-await addDoc(collection(db,"visitors"),{
-
-name,
-mobile,
-vehicle,
-flat,
-purpose,
-status,
-
-entryTime:new Date().toLocaleString()
+`;
 
 });
 
-alert("Visitor Registered Successfully.");
+}
 
-document.getElementById("visitorName").value="";
-document.getElementById("mobile").value="";
-document.getElementById("vehicle").value="";
-document.getElementById("flat").value="";
-document.getElementById("purpose").value="";
+/* ==========================
+   Approve
+========================== */
+
+window.approveVisitor=async(id)=>{
+
+await updateDoc(doc(db,"visitors",id),{
+
+status:"Approved",
+
+approvedBy:"Security"
+
+});
 
 loadVisitors();
 
 };
 
-/* ==========================================
-   Approve Visitor
-========================================== */
+/* ==========================
+   Reject
+========================== */
 
-async function approveVisitor(id){
+window.rejectVisitor=async(id)=>{
 
 await updateDoc(doc(db,"visitors",id),{
 
-status:"Approved"
+status:"Rejected"
 
 });
 
 loadVisitors();
 
-}
+};
 
-/* ==========================================
-   Check Out Visitor
-========================================== */
+/* ==========================
+   Check In
+========================== */
 
-async function checkOutVisitor(id){
+window.checkInVisitor=async(id)=>{
+
+await updateDoc(doc(db,"visitors",id),{
+
+status:"Checked In",
+
+checkInTime:new Date().toLocaleString()
+
+});
+
+loadVisitors();
+
+};
+
+/* ==========================
+   Check Out
+========================== */
+
+window.checkOutVisitor=async(id)=>{
 
 await updateDoc(doc(db,"visitors",id),{
 
 status:"Checked Out",
 
-exitTime:new Date().toLocaleString()
+checkOutTime:new Date().toLocaleString()
 
 });
 
 loadVisitors();
 
-}
-
-/* ==========================================
-   Delete Visitor
-========================================== */
-
-async function deleteVisitor(id){
-
-if(!confirm("Delete visitor record?")) return;
-
-await deleteDoc(doc(db,"visitors",id));
-
-loadVisitors();
-
-}
-
-/* ==========================================
-   Search Visitors
-========================================== */
-
-searchBox.addEventListener("input",()=>{
-
-const keyword=
-searchBox.value.toLowerCase();
-
-visitorContainer.innerHTML="";
-
-visitors.filter(v=>
-
-(v.name||"").toLowerCase().includes(keyword) ||
-
-(v.mobile||"").toLowerCase().includes(keyword) ||
-
-(v.flat||"").toLowerCase().includes(keyword)
-
-).forEach(createCard);
-
-});
-
-loadVisitors();
-
-  </script>
-
-<script type="module">
-
-/* ==========================================
-   Auto Refresh Every 30 Seconds
-========================================== */
-
-setInterval(()=>{
-
-loadVisitors();
-
-document.getElementById("lastUpdated").innerHTML=
-new Date().toLocaleTimeString();
-
-},30000);
-
-/* ==========================================
-   Last Updated
-========================================== */
-
-const lastUpdate=document.createElement("div");
-
-lastUpdate.style.marginTop="20px";
-
-lastUpdate.style.fontWeight="600";
-
-lastUpdate.innerHTML=
-'Last Updated : <span id="lastUpdated">Just Now</span>';
-
-document.querySelector(".dashboard-header")
-.appendChild(lastUpdate);
-
-/* ==========================================
-   Logout
-========================================== */
-
-document.getElementById("logoutBtn")?.addEventListener("click",()=>{
-
-if(confirm("Logout from Security Portal?")){
-
-window.location.href="../login.html";
-
-}
-
-});
-
-/* ==========================================
-   Initial Load
-========================================== */
+};
 
 loadVisitors();
 
 </script>
 
-</div>
-
 </body>
 
 </html>
-  
-  
 
 
 
