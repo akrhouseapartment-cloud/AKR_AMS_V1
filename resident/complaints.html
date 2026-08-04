@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Complaints</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>📝 Complaints</h2>
+
+<p>AKR House Apartments</p>
+
+</div>
+
+<nav>
+
+<a href="dashboard.html">Dashboard</a>
+<a href="visitors.html">Visitors</a>
+<a href="payments.html">Payments</a>
+<a href="complaints.html">Complaints</a>
+<a href="chat.html">Chat</a>
+<a href="profile.html">Profile</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>Complaint Management</h1>
+
+<p>Raise and track your complaints.</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="feature-card">
+
+<h3>Raise Complaint</h3>
+
+<label>Category</label>
+
+<select id="category">
+
+<option>Electrical</option>
+<option>Water</option>
+<option>Lift</option>
+<option>Parking</option>
+<option>Security</option>
+<option>Housekeeping</option>
+<option>Others</option>
+
+</select>
+
+<br><br>
+
+<label>Description</label>
+
+<textarea
+id="description"
+rows="5"
+placeholder="Describe your complaint..."></textarea>
+
+<br><br>
+
+<button
+class="btn primary"
+id="submitComplaint">
+
+Submit Complaint
+
+</button>
+
+</div>
+
+<br>
+
+<div class="feature-card">
+
+<h3>Complaint History</h3>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Category</th>
+
+<th>Status</th>
+
+</tr>
+
+<tbody id="complaintTable">
+
+<tr>
+
+<td colspan="3">
+
+No Complaints
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="container footer-content">
+
+<h2>🏠 AKR House Apartments</h2>
+
+<p>Resident Portal</p>
+
+</div>
+
+</footer>
+
+<script>
+
+let complaintNo=1;
+
+document.getElementById("submitComplaint").onclick=function(){
+
+const category=document.getElementById("category").value;
+
+const description=document.getElementById("description").value.trim();
+
+if(description===""){
+
+alert("Please enter complaint details.");
+
+return;
+
+}
+
+const table=document.getElementById("complaintTable");
+
+if(complaintNo===1){
+
+table.innerHTML="";
+
+}
+
+table.innerHTML+=`
+
+<tr>
+
+<td>CMP${String(complaintNo).padStart(3,"0")}</td>
+
+<td>${category}</td>
+
+<td style="color:orange;">Pending</td>
+
+</tr>
+
+`;
+
+complaintNo++;
+
+document.getElementById("description").value="";
+
+alert("Complaint submitted successfully.");
+
+};
+
+</script>
+
+</body>
+
+  </html>
