@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Emergency Center</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+.card{
+background:#fff;
+padding:20px;
+margin-bottom:20px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+}
+
+.sos{
+background:#d32f2f;
+color:#fff;
+font-size:20px;
+padding:18px;
+width:100%;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.call-btn{
+display:block;
+margin-top:10px;
+padding:12px;
+background:#1976d2;
+color:#fff;
+text-decoration:none;
+text-align:center;
+border-radius:8px;
+}
+
+textarea{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>🚨 Emergency Center</h2>
+
+<p>Security Portal</p>
+
+</div>
+
+<nav>
+
+<a href="dashboard.html">Dashboard</a>
+<a href="visitors.html">Visitors</a>
+<a href="parcels.html">Parcels</a>
+<a href="residents.html">Residents</a>
+<a href="emergency.html">Emergency</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>Emergency Response</h1>
+
+<p>Quick access to emergency contacts and incident reporting.</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<button id="sosButton" class="sos">
+
+🆘 SEND EMERGENCY ALERT
+
+</button>
+
+<br><br>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>👮 Police</h3>
+
+<p>Emergency Police Assistance</p>
+
+<a href="tel:112" class="call-btn">Call 112</a>
+
+</div>
+
+<div class="card">
+
+<h3>🚑 Ambulance</h3>
+
+<p>Medical Emergency</p>
+
+<a href="tel:108" class="call-btn">Call 108</a>
+
+</div>
+
+<div class="card">
+
+<h3>🔥 Fire Station</h3>
+
+<p>Fire Emergency</p>
+
+<a href="tel:101" class="call-btn">Call 101</a>
+
+</div>
+
+<div class="card">
+
+<h3>🛡 Apartment Security</h3>
+
+<p>Internal Security</p>
+
+<a href="tel:+918668061458" class="call-btn">
+
+Call Security
+
+</a>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h2>📝 Incident Report</h2>
+
+<input
+type="text"
+id="incidentTitle"
+placeholder="Incident Title">
+
+<br><br>
+
+<textarea
+id="incidentDescription"
+rows="6"
+placeholder="Describe the incident..."></textarea>
+
+<br><br>
+
+<button
+class="btn primary"
+id="reportIncident">
+
+Submit Report
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>📋 Recent Incidents</h2>
+
+<ul id="incidentList">
+
+<li>No incidents reported today.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="container footer-content">
+
+<h2>🚨 AKR House Apartments</h2>
+
+<p>Emergency Center</p>
+
+<p>Version 1.0.0</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document.getElementById("sosButton").onclick=function(){
+
+alert("🚨 Emergency Alert Sent Successfully!");
+
+};
+
+document.getElementById("reportIncident").onclick=function(){
+
+const title=document.getElementById("incidentTitle").value.trim();
+
+const desc=document.getElementById("incidentDescription").value.trim();
+
+if(title===""||desc===""){
+
+alert("Please fill all details.");
+
+return;
+
+}
+
+const list=document.getElementById("incidentList");
+
+if(list.innerHTML.includes("No incidents")){
+
+list.innerHTML="";
+
+}
+
+const li=document.createElement("li");
+
+li.innerHTML="<b>"+title+"</b> - Report Submitted";
+
+list.appendChild(li);
+
+document.getElementById("incidentTitle").value="";
+document.getElementById("incidentDescription").value="";
+
+alert("Incident reported successfully.");
+
+};
+
+</script>
+
+</body>
+
+  </html>
