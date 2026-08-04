@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Profile</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+.profile-card{
+
+background:#fff;
+padding:25px;
+border-radius:12px;
+box-shadow:0 3px 12px rgba(0,0,0,.1);
+margin-bottom:20px;
+
+}
+
+.profile-photo{
+
+width:120px;
+height:120px;
+border-radius:50%;
+background:#ddd;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:50px;
+margin:auto;
+
+}
+
+input,select{
+
+width:100%;
+padding:12px;
+margin-top:8px;
+margin-bottom:15px;
+border-radius:8px;
+border:1px solid #ccc;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>👤 My Profile</h2>
+
+<p>AKR House Apartments</p>
+
+</div>
+
+<nav>
+
+<a href="dashboard.html">Dashboard</a>
+<a href="visitors.html">Visitors</a>
+<a href="payments.html">Payments</a>
+<a href="complaints.html">Complaints</a>
+<a href="chat.html">Chat</a>
+<a href="profile.html">Profile</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>Resident Profile</h1>
+
+<p>Manage your personal information.</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="profile-card">
+
+<div class="profile-photo">
+
+👤
+
+</div>
+
+<br>
+
+<label>Full Name</label>
+
+<input
+type="text"
+value="Arun Kumar">
+
+<label>Email</label>
+
+<input
+type="email"
+value="user@email.com">
+
+<label>Mobile Number</label>
+
+<input
+type="tel"
+value="9876543210">
+
+<label>Flat Number</label>
+
+<input
+type="text"
+value="203">
+
+<label>Floor</label>
+
+<input
+type="text"
+value="2nd Floor">
+
+<label>Vehicle Number</label>
+
+<input
+type="text"
+placeholder="KA01AB1234">
+
+<label>Emergency Contact</label>
+
+<input
+type="tel"
+placeholder="Emergency Contact">
+
+<label>Preferred Language</label>
+
+<select>
+
+<option>English</option>
+<option>Kannada</option>
+<option>Tamil</option>
+<option>Telugu</option>
+
+</select>
+
+<button
+class="btn primary"
+id="saveProfile">
+
+Save Profile
+
+</button>
+
+</div>
+
+<div class="profile-card">
+
+<h2>🔒 Change Password</h2>
+
+<input
+type="password"
+placeholder="Current Password">
+
+<input
+type="password"
+placeholder="New Password">
+
+<input
+type="password"
+placeholder="Confirm Password">
+
+<button
+class="btn secondary">
+
+Update Password
+
+</button>
+
+</div>
+
+<div class="profile-card">
+
+<h2>🚪 Account</h2>
+
+<button
+class="btn secondary"
+onclick="location.href='../login.html'">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="container footer-content">
+
+<h2>🏠 AKR House Apartments</h2>
+
+<p>Resident Portal</p>
+
+<p>Version 1.0.0</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document.getElementById("saveProfile").onclick=function(){
+
+alert("Profile updated successfully.");
+
+};
+
+</script>
+
+</body>
+
+  </html>
