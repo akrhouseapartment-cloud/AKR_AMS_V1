@@ -228,7 +228,6 @@ const table=document.getElementById("visitorTable");
 
 let visitorData=[];
 
-
 async function loadVisitors(){
 
 const snapshot=await getDocs(collection(db,"visitors"));
@@ -391,17 +390,11 @@ ${data.status}
 });
 
 });
+   
 
 
-
-
-                                        
-
-
-
-
-
-  /* ==========================
+   
+/* ==========================
    Export Visitors to CSV
 ========================== */
 
@@ -511,12 +504,113 @@ document.querySelector(".container table")
 .parentElement.appendChild(exportButton);
 
 
-/* =================
+/* ==========================
+   Last Updated
+========================== */
+
+const updated=document.createElement("p");
+
+updated.id="lastUpdated";
+
+updated.style.marginTop="15px";
+
+updated.style.fontWeight="600";
+
+updated.innerHTML="Last Updated: Loading...";
+
+document.querySelector(".container table")
+.parentElement.appendChild(updated);
+
+
+/* ==========================
+   Logout Button
+========================== */
+
+const logoutButton=document.createElement("button");
+
+logoutButton.className="btn secondary";
+
+logoutButton.innerHTML="🚪 Logout";
+
+logoutButton.style.marginTop="20px";
+
+logoutButton.addEventListener("click",()=>{
+
+if(confirm("Logout from Admin Portal?")){
+
+window.location.href="../login.html";
+
+}
+
+});
+
+document.querySelector(".container table")
+.parentElement.appendChild(logoutButton);
+
+
+/* ==========================
+   Refresh Data
+========================== */
+
+async function refreshVisitors(){
+
+try{
+
+await loadVisitors();
+
+document.getElementById("lastUpdated").innerHTML=
+
+"Last Updated: "+new Date().toLocaleTimeString();
+
+}catch(error){
+
+console.error("Visitor loading error:",error);
+
+table.innerHTML=`
+
+<tr>
+
+<td colspan="5">
+
+Unable to load visitor records.
+
+</td>
+
+</tr>
+
+`;
+
+}
+
+}
+
+
+/* ==========================
+   Initial Load
+========================== */
+
+refreshVisitors();
+
+
+/* ==========================
+   Auto Refresh - 30 Seconds
+========================== */
+
+setInterval(()=>{
+
+refreshVisitors();
+
+},30000);
+
+</script>
+
+</body>
+
+</html>
 
 
 
 
-  
 
 
 
@@ -534,10 +628,4 @@ document.querySelector(".container table")
 
 
 
-
-
-
-
-
-
-  
+   
