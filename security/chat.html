@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Security Chat</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+.chat-container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.chat-box{
+height:450px;
+overflow-y:auto;
+background:#fff;
+border-radius:10px;
+padding:15px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+margin-bottom:15px;
+}
+
+.message{
+padding:12px;
+margin-bottom:12px;
+border-radius:10px;
+background:#f5f5f5;
+}
+
+.message.admin{
+background:#e3f2fd;
+}
+
+.message.security{
+background:#e8f5e9;
+}
+
+.message.resident{
+background:#fff8e1;
+}
+
+.time{
+font-size:12px;
+color:#666;
+margin-top:5px;
+}
+
+textarea{
+width:100%;
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+resize:none;
+margin-bottom:10px;
+}
+
+select{
+width:100%;
+padding:12px;
+margin-bottom:10px;
+border-radius:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>💬 Security Communication</h2>
+
+<p>AKR House Apartments</p>
+
+</div>
+
+<nav>
+
+<a href="dashboard.html">Dashboard</a>
+<a href="visitors.html">Visitors</a>
+<a href="parcels.html">Parcels</a>
+<a href="residents.html">Residents</a>
+<a href="emergency.html">Emergency</a>
+<a href="chat.html">Chat</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>Security Chat</h1>
+
+<p>Communicate with Admin and Residents.</p>
+
+</div>
+
+</section>
+
+<div class="chat-container">
+
+<div id="chatBox" class="chat-box">
+
+<div class="message admin">
+
+<b>Admin</b>
+
+<p>Welcome Security Team.</p>
+
+<div class="time">Today</div>
+
+</div>
+
+</div>
+
+<select id="receiver">
+
+<option value="Admin">Admin</option>
+<option value="Residents">Residents</option>
+<option value="Everyone">Broadcast</option>
+
+</select>
+
+<textarea
+
+id="message"
+
+rows="4"
+
+placeholder="Type your message...">
+
+</textarea>
+
+<button
+
+class="btn primary"
+
+id="sendBtn">
+
+Send Message
+
+</button>
+
+</div>
+
+<footer>
+
+<div class="container footer-content">
+
+<h2>🛡 Security Portal</h2>
+
+<p>AKR House Apartments</p>
+
+</div>
+
+</footer>
+
+<script>
+
+const chat=document.getElementById("chatBox");
+
+document.getElementById("sendBtn").onclick=function(){
+
+const msg=document.getElementById("message").value.trim();
+
+const receiver=document.getElementById("receiver").value;
+
+if(msg===""){
+
+alert("Enter a message.");
+
+return;
+
+}
+
+const div=document.createElement("div");
+
+div.className="message security";
+
+div.innerHTML=`
+
+<b>You ➜ ${receiver}</b>
+
+<p>${msg}</p>
+
+<div class="time">
+
+${new Date().toLocaleTimeString()}
+
+</div>
+
+`;
+
+chat.appendChild(div);
+
+chat.scrollTop=chat.scrollHeight;
+
+document.getElementById("message").value="";
+
+alert("Message Sent");
+
+};
+
+</script>
+
+</body>
+
+</html>
