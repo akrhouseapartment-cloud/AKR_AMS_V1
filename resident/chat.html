@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Community Chat</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/auth.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+.chat-box{
+
+height:400px;
+overflow-y:auto;
+background:#fff;
+border:1px solid #ddd;
+border-radius:10px;
+padding:15px;
+margin-bottom:15px;
+
+}
+
+.message{
+
+background:#e8f5e9;
+padding:10px;
+margin-bottom:10px;
+border-radius:8px;
+
+}
+
+.time{
+
+font-size:12px;
+color:#666;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<h2>💬 Community Chat</h2>
+
+<p>AKR House Apartments</p>
+
+</div>
+
+<nav>
+
+<a href="dashboard.html">Dashboard</a>
+<a href="visitors.html">Visitors</a>
+<a href="payments.html">Payments</a>
+<a href="complaints.html">Complaints</a>
+<a href="chat.html">Chat</a>
+<a href="profile.html">Profile</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>Community Chat</h1>
+
+<p>Connect with residents and management.</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="chat-box" id="chatBox">
+
+<div class="message">
+
+<b>Admin</b>
+
+<p>Welcome to AKR House Community.</p>
+
+<div class="time">Today</div>
+
+</div>
+
+</div>
+
+<textarea
+
+id="chatMessage"
+
+rows="4"
+
+placeholder="Type your message...">
+
+</textarea>
+
+<br><br>
+
+<button
+
+class="btn primary"
+
+id="sendMessage">
+
+Send
+
+</button>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="container footer-content">
+
+<h2>🏠 AKR House Apartments</h2>
+
+<p>Resident Portal</p>
+
+</div>
+
+</footer>
+
+<script>
+
+document.getElementById("sendMessage").onclick=function(){
+
+const message=document.getElementById("chatMessage").value.trim();
+
+if(message===""){
+
+alert("Enter a message.");
+
+return;
+
+}
+
+const chat=document.getElementById("chatBox");
+
+chat.innerHTML+=`
+
+<div class="message">
+
+<b>You</b>
+
+<p>${message}</p>
+
+<div class="time">${new Date().toLocaleTimeString()}</div>
+
+</div>
+
+`;
+
+document.getElementById("chatMessage").value="";
+
+chat.scrollTop=chat.scrollHeight;
+
+};
+
+</script>
+
+</body>
+
+</html>
