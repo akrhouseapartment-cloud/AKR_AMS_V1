@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+content="width=device-width,initial-scale=1.0">
 
 <title>
 
-Notices Management
+Notice Management
 
 </title>
 
@@ -23,439 +23,320 @@ href="../css/admin.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
 rel="stylesheet">
 
+<style>
+
+.container{
+max-width:1300px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+margin-bottom:20px;
+}
+
+input,
+select,
+textarea{
+
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+
+}
+
+.notice-card{
+
+background:#fafafa;
+padding:15px;
+border-left:5px solid #1565c0;
+margin-top:15px;
+border-radius:8px;
+
+}
+
+.high{
+border-left-color:#d32f2f;
+}
+
+.medium{
+border-left-color:#ff9800;
+}
+
+.low{
+border-left-color:#4caf50;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<div class="dashboard-container">
+<header>
 
-<header class="dashboard-header">
+<div class="container">
 
-<div>
+<h2>
 
-<h1>
+📢 Notice Management
 
-📢 Notices Management
+</h2>
 
-</h1>
+<nav>
 
-<p>
+<a href="Dashboard.html">
 
-AKR House Apartments
+Dashboard
 
-</p>
+</a>
 
-</div>
+<a href="notices.html">
 
-<div>
+Notices
 
-<button class="btn primary"
-onclick="location.href='Dashboard.html'">
+</a>
 
-🏠 Dashboard
+<a href="maintenance.html">
 
-</button>
+Maintenance
+
+</a>
+
+<a href="complaints.html">
+
+Complaints
+
+</a>
+
+</nav>
 
 </div>
 
 </header>
 
-<div class="dashboard-cards">
+<div class="container">
 
-<div class="dashboard-card">
+<div class="card">
 
-<h2 id="totalNotices">
+<h2>
 
-0
-
-</h2>
-
-<p>
-
-Total Notices
-
-</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<h2 id="activeNotices">
-
-0
+Create Notice
 
 </h2>
-
-<p>
-
-Active
-
-</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<h2 id="expiredNotices">
-
-0
-
-</h2>
-
-<p>
-
-Expired
-
-</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<h2 id="pinnedNotices">
-
-0
-
-</h2>
-
-<p>
-
-Pinned
-
-</p>
-
-</div>
-
-</div>
-
-<div class="dashboard-panel">
-
-<h3>
-
-Create New Notice
-
-</h3>
 
 <input
+
 type="text"
-id="noticeTitle"
+
+id="title"
+
 placeholder="Notice Title">
 
+<select id="category">
+
+<option>
+
+Maintenance
+
+</option>
+
+<option>
+
+Emergency
+
+</option>
+
+<option>
+
+General
+
+</option>
+
+<option>
+
+Events
+
+</option>
+
+</select>
+
+<select id="priority">
+
+<option>
+
+High
+
+</option>
+
+<option>
+
+Medium
+
+</option>
+
+<option>
+
+Low
+
+</option>
+
+</select>
+
+<input
+
+type="date"
+
+id="expiry">
+
 <textarea
-id="noticeMessage"
-placeholder="Write your notice here..."
-rows="5">
+
+id="description"
+
+rows="6"
+
+placeholder="Notice Description">
 
 </textarea>
 
-<input
-type="date"
-id="expiryDate">
-
-<label>
-
-<input
-type="checkbox"
-id="pinNotice">
-
-Pin this Notice
-
-</label>
-
 <button
-class="btn success"
+
+class="btn primary"
+
 id="publishNotice">
 
-📢 Publish Notice
+Publish Notice
 
 </button>
 
 </div>
 
-<div class="dashboard-panel">
+<div class="card">
 
-<h3>
+<h2>
 
-Search Notices
+Published Notices
 
-</h3>
+</h2>
 
-<input
-type="text"
-id="searchNotice"
-placeholder="Search notices">
-
-</div>
-
-<div id="noticeContainer">
+<div id="noticeList">
 
 Loading...
 
 </div>
 
-
-<div class="notice-card template"
-
-id="noticeTemplate"
-
-style="display:none;">
-
-<div class="notice-header">
-
-<h3 class="notice-title">
-
-Notice Title
-
-</h3>
-
-<span class="notice-badge">
-
-General
-
-</span>
-
 </div>
 
-<div class="notice-body">
+<script type="module">
 
-<p class="notice-message">
+import { db }
 
-Notice Message
-
-</p>
-
-<p>
-
-<b>Expiry Date:</b>
-
-<span class="notice-expiry">
-
---
-
-</span>
-
-</p>
-
-<p>
-
-<b>Published On:</b>
-
-<span class="notice-date">
-
---
-
-</span>
-
-</p>
-
-<p>
-
-<b>Status:</b>
-
-<span class="notice-status">
-
-Active
-
-</span>
-
-</p>
-
-</div>
-
-<div class="notice-actions">
-
-<button
-class="btn primary edit-btn">
-
-✏ Edit
-
-</button>
-
-<button
-class="btn warning pin-btn">
-
-📌 Pin
-
-</button>
-
-<button
-class="btn danger delete-btn">
-
-🗑 Delete
-
-</button>
-
-<button
-class="btn secondary view-btn">
-
-👁 View
-
-</button>
-
-</div>
-
-</div>
-
-<div
-id="emptyNotices"
-
-class="empty-state"
-
-style="display:none;">
-
-<h3>
-
-📢 No Notices Available
-
-</h3>
-
-<p>
-
-No notices have been published.
-
-</p>
-
-</div>
-
-
-  <script type="module">
-
-import { db } from "../firebase/firebase-config.js";
+from "../firebase/firebase-config.js";
 
 import {
 
 collection,
-getDocs,
 addDoc,
-doc,
-updateDoc,
-deleteDoc
+getDocs,
+serverTimestamp
 
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+}
 
-const noticeContainer =
-document.getElementById("noticeContainer");
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-const noticeTemplate =
-document.getElementById("noticeTemplate");
+const noticeList=document.getElementById("noticeList");
 
-const searchBox =
-document.getElementById("searchNotice");
-
-const publishButton =
-document.getElementById("publishNotice");
-
-let notices=[];
 
 async function loadNotices(){
 
-noticeContainer.innerHTML="";
+const snapshot=await getDocs(collection(db,"notices"));
 
-const snapshot =
-await getDocs(collection(db,"notices"));
+noticeList.innerHTML="";
 
-notices=[];
+if(snapshot.empty){
 
-let total=0;
-let active=0;
-let expired=0;
-let pinned=0;
-
-snapshot.forEach((docSnap)=>{
-
-const data=docSnap.data();
-
-data.id=docSnap.id;
-
-notices.push(data);
-
-total++;
-
-if(data.status==="Active") active++;
-if(data.status==="Expired") expired++;
-if(data.pinned===true) pinned++;
-
-});
-
-document.getElementById("totalNotices").innerHTML=total;
-document.getElementById("activeNotices").innerHTML=active;
-document.getElementById("expiredNotices").innerHTML=expired;
-document.getElementById("pinnedNotices").innerHTML=pinned;
-
-if(notices.length===0){
-
-document.getElementById("emptyNotices").style.display="block";
+noticeList.innerHTML="<p>No notices published.</p>";
 
 return;
 
 }
 
-document.getElementById("emptyNotices").style.display="none";
+snapshot.forEach((docSnap)=>{
 
-notices.forEach(createCard);
+const data=docSnap.data();
 
-}
+const priority=(data.priority||"Low").toLowerCase();
 
-function createCard(data){
+noticeList.innerHTML+=`
 
-const card=
-noticeTemplate.cloneNode(true);
+<div class="notice-card ${priority}">
 
-card.removeAttribute("id");
+<h3>${data.title}</h3>
 
-card.style.display="block";
+<p><b>Category :</b> ${data.category}</p>
 
-card.querySelector(".notice-title").textContent=
-data.title||"-";
+<p><b>Priority :</b> ${data.priority}</p>
 
-card.querySelector(".notice-message").textContent=
-data.message||"-";
+<p><b>Posted :</b> ${data.postedDate}</p>
 
-card.querySelector(".notice-expiry").textContent=
-data.expiryDate||"-";
+<p><b>Expiry :</b> ${data.expiryDate}</p>
 
-card.querySelector(".notice-date").textContent=
-data.createdOn||"-";
+<p>${data.description}</p>
 
-card.querySelector(".notice-status").textContent=
-data.status||"Active";
+<button
 
-card.querySelector(".notice-badge").textContent=
-data.pinned?"📌 Pinned":"General";
+class="btn danger"
 
-card.querySelector(".edit-btn").onclick=
-()=>editNotice(data.id);
+onclick="deleteNotice('${docSnap.id}')">
 
-card.querySelector(".pin-btn").onclick=
-()=>pinNotice(data.id,!data.pinned);
+🗑 Delete
 
-card.querySelector(".delete-btn").onclick=
-()=>removeNotice(data.id);
+</button>
 
-card.querySelector(".view-btn").onclick=
-()=>alert(JSON.stringify(data,null,2));
+</div>
 
-noticeContainer.appendChild(card);
+`;
+
+});
 
 }
 
-publishButton.onclick=async()=>{
 
-const title=
-document.getElementById("noticeTitle").value;
+/* ==========================================
+   Publish Notice
+========================================== */
 
-const message=
-document.getElementById("noticeMessage").value;
+document.getElementById("publishNotice")
 
-const expiryDate=
-document.getElementById("expiryDate").value;
+.addEventListener("click",async()=>{
 
-const pinned=
-document.getElementById("pinNotice").checked;
+const title=document.getElementById("title").value.trim();
 
-if(title.trim()===""||message.trim()===""){
+const category=document.getElementById("category").value;
 
-alert("Please enter title and notice.");
+const priority=document.getElementById("priority").value;
+
+const expiry=document.getElementById("expiry").value;
+
+const description=document.getElementById("description").value.trim();
+
+if(
+
+title===""||
+
+description===""||
+
+expiry===""
+
+){
+
+alert("Please fill all fields.");
 
 return;
 
@@ -464,156 +345,391 @@ return;
 await addDoc(collection(db,"notices"),{
 
 title,
-message,
-expiryDate,
-pinned,
+
+category,
+
+priority,
+
+description,
+
+postedBy:"Admin",
+
+postedDate:new Date().toLocaleDateString(),
+
+expiryDate:expiry,
+
 status:"Active",
-createdOn:new Date().toLocaleString()
+
+createdAt:serverTimestamp()
 
 });
 
-alert("Notice Published");
+alert("Notice Published Successfully.");
 
-document.getElementById("noticeTitle").value="";
-document.getElementById("noticeMessage").value="";
-document.getElementById("expiryDate").value="";
-document.getElementById("pinNotice").checked=false;
+document.getElementById("title").value="";
+
+document.getElementById("description").value="";
+
+document.getElementById("expiry").value="";
 
 loadNotices();
-
-};
-
-async function pinNotice(id,value){
-
-await updateDoc(doc(db,"notices",id),{
-
-pinned:value
 
 });
 
-loadNotices();
 
+/* ==========================================
+   Delete Notice
+========================================== */
+
+import {
+deleteDoc,
+updateDoc,
+doc
 }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-async function removeNotice(id){
+window.deleteNotice = async(id)=>{
 
 if(!confirm("Delete this notice?")) return;
 
+try{
+
 await deleteDoc(doc(db,"notices",id));
+
+alert("Notice deleted successfully.");
 
 loadNotices();
 
+}catch(error){
+
+console.error(error);
+
+alert(error.message);
+
 }
 
-async function editNotice(id){
+};
 
-const newTitle=
-prompt("Enter new title");
 
-if(!newTitle) return;
+/* ==========================================
+   Edit Notice
+========================================== */
+
+window.editNotice = async(id)=>{
+
+const title=prompt("Enter New Title");
+
+if(!title) return;
+
+const description=prompt("Enter New Description");
+
+if(!description) return;
+
+try{
 
 await updateDoc(doc(db,"notices",id),{
 
-title:newTitle
+title:title,
+
+description:description
 
 });
 
+alert("Notice updated successfully.");
+
 loadNotices();
+
+}catch(error){
+
+console.error(error);
+
+alert(error.message);
 
 }
 
-searchBox.addEventListener("input",()=>{
+};
 
-const keyword=
-searchBox.value.toLowerCase();
 
-noticeContainer.innerHTML="";
+/* ==========================================
+   Search Notice
+========================================== */
 
-notices.filter(n=>
+const search=document.createElement("input");
 
-(n.title||"").toLowerCase().includes(keyword)||
+search.type="text";
 
-(n.message||"").toLowerCase().includes(keyword)
+search.placeholder="Search Notices";
 
-).forEach(createCard);
+search.style.marginBottom="20px";
+
+document.querySelector("#noticeList")
+.parentElement.insertBefore(
+
+search,
+
+document.getElementById("noticeList")
+
+);
+
+search.addEventListener("input",()=>{
+
+const keyword=search.value.toLowerCase();
+
+const cards=document.querySelectorAll(".notice-card");
+
+cards.forEach(card=>{
+
+const text=card.innerText.toLowerCase();
+
+card.style.display=text.includes(keyword)
+
+? "block"
+
+: "none";
 
 });
 
-loadNotices();
+});
 
-  </script>
-
-<script type="module">
 
 /* ==========================================
-   Auto Refresh Every 30 Seconds
+   Filter Category
 ========================================== */
 
-setInterval(() => {
+const filter=document.createElement("select");
 
-    loadNotices();
+filter.innerHTML=`
 
-    document.getElementById("lastUpdated").innerHTML =
-        new Date().toLocaleTimeString();
+<option value="All">
 
-}, 30000);
+All Categories
+
+</option>
+
+<option value="Maintenance">
+
+Maintenance
+
+</option>
+
+<option value="Emergency">
+
+Emergency
+
+</option>
+
+<option value="General">
+
+General
+
+</option>
+
+<option value="Events">
+
+Events
+
+</option>
+
+`;
+
+filter.style.marginBottom="20px";
+
+document.querySelector("#noticeList")
+.parentElement.insertBefore(
+
+filter,
+
+document.getElementById("noticeList")
+
+);
+
+filter.addEventListener("change",()=>{
+
+const value=filter.value.toLowerCase();
+
+const cards=document.querySelectorAll(".notice-card");
+
+cards.forEach(card=>{
+
+if(value==="all"){
+
+card.style.display="block";
+
+}else{
+
+card.style.display=
+
+card.innerText.toLowerCase().includes(value)
+
+? "block"
+
+: "none";
+
+}
+
+});
+
+});
+
+
+/* ==========================================
+   Export Notices to CSV
+========================================== */
+
+function exportCSV(){
+
+let csv="Title,Category,Priority,Posted Date,Expiry Date,Status\n";
+
+document.querySelectorAll(".notice-card").forEach(card=>{
+
+const lines=card.innerText.split("\n");
+
+const title=lines[0]||"";
+const category=(lines[1]||"").replace("Category : ","");
+const priority=(lines[2]||"").replace("Priority : ","");
+const posted=(lines[3]||"").replace("Posted : ","");
+const expiry=(lines[4]||"").replace("Expiry : ","");
+
+csv+=`"${title}","${category}","${priority}","${posted}","${expiry}","Active"\n`;
+
+});
+
+const blob=new Blob([csv],{
+
+type:"text/csv"
+
+});
+
+const url=URL.createObjectURL(blob);
+
+const link=document.createElement("a");
+
+link.href=url;
+
+link.download="AKR_Notices_Report.csv";
+
+link.click();
+
+URL.revokeObjectURL(url);
+
+}
+
+
+/* ==========================================
+   Export Button
+========================================== */
+
+const exportBtn=document.createElement("button");
+
+exportBtn.className="btn secondary";
+
+exportBtn.innerHTML="📥 Export CSV";
+
+exportBtn.style.marginLeft="10px";
+
+exportBtn.onclick=exportCSV;
+
+document.getElementById("publishNotice")
+
+.after(exportBtn);
+
 
 /* ==========================================
    Last Updated
 ========================================== */
 
-const lastUpdate = document.createElement("div");
+const lastUpdated=document.createElement("p");
 
-lastUpdate.style.marginTop = "20px";
+lastUpdated.id="lastUpdated";
 
-lastUpdate.style.fontWeight = "600";
+lastUpdated.style.marginTop="20px";
 
-lastUpdate.innerHTML =
-'Last Updated : <span id="lastUpdated">Just Now</span>';
+lastUpdated.style.fontWeight="600";
 
-document
-.querySelector(".dashboard-header")
-.appendChild(lastUpdate);
+document.querySelector(".container")
+
+.appendChild(lastUpdated);
+
 
 /* ==========================================
    Logout Button
 ========================================== */
 
-const logoutBtn = document.createElement("button");
+const logoutBtn=document.createElement("button");
 
-logoutBtn.className = "btn danger";
+logoutBtn.className="btn danger";
 
-logoutBtn.innerHTML = "🚪 Logout";
+logoutBtn.style.marginLeft="10px";
 
-logoutBtn.style.marginLeft = "15px";
+logoutBtn.innerHTML="🚪 Logout";
 
-logoutBtn.onclick = function(){
+logoutBtn.onclick=function(){
 
-    if(confirm("Logout from AKR AMS?")){
+if(confirm("Logout from AKR AMS?")){
 
-        window.location.href="../login.html";
+window.location.href="../login.html";
 
-    }
+}
 
 };
 
-document
-.querySelector(".dashboard-header")
-.appendChild(logoutBtn);
+exportBtn.after(logoutBtn);
+
 
 /* ==========================================
-   Initial Load
+   Refresh
 ========================================== */
 
-loadNotices();
+async function refresh(){
+
+await loadNotices();
+
+lastUpdated.innerHTML=
+
+"Last Updated : "+new Date().toLocaleTimeString();
+
+}
+
+refresh();
+
+setInterval(refresh,30000);
+
+
+/* ==========================================
+   Console
+========================================== */
+
+window.addEventListener("load",()=>{
+
+console.log("================================");
+
+console.log("AKR AMS");
+
+console.log("Admin Notice Module");
+
+console.log("Firebase Connected");
+
+console.log("Version : 1.0.0");
+
+console.log("================================");
+
+});
 
 </script>
-
-</div>
 
 </body>
 
 </html>
+
+
+
+
+  
+
+
+
+
+
 
 
   
@@ -631,6 +747,19 @@ loadNotices();
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 
