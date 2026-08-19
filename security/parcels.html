@@ -4,456 +4,240 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<title>Parcel Management</title>
 
-<title>
-
-Parcel Management
-
-</title>
-
-<link rel="stylesheet"
-href="../css/style.css">
-
-<link rel="stylesheet"
-href="../css/security.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/auth.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
 rel="stylesheet">
+
+<style>
+
+.container{
+max-width:1300px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+margin-bottom:20px;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:12px;
+margin:8px 0 15px;
+border:1px solid #ccc;
+border-radius:8px;
+box-sizing:border-box;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:#fff;
+}
+
+th,
+td{
+padding:12px;
+border:1px solid #ddd;
+text-align:left;
+}
+
+.status{
+padding:6px 10px;
+border-radius:20px;
+color:#fff;
+font-size:13px;
+}
+
+.waiting{
+background:#ff9800;
+}
+
+.collected{
+background:#4caf50;
+}
+
+</style>
 
 </head>
 
 <body>
 
-<div class="dashboard-container">
+<header>
 
-<header class="dashboard-header">
+<div class="container">
 
-<div>
+<div class="logo">
 
-<h1>
+<h2>📦 Parcel Management</h2>
 
-📦 Parcel Management
-
-</h1>
-
-<p>
-
-AKR House Apartments
-
-</p>
+<p>AKR House Apartments</p>
 
 </div>
 
-<button
+<nav>
 
-class="btn primary"
+<a href="dashboard.html">Dashboard</a>
+<a href="visitors.html">Visitors</a>
+<a href="parcels.html">Parcels</a>
+<a href="residents.html">Residents</a>
+<a href="emergency.html">Emergency</a>
+<a href="chat.html">Chat</a>
 
-onclick="location.href='dashboard.html'">
+</nav>
 
-🏠 Dashboard
-
-</button>
+</div>
 
 </header>
 
-<div class="dashboard-cards">
+<section class="hero">
 
-<div class="dashboard-card">
+<div class="container">
 
-<h2 id="totalParcels">
+<h1>Parcel Management</h1>
 
-0
-
-</h2>
-
-<p>
-
-Total Parcels
-
-</p>
+<p>Register incoming parcels and notify residents.</p>
 
 </div>
 
-<div class="dashboard-card">
+</section>
 
-<h2 id="pendingParcels">
+<div class="container">
 
-0
+<div class="card">
 
-</h2>
+<h2>📦 Register Parcel</h2>
 
-<p>
-
-Waiting Pickup
-
-</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<h2 id="deliveredParcels">
-
-0
-
-</h2>
-
-<p>
-
-Delivered
-
-</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<h2 id="todayParcels">
-
-0
-
-</h2>
-
-<p>
-
-Today's Parcels
-
-</p>
-
-</div>
-
-</div>
-
-<div class="dashboard-panel">
-
-<h2>
-
-📦 Add Parcel
-
-</h2>
+<label>Courier Company</label>
 
 <input
 type="text"
-id="residentName"
-placeholder="Resident Name">
+id="courierCompany"
+placeholder="Example: Amazon">
 
-<input
-type="text"
-id="flatNumber"
-placeholder="Flat Number">
-
-<input
-type="text"
-id="courierName"
-placeholder="Courier Company">
+<label>Tracking Number</label>
 
 <input
 type="text"
 id="trackingNumber"
 placeholder="Tracking Number">
 
-<select id="parcelStatus">
+<label>Resident Name</label>
 
-<option>
+<input
+type="text"
+id="residentName"
+placeholder="Resident Name">
 
-Waiting Pickup
+<label>Flat Number</label>
 
-</option>
+<input
+type="text"
+id="flat"
+placeholder="Example: 203">
 
-<option>
+<label>Parcel Type</label>
 
-Delivered
+<select id="parcelType">
 
-</option>
+<option>Package</option>
+<option>Document</option>
+<option>Food</option>
+<option>Other</option>
 
 </select>
 
+<label>Remarks</label>
+
+<textarea
+id="remarks"
+rows="3"
+placeholder="Optional remarks"></textarea>
+
 <button
-
-class="btn success"
-
+class="btn primary"
 id="saveParcel">
 
-➕ Save Parcel
+📦 Register Parcel
 
 </button>
 
 </div>
 
-<div class="dashboard-panel">
+<div class="card">
 
-<h2>
-
-🔍 Search Parcel
-
-</h2>
+<h2>📋 Parcel Records</h2>
 
 <input
-
 type="text"
-
 id="searchParcel"
+placeholder="Search by resident, flat, courier or tracking number">
 
-placeholder="Search by Resident, Flat or Tracking Number">
+<table>
 
-</div>
+<thead>
 
-<div id="parcelContainer">
+<tr>
 
-Loading...
+<th>Courier</th>
+<th>Tracking</th>
+<th>Resident</th>
+<th>Flat</th>
+<th>Received</th>
+<th>Status</th>
+<th>Action</th>
 
-</div>
+</tr>
 
-<div class="parcel-card template"
+</thead>
 
-id="parcelTemplate"
+<tbody id="parcelTable">
 
-style="display:none;">
+<tr>
 
-<div class="parcel-header">
+<td colspan="7">Loading...</td>
 
-<h3 class="parcel-resident">
+</tr>
 
-Resident Name
+</tbody>
 
-</h3>
-
-<span class="parcel-status">
-
-Waiting Pickup
-
-</span>
-
-</div>
-
-<div class="parcel-details">
-
-<p>
-
-<b>🏠 Flat:</b>
-
-<span class="parcel-flat">
-
---
-
-</span>
-
-</p>
-
-<p>
-
-<b>📦 Courier:</b>
-
-<span class="parcel-courier">
-
---
-
-</span>
-
-</p>
-
-<p>
-
-<b>🔢 Tracking No:</b>
-
-<span class="parcel-tracking">
-
---
-
-</span>
-
-</p>
-
-<p>
-
-<b>📅 Received On:</b>
-
-<span class="parcel-date">
-
---
-
-</span>
-
-</p>
-
-<p>
-
-<b>👮 Received By:</b>
-
-<span class="parcel-security">
-
-Security
-
-</span>
-
-</p>
-
-</div>
-
-<div class="parcel-actions">
-
-<button
-class="btn success deliver-btn">
-
-✅ Mark Delivered
-
-</button>
-
-<button
-class="btn primary notify-btn">
-
-📞 Notify Resident
-
-</button>
-
-<button
-class="btn secondary view-btn">
-
-👁 View
-
-</button>
-
-<button
-class="btn danger delete-btn">
-
-🗑 Delete
-
-</button>
+</table>
 
 </div>
 
 </div>
-
-<div
-id="emptyParcels"
-
-class="empty-state"
-
-style="display:none;">
-
-<h3>
-
-📦 No Parcels Found
-
-</h3>
-
-<p>
-
-No parcel records are available.
-
-</p>
-
-</div>
-
-<div class="dashboard-panel">
-
-<h2>
-
-📊 Parcel Summary
-
-</h2>
-
-<div class="dashboard-cards">
-
-<div class="dashboard-card">
-
-<h2 id="pickupToday">
-
-0
-
-</h2>
-
-<p>
-
-Picked Up Today
-
-</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<h2 id="waitingToday">
-
-0
-
-</h2>
-
-<p>
-
-Waiting Pickup
-
-</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<h2 id="notificationsSent">
-
-0
-
-</h2>
-
-<p>
-
-Notifications Sent
-
-</p>
-
-</div>
-
-<div class="dashboard-card">
-
-<h2 id="courierCompanies">
-
-0
-
-</h2>
-
-<p>
-
-Courier Companies
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
 
 <script type="module">
 
 import { db } from "../firebase/firebase-config.js";
 
 import {
-
 collection,
-getDocs,
 addDoc,
+getDocs,
 updateDoc,
-deleteDoc,
-doc
+doc,
+serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-const parcelContainer =
-document.getElementById("parcelContainer");
-
-const parcelTemplate =
-document.getElementById("parcelTemplate");
-
-const searchBox =
-document.getElementById("searchParcel");
+const table=document.getElementById("parcelTable");
 
 let parcels=[];
 
-let notifications=0;
 
 /* ==========================================
    Load Parcels
@@ -461,275 +245,346 @@ let notifications=0;
 
 async function loadParcels(){
 
-parcelContainer.innerHTML="";
+try{
+
+const snapshot=await getDocs(
+collection(db,"parcels")
+);
 
 parcels=[];
 
-const snapshot=
-await getDocs(collection(db,"parcels"));
+snapshot.forEach(docSnap=>{
 
-let total=0;
-let waiting=0;
-let delivered=0;
-let today=0;
+parcels.push({
 
-const courierSet=new Set();
-
-const todayDate=
-new Date().toLocaleDateString();
-
-snapshot.forEach((docSnap)=>{
-
-const data=docSnap.data();
-
-data.id=docSnap.id;
-
-parcels.push(data);
-
-total++;
-
-courierSet.add(data.courier);
-
-if(data.status==="Waiting Pickup"){
-
-waiting++;
-
-}
-
-if(data.status==="Delivered"){
-
-delivered++;
-
-}
-
-if((data.receivedOn||"").includes(todayDate)){
-
-today++;
-
-}
+id:docSnap.id,
+...docSnap.data()
 
 });
 
-document.getElementById("totalParcels").innerHTML=total;
+});
 
-document.getElementById("pendingParcels").innerHTML=waiting;
+displayParcels(parcels);
 
-document.getElementById("deliveredParcels").innerHTML=delivered;
+}catch(error){
 
-document.getElementById("todayParcels").innerHTML=today;
+console.error(error);
 
-document.getElementById("pickupToday").innerHTML=delivered;
+table.innerHTML=`
 
-document.getElementById("waitingToday").innerHTML=waiting;
+<tr>
 
-document.getElementById("notificationsSent").innerHTML=notifications;
+<td colspan="7">
 
-document.getElementById("courierCompanies").innerHTML=
-courierSet.size;
+Unable to load parcels.
 
-if(parcels.length===0){
+</td>
 
-document.getElementById("emptyParcels").style.display="block";
+</tr>
+
+`;
+
+}
+
+}
+
+
+/* ==========================================
+   Display Parcels
+========================================== */
+
+function displayParcels(list){
+
+table.innerHTML="";
+
+if(list.length===0){
+
+table.innerHTML=`
+
+<tr>
+
+<td colspan="7">
+
+No parcel records found.
+
+</td>
+
+</tr>
+
+`;
 
 return;
 
 }
 
-document.getElementById("emptyParcels").style.display="none";
+list.forEach(parcel=>{
 
-renderParcels(parcels);
+const statusClass=
 
-}
+parcel.status==="Collected"
+? "collected"
+: "waiting";
 
-/* ==========================================
-   Render Parcels
-========================================== */
+const row=document.createElement("tr");
 
-function renderParcels(list){
+row.innerHTML=`
 
-parcelContainer.innerHTML="";
+<td>${parcel.courierCompany || "-"}</td>
 
-list.forEach(createCard);
+<td>${parcel.trackingNumber || "-"}</td>
 
-}
+<td>${parcel.residentName || "-"}</td>
 
-/* ==========================================
-   Create Parcel Card
-========================================== */
+<td>${parcel.flat || "-"}</td>
 
-function createCard(data){
+<td>${parcel.receivedDate || "-"}</td>
 
-const card=
-parcelTemplate.cloneNode(true);
+<td>
 
-card.removeAttribute("id");
+<span class="status ${statusClass}">
 
-card.style.display="block";
+${parcel.status || "Waiting for Collection"}
 
-card.querySelector(".parcel-resident").textContent=
-data.resident||"-";
+</span>
 
-card.querySelector(".parcel-status").textContent=
-data.status||"-";
+</td>
 
-card.querySelector(".parcel-flat").textContent=
-data.flat||"-";
+<td>
 
-card.querySelector(".parcel-courier").textContent=
-data.courier||"-";
+${
+parcel.status==="Collected"
 
-card.querySelector(".parcel-tracking").textContent=
-data.tracking||"-";
+?
 
-card.querySelector(".parcel-date").textContent=
-data.receivedOn||"-";
+"Completed"
 
-card.querySelector(".parcel-security").textContent=
-data.receivedBy||"Security";
+:
 
-card.querySelector(".deliver-btn").onclick=
-()=>markDelivered(data.id);
+`<button
+class="btn primary collect-btn">
 
-card.querySelector(".notify-btn").onclick=
-()=>notifyResident(data.resident);
+Mark Collected
 
-card.querySelector(".view-btn").onclick=
-()=>alert(JSON.stringify(data,null,2));
-
-card.querySelector(".delete-btn").onclick=
-()=>deleteParcel(data.id);
-
-parcelContainer.appendChild(card);
+</button>`
 
 }
 
+</td>
+
+`;
+
+if(parcel.status!=="Collected"){
+
+row.querySelector(".collect-btn")
+.addEventListener("click",()=>{
+
+markCollected(parcel.id);
+
+});
+
+}
+
+table.appendChild(row);
+
+});
+
+}
+
+
 /* ==========================================
-   Save Parcel
+   Register Parcel
 ========================================== */
 
-document.getElementById("saveParcel").onclick=
-async()=>{
+document.getElementById("saveParcel")
+.addEventListener("click",async()=>{
 
-const resident=
-document.getElementById("residentName").value;
+const courierCompany=
+document.getElementById("courierCompany")
+.value.trim();
+
+const trackingNumber=
+document.getElementById("trackingNumber")
+.value.trim();
+
+const residentName=
+document.getElementById("residentName")
+.value.trim();
 
 const flat=
-document.getElementById("flatNumber").value;
+document.getElementById("flat")
+.value.trim();
 
-const courier=
-document.getElementById("courierName").value;
+const parcelType=
+document.getElementById("parcelType")
+.value;
 
-const tracking=
-document.getElementById("trackingNumber").value;
+const remarks=
+document.getElementById("remarks")
+.value.trim();
 
-const status=
-document.getElementById("parcelStatus").value;
 
-if(resident.trim()===""||flat.trim()===""){
+if(
+courierCompany==="" ||
+residentName==="" ||
+flat===""
+){
 
-alert("Please fill all required fields.");
+alert(
+"Please enter Courier, Resident and Flat."
+);
 
 return;
 
 }
 
-await addDoc(collection(db,"parcels"),{
 
-resident,
+try{
+
+await addDoc(
+collection(db,"parcels"),
+{
+
+parcelId:"PK"+Date.now(),
+
+trackingNumber,
+
+courierCompany,
+
+residentUid:"",
+
+residentName,
+
 flat,
-courier,
-tracking,
-status,
+
+parcelType,
+
+receivedDate:
+new Date().toLocaleDateString(),
 
 receivedBy:"Security",
 
-receivedOn:new Date().toLocaleString()
+status:"Waiting for Collection",
 
-});
+collectedDate:"",
 
-alert("Parcel saved successfully.");
+remarks,
 
-document.getElementById("residentName").value="";
-document.getElementById("flatNumber").value="";
-document.getElementById("courierName").value="";
+createdAt:serverTimestamp()
+
+}
+);
+
+alert(
+"Parcel registered successfully."
+);
+
+document.getElementById("courierCompany").value="";
 document.getElementById("trackingNumber").value="";
+document.getElementById("residentName").value="";
+document.getElementById("flat").value="";
+document.getElementById("remarks").value="";
 
 loadParcels();
 
-};
+}catch(error){
 
-/* ==========================================
-   Mark Delivered
-========================================== */
+console.error(error);
 
-async function markDelivered(id){
+alert(
+"Unable to register parcel: "
++error.message
+);
 
-await updateDoc(doc(db,"parcels",id),{
-
-status:"Delivered",
-
-deliveredOn:new Date().toLocaleString()
+}
 
 });
 
-alert("Parcel marked as delivered.");
+
+/* ==========================================
+   Mark Collected
+========================================== */
+
+async function markCollected(id){
+
+if(!confirm(
+"Mark this parcel as collected?"
+)){
+
+return;
+
+}
+
+try{
+
+await updateDoc(
+doc(db,"parcels",id),
+{
+
+status:"Collected",
+
+collectedDate:
+new Date().toLocaleDateString()
+
+}
+);
+
+alert(
+"Parcel marked as collected."
+);
 
 loadParcels();
 
-}
+}catch(error){
 
-/* ==========================================
-   Notify Resident
-========================================== */
+console.error(error);
 
-function notifyResident(name){
-
-notifications++;
-
-document.getElementById("notificationsSent").innerHTML=
-notifications;
-
-alert("Resident notification sent to "+name);
+alert(error.message);
 
 }
 
-/* ==========================================
-   Delete Parcel
-========================================== */
-
-async function deleteParcel(id){
-
-if(!confirm("Delete parcel record?")) return;
-
-await deleteDoc(doc(db,"parcels",id));
-
-loadParcels();
-
 }
+
 
 /* ==========================================
    Search
 ========================================== */
 
-searchBox.addEventListener("input",()=>{
+document.getElementById("searchParcel")
+.addEventListener("input",function(){
 
 const keyword=
-searchBox.value.toLowerCase();
+this.value.toLowerCase();
 
-const filtered=
-parcels.filter(parcel=>
+const filtered=parcels.filter(parcel=>
 
-(parcel.resident||"").toLowerCase().includes(keyword)||
+(parcel.courierCompany||"")
+.toLowerCase()
+.includes(keyword)
 
-(parcel.flat||"").toLowerCase().includes(keyword)||
+||
 
-(parcel.tracking||"").toLowerCase().includes(keyword)
+(parcel.trackingNumber||"")
+.toLowerCase()
+.includes(keyword)
+
+||
+
+(parcel.residentName||"")
+.toLowerCase()
+.includes(keyword)
+
+||
+
+(parcel.flat||"")
+.toLowerCase()
+.includes(keyword)
 
 );
 
-renderParcels(filtered);
+displayParcels(filtered);
 
 });
+
 
 /* ==========================================
    Initial Load
@@ -737,103 +592,19 @@ renderParcels(filtered);
 
 loadParcels();
 
-</script>
-
-
-<script type="module">
 
 /* ==========================================
-   Auto Refresh Every 30 Seconds
+   Auto Refresh
 ========================================== */
 
 setInterval(()=>{
 
 loadParcels();
 
-document.getElementById("lastUpdated").innerHTML=
-new Date().toLocaleTimeString();
-
 },30000);
 
-/* ==========================================
-   Last Updated
-========================================== */
-
-const lastUpdate=document.createElement("div");
-
-lastUpdate.style.marginTop="20px";
-
-lastUpdate.style.fontWeight="600";
-
-lastUpdate.innerHTML=
-'Last Updated : <span id="lastUpdated">Just Now</span>';
-
-document.querySelector(".dashboard-header")
-.appendChild(lastUpdate);
-
-/* ==========================================
-   Logout
-========================================== */
-
-const logoutBtn=document.createElement("button");
-
-logoutBtn.className="btn danger";
-
-logoutBtn.innerHTML="🚪 Logout";
-
-logoutBtn.style.marginLeft="15px";
-
-logoutBtn.onclick=function(){
-
-if(confirm("Logout from Security Portal?")){
-
-window.location.href="../login.html";
-
-}
-
-};
-
-document.querySelector(".dashboard-header")
-.appendChild(logoutBtn);
-
-/* ==========================================
-   Initial Load
-========================================== */
-
-loadParcels();
-
 </script>
-
-</div>
 
 </body>
 
 </html>
-
-  
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
